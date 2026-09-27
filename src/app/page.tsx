@@ -33,6 +33,7 @@ import BookingModal from "@/components/BookingModal";
 import ChaletConfigurator from "@/components/ChaletConfigurator";
 import ValuesAccordion from "@/components/ValuesAccordion";
 import KineticQuote from "@/components/KineticQuote";
+import SplashMask from "@/components/SplashMask";
 
 export default function Home() {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
@@ -65,6 +66,7 @@ export default function Home() {
 
   return (
     <SmoothScroll>
+      <SplashMask />
       <Navbar onOpenBooking={() => setIsBookingOpen(true)} />
       <ScrollProgress sections={sectionsList} />
       <AmbientAudio />
