@@ -18,93 +18,93 @@ export default function SplashMask() {
       },
     });
 
-    // Estado Inicial:
-    // El logo grande en el centro, sólido, con escala 1
+    // 1. Estado Inicial:
+    // Logo grande y centrado, opaco con sus colores oficiales
     gsap.set(curtainRef.current, { opacity: 1 });
     gsap.set([zoomGroupMaskRef.current, zoomGroupBorderRef.current], {
       scale: 1,
-      transformOrigin: "540px 520px",
+      transformOrigin: "540px 525px",
     });
-    gsap.set(solidFillGroupRef.current, { fillOpacity: 1, opacity: 1 });
-    gsap.set(zoomGroupBorderRef.current, { opacity: 1, strokeWidth: 3 });
+    gsap.set(solidFillGroupRef.current, { opacity: 1 });
+    gsap.set(zoomGroupBorderRef.current, { opacity: 1 });
     gsap.set(textTitleRef.current, { opacity: 0, y: 15 });
 
-    // 1. Entrada inicial: el logo y texto aparecen (0s - 0.7s)
+    // Entrada inicial del splash (0s - 0.6s)
     tl.fromTo(
       [zoomGroupMaskRef.current, zoomGroupBorderRef.current],
-      { scale: 0.85, opacity: 0 },
-      { scale: 1, opacity: 1, duration: 0.7, ease: "power3.out" }
+      { scale: 0.9, opacity: 0 },
+      { scale: 1, opacity: 1, duration: 0.6, ease: "power2.out" }
     )
       .to(
         textTitleRef.current,
         {
           opacity: 1,
           y: 0,
-          duration: 0.5,
+          duration: 0.4,
           ease: "power2.out",
         },
-        "-=0.3"
+        "-=0.2"
       )
-      // 2. PAUSA DE 1 SEGUNDO: El usuario contempla el logo grande en el centro
+      // 2. PAUSA EXACTA DE 1 SEGUNDO: Contemplación del logo antes de la transformación
       .to({}, { duration: 1.0 })
-      // 3. El texto inferior se desvanece
-      .to(textTitleRef.current, {
-        opacity: 0,
-        y: -10,
-        duration: 0.35,
-        ease: "power2.in",
-      })
-      // 4. EL INTERIOR DEL LOGO SE VUELVE TRANSPARENTE:
-      // Se desvanece el relleno sólido, dejando ver la web por dentro de la silueta del logo
+
+      // 3. MOMENTO CLAVE SIMULTÁNEO:
+      // Exactamente al cumplirse el segundo, AL MISMO TIEMPO:
+      // a) El interior se vuelve transparente dejando ver la web por dentro
+      // b) Comienza el ZOOM IN directo hacia el centro del logo
+      // c) El texto se desvanece
+      .addLabel("zoomStart")
+      // a) Transparencia del interior
       .to(
         solidFillGroupRef.current,
         {
           opacity: 0,
-          duration: 0.45,
-          ease: "power2.inOut",
+          duration: 0.3,
+          ease: "power2.out",
         },
-        "-=0.2"
+        "zoomStart"
       )
-      // Iluminamos el contorno para que el borde del logo sea visible y marque la silueta
+      // Desvanecer el texto inferior
       .to(
-        zoomGroupBorderRef.current,
+        textTitleRef.current,
         {
-          opacity: 1,
-          stroke: "#A45D41",
-          duration: 0.4,
+          opacity: 0,
+          y: -10,
+          duration: 0.3,
+          ease: "power2.in",
         },
-        "<"
+        "zoomStart"
       )
-      // 5. EFECTO ZOOM IN CLARO Y DRAMÁTICO:
-      // El logo empieza a crecer progresivamente (hace zoom-in), acercándose a la pantalla
-      // mientras la web se ve cada vez más grande dentro de su forma
+      // b) ZOOM IN AL CENTRO DEL LOGO simultáneo
       .to(
         [zoomGroupMaskRef.current, zoomGroupBorderRef.current],
         {
-          scale: 45,
-          duration: 1.8,
-          ease: "expo.inOut",
-          transformOrigin: "540px 520px",
-        }
+          scale: 48,
+          duration: 1.6,
+          ease: "power2.inOut",
+          transformOrigin: "540px 525px",
+        },
+        "zoomStart"
       )
-      // 6. El contorno se desvanece al final cuando ya cubre toda la pantalla
+      // Suavizar el contorno del logo a medida que se agranda saliendo de la pantalla
       .to(
         zoomGroupBorderRef.current,
         {
           opacity: 0,
-          duration: 0.4,
+          duration: 0.5,
+          ease: "power2.in",
         },
-        "-=0.5"
+        "zoomStart+=0.8"
       )
-      // 7. Salida de la cortina
+      // Desvanecer la cortina negra final para entregar la web completamente interactiva
       .to(
         curtainRef.current,
         {
           opacity: 0,
-          duration: 0.4,
+          duration: 0.35,
           ease: "power2.out",
         },
-        "-=0.3"
+        "-=0.35"
       );
 
     return () => {
@@ -121,7 +121,7 @@ export default function SplashMask() {
       style={{ willChange: "opacity" }}
     >
       {/* ========================================================
-          SVG MAESTRO: MÁSCARA DE CAPA CON ZOOM IN + CONTORNO VISIBLE
+          MÁSCARA DE CAPA SVG NATIVA CON ZOOM IN AL CENTRO
           ======================================================== */}
       <svg
         viewBox="0 0 1080 1080"
@@ -129,11 +129,11 @@ export default function SplashMask() {
         className="absolute inset-0 w-full h-full pointer-events-none"
       >
         <defs>
-          <mask id="pazionart-zoomin-mask">
-            {/* Rectángulo blanco = cubre la pantalla en color #151D14 */}
+          <mask id="pazionart-simultaneous-mask">
+            {/* Fondo blanco cubre toda la pantalla en negro */}
             <rect x="-10000" y="-10000" width="20000" height="20000" fill="white" />
-            {/* Grupo de máscara en negro = HUECO TRANSPARENTE hacia la web que hace ZOOM IN */}
-            <g ref={zoomGroupMaskRef}>
+            {/* Silueta en negro = HUECO TRANSPARENTE hacia la web que hace ZOOM IN AL CENTRO */}
+            <g ref={zoomGroupMaskRef} style={{ transformOrigin: "540px 525px" }}>
               <path
                 fill="black"
                 d="M1044.3,816c-23-46.4-72.8-91.4-114.6-121.1C882,661,824.5,639,766.1,640.5c-75,1.9-144.4,41.9-200,92.2
@@ -165,17 +165,17 @@ export default function SplashMask() {
           </mask>
         </defs>
 
-        {/* 1. Rectángulo de fondo Noche que lleva la máscara perforada */}
+        {/* 1. Fondo que se recorta con la máscara mostrando la web detrás */}
         <rect
           x="-10000"
           y="-10000"
           width="20000"
           height="20000"
           fill="#151D14"
-          mask="url(#pazionart-zoomin-mask)"
+          mask="url(#pazionart-simultaneous-mask)"
         />
 
-        {/* 2. Relleno inicial colorido (se desvanece a 1 segundo para volverse transparente) */}
+        {/* 2. Relleno inicial del logo con colores oficiales (se desvanece simultáneamente al zoom-in) */}
         <g ref={solidFillGroupRef}>
           <path
             fill="#8D996E"
@@ -206,8 +206,14 @@ export default function SplashMask() {
           />
         </g>
 
-        {/* 3. Contorno visible del logo que hace el ZOOM IN hacia la pantalla */}
-        <g ref={zoomGroupBorderRef} fill="none" stroke="#A45D41" strokeWidth="4">
+        {/* 3. Contorno visible que hace el ZOOM IN AL CENTRO hacia la cámara */}
+        <g
+          ref={zoomGroupBorderRef}
+          fill="none"
+          stroke="#A45D41"
+          strokeWidth="3.5"
+          style={{ transformOrigin: "540px 525px" }}
+        >
           <path d="M1044.3,816c-23-46.4-72.8-91.4-114.6-121.1C882,661,824.5,639,766.1,640.5c-75,1.9-144.4,41.9-200,92.2c35.9,30.4,85.7,38.5,132.8,37.6s93.8-9.6,140.8-8C913.7,764.8,974.5,798.5,1044.3,816z" />
           <path d="M35.7,816c23-46.4,72.8-91.4,114.6-121.1C198,661,255.5,639,313.9,640.5c75,1.9,144.4,41.9,200,92.2c-35.9,30.4-85.7,38.5-132.8,37.6s-93.8-9.6-140.8-8C166.3,764.8,105.5,798.5,35.7,816z" />
           <path d="M540,309.1c41.5-63.2,104-41.5,104-41.5c120.3,52.4,36.9,178.8,36.9,178.8C643,513.3,547.2,728.2,547.2,728.2l-7.2,16.3l-7.2-16.3c0,0-95.7-214.9-133.7-281.8c0,0-83.4-126.4,36.9-178.8C436,267.6,498.5,245.9,540,309.1" />
@@ -216,17 +222,17 @@ export default function SplashMask() {
         </g>
       </svg>
 
-      {/* Texto de Bienvenida que acompaña al logo durante el primer segundo */}
+      {/* Texto de Introducción durante el primer segundo */}
       <div
         ref={textTitleRef}
-        className="absolute bottom-16 sm:bottom-20 z-10 flex flex-col items-center pointer-events-none"
+        className="absolute bottom-14 sm:bottom-18 z-10 flex flex-col items-center pointer-events-none"
       >
-        <span className="text-3xl sm:text-4xl font-light tracking-[0.25em] text-[#F5F2ED] uppercase font-sans mb-1">
+        <span className="text-2xl sm:text-3xl font-light tracking-[0.28em] text-[#F5F2ED] uppercase font-sans mb-1">
           Pazionart
         </span>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2.5">
           <span className="w-5 h-[1px] bg-[#8D996E]" />
-          <span className="text-xs tracking-[0.3em] text-[#8D996E] uppercase font-mono">
+          <span className="text-[11px] tracking-[0.3em] text-[#8D996E] uppercase font-mono">
             Amor · Naturaleza · Arte
           </span>
           <span className="w-5 h-[1px] bg-[#8D996E]" />
