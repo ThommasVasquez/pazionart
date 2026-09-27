@@ -101,7 +101,7 @@ export default function Home() {
             <div className="absolute inset-0 bg-modulacion opacity-5 pointer-events-none mix-blend-screen" />
           </div>
 
-          <div className="relative z-10 max-w-6xl mx-auto w-full flex flex-col items-center text-center">
+          <div className="relative z-20 max-w-6xl mx-auto w-full flex flex-col items-center text-center">
             {/* Símbolo Pazionart SVG con resplandor suave */}
             <div className="w-16 h-16 md:w-20 md:h-20 relative mb-4 drop-shadow-[0_10px_25px_rgba(0,0,0,0.6)]">
               <Image
@@ -233,6 +233,10 @@ export default function Home() {
               <ChevronDown className="w-4 h-4 animate-bounce text-[#8D996E]" />
             </a>
           </div>
+
+          {/* Difuminado suave de transición hacia Sección 02 */}
+          <div className="absolute -bottom-1 left-0 right-0 h-36 md:h-56 bg-gradient-to-b from-transparent via-[#182017]/80 to-[#182017] pointer-events-none z-10" />
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 max-w-5xl h-28 bg-radial from-[#8D996E]/12 to-transparent blur-3xl pointer-events-none z-10" />
         </section>
 
         {/* ========================================================
@@ -240,9 +244,13 @@ export default function Home() {
             ======================================================== */}
         <section
           id="proposito"
-          className="relative w-full min-h-screen flex items-center justify-center py-24 md:py-32 px-6 md:px-12 bg-[#182017]"
+          className="relative w-full min-h-screen flex items-center justify-center py-24 md:py-32 px-6 md:px-12 bg-[#182017] overflow-hidden"
         >
-          <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+          {/* Difuminado superior desde Hero */}
+          <div className="absolute top-0 left-0 right-0 h-32 md:h-48 bg-gradient-to-b from-[#212B20]/75 via-[#182017]/50 to-transparent pointer-events-none z-10" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-6xl h-px bg-gradient-to-r from-transparent via-[#8D996E]/20 to-transparent blur-[1px] pointer-events-none z-20" />
+
+          <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center relative z-20">
             {/* Foto de Artesano & Textura de Arcilla */}
             <div className="lg:col-span-5 relative">
               <div className="relative aspect-[3/4] max-w-md mx-auto rounded-3xl overflow-hidden border border-[#8D996E]/25 shadow-2xl">
@@ -331,6 +339,10 @@ export default function Home() {
               </blockquote>
             </div>
           </div>
+
+          {/* Difuminado inferior hacia Sección 03 (Chalets) */}
+          <div className="absolute -bottom-1 left-0 right-0 h-36 md:h-52 bg-gradient-to-b from-transparent via-[#1D251C]/80 to-[#1D251C] pointer-events-none z-10" />
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 max-w-5xl h-24 bg-radial from-[#8D996E]/10 to-transparent blur-3xl pointer-events-none z-10" />
         </section>
 
         {/* ========================================================
@@ -338,11 +350,21 @@ export default function Home() {
             ======================================================== */}
         <section
           id="chalets"
-          className="relative w-full min-h-screen flex items-center justify-center py-24 md:py-32 px-6 md:px-12 bg-[#1D251C]"
+          className="relative w-full min-h-screen flex items-center justify-center py-24 md:py-32 px-6 md:px-12 bg-[#1D251C] overflow-hidden"
         >
-          <ChaletConfigurator
-            onSelectBooking={(chaletName) => openBookingFor(chaletName)}
-          />
+          {/* Difuminado superior desde Propósito */}
+          <div className="absolute top-0 left-0 right-0 h-32 md:h-48 bg-gradient-to-b from-[#182017]/75 via-[#1D251C]/50 to-transparent pointer-events-none z-10" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-6xl h-px bg-gradient-to-r from-transparent via-[#8D996E]/15 to-transparent blur-[1px] pointer-events-none z-20" />
+
+          <div className="relative z-20 w-full">
+            <ChaletConfigurator
+              onSelectBooking={(chaletName) => openBookingFor(chaletName)}
+            />
+          </div>
+
+          {/* Difuminado inferior hacia Sección 04 (Valores) */}
+          <div className="absolute -bottom-1 left-0 right-0 h-36 md:h-52 bg-gradient-to-b from-transparent via-[#182017]/80 to-[#182017] pointer-events-none z-10" />
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 max-w-5xl h-24 bg-radial from-[#A45D41]/8 to-transparent blur-3xl pointer-events-none z-10" />
         </section>
 
         {/* ========================================================
@@ -350,9 +372,19 @@ export default function Home() {
             ======================================================== */}
         <section
           id="valores"
-          className="relative w-full min-h-screen flex items-center justify-center py-24 md:py-32 px-6 md:px-12 bg-[#182017]"
+          className="relative w-full min-h-screen flex items-center justify-center py-24 md:py-32 px-6 md:px-12 bg-[#182017] overflow-hidden"
         >
-          <ValuesAccordion />
+          {/* Difuminado superior desde Chalets */}
+          <div className="absolute top-0 left-0 right-0 h-32 md:h-48 bg-gradient-to-b from-[#1D251C]/75 via-[#182017]/50 to-transparent pointer-events-none z-10" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-6xl h-px bg-gradient-to-r from-transparent via-[#8D996E]/15 to-transparent blur-[1px] pointer-events-none z-20" />
+
+          <div className="relative z-20 w-full">
+            <ValuesAccordion />
+          </div>
+
+          {/* Difuminado inferior hacia Sección 05 (Vivencias) */}
+          <div className="absolute -bottom-1 left-0 right-0 h-36 md:h-52 bg-gradient-to-b from-transparent via-[#1B231B]/80 to-[#1B231B] pointer-events-none z-10" />
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 max-w-5xl h-24 bg-radial from-[#8D996E]/10 to-transparent blur-3xl pointer-events-none z-10" />
         </section>
 
         {/* ========================================================
@@ -360,11 +392,21 @@ export default function Home() {
             ======================================================== */}
         <section
           id="experiencias"
-          className="relative w-full min-h-screen flex items-center justify-center py-24 md:py-32 px-6 md:px-12 bg-[#1B231B]"
+          className="relative w-full min-h-screen flex items-center justify-center py-24 md:py-32 px-6 md:px-12 bg-[#1B231B] overflow-hidden"
         >
-          <KineticQuote
-            onBookExperience={(expTitle) => openBookingFor(`Experiencia: ${expTitle}`)}
-          />
+          {/* Difuminado superior desde Filosofía */}
+          <div className="absolute top-0 left-0 right-0 h-32 md:h-48 bg-gradient-to-b from-[#182017]/75 via-[#1B231B]/50 to-transparent pointer-events-none z-10" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-6xl h-px bg-gradient-to-r from-transparent via-[#8D996E]/15 to-transparent blur-[1px] pointer-events-none z-20" />
+
+          <div className="relative z-20 w-full">
+            <KineticQuote
+              onBookExperience={(expTitle) => openBookingFor(`Experiencia: ${expTitle}`)}
+            />
+          </div>
+
+          {/* Difuminado inferior hacia Sección 06 (Contacto) */}
+          <div className="absolute -bottom-1 left-0 right-0 h-36 md:h-52 bg-gradient-to-b from-transparent via-[#141B13]/85 to-[#141B13] pointer-events-none z-10" />
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 max-w-5xl h-24 bg-radial from-[#A45D41]/8 to-transparent blur-3xl pointer-events-none z-10" />
         </section>
 
         {/* ========================================================
@@ -372,9 +414,13 @@ export default function Home() {
             ======================================================== */}
         <section
           id="contacto"
-          className="relative w-full min-h-screen flex items-center justify-center py-24 md:py-32 px-6 md:px-12 bg-[#141B13]"
+          className="relative w-full min-h-screen flex items-center justify-center py-24 md:py-32 px-6 md:px-12 bg-[#141B13] overflow-hidden"
         >
-          <div className="max-w-7xl mx-auto w-full flex flex-col justify-between">
+          {/* Difuminado superior desde Experiencias */}
+          <div className="absolute top-0 left-0 right-0 h-32 md:h-48 bg-gradient-to-b from-[#1B231B]/75 via-[#141B13]/50 to-transparent pointer-events-none z-10" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-6xl h-px bg-gradient-to-r from-transparent via-[#8D996E]/15 to-transparent blur-[1px] pointer-events-none z-20" />
+
+          <div className="max-w-7xl mx-auto w-full flex flex-col justify-between relative z-20">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center mb-16">
               {/* Lado Izquierdo: Coordenadas & Datos de Hospitalidad */}
               <div className="lg:col-span-6 flex flex-col">
