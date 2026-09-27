@@ -1,11 +1,70 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Sparkles, Coffee, Flame, Leaf, Layers, ArrowUpRight } from "lucide-react";
+import { startSafeViewTransition } from "@/lib/viewTransition";
 
-export default function KineticQuote({ onBookExperience }: { onBookExperience: (title: string) => void }) {
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
+
+interface KineticQuoteProps {
+  onBookExperience: (title: string) => void;
+  activeWorld?: "chalets" | "restaurante" | "explore";
+}
+
+export default function KineticQuote({
+  onBookExperience,
+  activeWorld = "chalets",
+}: KineticQuoteProps) {
   const [activeExp, setActiveExp] = useState(0);
+  const isCoffee = activeWorld === "restaurante";
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const handleSelectExp = (idx: number) => {
+    if (activeExp === idx) return;
+    startSafeViewTransition(() => {
+      setActiveExp(idx);
+    });
+  };
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 75%",
+          toggleActions: "play none none none",
+        },
+        defaults: { ease: "power3.out" },
+      });
+
+      tl.fromTo(
+        ".kinetic-header",
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.8 }
+      )
+        .fromTo(
+          ".kinetic-item",
+          { opacity: 0, x: -35 },
+          { opacity: 1, x: 0, duration: 0.6, stagger: 0.08 },
+          "-=0.4"
+        )
+        .fromTo(
+          ".kinetic-preview",
+          { opacity: 0, x: 35, scale: 0.97 },
+          { opacity: 1, x: 0, scale: 1, duration: 0.8 },
+          "-=0.5"
+        );
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, [activeWorld]);
 
   const experiences = [
     {
@@ -53,20 +112,22 @@ export default function KineticQuote({ onBookExperience }: { onBookExperience: (
   const current = experiences[activeExp];
 
   return (
-    <div className="w-full max-w-7xl mx-auto h-full flex flex-col justify-center py-4">
+    <div ref={containerRef} className="w-full max-w-7xl mx-auto h-full flex flex-col justify-center py-4">
       {/* Editorial Headline */}
-      <div className="mb-4">
+      <div className="kinetic-header mb-4">
         <div className="flex items-center gap-2 mb-1">
-          <span className="text-[10px] font-mono text-[#8D996E] tracking-widest uppercase">
+          <span className={`text-[10px] font-mono tracking-widest uppercase ${
+            isCoffee ? "text-[#D48B6A]" : "text-[#8D996E]"
+          }`}>
             [ Misión Multisensorial ]
           </span>
-          <span className="text-[#8D996E]/40">•</span>
+          <span className={isCoffee ? "text-[#A45D41]/40" : "text-[#8D996E]/40"}>•</span>
           <span className="text-[10px] font-mono text-[#A45D41] tracking-widest uppercase">
             Vivencias & Aprendizaje
           </span>
         </div>
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-[#F5F2ED] tracking-wide font-sans">
-          La Pausa <span className="font-serif italic text-[#8D996E]">Consciente</span>
+          La Pausa <span className={`font-serif italic ${isCoffee ? "text-[#A45D41]" : "text-[#8D996E]"}`}>Consciente</span>
         </h2>
       </div>
 
@@ -79,16 +140,22 @@ export default function KineticQuote({ onBookExperience }: { onBookExperience: (
             return (
               <div
                 key={exp.id}
-                onMouseEnter={() => setActiveExp(idx)}
-                onClick={() => setActiveExp(idx)}
-                className={`p-3.5 sm:p-4 rounded-2xl cursor-pointer transition-all duration-300 border ${
+                onMouseEnter={() => handleSelectExp(idx)}
+                onClick={() => handleSelectExp(idx)}
+                className={`kinetic-item p-3.5 sm:p-4 rounded-2xl cursor-pointer transition-all duration-300 border ${
                   isSelected
-                    ? "glass-panel-warm border-[#A45D41]/60 shadow-xl translate-x-2"
+                    ? isCoffee
+                      ? "bg-[#281B17] border-[#A45D41]/70 shadow-xl translate-x-2"
+                      : "glass-panel-warm border-[#A45D41]/60 shadow-xl translate-x-2"
+                    : isCoffee
+                    ? "bg-[#18110F]/85 border-[#A45D41]/20 hover:border-[#A45D41]/45 opacity-80 hover:opacity-100"
                     : "glass-panel-dark border-[#8D996E]/15 hover:border-[#8D996E]/40 opacity-70 hover:opacity-100"
                 }`}
               >
                 <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-mono text-[#8D996E] tracking-wider uppercase">
+                  <span className={`text-[10px] font-mono tracking-wider uppercase ${
+                    isCoffee ? "text-[#D48B6A]" : "text-[#8D996E]"
+                  }`}>
                     {exp.category}
                   </span>
                   <span className="text-[10px] font-mono text-[#F5F2ED]/50">
@@ -104,7 +171,12 @@ export default function KineticQuote({ onBookExperience }: { onBookExperience: (
         </div>
 
         {/* Columna Derecha: Tarjeta Fotográfica Ampliada con Detalles */}
-        <div className="lg:col-span-7 relative rounded-3xl overflow-hidden border border-[#8D996E]/25 shadow-2xl flex flex-col justify-between p-6 sm:p-8 min-h-[320px]">
+        <div
+          className={`kinetic-preview lg:col-span-7 relative rounded-3xl overflow-hidden border shadow-2xl flex flex-col justify-between p-6 sm:p-8 min-h-[320px] ${
+            isCoffee ? "border-[#A45D41]/35" : "border-[#8D996E]/25"
+          }`}
+          style={{ viewTransitionName: "kinetic-active-preview" }}
+        >
           {/* Imagen de fondo con transición */}
           <div className="absolute inset-0 z-0">
             <Image
@@ -113,15 +185,23 @@ export default function KineticQuote({ onBookExperience }: { onBookExperience: (
               fill
               className="object-cover transition-all duration-700 filter brightness-50 hover:scale-105"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#212B20] via-[#212B20]/60 to-transparent" />
+            <div className={`absolute inset-0 bg-gradient-to-t ${
+              isCoffee
+                ? "from-[#221814] via-[#221814]/70 to-transparent"
+                : "from-[#212B20] via-[#212B20]/60 to-transparent"
+            }`} />
           </div>
 
           {/* Top Badge */}
           <div className="relative z-10 flex items-center justify-between">
-            <span className="glass-pill px-3 py-1 rounded-full text-[10px] font-mono tracking-wider text-[#F5F2ED] uppercase">
+            <span className={`px-3 py-1 rounded-full text-[10px] font-mono tracking-wider text-[#F5F2ED] uppercase ${
+              isCoffee
+                ? "bg-[#18110F]/85 border border-[#A45D41]/30"
+                : "glass-pill"
+            }`}>
               {current.badge}
             </span>
-            <span className="text-xs font-mono text-[#8D996E]">
+            <span className={`text-xs font-mono ${isCoffee ? "text-[#D48B6A]" : "text-[#8D996E]"}`}>
               {current.duration}
             </span>
           </div>
@@ -140,14 +220,14 @@ export default function KineticQuote({ onBookExperience }: { onBookExperience: (
 
             <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-[#F5F2ED]/15">
               <span className="text-[11px] font-mono text-[#F5F2ED]/70">
-                Materiales: <span className="text-[#8D996E]">{current.materials}</span>
+                Materiales: <span className={isCoffee ? "text-[#D48B6A]" : "text-[#8D996E]"}>{current.materials}</span>
               </span>
 
               <button
                 onClick={() => onBookExperience(current.title)}
-                className="px-5 py-2 rounded-full text-[11px] font-semibold tracking-wider uppercase bg-[#A45D41] hover:bg-[#bd7356] text-[#F5F2ED] transition-colors flex items-center gap-1.5 cursor-pointer shadow-lg"
+                className="px-5 py-2 rounded-full text-[11px] font-semibold tracking-wider uppercase bg-[#A45D41] hover:bg-[#bd7356] text-[#F5F2ED] transition-colors flex items-center gap-1.5 cursor-pointer shadow-lg hover:scale-[1.02]"
               >
-                <span>Añadir a mi estadía</span>
+                <span>Añadir a mi experiencia</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
               </button>
             </div>

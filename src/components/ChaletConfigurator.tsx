@@ -1,7 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   Compass,
   Flame,
@@ -15,15 +17,96 @@ import {
   SunMedium,
   Wind,
 } from "lucide-react";
+import { startSafeViewTransition } from "@/lib/viewTransition";
+import { usePreferences } from "@/context/PreferencesContext";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 interface ChaletConfiguratorProps {
   onSelectBooking: (chaletName: string, nights: number) => void;
 }
 
 export default function ChaletConfigurator({ onSelectBooking }: ChaletConfiguratorProps) {
+  const { theme, t } = usePreferences();
+  const isLight = theme === "light";
+
   const [selectedId, setSelectedId] = useState(0);
   const [activeView, setActiveView] = useState<"exterior" | "interior" | "deck">("exterior");
   const [nights, setNights] = useState(2);
+  const chaletRef = useRef<HTMLDivElement>(null);
+
+  const handleSelectChalet = (idx: number) => {
+    startSafeViewTransition(() => {
+      setSelectedId(idx);
+    });
+  };
+
+  const handleSelectView = (view: "exterior" | "interior" | "deck") => {
+    startSafeViewTransition(() => {
+      setActiveView(view);
+    });
+  };
+
+  useEffect(() => {
+    if (!chaletRef.current) return;
+
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: chaletRef.current,
+          start: "top 75%",
+          toggleActions: "play none none none",
+        },
+        defaults: { ease: "power3.out" },
+      });
+
+      tl.fromTo(
+        ".chalet-header",
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.7 }
+      )
+        .fromTo(
+          ".chalet-tab-pills",
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, duration: 0.6 },
+          "-=0.4"
+        )
+        .fromTo(
+          ".chalet-visor",
+          { opacity: 0, y: 50, scale: 0.96 },
+          { opacity: 1, y: 0, scale: 1, duration: 1.0 },
+          "-=0.5"
+        )
+        .fromTo(
+          ".chalet-spec-card",
+          { opacity: 0, y: 25 },
+          { opacity: 1, y: 0, duration: 0.5, stagger: 0.08 },
+          "-=0.6"
+        )
+        .fromTo(
+          ".chalet-right-panel",
+          { opacity: 0, y: 45, scale: 0.97 },
+          { opacity: 1, y: 0, scale: 1, duration: 0.9 },
+          "-=0.7"
+        )
+        .fromTo(
+          ".chalet-highlight",
+          { opacity: 0, x: 20 },
+          { opacity: 1, x: 0, duration: 0.5, stagger: 0.06 },
+          "-=0.5"
+        )
+        .fromTo(
+          ".chalet-estimator",
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, duration: 0.6 },
+          "-=0.3"
+        );
+    }, chaletRef);
+
+    return () => ctx.revert();
+  }, []);
 
   const chalets = [
     {
@@ -103,33 +186,46 @@ export default function ChaletConfigurator({ onSelectBooking }: ChaletConfigurat
   const currentChalet = chalets[selectedId];
 
   return (
-    <div className="w-full max-w-7xl mx-auto h-full flex flex-col justify-center py-4">
+    <div ref={chaletRef} className="w-full max-w-7xl mx-auto h-full flex flex-col justify-center py-4">
       {/* Top Bar Editorial */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between mb-4 pb-3 border-b border-[#8D996E]/20">
-        <div>
+      <div className={`flex flex-col md:flex-row md:items-end justify-between mb-4 pb-3 border-b transition-colors ${
+        isLight ? "border-[#8D996E]/20" : "border-[#8D996E]/20"
+      }`}>
+        <div className="chalet-header">
           <div className="flex items-center gap-2 mb-1">
             <span className="text-[10px] font-mono text-[#A45D41] tracking-widest uppercase">
-              [ Colección Arquitectónica 2026 ]
+              {t.configurator.tag}
             </span>
             <span className="text-[#8D996E]/40">•</span>
-            <span className="text-[10px] font-mono text-[#8D996E] tracking-widest uppercase">
+            <span className={`text-[10px] font-mono tracking-widest uppercase ${
+              isLight ? "text-[#5B6D49]" : "text-[#8D996E]"
+            }`}>
               3 Refugios Exclusivos
             </span>
           </div>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-[#F5F2ED] tracking-wide font-sans">
-            Pazionart <span className="font-serif italic text-[#A45D41]">Chalets</span>
+          <h2 className={`text-2xl sm:text-3xl md:text-4xl font-light tracking-wide font-sans ${
+            isLight ? "text-[#1A2219]" : "text-[#F5F2ED]"
+          }`}>
+            {t.configurator.title}{" "}
+            <span className="font-serif italic text-[#A45D41]">{t.configurator.chaletsWord}</span>
           </h2>
         </div>
 
         {/* Selector de Chalet en pestañas estilizadas */}
-        <div className="flex items-center gap-1.5 mt-3 md:mt-0 p-1 rounded-full glass-panel-dark border border-[#8D996E]/20">
+        <div className={`chalet-tab-pills flex items-center gap-1.5 mt-3 md:mt-0 p-1 rounded-full border transition-colors ${
+          isLight
+            ? "bg-white/80 border-[#8D996E]/25 shadow-sm"
+            : "glass-panel-dark border-[#8D996E]/20"
+        }`}>
           {chalets.map((ch, idx) => (
             <button
               key={ch.id}
-              onClick={() => setSelectedId(idx)}
+              onClick={() => handleSelectChalet(idx)}
               className={`px-4 py-1.5 rounded-full text-xs font-mono tracking-wider transition-all duration-300 cursor-pointer ${
                 selectedId === idx
                   ? "bg-[#A45D41] text-[#F5F2ED] shadow-md shadow-[#A45D41]/30 font-medium"
+                  : isLight
+                  ? "text-[#1A2219]/60 hover:text-[#1A2219]"
                   : "text-[#F5F2ED]/60 hover:text-[#F5F2ED]"
               }`}
             >
@@ -144,8 +240,11 @@ export default function ChaletConfigurator({ onSelectBooking }: ChaletConfigurat
         {/* Columna Izquierda: Visor Fotográfico con Selector de Ángulo */}
         <div className="lg:col-span-7 flex flex-col justify-between">
           <div
-            className="relative aspect-[16/10] w-full rounded-3xl overflow-hidden border border-[#8D996E]/25 shadow-2xl group"
+            className={`chalet-visor relative aspect-[16/10] w-full rounded-3xl overflow-hidden shadow-2xl group ${
+              isLight ? "border border-[#8D996E]/30" : "border border-[#8D996E]/25"
+            }`}
             data-cursor="explore"
+            style={{ viewTransitionName: "chalet-active-photo" }}
           >
             <Image
               src={currentChalet.views[activeView]}
@@ -166,14 +265,14 @@ export default function ChaletConfigurator({ onSelectBooking }: ChaletConfigurat
                 {(["exterior", "interior", "deck"] as const).map((view) => (
                   <button
                     key={view}
-                    onClick={() => setActiveView(view)}
+                    onClick={() => handleSelectView(view)}
                     className={`px-2.5 py-1 rounded-full capitalize transition-all cursor-pointer ${
                       activeView === view
                         ? "bg-[#8D996E] text-[#212B20] font-semibold"
                         : "text-[#F5F2ED]/70 hover:text-[#F5F2ED]"
                     }`}
                   >
-                    {view === "exterior" ? "Fachada" : view === "interior" ? "Interior" : "Terraza"}
+                    {view === "exterior" ? t.configurator.facade : view === "interior" ? t.configurator.interior : t.configurator.deck}
                   </button>
                 ))}
               </div>
@@ -192,32 +291,50 @@ export default function ChaletConfigurator({ onSelectBooking }: ChaletConfigurat
 
           {/* Micro-specs de arquitectura bioclimática */}
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 mt-3">
-            <div className="p-2.5 rounded-xl glass-panel-dark border border-[#8D996E]/15">
+            <div className={`chalet-spec-card p-2.5 rounded-xl border transition-colors ${
+              isLight
+                ? "bg-white/80 border-[#8D996E]/20 text-[#1A2219]"
+                : "glass-panel-dark border-[#8D996E]/15 text-[#F5F2ED]"
+            }`}>
               <div className="flex items-center gap-1.5 text-[10px] font-mono text-[#8D996E] uppercase mb-0.5">
                 <SunMedium className="w-3 h-3 text-[#A45D41]" />
                 <span>Orientación</span>
               </div>
-              <p className="text-[11px] text-[#F5F2ED]/80 font-light truncate">
+              <p className={`text-[11px] font-light truncate ${
+                isLight ? "text-[#1A2219]/80" : "text-[#F5F2ED]/80"
+              }`}>
                 {currentChalet.orientation}
               </p>
             </div>
 
-            <div className="p-2.5 rounded-xl glass-panel-dark border border-[#8D996E]/15">
+            <div className={`chalet-spec-card p-2.5 rounded-xl border transition-colors ${
+              isLight
+                ? "bg-white/80 border-[#8D996E]/20 text-[#1A2219]"
+                : "glass-panel-dark border-[#8D996E]/15 text-[#F5F2ED]"
+            }`}>
               <div className="flex items-center gap-1.5 text-[10px] font-mono text-[#8D996E] uppercase mb-0.5">
                 <Wind className="w-3 h-3 text-[#8D996E]" />
                 <span>Confort Térmico</span>
               </div>
-              <p className="text-[11px] text-[#F5F2ED]/80 font-light truncate">
+              <p className={`text-[11px] font-light truncate ${
+                isLight ? "text-[#1A2219]/80" : "text-[#F5F2ED]/80"
+              }`}>
                 {currentChalet.thermal}
               </p>
             </div>
 
-            <div className="p-2.5 rounded-xl glass-panel-dark border border-[#8D996E]/15 col-span-2 sm:col-span-1">
+            <div className={`chalet-spec-card p-2.5 rounded-xl border col-span-2 sm:col-span-1 transition-colors ${
+              isLight
+                ? "bg-white/80 border-[#8D996E]/20 text-[#1A2219]"
+                : "glass-panel-dark border-[#8D996E]/15 text-[#F5F2ED]"
+            }`}>
               <div className="flex items-center gap-1.5 text-[10px] font-mono text-[#8D996E] uppercase mb-0.5">
                 <ShieldCheck className="w-3 h-3 text-[#A45D41]" />
                 <span>Privacidad</span>
               </div>
-              <p className="text-[11px] text-[#F5F2ED]/80 font-light truncate">
+              <p className={`text-[11px] font-light truncate ${
+                isLight ? "text-[#1A2219]/80" : "text-[#F5F2ED]/80"
+              }`}>
                 Aislado a 60m del chalet más próximo
               </p>
             </div>
@@ -225,10 +342,16 @@ export default function ChaletConfigurator({ onSelectBooking }: ChaletConfigurat
         </div>
 
         {/* Columna Derecha: Tarjeta de Cotización y Experiencias del Chalet */}
-        <div className="lg:col-span-5 flex flex-col justify-between p-6 rounded-3xl glass-panel-dark border border-[#8D996E]/20">
+        <div className={`chalet-right-panel lg:col-span-5 flex flex-col justify-between p-6 rounded-3xl border transition-colors ${
+          isLight
+            ? "bg-white/85 border-[#8D996E]/25 text-[#1A2219] shadow-xl"
+            : "glass-panel-dark border-[#8D996E]/20 text-[#F5F2ED]"
+        }`}>
           <div>
             {/* Story */}
-            <p className="text-xs text-[#F5F2ED]/80 font-light leading-relaxed mb-4">
+            <p className={`text-xs font-light leading-relaxed mb-4 ${
+              isLight ? "text-[#1A2219]/80" : "text-[#F5F2ED]/80"
+            }`}>
               {currentChalet.story}
             </p>
 
@@ -237,14 +360,20 @@ export default function ChaletConfigurator({ onSelectBooking }: ChaletConfigurat
               {currentChalet.highlights.map((h) => (
                 <div
                   key={h.label}
-                  className="flex items-start gap-2.5 p-2 rounded-xl hover:bg-[#8D996E]/10 transition-colors"
+                  className={`chalet-highlight flex items-start gap-2.5 p-2 rounded-xl transition-colors ${
+                    isLight ? "hover:bg-[#8D996E]/15" : "hover:bg-[#8D996E]/10"
+                  }`}
                 >
                   <span className="w-1.5 h-1.5 rounded-full bg-[#A45D41] mt-1.5 shrink-0" />
                   <div>
-                    <span className="text-xs font-medium text-[#F5F2ED] block">
+                    <span className={`text-xs font-medium block ${
+                      isLight ? "text-[#1A2219]" : "text-[#F5F2ED]"
+                    }`}>
                       {h.label}
                     </span>
-                    <span className="text-[11px] text-[#F5F2ED]/60 font-light">
+                    <span className={`text-[11px] font-light ${
+                      isLight ? "text-[#1A2219]/65" : "text-[#F5F2ED]/60"
+                    }`}>
                       {h.desc}
                     </span>
                   </div>
@@ -254,20 +383,34 @@ export default function ChaletConfigurator({ onSelectBooking }: ChaletConfigurat
           </div>
 
           {/* Interactive Stay Estimator Box */}
-          <div className="p-4 rounded-2xl bg-[#151D14]/80 border border-[#8D996E]/20">
+          <div className={`chalet-estimator p-4 rounded-2xl border transition-colors ${
+            isLight
+              ? "bg-[#F7F5EE] border-[#8D996E]/25 shadow-sm"
+              : "bg-[#151D14]/80 border-[#8D996E]/20"
+          }`}>
             <div className="flex items-center justify-between mb-3">
               <div>
-                <span className="text-[10px] font-mono text-[#8D996E] tracking-wider uppercase block">
-                  Tarifa base estimada
+                <span className={`text-[10px] font-mono tracking-wider uppercase block ${
+                  isLight ? "text-[#5B6D49]" : "text-[#8D996E]"
+                }`}>
+                  {t.configurator.totalEstimate}
                 </span>
-                <span className="text-lg font-light text-[#F5F2ED]">
+                <span className={`text-lg font-light ${
+                  isLight ? "text-[#1A2219]" : "text-[#F5F2ED]"
+                }`}>
                   {currentChalet.basePrice}{" "}
-                  <span className="text-xs text-[#F5F2ED]/50 font-mono">/ noche</span>
+                  <span className={`text-xs font-mono ${isLight ? "text-[#1A2219]/50" : "text-[#F5F2ED]/50"}`}>
+                    / noche
+                  </span>
                 </span>
               </div>
 
               {/* Selector de Noches */}
-              <div className="flex items-center gap-1 bg-[#212B20] p-1 rounded-xl border border-[#8D996E]/30">
+              <div className={`flex items-center gap-1 p-1 rounded-xl border ${
+                isLight
+                  ? "bg-white border-[#8D996E]/25"
+                  : "bg-[#212B20] border-[#8D996E]/30"
+              }`}>
                 {[1, 2, 3, 5].map((n) => (
                   <button
                     key={n}
@@ -275,6 +418,8 @@ export default function ChaletConfigurator({ onSelectBooking }: ChaletConfigurat
                     className={`px-2.5 py-1 rounded-lg text-[10px] font-mono cursor-pointer transition-all ${
                       nights === n
                         ? "bg-[#8D996E] text-[#212B20] font-bold"
+                        : isLight
+                        ? "text-[#1A2219]/60 hover:text-[#1A2219]"
                         : "text-[#F5F2ED]/60 hover:text-[#F5F2ED]"
                     }`}
                   >
@@ -290,7 +435,7 @@ export default function ChaletConfigurator({ onSelectBooking }: ChaletConfigurat
               className="w-full py-3.5 rounded-xl text-xs font-semibold tracking-[0.2em] uppercase bg-[#A45D41] hover:bg-[#bd7356] text-[#F5F2ED] transition-all duration-300 shadow-xl flex items-center justify-center gap-2 cursor-pointer group"
             >
               <Calendar className="w-4 h-4 group-hover:scale-110 transition-transform" />
-              <span>Ver Disponibilidad · {nights} {nights === 1 ? "Noche" : "Noches"}</span>
+              <span>{t.configurator.bookBtn} · {nights} {nights === 1 ? (t.common ? "Noche" : "Night") : (t.common ? "Noches" : "Nights")}</span>
               <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </button>
           </div>

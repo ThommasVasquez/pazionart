@@ -81,6 +81,49 @@ body {
   border: 1px solid rgba(245, 242, 237, 0.15);
 }
 
+/* ========================================================
+   LIGHT THEME: PAZIONART SOL & TIERRA
+   ======================================================== */
+html.light-theme {
+  background-color: #F7F5EE;
+  color: #1A2219;
+}
+
+html.light-theme body {
+  background-color: #F7F5EE;
+  color: #1A2219;
+}
+
+html.light-theme ::-webkit-scrollbar-track {
+  background: #EAE6DC;
+}
+
+html.light-theme ::-webkit-scrollbar-thumb {
+  background: #7E8D62;
+}
+
+html.light-theme .glass-panel-dark {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(141, 153, 110, 0.28);
+  color: #1A2219;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+html.light-theme .glass-panel-warm {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(164, 93, 65, 0.35);
+  color: #241A17;
+  box-shadow: 0 10px 30px rgba(164, 93, 65, 0.08);
+}
+
+html.light-theme .glass-pill {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(33, 43, 32, 0.2);
+  color: #1A2219;
+}
+
 /* Text highlight shimmer */
 .text-shimmer {
   background: linear-gradient(135deg, #f5f2ed 0%, #8d996e 50%, #f5f2ed 100%);
@@ -102,3 +145,116 @@ body {
   background-color: #a45d41;
   color: #f5f2ed;
 }
+
+/* ========================================================
+   VIEW TRANSITIONS API: PAZIONART CINEMATIC MORPHING
+   ======================================================== */
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-group(root) {
+  animation-duration: 0.65s;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+::view-transition-old(root) {
+  animation: 0.5s cubic-bezier(0.22, 1, 0.36, 1) both pazionart-fade-out;
+}
+
+::view-transition-new(root) {
+  animation: 0.65s cubic-bezier(0.22, 1, 0.36, 1) both pazionart-fade-in;
+}
+
+/* Transición Morfomórfica del Fondo de Portada (Threshold -> Santuario) */
+::view-transition-group(hero-sanctuary-image) {
+  animation-duration: 0.85s;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  overflow: hidden;
+}
+
+::view-transition-old(hero-sanctuary-image),
+::view-transition-new(hero-sanctuary-image) {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+/* Transición del Símbolo e Imagotipo */
+::view-transition-group(hero-brand-symbol),
+::view-transition-group(hero-brand-logo) {
+  animation-duration: 0.75s;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Transición de Fotografías en Configurador de Chalets */
+::view-transition-group(chalet-active-photo) {
+  animation-duration: 0.6s;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+::view-transition-old(chalet-active-photo),
+::view-transition-new(chalet-active-photo) {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+/* Transición de Tiempos del Restaurante */
+::view-transition-group(restaurant-active-course) {
+  animation-duration: 0.55s;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Transición de Vivencias Sensoriales */
+::view-transition-group(kinetic-active-preview) {
+  animation-duration: 0.6s;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Transición del Acordeón de Valores */
+::view-transition-group(values-active-image) {
+  animation-duration: 0.65s;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  overflow: hidden;
+}
+
+::view-transition-old(values-active-image),
+::view-transition-new(values-active-image) {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+/* Transición del Modal de Reservas */
+::view-transition-group(booking-modal-card) {
+  animation-duration: 0.5s;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes pazionart-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes pazionart-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+

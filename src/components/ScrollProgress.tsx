@@ -4,10 +4,12 @@ import { useEffect, useState } from "react";
 
 interface ScrollProgressProps {
   sections: { id: string; label: string }[];
+  activeWorld?: "chalets" | "restaurante" | "explore";
 }
 
-export default function ScrollProgress({ sections }: ScrollProgressProps) {
+export default function ScrollProgress({ sections, activeWorld = "chalets" }: ScrollProgressProps) {
   const [activeSection, setActiveSection] = useState(0);
+  const isCoffee = activeWorld === "restaurante";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,10 +44,14 @@ export default function ScrollProgress({ sections }: ScrollProgressProps) {
       aria-label="Progreso de navegación"
     >
       <div className="flex flex-col items-center gap-3">
-        <span className="text-[10px] font-mono tracking-widest text-[#8D996E]">
+        <span className={`text-[10px] font-mono tracking-widest ${
+          isCoffee ? "text-[#D48B6A]" : "text-[#8D996E]"
+        }`}>
           0{activeSection + 1}
         </span>
-        <div className="w-[1px] h-12 bg-[#8D996E]/20 relative">
+        <div className={`w-[1px] h-12 relative ${
+          isCoffee ? "bg-[#A45D41]/25" : "bg-[#8D996E]/20"
+        }`}>
           <div
             className="w-[1px] bg-[#A45D41] absolute top-0 left-0 transition-all duration-300"
             style={{
@@ -81,6 +87,8 @@ export default function ScrollProgress({ sections }: ScrollProgressProps) {
                 className={`h-2 rounded-full transition-all duration-300 ${
                   isActive
                     ? "w-6 bg-[#A45D41]"
+                    : isCoffee
+                    ? "w-2 bg-[#A45D41]/30 group-hover:bg-[#A45D41] group-hover:w-3"
                     : "w-2 bg-[#8D996E]/30 group-hover:bg-[#8D996E] group-hover:w-3"
                 }`}
               />

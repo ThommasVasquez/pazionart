@@ -26,8 +26,11 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Pazionart" }],
   icons: {
-    icon: "/brand/simbolo-pazionart.svg",
-    apple: "/brand/simbolo-pazionart.png",
+    icon: [
+      { url: "/brand/favicon-pazionart.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
+    apple: "/brand/apple-touch-icon.png",
   },
   openGraph: {
     title: "Pazionart | Amor · Naturaleza · Arte",
@@ -54,6 +57,8 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
+import { PreferencesProvider } from "@/context/PreferencesContext";
+
 export default function RootLayout({
   children,
 }: {
@@ -61,8 +66,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es" className={`${montserrat.variable} h-full antialiased`}>
-      <body className="min-h-full bg-[#212B20] text-[#F5F2ED] font-sans selection:bg-[#A45D41] selection:text-[#F5F2ED]">
-        {children}
+      <body className="min-h-full font-sans selection:bg-[#A45D41] selection:text-[#F5F2ED] transition-colors duration-500">
+        <PreferencesProvider>{children}</PreferencesProvider>
       </body>
     </html>
   );
