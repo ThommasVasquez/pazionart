@@ -65,14 +65,14 @@ export default function Navbar({ onOpenBooking }: NavbarProps) {
               />
             </div>
             <div className="flex flex-col">
-              <div className="h-4 md:h-[18px] flex items-center">
+              <div className="h-[22px] md:h-[26px] flex items-center">
                 <LogoTexto
-                  className="h-full w-auto"
+                  className="h-full w-auto transition-transform duration-300 group-hover:scale-[1.02]"
                   preserveAspectRatio="xMinYMid meet"
                   fill="#F5F2ED"
                 />
               </div>
-              <span className="text-[7px] md:text-[8px] tracking-[0.3em] text-[#8D996E] uppercase -mt-0.5 font-mono">
+              <span className="text-[7px] md:text-[8px] tracking-[0.3em] text-[#8D996E] uppercase mt-0.5 font-mono">
                 Amor · Naturaleza · Arte
               </span>
             </div>
