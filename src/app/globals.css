@@ -1,26 +1,104 @@
 @import "tailwindcss";
 
+@theme {
+  --color-noche: #212b20;
+  --color-noche-dark: #151d14;
+  --color-noche-light: #2c392b;
+  --color-tierra: #8d996e;
+  --color-tierra-light: #a6b285;
+  --color-tierra-dark: #707b53;
+  --color-alma: #a45d41;
+  --color-alma-light: #bd7356;
+  --color-alma-dark: #86462e;
+  --color-luz: #f5f2ed;
+  --color-luz-muted: #e4ded5;
+
+  --font-sans: var(--font-montserrat), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --noche: #212b20;
+  --tierra: #8d996e;
+  --alma: #a45d41;
+  --luz: #f5f2ed;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  background-color: var(--noche);
+  color: var(--luz);
+  font-family: var(--font-sans);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #212b20;
+  color: #f5f2ed;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #151d14;
+}
+::-webkit-scrollbar-thumb {
+  background: #8d996e;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a45d41;
+}
+
+/* Glassmorphism organic surfaces */
+.glass-panel-dark {
+  background: rgba(33, 43, 32, 0.72);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(141, 153, 110, 0.18);
+}
+
+.glass-panel-warm {
+  background: rgba(164, 93, 65, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(164, 93, 65, 0.25);
+}
+
+.glass-pill {
+  background: rgba(245, 242, 237, 0.08);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(245, 242, 237, 0.15);
+}
+
+/* Text highlight shimmer */
+.text-shimmer {
+  background: linear-gradient(135deg, #f5f2ed 0%, #8d996e 50%, #f5f2ed 100%);
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+/* Pattern overlay */
+.bg-modulacion {
+  background-image: url('/brand/modulacion-pazionart.svg');
+  background-repeat: repeat;
+  background-size: 320px auto;
+}
+
+/* Selection */
+::selection {
+  background-color: #a45d41;
+  color: #f5f2ed;
 }
