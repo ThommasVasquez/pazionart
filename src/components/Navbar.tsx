@@ -7,9 +7,10 @@ import LogoTexto from "@/components/LogoTexto";
 
 interface NavbarProps {
   onOpenBooking: () => void;
+  onOpenThreshold?: () => void;
 }
 
-export default function Navbar({ onOpenBooking }: NavbarProps) {
+export default function Navbar({ onOpenBooking, onOpenThreshold }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -24,6 +25,7 @@ export default function Navbar({ onOpenBooking }: NavbarProps) {
   const navLinks = [
     { name: "Esencia", href: "#esencia" },
     { name: "Propósito", href: "#proposito" },
+    { name: "Restaurante", href: "#restaurante" },
     { name: "Chalets", href: "#chalets" },
     { name: "Filosofía", href: "#valores" },
     { name: "Vivencias", href: "#experiencias" },
@@ -94,7 +96,18 @@ export default function Navbar({ onOpenBooking }: NavbarProps) {
           </nav>
 
           {/* Botón CTA Esbelto & Mobile Toggle */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2.5">
+            {onOpenThreshold && (
+              <button
+                onClick={onOpenThreshold}
+                className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-mono tracking-wider text-[#F5F2ED]/75 hover:text-[#F5F2ED] border border-[#8D996E]/25 hover:border-[#8D996E]/60 transition-all duration-300 glass-panel-dark cursor-pointer group"
+                title="Cambiar entre Chalets y Restaurante"
+              >
+                <Sparkles className="w-3 h-3 text-[#A45D41] transition-transform duration-300 group-hover:rotate-45" />
+                <span className="hidden xl:inline">Dos Mundos</span>
+              </button>
+            )}
+
             <button
               onClick={onOpenBooking}
               className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-[10px] md:text-[11px] font-semibold tracking-[0.16em] uppercase bg-[#A45D41] hover:bg-[#bd7356] text-[#F5F2ED] transition-all duration-300 shadow-md hover:scale-[1.02] cursor-pointer"
@@ -137,6 +150,19 @@ export default function Navbar({ onOpenBooking }: NavbarProps) {
               <span>{link.name}</span>
             </a>
           ))}
+
+          {onOpenThreshold && (
+            <button
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                onOpenThreshold();
+              }}
+              className="text-xs uppercase tracking-[0.18em] font-mono text-[#8D996E] hover:text-[#F5F2ED] transition-colors flex items-center gap-2 mt-2 pt-2 border-t border-[#8D996E]/20 w-full"
+            >
+              <Sparkles className="w-3.5 h-3.5 text-[#A45D41]" />
+              <span>Ver El Umbral (Dos Mundos)</span>
+            </button>
+          )}
 
           <button
             onClick={() => {

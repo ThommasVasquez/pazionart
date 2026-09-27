@@ -35,10 +35,13 @@ import ValuesAccordion from "@/components/ValuesAccordion";
 import KineticQuote from "@/components/KineticQuote";
 import SplashMask from "@/components/SplashMask";
 import LogoTexto from "@/components/LogoTexto";
+import DualThreshold from "@/components/DualThreshold";
+import RestaurantSection from "@/components/RestaurantSection";
 
 export default function Home() {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
   const [selectedChalet, setSelectedChalet] = useState("Chalet Niebla & Fuego");
+  const [showThreshold, setShowThreshold] = useState(true);
 
   // Hero Quick Booking Bar State
   const [heroChalet, setHeroChalet] = useState("Chalet Niebla & Fuego");
@@ -48,10 +51,11 @@ export default function Home() {
   const sectionsList = [
     { id: "esencia", label: "01 Esencia" },
     { id: "proposito", label: "02 Propósito" },
-    { id: "chalets", label: "03 Chalets" },
-    { id: "valores", label: "04 Filosofía" },
-    { id: "experiencias", label: "05 Vivencias" },
-    { id: "contacto", label: "06 Encuentro" },
+    { id: "restaurante", label: "03 Fogón" },
+    { id: "chalets", label: "04 Chalets" },
+    { id: "valores", label: "05 Filosofía" },
+    { id: "experiencias", label: "06 Vivencias" },
+    { id: "contacto", label: "07 Encuentro" },
   ];
 
   const handleHeroBooking = (e: React.FormEvent) => {
@@ -65,10 +69,33 @@ export default function Home() {
     setIsBookingOpen(true);
   };
 
+  const handleWorldSelection = (world: "chalets" | "restaurante" | "explore") => {
+    setShowThreshold(false);
+    setTimeout(() => {
+      if (world === "chalets") {
+        const el = document.getElementById("chalets");
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      } else if (world === "restaurante") {
+        const el = document.getElementById("restaurante");
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      } else {
+        const el = document.getElementById("esencia");
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 300);
+  };
+
   return (
     <SmoothScroll>
       <SplashMask />
-      <Navbar onOpenBooking={() => setIsBookingOpen(true)} />
+      <DualThreshold
+        isOpen={showThreshold}
+        onSelectWorld={handleWorldSelection}
+      />
+      <Navbar
+        onOpenBooking={() => setIsBookingOpen(true)}
+        onOpenThreshold={() => setShowThreshold(true)}
+      />
       <ScrollProgress sections={sectionsList} />
       <AmbientAudio />
       <WhatsAppButton />
@@ -340,10 +367,15 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Difuminado inferior hacia Sección 03 (Chalets) */}
-          <div className="absolute -bottom-1 left-0 right-0 h-36 md:h-52 bg-gradient-to-b from-transparent via-[#1D251C]/80 to-[#1D251C] pointer-events-none z-10" />
+          {/* Difuminado inferior hacia Sección 02.5 (Restaurante) */}
+          <div className="absolute -bottom-1 left-0 right-0 h-36 md:h-52 bg-gradient-to-b from-transparent via-[#171E16]/80 to-[#171E16] pointer-events-none z-10" />
           <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 max-w-5xl h-24 bg-radial from-[#8D996E]/10 to-transparent blur-3xl pointer-events-none z-10" />
         </section>
+
+        {/* ========================================================
+            SECCIÓN 02.5: RESTAURANTE & FOGÓN DE ORIGEN
+            ======================================================== */}
+        <RestaurantSection onOpenBooking={(details) => openBookingFor(details || "Restaurante & Fogón")} />
 
         {/* ========================================================
             SECCIÓN 03: PAZIONART CHALETS (CONFIGURADOR INTERACTIVO)
@@ -352,8 +384,8 @@ export default function Home() {
           id="chalets"
           className="relative w-full min-h-screen flex items-center justify-center py-24 md:py-32 px-6 md:px-12 bg-[#1D251C] overflow-hidden"
         >
-          {/* Difuminado superior desde Propósito */}
-          <div className="absolute top-0 left-0 right-0 h-32 md:h-48 bg-gradient-to-b from-[#182017]/75 via-[#1D251C]/50 to-transparent pointer-events-none z-10" />
+          {/* Difuminado superior desde Restaurante */}
+          <div className="absolute top-0 left-0 right-0 h-32 md:h-48 bg-gradient-to-b from-[#171E16]/75 via-[#1D251C]/50 to-transparent pointer-events-none z-10" />
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-6xl h-px bg-gradient-to-r from-transparent via-[#8D996E]/15 to-transparent blur-[1px] pointer-events-none z-20" />
 
           <div className="relative z-20 w-full">
