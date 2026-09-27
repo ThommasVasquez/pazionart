@@ -81,7 +81,7 @@ export default function Home() {
             ======================================================== */}
         <section
           id="esencia"
-          className="relative w-full min-h-screen flex items-center justify-center pt-28 pb-16 px-6 md:px-12 overflow-hidden"
+          className="relative w-full min-h-screen flex items-center justify-center pt-20 pb-12 px-6 md:px-12 overflow-hidden"
         >
           {/* Fondo fotográfico con velo cinemático */}
           <div className="absolute inset-0 z-0">

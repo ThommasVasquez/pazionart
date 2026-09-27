@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Menu, X, Compass, Sparkles } from "lucide-react";
-import MountainStatus from "./MountainStatus";
 
 interface NavbarProps {
   onOpenBooking: () => void;
@@ -15,19 +14,19 @@ export default function Navbar({ onOpenBooking }: NavbarProps) {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 40);
+      setIsScrolled(window.scrollY > 20);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const navLinks = [
-    { name: "Esencia", href: "#esencia", num: "01" },
-    { name: "Propósito", href: "#proposito", num: "02" },
-    { name: "Chalets", href: "#chalets", num: "03" },
-    { name: "Valores", href: "#valores", num: "04" },
-    { name: "Vivencias", href: "#experiencias", num: "05" },
-    { name: "Contacto", href: "#contacto", num: "06" },
+    { name: "Esencia", href: "#esencia" },
+    { name: "Propósito", href: "#proposito" },
+    { name: "Chalets", href: "#chalets" },
+    { name: "Filosofía", href: "#valores" },
+    { name: "Vivencias", href: "#experiencias" },
+    { name: "Contacto", href: "#contacto" },
   ];
 
   const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -42,21 +41,20 @@ export default function Navbar({ onOpenBooking }: NavbarProps) {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
           isScrolled
-            ? "py-3 bg-[#151D14]/90 backdrop-blur-xl border-b border-[#8D996E]/20 shadow-2xl"
-            : "py-5 bg-gradient-to-b from-[#151D14]/90 via-[#151D14]/40 to-transparent"
+            ? "h-14 bg-[#151D14]/92 backdrop-blur-xl border-b border-[#8D996E]/20 shadow-lg"
+            : "h-16 bg-gradient-to-b from-[#151D14]/80 to-transparent"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
-          {/* Logo Pazionart SVG con Isotipo */}
+        <div className="max-w-7xl mx-auto h-full px-6 md:px-10 flex items-center justify-between">
+          {/* Logo Pazionart SVG Esbelto */}
           <a
             href="#esencia"
             onClick={(e) => handleScrollTo(e, "#esencia")}
-            className="flex items-center gap-3.5 group cursor-pointer"
-            data-cursor="explore"
+            className="flex items-center gap-2.5 group cursor-pointer"
           >
-            <div className="relative w-8 h-8 md:w-10 md:h-10 transition-transform duration-500 group-hover:scale-105">
+            <div className="relative w-7 h-7 md:w-8 md:h-8 transition-transform duration-300 group-hover:scale-105">
               <Image
                 src="/brand/simbolo-pazionart.svg"
                 alt="Símbolo Pazionart"
@@ -66,56 +64,46 @@ export default function Navbar({ onOpenBooking }: NavbarProps) {
               />
             </div>
             <div className="flex flex-col">
-              <span className="text-lg md:text-xl font-light tracking-[0.25em] text-[#F5F2ED] uppercase font-sans">
+              <span className="text-sm md:text-base font-light tracking-[0.22em] text-[#F5F2ED] uppercase font-sans">
                 Pazionart
               </span>
-              <span className="text-[8px] md:text-[9px] tracking-[0.35em] text-[#8D996E] uppercase -mt-1 font-mono">
+              <span className="text-[7px] md:text-[8px] tracking-[0.3em] text-[#8D996E] uppercase -mt-0.5 font-mono">
                 Amor · Naturaleza · Arte
               </span>
             </div>
           </a>
 
-          {/* Center: Live Mountain Meta Status Widget */}
-          <div className="hidden xl:block">
-            <MountainStatus />
-          </div>
-
-          {/* Enlaces Desktop */}
-          <nav className="hidden lg:flex items-center gap-7">
+          {/* Enlaces de Navegación Compactos & Elegantes */}
+          <nav className="hidden md:flex items-center gap-6 lg:gap-8">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
                 onClick={(e) => handleScrollTo(e, link.href)}
-                className="text-xs tracking-[0.16em] uppercase text-[#F5F2ED]/75 hover:text-[#8D996E] transition-all relative py-1 flex items-center gap-1 group"
+                className="text-[11px] tracking-[0.16em] uppercase text-[#F5F2ED]/75 hover:text-[#8D996E] transition-colors relative py-1 group"
               >
-                <span className="text-[9px] font-mono text-[#8D996E]/60 group-hover:text-[#A45D41] transition-colors">
-                  {link.num}
-                </span>
                 <span>{link.name}</span>
                 <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#A45D41] group-hover:w-full transition-all duration-300" />
               </a>
             ))}
           </nav>
 
-          {/* Botón de Reserva con Estilo Boutique */}
+          {/* Botón CTA Esbelto & Mobile Toggle */}
           <div className="flex items-center gap-3">
             <button
               onClick={onOpenBooking}
-              data-cursor="reserve"
-              className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-[11px] font-semibold tracking-[0.18em] uppercase bg-[#A45D41] hover:bg-[#bd7356] text-[#F5F2ED] transition-all duration-300 shadow-xl hover:shadow-[#A45D41]/40 hover:-translate-y-0.5 cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-[10px] md:text-[11px] font-semibold tracking-[0.16em] uppercase bg-[#A45D41] hover:bg-[#bd7356] text-[#F5F2ED] transition-all duration-300 shadow-md hover:scale-[1.02] cursor-pointer"
             >
-              <Compass className="w-3.5 h-3.5" />
-              <span>Reservar Chalet</span>
+              <Compass className="w-3 h-3" />
+              <span>Reservar</span>
             </button>
 
-            {/* Mobile menu trigger */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-2 rounded-full text-[#F5F2ED] hover:text-[#8D996E] glass-panel-dark focus:outline-none cursor-pointer"
+              className="md:hidden p-1.5 rounded-full text-[#F5F2ED] hover:text-[#8D996E] glass-panel-dark focus:outline-none cursor-pointer"
               aria-label="Abrir menú"
             >
-              {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {isMobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
             </button>
           </div>
         </div>
@@ -123,27 +111,24 @@ export default function Navbar({ onOpenBooking }: NavbarProps) {
 
       {/* Mobile Drawer */}
       <div
-        className={`fixed inset-0 z-40 bg-[#151D14]/98 backdrop-blur-2xl transition-all duration-500 lg:hidden flex flex-col justify-center px-10 ${
+        className={`fixed inset-0 z-40 bg-[#151D14]/98 backdrop-blur-2xl transition-all duration-300 md:hidden flex flex-col justify-center px-8 ${
           isMobileMenuOpen
             ? "opacity-100 pointer-events-auto"
             : "opacity-0 pointer-events-none"
         }`}
       >
-        <div className="flex flex-col items-start gap-5 max-w-sm mx-auto w-full">
-          <div className="mb-2">
-            <MountainStatus />
-          </div>
-          <span className="text-xs uppercase tracking-[0.3em] text-[#8D996E] font-mono">
+        <div className="flex flex-col items-start gap-4 max-w-xs mx-auto w-full">
+          <span className="text-[10px] uppercase tracking-[0.3em] text-[#8D996E] font-mono">
             Índice de Navegación
           </span>
-          {navLinks.map((link) => (
+          {navLinks.map((link, idx) => (
             <a
               key={link.name}
               href={link.href}
               onClick={(e) => handleScrollTo(e, link.href)}
-              className="text-2xl font-light tracking-[0.12em] text-[#F5F2ED] hover:text-[#A45D41] transition-colors flex items-baseline gap-3"
+              className="text-xl font-light tracking-[0.12em] text-[#F5F2ED] hover:text-[#A45D41] transition-colors flex items-baseline gap-2.5"
             >
-              <span className="text-xs text-[#8D996E] font-mono">{link.num}</span>
+              <span className="text-xs text-[#8D996E] font-mono">0{idx + 1}</span>
               <span>{link.name}</span>
             </a>
           ))}
@@ -153,7 +138,7 @@ export default function Navbar({ onOpenBooking }: NavbarProps) {
               setIsMobileMenuOpen(false);
               onOpenBooking();
             }}
-            className="w-full mt-4 py-3.5 rounded-full text-center text-xs font-semibold tracking-[0.2em] uppercase bg-[#A45D41] text-[#F5F2ED] hover:bg-[#bd7356] transition-colors shadow-2xl flex items-center justify-center gap-2"
+            className="w-full mt-4 py-3 rounded-full text-center text-xs font-semibold tracking-[0.2em] uppercase bg-[#A45D41] text-[#F5F2ED] hover:bg-[#bd7356] transition-colors shadow-xl flex items-center justify-center gap-2"
           >
             <Sparkles className="w-4 h-4" />
             <span>Reservar Estadía</span>
