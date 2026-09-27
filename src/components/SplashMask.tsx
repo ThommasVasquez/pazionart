@@ -6,10 +6,11 @@ import gsap from "gsap";
 export default function SplashMask() {
   const [isDone, setIsDone] = useState(false);
   const curtainRef = useRef<HTMLDivElement>(null);
-  const introIconRef = useRef<HTMLDivElement>(null);
+  const colorLogoRef = useRef<HTMLDivElement>(null);
   const introTextRef = useRef<HTMLDivElement>(null);
   const maskHoleRef = useRef<SVGGElement>(null);
   const svgMaskOverlayRef = useRef<SVGSVGElement>(null);
+  const outlineGlowRef = useRef<SVGSVGElement>(null);
 
   useEffect(() => {
     const tl = gsap.timeline({
@@ -18,18 +19,19 @@ export default function SplashMask() {
       },
     });
 
-    // 1. Estado inicial
-    gsap.set(introIconRef.current, { scale: 0.8, opacity: 0, y: 20 });
+    // Estado inicial
+    gsap.set(colorLogoRef.current, { scale: 0.85, opacity: 0, y: 25 });
     gsap.set(introTextRef.current, { opacity: 0, y: 15 });
     gsap.set(svgMaskOverlayRef.current, { opacity: 0 });
-    gsap.set(maskHoleRef.current, { scale: 0.08, transformOrigin: "540px 540px" });
+    gsap.set(outlineGlowRef.current, { opacity: 0, scale: 1 });
+    gsap.set(maskHoleRef.current, { scale: 1, transformOrigin: "540px 520px" });
 
-    // 2. Aparición del splash con el isotipo de Pazionart
-    tl.to(introIconRef.current, {
+    // 1. Entrada imponente del logo grande en sus colores originales (0s - 0.8s)
+    tl.to(colorLogoRef.current, {
       scale: 1,
       opacity: 1,
       y: 0,
-      duration: 0.85,
+      duration: 0.8,
       ease: "power3.out",
     })
       .to(
@@ -42,48 +44,56 @@ export default function SplashMask() {
         },
         "-=0.3"
       )
-      // 3. Pausa de ~1 segundo contemplativo según la petición del usuario
-      .to({}, { duration: 0.9 })
-      // 4. El texto se desvanece suavemente
+      // 2. Pausa de exactamente 1 segundo para contemplar el logo grande
+      .to({}, { duration: 1.0 })
+      // 3. El texto se desvanece
       .to(introTextRef.current, {
         opacity: 0,
-        y: -10,
-        duration: 0.3,
+        y: -15,
+        duration: 0.35,
         ease: "power2.in",
       })
-      // 5. Activamos el overlay de máscara SVG en el mismo instante
+      // 4. TRANSICIÓN A MÁSCARA DE CAPA:
+      // El logo con color se desvanece mientras la máscara SVG se activa exactamente en la misma posición,
+      // volviendo el interior del logo transparente y dejando ver la web por dentro.
       .set(svgMaskOverlayRef.current, { opacity: 1 }, "<")
       .to(
-        introIconRef.current,
+        colorLogoRef.current,
         {
           opacity: 0,
-          duration: 0.25,
+          duration: 0.35,
+          ease: "power2.inOut",
         },
         "<"
       )
-      // 6. El hueco de máscara con la forma exacta del símbolo se expande masivamente
-      // revelando el contenido de la web a través de la silueta botánica
+      // Breve destello del contorno para enfatizar la transformación a ventana
       .fromTo(
+        outlineGlowRef.current,
+        { opacity: 0.8, scale: 1 },
+        { opacity: 0, scale: 1.08, duration: 0.5, ease: "power2.out" },
+        "<"
+      )
+      // 5. Breve pausa (0.35s) para que el ojo humano aprecie la web visible dentro del logo
+      .to({}, { duration: 0.35 })
+      // 6. ACERCAMIENTO CINEMÁTICO (Dolly-in a través de la máscara):
+      // Nos adentramos por la silueta del logo que se agranda masivamente hasta dejar ver toda la web
+      .to(
         maskHoleRef.current,
         {
-          scale: 0.12,
-          transformOrigin: "540px 540px",
-        },
-        {
-          scale: 18,
-          duration: 1.3,
-          ease: "expo.inOut",
+          scale: 36,
+          duration: 1.45,
+          ease: "power3.inOut",
         }
       )
-      // 7. Desvanecimiento final de la cortina
+      // 7. Salida final y liberación de la cortina
       .to(
         curtainRef.current,
         {
           opacity: 0,
-          duration: 0.4,
+          duration: 0.35,
           ease: "power2.out",
         },
-        "-=0.3"
+        "-=0.25"
       );
 
     return () => {
@@ -99,10 +109,10 @@ export default function SplashMask() {
       className="fixed inset-0 z-[1000] pointer-events-none flex items-center justify-center overflow-hidden bg-[#151D14]"
       style={{ willChange: "opacity" }}
     >
-      {/* 
-        MÁSCARA DE CAPA SVG NATIVA
-        El fondo #151D14 se recorta dejando ver la web a través del símbolo que se expande
-      */}
+      {/* ========================================================
+          CAPA 1: MÁSCARA SVG DE CAPA REVELADORA
+          El fondo #151D14 se recorta dejando ver la web a través del símbolo
+          ======================================================== */}
       <svg
         ref={svgMaskOverlayRef}
         viewBox="0 0 1080 1080"
@@ -110,11 +120,11 @@ export default function SplashMask() {
         className="absolute inset-0 w-full h-full pointer-events-none"
       >
         <defs>
-          <mask id="pazionart-mask-reveal">
-            {/* Rectángulo blanco = cubre y tapa la pantalla */}
-            <rect x="-2000" y="-2000" width="6000" height="6000" fill="white" />
-            {/* Silueta negra = HUECO TRANSPARENTE con la forma del isotipo de Pazionart */}
-            <g ref={maskHoleRef}>
+          <mask id="pazionart-zoom-mask">
+            {/* Rectángulo blanco = cubre toda la pantalla en negro */}
+            <rect x="-5000" y="-5000" width="10000" height="10000" fill="white" />
+            {/* Silueta negra = HUECO TRANSPARENTE que deja ver la web por dentro */}
+            <g ref={maskHoleRef} transform="translate(0, 0)">
               <path
                 fill="black"
                 d="M1044.3,816c-23-46.4-72.8-91.4-114.6-121.1C882,661,824.5,639,766.1,640.5c-75,1.9-144.4,41.9-200,92.2
@@ -145,28 +155,47 @@ export default function SplashMask() {
             </g>
           </mask>
         </defs>
-        {/* Fondo del splash que lleva la máscara */}
+        {/* Capa que tapa la web y se perfora por la máscara */}
         <rect
-          x="-2000"
-          y="-2000"
-          width="6000"
-          height="6000"
+          x="-5000"
+          y="-5000"
+          width="10000"
+          height="10000"
           fill="#151D14"
-          mask="url(#pazionart-mask-reveal)"
+          mask="url(#pazionart-zoom-mask)"
         />
       </svg>
 
-      {/* 
-        SPLASHSCREEN VISUAL INICIAL
-        Ícono nítido en sus colores Tierra y Alma + Lettering
-      */}
+      {/* ========================================================
+          CAPA 2: CONTORNO DE BRILLO AL TRANSFORMARSE EN MÁSCARA
+          ======================================================== */}
+      <svg
+        ref={outlineGlowRef}
+        viewBox="0 0 1080 1080"
+        preserveAspectRatio="xMidYMid slice"
+        className="absolute inset-0 w-full h-full pointer-events-none"
+      >
+        <g stroke="#A45D41" strokeWidth="4" fill="none">
+          <path d="M1044.3,816c-23-46.4-72.8-91.4-114.6-121.1C882,661,824.5,639,766.1,640.5c-75,1.9-144.4,41.9-200,92.2c35.9,30.4,85.7,38.5,132.8,37.6s93.8-9.6,140.8-8C913.7,764.8,974.5,798.5,1044.3,816z" />
+          <path d="M35.7,816c23-46.4,72.8-91.4,114.6-121.1C198,661,255.5,639,313.9,640.5c75,1.9,144.4,41.9,200,92.2c-35.9,30.4-85.7,38.5-132.8,37.6s-93.8-9.6-140.8-8C166.3,764.8,105.5,798.5,35.7,816z" />
+          <path d="M540,309.1c41.5-63.2,104-41.5,104-41.5c120.3,52.4,36.9,178.8,36.9,178.8C643,513.3,547.2,728.2,547.2,728.2l-7.2,16.3l-7.2-16.3c0,0-95.7-214.9-133.7-281.8c0,0-83.4-126.4,36.9-178.8C436,267.6,498.5,245.9,540,309.1" />
+          <path d="M639.9,622.6c0.6-1.3,40.8-3.2,45.5-4.2c15.8-3.3,31.2-8.5,45.8-15.2c30-13.9,57-34.8,77.5-60.8c24.4-31,43.1-66.3,56-103.6c6.3-18.2,11.2-36.9,14.8-55.8c2.4-12.5,11.1-40.4,2.9-51.8c-8.7-12-32.6-6.2-43.7-0.7c-12.2,5.9-22.3,15.3-31.9,24.9C732.7,430.5,685.6,527.5,639.9,622.6z" />
+          <path d="M440,622.6c-0.6-1.3-40.8-3.2-45.5-4.2c-15.8-3.3-31.2-8.5-45.8-15.2c-30-13.9-57-34.8-77.5-60.8c-24.4-31-43.1-66.3-56-103.6c-6.3-18.2-11.2-36.9-14.8-55.8c-2.4-12.5-11.1-40.4-2.9-51.8c8.7-12,32.6-6.2,43.7-0.7c12.2,5.9,22.3,15.3,31.9,24.9C347.2,430.5,394.3,527.5,440,622.6z" />
+        </g>
+      </svg>
+
+      {/* ========================================================
+          CAPA 3: LOGO INICIAL EN TAMAÑO GRANDE E IMPONENTE
+          Aparece en el centro con colores originales y resplandor
+          ======================================================== */}
       <div className="relative z-10 flex flex-col items-center text-center px-6 pointer-events-none">
-        {/* Isotipo con resplandor cálido */}
+        {/* Isotipo en formato mucho más grande (w-64 a w-96) */}
         <div
-          ref={introIconRef}
-          className="relative w-28 h-28 sm:w-36 sm:h-36 mb-5 drop-shadow-[0_15px_35px_rgba(0,0,0,0.8)]"
+          ref={colorLogoRef}
+          className="relative w-56 h-56 sm:w-72 sm:h-72 md:w-80 md:h-80 mb-6 drop-shadow-[0_20px_45px_rgba(0,0,0,0.9)]"
         >
-          <div className="absolute inset-0 rounded-full bg-[#8D996E]/25 filter blur-2xl scale-125" />
+          {/* Halo orgánico detrás del ícono */}
+          <div className="absolute inset-0 rounded-full bg-[#8D996E]/20 filter blur-3xl scale-125" />
           <svg viewBox="0 0 1080 1080" className="w-full h-full relative z-10">
             <path
               fill="#8D996E"
@@ -198,17 +227,17 @@ export default function SplashMask() {
           </svg>
         </div>
 
-        {/* Tipografía de marca */}
+        {/* Tipografía de Pazionart */}
         <div ref={introTextRef} className="flex flex-col items-center">
-          <span className="text-2xl sm:text-3xl font-light tracking-[0.3em] text-[#F5F2ED] uppercase font-sans mb-1">
+          <span className="text-3xl sm:text-4xl md:text-5xl font-light tracking-[0.28em] text-[#F5F2ED] uppercase font-sans mb-1.5">
             Pazionart
           </span>
-          <div className="flex items-center gap-2">
-            <span className="w-4 h-[1px] bg-[#8D996E]" />
-            <span className="text-[10px] sm:text-[11px] tracking-[0.35em] text-[#8D996E] uppercase font-mono font-medium">
+          <div className="flex items-center gap-3">
+            <span className="w-6 h-[1px] bg-[#8D996E]" />
+            <span className="text-xs sm:text-sm tracking-[0.35em] text-[#8D996E] uppercase font-mono font-medium">
               Amor · Naturaleza · Arte
             </span>
-            <span className="w-4 h-[1px] bg-[#8D996E]" />
+            <span className="w-6 h-[1px] bg-[#8D996E]" />
           </div>
         </div>
       </div>
