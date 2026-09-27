@@ -6,24 +6,19 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   Compass,
-  Heart,
-  Leaf,
+  ArrowRight,
+  ChevronDown,
   Sparkles,
-  Flame,
-  Coffee,
-  CheckCircle,
-  Eye,
-  ShieldCheck,
-  Award,
-  Sun,
   MapPin,
   Mail,
   Phone,
-  ArrowRight,
-  ChevronDown,
-  Wind,
+  Flame,
+  Coffee,
+  Leaf,
   Layers,
   Calendar,
+  MessageCircle,
+  ExternalLink,
 } from "lucide-react";
 
 import SmoothScroll from "@/components/SmoothScroll";
@@ -31,12 +26,14 @@ import Navbar from "@/components/Navbar";
 import ScrollProgress from "@/components/ScrollProgress";
 import AmbientAudio from "@/components/AmbientAudio";
 import BookingModal from "@/components/BookingModal";
+import CustomCursor from "@/components/CustomCursor";
+import ChaletConfigurator from "@/components/ChaletConfigurator";
+import ValuesAccordion from "@/components/ValuesAccordion";
+import KineticQuote from "@/components/KineticQuote";
 
 export default function Home() {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
   const [selectedChalet, setSelectedChalet] = useState("Chalet Niebla & Fuego");
-  const [activeChaletIndex, setActiveChaletIndex] = useState(0);
-  const [activeValueTab, setActiveValueTab] = useState(0);
 
   const heroRef = useRef<HTMLDivElement>(null);
   const propositoRef = useRef<HTMLDivElement>(null);
@@ -46,184 +43,24 @@ export default function Home() {
   const contactoRef = useRef<HTMLDivElement>(null);
 
   const sectionsList = [
-    { id: "esencia", label: "Esencia" },
-    { id: "proposito", label: "Propósito" },
-    { id: "chalets", label: "Chalets" },
-    { id: "valores", label: "Valores" },
-    { id: "experiencias", label: "Pausa" },
-    { id: "contacto", label: "Contacto" },
-  ];
-
-  const chaletsData = [
-    {
-      name: "Chalet Niebla & Fuego",
-      tagline: "El corazón cálido entre las nubes",
-      description:
-        "Diseñado con chimenea central de piedra volcánica, ventanales de triple altura que enmarcan la cordillera y una terraza suspendida con fogata privada.",
-      capacity: "2 a 3 personas",
-      area: "78 m²",
-      features: [
-        "Chimenea de leña tradicional",
-        "Cama King con sábanas de lino orgánico",
-        "Terraza mirador con firepit artesanal",
-        "Estación de café de especialidad pour-over",
-      ],
-      image: "/images/hero-chalet.jpg",
-    },
-    {
-      name: "Chalet Bosque Andino",
-      tagline: "Inmersión biofílica total",
-      description:
-        "Rodeado de helechos gigantes y cedros centenarios. Cuenta con tina exterior de barro cocido, baño panorámico y arquitectura que respeta cada árbol del entorno.",
-      capacity: "2 personas",
-      area: "65 m²",
-      features: [
-        "Tina artesanal caliente al aire libre",
-        "Ducha panorámica con luz natural",
-        "Deck para meditación y yoga",
-        "Desayuno campesino servido en cabaña",
-      ],
-      image: "/images/chalet-interior.jpg",
-    },
-    {
-      name: "Chalet El Refugio de Arte",
-      tagline: "Espacio de pausa para creadores",
-      description:
-        "Un santuario de silencio con estudio de lectura, obras de ceramistas locales y un balcón sobre el cañón para contemplar el vuelo de las aves al amanecer.",
-      capacity: "2 a 4 personas",
-      area: "90 m²",
-      features: [
-        "Estudio creativo con escritorio de roble",
-        "Colección de cerámica y arte rural",
-        "Cocina de autor equipada",
-        "Telescopio para observación nocturna",
-      ],
-      image: "/images/experiencia-pausa.jpg",
-    },
-  ];
-
-  const valoresData = [
-    {
-      num: "01",
-      title: "Amor por el servicio",
-      desc: "Servimos desde el corazón, con calidez, respeto y atención genuina a cada persona que llega a Pazionart.",
-      icon: Heart,
-    },
-    {
-      num: "02",
-      title: "Conexión con la naturaleza",
-      desc: "Valoramos y protegemos el entorno natural, integrándolo en cada experiencia para generar bienestar y armonía.",
-      icon: Leaf,
-    },
-    {
-      num: "03",
-      title: "Excelencia con propósito",
-      desc: "Buscamos hacer todo con calidad, detalle y compromiso, entendiendo que cada acción impacta la experiencia del cliente.",
-      icon: Award,
-    },
-    {
-      num: "04",
-      title: "Autenticidad",
-      desc: "Somos reales, cercanos y coherentes. Cada detalle refleja nuestra esencia pura y nuestra historia artesanal.",
-      icon: ShieldCheck,
-    },
-    {
-      num: "05",
-      title: "Bienestar integral",
-      desc: "Promovemos experiencias que nutren cuerpo, mente y espíritu, tanto para nuestros visitantes como para nuestro equipo.",
-      icon: Sun,
-    },
-    {
-      num: "06",
-      title: "Innovación consciente",
-      desc: "Evolucionamos de forma continua, creando nuevas experiencias sin perder nuestra esencia natural y humana.",
-      icon: Sparkles,
-    },
-    {
-      num: "07",
-      title: "Responsabilidad social",
-      desc: "Actuamos con conciencia comunitaria, apoyando a artesanos rurales y causas con propósito duradero.",
-      icon: Eye,
-    },
-    {
-      num: "08",
-      title: "Gratitud",
-      desc: "Valoramos cada huésped, cada colaborador y cada oportunidad de crecer en armonía con la tierra.",
-      icon: Wind,
-    },
-  ];
-
-  const experienciasData = [
-    {
-      title: "Alfarería & Cerámica en Barro",
-      tag: "Artesanía Rural",
-      desc: "Aprende a modelar vasijas con arcilla local guiado por maestros de la región. Una meditación táctil con la tierra.",
-      icon: Layers,
-    },
-    {
-      title: "Cata de Café de Origen",
-      tag: "Sabores de la Tierra",
-      desc: "Descubre las notas aromáticas de cafés cultivados en altura, preparados con métodos de extracción lenta y agua de manantial.",
-      icon: Coffee,
-    },
-    {
-      title: "Senderos del Bosque Nuboso",
-      tag: "Conexión Botánica",
-      desc: "Caminatas conscientes entre orquídeas silvestres, musgos y niebla para despertar los cinco sentidos.",
-      icon: Leaf,
-    },
-    {
-      title: "Veladas de Fuego & Estrellas",
-      tag: "Hospitalidad Cálida",
-      desc: "Reuniones íntimas alrededor de la fogata con relatos de la montaña, copas de vino y mantas de lino.",
-      icon: Flame,
-    },
+    { id: "esencia", label: "01 Esencia" },
+    { id: "proposito", label: "02 Propósito" },
+    { id: "chalets", label: "03 Chalets" },
+    { id: "valores", label: "04 Filosofía" },
+    { id: "experiencias", label: "05 Vivencias" },
+    { id: "contacto", label: "06 Encuentro" },
   ];
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    // Animación de entrada para Hero
+    // Animación de apertura Hero
     const heroTl = gsap.timeline({ defaults: { ease: "power3.out" } });
     heroTl
-      .fromTo(".hero-symbol", { opacity: 0, scale: 0.85, y: 20 }, { opacity: 1, scale: 1, y: 0, duration: 1.2 })
-      .fromTo(".hero-title-pazionart", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 1 }, "-=0.8")
-      .fromTo(".hero-tagline", { opacity: 0, letterSpacing: "0.5em" }, { opacity: 1, letterSpacing: "0.35em", duration: 1.2 }, "-=0.7")
-      .fromTo(".hero-text", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.9 }, "-=0.7")
-      .fromTo(".hero-cta", { opacity: 0, y: 15 }, { opacity: 1, y: 0, stagger: 0.15, duration: 0.8 }, "-=0.5");
-
-    // GSAP ScrollTrigger para cada sección a pantalla completa
-    const sections = [
-      propositoRef.current,
-      chaletsRef.current,
-      valoresRef.current,
-      experienciasRef.current,
-      contactoRef.current,
-    ];
-
-    sections.forEach((sec) => {
-      if (!sec) return;
-      const revealElements = sec.querySelectorAll(".reveal-item");
-      if (revealElements.length > 0) {
-        gsap.fromTo(
-          revealElements,
-          { opacity: 0, y: 35 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 1,
-            stagger: 0.18,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: sec,
-              start: "top 75%",
-              end: "bottom 85%",
-              toggleActions: "play none none reverse",
-            },
-          }
-        );
-      }
-    });
+      .fromTo(".hero-asym-meta", { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 1 })
+      .fromTo(".hero-asym-title", { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 1.1 }, "-=0.7")
+      .fromTo(".hero-asym-desc", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.9 }, "-=0.7")
+      .fromTo(".hero-asym-photo", { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 1.3 }, "-=0.9");
 
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
@@ -237,6 +74,7 @@ export default function Home() {
 
   return (
     <SmoothScroll>
+      <CustomCursor />
       <Navbar onOpenBooking={() => setIsBookingOpen(true)} />
       <ScrollProgress sections={sectionsList} />
       <AmbientAudio />
@@ -248,94 +86,121 @@ export default function Home() {
 
       <main className="w-full bg-[#212B20] text-[#F5F2ED] overflow-hidden">
         {/* ========================================================
-            SECCIÓN 01: HERO - EL UMBRAL CONSCIENTE
+            SECCIÓN 01: HERO ASIMÉTRICO - EL UMBRAL CONSCIENTE
             ======================================================== */}
         <section
           id="esencia"
           ref={heroRef}
-          className="relative w-full h-screen min-h-screen flex items-center justify-center overflow-hidden snap-start"
+          className="relative w-full h-screen min-h-screen flex items-center justify-center overflow-hidden snap-start px-6 md:px-12 pt-20 pb-8"
         >
-          {/* Fondo fotográfico con overlay cinemático */}
-          <div className="absolute inset-0 z-0">
-            <Image
-              src="/images/hero-chalet.jpg"
-              alt="Pazionart Chalet en la montaña"
-              fill
-              priority
-              className="object-cover object-center scale-105 transition-transform duration-1000 ease-out"
-            />
-            {/* Gradientes orgánicos en color Noche (#212B20) */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#212B20] via-[#212B20]/60 to-[#212B20]/40" />
-            <div className="absolute inset-0 bg-radial from-transparent via-[#212B20]/50 to-[#212B20]" />
-            {/* Modulación de marca como textura sutil al 5% de opacidad */}
-            <div className="absolute inset-0 bg-modulacion opacity-5 pointer-events-none mix-blend-screen" />
+          {/* Fondo sutil con modulación de marca */}
+          <div className="absolute inset-0 bg-[#161E15] z-0">
+            <div className="absolute inset-0 bg-modulacion opacity-4 pointer-events-none mix-blend-screen" />
+            <div className="absolute top-1/4 -left-32 w-96 h-96 rounded-full bg-[#8D996E]/10 filter blur-[120px] pointer-events-none" />
+            <div className="absolute bottom-1/4 -right-32 w-96 h-96 rounded-full bg-[#A45D41]/15 filter blur-[120px] pointer-events-none" />
           </div>
 
-          {/* Contenido Central Hero */}
-          <div className="relative z-10 max-w-4xl mx-auto px-6 text-center flex flex-col items-center pt-16">
-            {/* Símbolo Pazionart animado */}
-            <div className="hero-symbol w-20 h-20 md:w-24 md:h-24 relative mb-6 drop-shadow-[0_10px_25px_rgba(0,0,0,0.5)]">
-              <Image
-                src="/brand/simbolo-pazionart.svg"
-                alt="Símbolo Pazionart"
-                fill
-                priority
-                className="object-contain"
-              />
+          <div className="relative z-10 max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            {/* Lado Izquierdo: Composición Tipográfica Asimétrica */}
+            <div className="lg:col-span-7 flex flex-col justify-center">
+              {/* Meta etiqueta de encabezado */}
+              <div className="hero-asym-meta flex items-center gap-3 mb-4">
+                <span className="text-[10px] font-mono tracking-[0.3em] text-[#8D996E] uppercase border border-[#8D996E]/30 px-3 py-1 rounded-full glass-panel-dark">
+                  Reserva Natural & Arquitectura Viva
+                </span>
+                <span className="text-[#A45D41] text-xs font-mono">04°38&apos;N · 75°34&apos;W</span>
+              </div>
+
+              {/* Título de gran impacto con contraste */}
+              <div className="hero-asym-title">
+                <div className="flex items-center gap-3 mb-1">
+                  <span className="text-xs md:text-sm font-semibold tracking-[0.35em] text-[#8D996E] uppercase">
+                    Amor · Naturaleza · Arte
+                  </span>
+                </div>
+                <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-light tracking-tight text-[#F5F2ED] uppercase leading-[0.95] mb-4">
+                  Pazionart
+                </h1>
+              </div>
+
+              {/* Texto de propósito con jerarquía editorial */}
+              <p className="hero-asym-desc text-sm sm:text-base md:text-lg text-[#F5F2ED]/85 font-light leading-relaxed max-w-xl mb-8">
+                El puente entre la{" "}
+                <span className="text-[#8D996E] font-medium border-b border-[#8D996E]/40 pb-0.5">
+                  sabiduría artesanal rural
+                </span>{" "}
+                y la{" "}
+                <span className="text-[#A45D41] font-medium border-b border-[#A45D41]/40 pb-0.5">
+                  pausa consciente
+                </span>{" "}
+                que buscan tanto los habitantes locales como el viajero del mundo.
+              </p>
+
+              {/* Controles de Acción Rápida con Estilo Boutique */}
+              <div className="flex flex-wrap items-center gap-4">
+                <button
+                  onClick={() => openBookingFor("Chalet Niebla & Fuego")}
+                  data-cursor="reserve"
+                  className="px-8 py-4 rounded-full text-xs font-semibold tracking-[0.2em] uppercase bg-[#A45D41] hover:bg-[#bd7356] text-[#F5F2ED] transition-all duration-300 shadow-2xl flex items-center gap-3 cursor-pointer group"
+                >
+                  <Compass className="w-4 h-4 group-hover:rotate-45 transition-transform" />
+                  <span>Explorar Chalets</span>
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </button>
+
+                <a
+                  href="#proposito"
+                  data-cursor="explore"
+                  className="px-7 py-4 rounded-full text-xs font-semibold tracking-[0.18em] uppercase glass-panel-dark text-[#F5F2ED]/90 hover:text-[#8D996E] hover:border-[#8D996E] transition-all duration-300 flex items-center gap-2 cursor-pointer"
+                >
+                  <span>Nuestra Esencia</span>
+                  <ChevronDown className="w-4 h-4 text-[#8D996E]" />
+                </a>
+              </div>
             </div>
 
-            {/* Tagline superior */}
-            <div className="hero-tagline flex items-center gap-3 mb-3">
-              <span className="w-6 h-[1px] bg-[#8D996E]" />
-              <span className="text-xs md:text-sm font-semibold tracking-[0.35em] text-[#8D996E] uppercase">
-                Amor · Naturaleza · Arte
-              </span>
-              <span className="w-6 h-[1px] bg-[#8D996E]" />
-            </div>
-
-            {/* Nombre de la marca */}
-            <h1 className="hero-title-pazionart text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-light tracking-[0.18em] uppercase text-[#F5F2ED] font-sans drop-shadow-2xl">
-              Pazionart
-            </h1>
-
-            {/* Texto de propósito extraído del Brandbook */}
-            <p className="hero-text text-sm sm:text-base md:text-lg text-[#F5F2ED]/90 max-w-2xl font-light leading-relaxed mt-4 drop-shadow-md">
-              El puente entre la{" "}
-              <span className="text-[#8D996E] font-medium">sabiduría artesanal rural</span>{" "}
-              y la{" "}
-              <span className="text-[#A45D41] font-medium">pausa consciente</span>{" "}
-              que buscan tanto locales como el viajero moderno.
-            </p>
-
-            {/* Acciones principales */}
-            <div className="hero-cta flex flex-wrap items-center justify-center gap-4 mt-8">
-              <button
-                onClick={() => openBookingFor("Chalet Niebla & Fuego")}
-                className="px-8 py-3.5 rounded-full text-xs font-semibold tracking-[0.2em] uppercase bg-[#A45D41] hover:bg-[#bd7356] text-[#F5F2ED] transition-all duration-300 shadow-xl hover:shadow-[#A45D41]/40 hover:-translate-y-0.5 cursor-pointer flex items-center gap-2.5"
+            {/* Lado Derecho: Marco de Fotografía Flotante Editorial */}
+            <div className="hero-asym-photo lg:col-span-5 relative">
+              <div
+                className="relative aspect-[4/5] w-full max-w-md mx-auto rounded-3xl overflow-hidden border border-[#8D996E]/30 shadow-2xl group"
+                data-cursor="explore"
               >
-                <Compass className="w-4 h-4" />
-                <span>Explorar Chalets</span>
-              </button>
+                <Image
+                  src="/images/hero-chalet.jpg"
+                  alt="Chalet Pazionart al atardecer en el bosque andino"
+                  fill
+                  priority
+                  className="object-cover transition-transform duration-1000 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#151D14]/90 via-[#151D14]/20 to-transparent" />
 
-              <a
-                href="#proposito"
-                className="px-8 py-3.5 rounded-full text-xs font-semibold tracking-[0.2em] uppercase glass-panel-dark text-[#F5F2ED] hover:text-[#8D996E] hover:border-[#8D996E] transition-all duration-300 cursor-pointer"
-              >
-                Conocer la Esencia
-              </a>
+                {/* Símbolo de Pazionart en marca de agua */}
+                <div className="absolute top-5 right-5 w-12 h-12 relative opacity-80">
+                  <Image
+                    src="/brand/simbolo-pazionart.svg"
+                    alt="Símbolo"
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+
+                {/* Micro-datos al pie de foto */}
+                <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between">
+                  <div>
+                    <span className="text-[10px] font-mono text-[#8D996E] tracking-widest uppercase block mb-1">
+                      Arquitectura Biofílica
+                    </span>
+                    <h3 className="text-base font-medium text-[#F5F2ED]">
+                      Chalet Niebla & Fuego
+                    </h3>
+                  </div>
+
+                  <span className="glass-pill px-3 py-1 rounded-full text-[10px] font-mono text-[#F5F2ED]">
+                    1,850 M.S.N.M.
+                  </span>
+                </div>
+              </div>
             </div>
-
-            {/* Scroll down indicator */}
-            <a
-              href="#proposito"
-              className="absolute bottom-6 flex flex-col items-center gap-2 text-[#F5F2ED]/60 hover:text-[#8D996E] transition-colors"
-              aria-label="Deslizar hacia abajo"
-            >
-              <span className="text-[10px] tracking-[0.3em] uppercase font-mono">
-                Desliza para adentrarte
-              </span>
-              <ChevronDown className="w-4 h-4 animate-bounce text-[#8D996E]" />
-            </a>
           </div>
         </section>
 
@@ -345,86 +210,96 @@ export default function Home() {
         <section
           id="proposito"
           ref={propositoRef}
-          className="relative w-full h-screen min-h-screen flex items-center justify-center overflow-hidden bg-[#212B20] px-6 md:px-12 py-12 snap-start"
+          className="relative w-full h-screen min-h-screen flex items-center justify-center overflow-hidden bg-[#182017] px-6 md:px-12 py-8 snap-start"
         >
-          {/* Patrón de modulación en esquina */}
-          <div className="absolute right-0 top-0 w-96 h-96 bg-modulacion opacity-5 pointer-events-none" />
-
           <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
-            {/* Columna Izquierda: Fotografía de Artesanía & Manos */}
-            <div className="lg:col-span-6 relative reveal-item">
-              <div className="relative aspect-[4/3] sm:aspect-[16/11] rounded-3xl overflow-hidden shadow-2xl border border-[#8D996E]/20">
+            {/* Foto Editorial de Artesano y Barro */}
+            <div className="lg:col-span-5 relative">
+              <div
+                className="relative aspect-[3/4] max-w-md mx-auto rounded-3xl overflow-hidden border border-[#8D996E]/25 shadow-2xl"
+                data-cursor="view"
+              >
                 <Image
                   src="/images/artesania-barro.jpg"
-                  alt="Manos artesanas modelando barro en Pazionart"
+                  alt="Manos artesanas en Pazionart"
                   fill
                   className="object-cover hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#212B20]/90 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#151D14] via-transparent to-transparent" />
 
-                {/* Badge flotante en la foto */}
-                <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between glass-panel-dark px-5 py-3 rounded-2xl">
-                  <div>
-                    <span className="text-[10px] font-mono text-[#8D996E] tracking-widest uppercase">
-                      Sabiduría Rural
-                    </span>
-                    <h4 className="text-sm font-medium text-[#F5F2ED]">
-                      Manos que transforman la tierra
-                    </h4>
-                  </div>
-                  <div className="w-9 h-9 rounded-full bg-[#A45D41]/30 flex items-center justify-center text-[#A45D41] border border-[#A45D41]/40">
-                    <Sparkles className="w-4 h-4" />
-                  </div>
+                <div className="absolute bottom-6 left-6 right-6 glass-panel-dark p-4 rounded-2xl border border-[#8D996E]/20">
+                  <span className="text-[9px] font-mono text-[#8D996E] uppercase tracking-widest block">
+                    [ Artesanía Viva · Manos Rurales ]
+                  </span>
+                  <p className="text-xs text-[#F5F2ED]/90 mt-1 font-light leading-snug">
+                    El barro modelado con paciencia, sin prisa, como metáfora de la vida serena.
+                  </p>
                 </div>
               </div>
             </div>
 
-            {/* Columna Derecha: Narrativa y Personalidad */}
-            <div className="lg:col-span-6 flex flex-col justify-center reveal-item">
+            {/* Narrativa Editorial & 4 Rasgos de Personalidad */}
+            <div className="lg:col-span-7 flex flex-col justify-center">
               <div className="flex items-center gap-2 mb-2">
-                <span className="text-xs font-mono text-[#8D996E] tracking-widest">
-                  02
-                </span>
+                <span className="text-xs font-mono text-[#8D996E]">02</span>
                 <span className="w-8 h-[1px] bg-[#8D996E]/40" />
-                <span className="text-xs uppercase tracking-[0.25em] text-[#8D996E] font-medium">
-                  Propósito & Misión
+                <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-[#8D996E]">
+                  Propósito & Personalidad de Marca
                 </span>
               </div>
 
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-[#F5F2ED] tracking-wide leading-tight mb-4 font-sans">
-                La pausa consciente donde el{" "}
-                <span className="text-[#A45D41] italic font-serif">arte</span> y la{" "}
-                <span className="text-[#8D996E]">naturaleza</span> se encuentran.
+                Ofrecer una experiencia multisensorial donde el{" "}
+                <span className="font-serif italic text-[#A45D41]">arte</span>, la{" "}
+                <span className="text-[#8D996E]">naturaleza</span> y la hospitalidad se encuentran.
               </h2>
 
-              <p className="text-sm md:text-base text-[#F5F2ED]/80 font-light leading-relaxed mb-6">
-                Ofrecemos una experiencia multisensorial arraigada en el legado vivo de la comunidad rural. Un refugio donde el viajero y el habitante local redescubren el sosiego, la autenticidad y la contemplación profunda.
+              <p className="text-xs sm:text-sm text-[#F5F2ED]/80 font-light leading-relaxed mb-6">
+                En Pazionart entendemos la hospitalidad como un acto de cariño y coherencia. No somos un hotel convencional; somos un punto de inflexión donde reconectar con la quietud y el oficio de la tierra.
               </p>
 
-              {/* Los 4 Pilares de Personalidad del Brandbook */}
+              {/* Los 4 Rasgos con UI de Tarjetas Editoriales */}
               <div className="grid grid-cols-2 gap-3 mb-6">
                 {[
-                  { tag: "Culta", desc: "Sabiduría ancestral y respeto por el origen" },
-                  { tag: "Serena", desc: "Silencio fértil y armonía natural" },
-                  { tag: "Acogedora", desc: "Hospitalidad genuina desde el corazón" },
-                  { tag: "Artística", desc: "Intención y estética en cada detalle" },
-                ].map((item) => (
+                  {
+                    name: "Culta",
+                    desc: "Sabiduría rural, botánica y respeto por las raíces históricas.",
+                    color: "#8D996E",
+                  },
+                  {
+                    name: "Serena",
+                    desc: "Ritmo desacelerado, silencio fértil y armonía con el bosque.",
+                    color: "#A45D41",
+                  },
+                  {
+                    name: "Acogedora",
+                    desc: "Servicio desde el corazón, con calidez, respeto y escucha.",
+                    color: "#8D996E",
+                  },
+                  {
+                    name: "Artística",
+                    desc: "Cada objeto y textura concebido con intención estética y alma.",
+                    color: "#A45D41",
+                  },
+                ].map((trait) => (
                   <div
-                    key={item.tag}
-                    className="p-3.5 rounded-2xl glass-panel-dark border border-[#8D996E]/15 hover:border-[#8D996E]/40 transition-colors"
+                    key={trait.name}
+                    className="p-3.5 rounded-2xl glass-panel-dark border border-[#8D996E]/15 hover:border-[#A45D41]/40 transition-colors"
                   >
-                    <div className="text-xs font-semibold tracking-wider uppercase text-[#8D996E] mb-1">
-                      {item.tag}
-                    </div>
-                    <div className="text-[11px] text-[#F5F2ED]/70 leading-snug">
-                      {item.desc}
-                    </div>
+                    <span
+                      className="text-xs font-mono font-semibold uppercase tracking-wider block mb-1"
+                      style={{ color: trait.color }}
+                    >
+                      {trait.name}
+                    </span>
+                    <span className="text-[11px] text-[#F5F2ED]/70 font-light leading-snug block">
+                      {trait.desc}
+                    </span>
                   </div>
                 ))}
               </div>
 
-              {/* Cita textual del Brandbook */}
-              <blockquote className="border-l-2 border-[#A45D41] pl-4 py-1 text-xs sm:text-sm italic text-[#F5F2ED]/90">
+              <blockquote className="border-l-2 border-[#A45D41] pl-4 text-xs italic text-[#F5F2ED]/85">
                 “En Pazionart servimos con amor, conectamos con la naturaleza y creamos experiencias con propósito.”
               </blockquote>
             </div>
@@ -432,402 +307,180 @@ export default function Home() {
         </section>
 
         {/* ========================================================
-            SECCIÓN 03: PAZIONART CHALETS
+            SECCIÓN 03: PAZIONART CHALETS (CONFIGURADOR INTERACTIVO)
             ======================================================== */}
         <section
           id="chalets"
           ref={chaletsRef}
-          className="relative w-full h-screen min-h-screen flex items-center justify-center overflow-hidden bg-[#1D251C] px-6 md:px-12 py-10 snap-start"
+          className="relative w-full h-screen min-h-screen flex items-center justify-center overflow-hidden bg-[#1D251C] px-6 md:px-12 py-8 snap-start"
         >
-          {/* Fondo interactivo */}
-          <div className="absolute inset-0 z-0 opacity-20">
-            <Image
-              src={chaletsData[activeChaletIndex].image}
-              alt="Chalet Pazionart"
-              fill
-              className="object-cover filter blur-sm transition-all duration-1000"
-            />
-            <div className="absolute inset-0 bg-[#212B20]/90" />
-          </div>
-
-          <div className="relative z-10 max-w-7xl mx-auto w-full flex flex-col justify-center h-full">
-            {/* Cabecera sección */}
-            <div className="flex flex-col md:flex-row md:items-end justify-between mb-6 reveal-item">
-              <div>
-                <div className="flex items-center gap-2 mb-1">
-                  <span className="text-xs font-mono text-[#8D996E] tracking-widest">03</span>
-                  <span className="w-8 h-[1px] bg-[#8D996E]/40" />
-                  <span className="text-xs uppercase tracking-[0.25em] text-[#8D996E] font-medium">
-                    Arquitectura de Hospitalidad
-                  </span>
-                </div>
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-[#F5F2ED] tracking-wide">
-                  Pazionart <span className="text-[#8D996E] font-normal">Chalets</span>
-                </h2>
-              </div>
-              <p className="text-xs sm:text-sm text-[#F5F2ED]/70 max-w-md mt-2 md:mt-0 leading-relaxed">
-                Refugios bioclimáticos construidos con madera noble, piedra autóctona y ventanales panorámicos orientados a la niebla y al amanecer.
-              </p>
-            </div>
-
-            {/* Pestañas de Chalets */}
-            <div className="flex gap-2 sm:gap-4 overflow-x-auto pb-2 mb-6 scrollbar-none reveal-item">
-              {chaletsData.map((ch, idx) => (
-                <button
-                  key={ch.name}
-                  onClick={() => setActiveChaletIndex(idx)}
-                  className={`px-5 py-2.5 rounded-full text-xs font-medium tracking-wider uppercase transition-all duration-300 whitespace-nowrap cursor-pointer ${
-                    activeChaletIndex === idx
-                      ? "bg-[#A45D41] text-[#F5F2ED] shadow-lg shadow-[#A45D41]/30 scale-[1.02]"
-                      : "glass-panel-dark text-[#F5F2ED]/70 hover:text-[#F5F2ED] hover:border-[#8D996E]/40"
-                  }`}
-                >
-                  {ch.name}
-                </button>
-              ))}
-            </div>
-
-            {/* Tarjeta Destacada del Chalet Activo */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center glass-panel-dark p-6 sm:p-8 md:p-10 rounded-3xl border border-[#8D996E]/20 reveal-item">
-              {/* Imagen del chalet */}
-              <div className="lg:col-span-7 relative aspect-[16/10] rounded-2xl overflow-hidden shadow-xl border border-[#8D996E]/20">
-                <Image
-                  src={chaletsData[activeChaletIndex].image}
-                  alt={chaletsData[activeChaletIndex].name}
-                  fill
-                  className="object-cover hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute top-4 left-4 glass-pill px-3.5 py-1.5 rounded-full text-[11px] font-mono tracking-wider text-[#F5F2ED]">
-                  {chaletsData[activeChaletIndex].area} · {chaletsData[activeChaletIndex].capacity}
-                </div>
-              </div>
-
-              {/* Detalles y reservas */}
-              <div className="lg:col-span-5 flex flex-col justify-between">
-                <div>
-                  <span className="text-xs uppercase tracking-[0.2em] text-[#8D996E] font-medium">
-                    {chaletsData[activeChaletIndex].tagline}
-                  </span>
-                  <h3 className="text-2xl sm:text-3xl font-light text-[#F5F2ED] mt-1 mb-3">
-                    {chaletsData[activeChaletIndex].name}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-[#F5F2ED]/80 leading-relaxed mb-5 font-light">
-                    {chaletsData[activeChaletIndex].description}
-                  </p>
-
-                  <div className="space-y-2.5 mb-6">
-                    {chaletsData[activeChaletIndex].features.map((feat) => (
-                      <div key={feat} className="flex items-center gap-2.5 text-xs text-[#F5F2ED]/90">
-                        <CheckCircle className="w-3.5 h-3.5 text-[#8D996E] shrink-0" />
-                        <span>{feat}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="pt-2">
-                  <button
-                    onClick={() => openBookingFor(chaletsData[activeChaletIndex].name)}
-                    className="w-full sm:w-auto px-8 py-3.5 rounded-full text-xs font-semibold tracking-[0.2em] uppercase bg-[#A45D41] hover:bg-[#bd7356] text-[#F5F2ED] transition-all duration-300 shadow-xl flex items-center justify-center gap-2 cursor-pointer"
-                  >
-                    <Calendar className="w-4 h-4" />
-                    <span>Reservar este Chalet</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
+          <ChaletConfigurator
+            onSelectBooking={(chaletName) => openBookingFor(chaletName)}
+          />
         </section>
 
         {/* ========================================================
-            SECCIÓN 04: VALORES FUNDAMENTALES (BRANDBOOK)
+            SECCIÓN 04: FILOSOFÍA & VALORES (ACORDEÓN EDITORIAL)
             ======================================================== */}
         <section
           id="valores"
           ref={valoresRef}
-          className="relative w-full h-screen min-h-screen flex items-center justify-center overflow-hidden bg-[#212B20] px-6 md:px-12 py-10 snap-start"
+          className="relative w-full h-screen min-h-screen flex items-center justify-center overflow-hidden bg-[#182017] px-6 md:px-12 py-8 snap-start"
         >
-          <div className="max-w-7xl mx-auto w-full flex flex-col justify-center h-full">
-            {/* Título sección */}
-            <div className="text-center max-w-2xl mx-auto mb-8 reveal-item">
-              <div className="flex items-center justify-center gap-2 mb-1">
-                <span className="text-xs font-mono text-[#8D996E] tracking-widest">04</span>
-                <span className="w-8 h-[1px] bg-[#8D996E]/40" />
-                <span className="text-xs uppercase tracking-[0.25em] text-[#8D996E] font-medium">
-                  Lo que nos representa
-                </span>
-                <span className="w-8 h-[1px] bg-[#8D996E]/40" />
-              </div>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-[#F5F2ED] tracking-wide">
-                Valores con <span className="text-[#A45D41] font-normal">Propósito</span>
-              </h2>
-              <p className="text-xs sm:text-sm text-[#F5F2ED]/70 mt-2 font-light">
-                Cada detalle, cada servicio y cada encuentro en Pazionart se rige por diez principios inquebrantables.
-              </p>
-            </div>
-
-            {/* Grid interactivo de Valores */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 reveal-item">
-              {valoresData.map((val, idx) => {
-                const IconComponent = val.icon;
-                const isHovered = activeValueTab === idx;
-                return (
-                  <div
-                    key={val.num}
-                    onMouseEnter={() => setActiveValueTab(idx)}
-                    className={`p-5 rounded-2xl transition-all duration-300 flex flex-col justify-between cursor-default border ${
-                      isHovered
-                        ? "glass-panel-warm border-[#A45D41]/50 -translate-y-1 shadow-2xl"
-                        : "glass-panel-dark border-[#8D996E]/15 hover:border-[#8D996E]/40"
-                    }`}
-                  >
-                    <div>
-                      <div className="flex items-center justify-between mb-3">
-                        <span className="text-xs font-mono text-[#8D996E]">
-                          {val.num}
-                        </span>
-                        <div
-                          className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${
-                            isHovered
-                              ? "bg-[#A45D41] text-[#F5F2ED]"
-                              : "bg-[#8D996E]/20 text-[#8D996E]"
-                          }`}
-                        >
-                          <IconComponent className="w-4 h-4" />
-                        </div>
-                      </div>
-                      <h3 className="text-base font-medium text-[#F5F2ED] mb-2 font-sans">
-                        {val.title}
-                      </h3>
-                      <p className="text-xs text-[#F5F2ED]/70 leading-relaxed font-light">
-                        {val.desc}
-                      </p>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-
-            {/* Manifiesto inferior */}
-            <div className="mt-8 text-center reveal-item">
-              <span className="text-xs tracking-[0.2em] uppercase font-mono text-[#8D996E]/80">
-                Hospitalidad · Bienestar · Autenticidad · Respeto
-              </span>
-            </div>
-          </div>
+          <ValuesAccordion />
         </section>
 
         {/* ========================================================
-            SECCIÓN 05: EXPERIENCIAS & PAUSA CONSCIENTE
+            SECCIÓN 05: LA PAUSA CONSCIENTE (VIVENCIAS SENSORIALES)
             ======================================================== */}
         <section
           id="experiencias"
           ref={experienciasRef}
-          className="relative w-full h-screen min-h-screen flex items-center justify-center overflow-hidden bg-[#1B231B] px-6 md:px-12 py-10 snap-start"
+          className="relative w-full h-screen min-h-screen flex items-center justify-center overflow-hidden bg-[#1B231B] px-6 md:px-12 py-8 snap-start"
         >
-          {/* Fondo cinemático de terraza y niebla */}
-          <div className="absolute inset-0 z-0">
-            <Image
-              src="/images/experiencia-pausa.jpg"
-              alt="Pausa consciente al atardecer en Pazionart"
-              fill
-              className="object-cover object-center opacity-30"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#212B20] via-[#212B20]/80 to-[#212B20]/60" />
-            <div className="absolute inset-0 bg-modulacion opacity-5 pointer-events-none" />
-          </div>
-
-          <div className="relative z-10 max-w-7xl mx-auto w-full flex flex-col justify-center h-full">
-            {/* Cabecera */}
-            <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 reveal-item">
-              <div>
-                <div className="flex items-center gap-2 mb-1">
-                  <span className="text-xs font-mono text-[#8D996E] tracking-widest">05</span>
-                  <span className="w-8 h-[1px] bg-[#8D996E]/40" />
-                  <span className="text-xs uppercase tracking-[0.25em] text-[#8D996E] font-medium">
-                    Experiencia Multisensorial
-                  </span>
-                </div>
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-[#F5F2ED] tracking-wide">
-                  La <span className="text-[#8D996E]">Pausa Consciente</span>
-                </h2>
-              </div>
-              <p className="text-xs sm:text-sm text-[#F5F2ED]/80 max-w-md mt-2 md:mt-0 font-light leading-relaxed">
-                Desconecta del ruido digital y vuelve a conectar con el ritmo biológico de la montaña a través de vivencias artesanales y sensoriales.
-              </p>
-            </div>
-
-            {/* 4 Cards de experiencias */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 reveal-item">
-              {experienciasData.map((exp) => {
-                const IconComp = exp.icon;
-                return (
-                  <div
-                    key={exp.title}
-                    className="p-6 rounded-3xl glass-panel-dark border border-[#8D996E]/20 hover:border-[#A45D41]/50 transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1 shadow-xl"
-                  >
-                    <div>
-                      <div className="w-10 h-10 rounded-2xl bg-[#A45D41]/20 text-[#A45D41] flex items-center justify-center mb-4 group-hover:bg-[#A45D41] group-hover:text-[#F5F2ED] transition-colors border border-[#A45D41]/30">
-                        <IconComp className="w-5 h-5" />
-                      </div>
-                      <span className="text-[10px] font-mono tracking-widest uppercase text-[#8D996E] block mb-1">
-                        {exp.tag}
-                      </span>
-                      <h3 className="text-lg font-medium text-[#F5F2ED] mb-2 font-sans">
-                        {exp.title}
-                      </h3>
-                      <p className="text-xs text-[#F5F2ED]/70 leading-relaxed font-light">
-                        {exp.desc}
-                      </p>
-                    </div>
-
-                    <div className="pt-5 mt-4 border-t border-[#8D996E]/15 flex items-center justify-between text-xs text-[#8D996E] group-hover:text-[#F5F2ED]">
-                      <span>Incluido en estadía</span>
-                      <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
+          <KineticQuote
+            onBookExperience={(expTitle) => openBookingFor(`Experiencia: ${expTitle}`)}
+          />
         </section>
 
         {/* ========================================================
-            SECCIÓN 06: CONTACTO, RESERVA & MANIFIESTO FINAL
+            SECCIÓN 06: CONTACTO & MANIFIESTO FINAL
             ======================================================== */}
         <section
           id="contacto"
           ref={contactoRef}
-          className="relative w-full h-screen min-h-screen flex items-center justify-center overflow-hidden bg-[#182017] px-6 md:px-12 py-10 snap-start"
+          className="relative w-full h-screen min-h-screen flex items-center justify-center overflow-hidden bg-[#141B13] px-6 md:px-12 py-8 snap-start"
         >
-          <div className="max-w-7xl mx-auto w-full flex flex-col justify-between h-full py-6">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center my-auto reveal-item">
-              {/* Columna Izquierda: Información de Contacto & Ubicación */}
+          <div className="max-w-7xl mx-auto w-full h-full flex flex-col justify-between py-4">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center my-auto">
+              {/* Lado Izquierdo: Coordenadas & Datos de Hospitalidad */}
               <div className="lg:col-span-6 flex flex-col">
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="text-xs font-mono text-[#8D996E] tracking-widest">06</span>
+                  <span className="text-xs font-mono text-[#8D996E]">06</span>
                   <span className="w-8 h-[1px] bg-[#8D996E]/40" />
-                  <span className="text-xs uppercase tracking-[0.25em] text-[#8D996E] font-medium">
+                  <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-[#8D996E]">
                     Encuentro & Hospitalidad
                   </span>
                 </div>
 
                 <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-[#F5F2ED] tracking-wide mb-4 font-sans">
-                  Inicia tu viaje hacia la calma en{" "}
-                  <span className="text-[#A45D41]">Pazionart</span>.
+                  El refugio te aguarda.{" "}
+                  <span className="font-serif italic text-[#A45D41]">Hablemos.</span>
                 </h2>
 
-                <p className="text-xs sm:text-sm text-[#F5F2ED]/80 leading-relaxed font-light mb-8 max-w-lg">
-                  Estaremos encantados de recibirte en nuestro refugio de arte y naturaleza. Contáctanos directamente para reservar tu chalet o coordinar una experiencia personalizada.
+                <p className="text-xs sm:text-sm text-[#F5F2ED]/80 font-light leading-relaxed mb-6 max-w-lg">
+                  Ya sea para una escapada de fin de semana, un retiro creativo o una estancia prolongada en medio del bosque de niebla, nuestro equipo de anfitriones coordinará cada detalle de tu estancia.
                 </p>
 
-                <div className="space-y-4">
-                  <div className="flex items-center gap-3.5 text-xs sm:text-sm text-[#F5F2ED]/90">
-                    <div className="w-9 h-9 rounded-xl bg-[#8D996E]/20 text-[#8D996E] flex items-center justify-center shrink-0">
+                <div className="space-y-3 mb-6">
+                  <div className="flex items-center gap-3 text-xs text-[#F5F2ED]/90">
+                    <div className="w-8 h-8 rounded-lg bg-[#8D996E]/20 text-[#8D996E] flex items-center justify-center shrink-0">
                       <MapPin className="w-4 h-4" />
                     </div>
                     <div>
-                      <div className="font-medium">Ubicación Privilegiada</div>
-                      <div className="text-xs text-[#F5F2ED]/60 font-light">
-                        Cordillera Andina · Entre bosques de niebla y miradores de montaña
-                      </div>
+                      <span className="font-medium block">Reserva Pazionart</span>
+                      <span className="text-[11px] text-[#F5F2ED]/60 font-light">
+                        Montañas Andinas · Bosque Nuboso y Miradores Naturales
+                      </span>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-3.5 text-xs sm:text-sm text-[#F5F2ED]/90">
-                    <div className="w-9 h-9 rounded-xl bg-[#8D996E]/20 text-[#8D996E] flex items-center justify-center shrink-0">
+                  <div className="flex items-center gap-3 text-xs text-[#F5F2ED]/90">
+                    <div className="w-8 h-8 rounded-lg bg-[#8D996E]/20 text-[#8D996E] flex items-center justify-center shrink-0">
                       <Phone className="w-4 h-4" />
                     </div>
                     <div>
-                      <div className="font-medium">Línea de Hospitalidad Directa</div>
-                      <div className="text-xs text-[#F5F2ED]/60 font-light">
-                        Atención personalizada vía WhatsApp los 7 días de la semana
-                      </div>
+                      <span className="font-medium block">Línea Exclusiva de Hospitalidad</span>
+                      <span className="text-[11px] text-[#F5F2ED]/60 font-light">
+                        Atención personalizada vía WhatsApp todos los días
+                      </span>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-3.5 text-xs sm:text-sm text-[#F5F2ED]/90">
-                    <div className="w-9 h-9 rounded-xl bg-[#8D996E]/20 text-[#8D996E] flex items-center justify-center shrink-0">
+                  <div className="flex items-center gap-3 text-xs text-[#F5F2ED]/90">
+                    <div className="w-8 h-8 rounded-lg bg-[#8D996E]/20 text-[#8D996E] flex items-center justify-center shrink-0">
                       <Mail className="w-4 h-4" />
                     </div>
                     <div>
-                      <div className="font-medium">Correo Electrónico</div>
-                      <div className="text-xs text-[#F5F2ED]/60 font-light">
+                      <span className="font-medium block">Correspondencia Digital</span>
+                      <span className="text-[11px] text-[#F5F2ED]/60 font-light">
                         contacto@pazionart.com
-                      </div>
+                      </span>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Columna Derecha: Tarjeta de Solicitud Rápida */}
+              {/* Lado Derecho: Tarjeta de Pasaporte de Reserva & Paleta */}
               <div className="lg:col-span-6 glass-panel-dark p-6 sm:p-8 rounded-3xl border border-[#8D996E]/25 shadow-2xl">
-                <div className="mb-6">
-                  <span className="text-xs uppercase tracking-widest text-[#8D996E] font-medium">
-                    Consulta Inmediata
+                <div className="mb-5">
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-[#8D996E] block mb-1">
+                    [ Solicitud Directa de Estancia ]
                   </span>
-                  <h3 className="text-2xl font-light text-[#F5F2ED] mt-1 font-sans">
-                    Reserva tu Pausa en la Naturaleza
+                  <h3 className="text-xl sm:text-2xl font-light text-[#F5F2ED]">
+                    Coordina tu Llegada a los Chalets
                   </h3>
-                  <p className="text-xs text-[#F5F2ED]/70 mt-1">
-                    Déjanos tus datos o abre el asistente de reserva para verificar fechas disponibles.
-                  </p>
                 </div>
 
-                <div className="space-y-4">
+                <div className="space-y-3">
                   <button
                     onClick={() => openBookingFor("Chalet Niebla & Fuego")}
-                    className="w-full py-4 rounded-xl text-xs font-semibold tracking-[0.2em] uppercase bg-[#A45D41] hover:bg-[#bd7356] text-[#F5F2ED] transition-all duration-300 shadow-xl flex items-center justify-center gap-2 cursor-pointer"
+                    data-cursor="reserve"
+                    className="w-full py-3.5 rounded-xl text-xs font-semibold tracking-[0.2em] uppercase bg-[#A45D41] hover:bg-[#bd7356] text-[#F5F2ED] transition-all duration-300 shadow-xl flex items-center justify-center gap-2 cursor-pointer"
                   >
                     <Calendar className="w-4 h-4" />
-                    <span>Abrir Calendario de Reservas</span>
+                    <span>Abrir Calendario & Fechas</span>
                   </button>
 
                   <a
                     href="https://wa.me/?text=Hola%20Pazionart,%20deseo%20m%C3%A1s%20informaci%C3%B3n%20sobre%20los%20chalets%20y%20experiencias."
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full py-3.5 rounded-xl text-xs font-semibold tracking-[0.16em] uppercase glass-panel-dark hover:border-[#8D996E] text-[#F5F2ED] transition-all duration-300 flex items-center justify-center gap-2"
+                    className="w-full py-3 rounded-xl text-xs font-semibold tracking-[0.16em] uppercase glass-panel-dark hover:border-[#8D996E] text-[#F5F2ED] transition-all duration-300 flex items-center justify-center gap-2"
                   >
-                    <span>Conversar con un Anfitrión por WhatsApp</span>
+                    <MessageCircle className="w-4 h-4 text-[#8D996E]" />
+                    <span>Conectar por WhatsApp</span>
+                    <ExternalLink className="w-3 h-3 text-[#F5F2ED]/40" />
                   </a>
                 </div>
 
-                {/* Muestra de la Paleta de Fusión (Brandbook pág 15) */}
-                <div className="mt-8 pt-6 border-t border-[#8D996E]/20">
-                  <span className="text-[10px] font-mono tracking-widest text-[#8D996E] uppercase block mb-3">
-                    Paleta de Fusión Oficial
-                  </span>
+                {/* Paleta de Fusión Oficial del Brandbook */}
+                <div className="mt-6 pt-5 border-t border-[#8D996E]/20">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-[9px] font-mono tracking-widest text-[#8D996E] uppercase">
+                      Paleta de Fusión Oficial (Brandbook)
+                    </span>
+                    <span className="text-[9px] font-mono text-[#F5F2ED]/40">
+                      #212b20 · #8d996e · #a45d41 · #f5f2ed
+                    </span>
+                  </div>
+
                   <div className="grid grid-cols-4 gap-2 text-center">
-                    <div className="flex flex-col items-center">
-                      <div className="w-7 h-7 rounded-full bg-[#212B20] border border-[#F5F2ED]/30 mb-1" />
-                      <span className="text-[10px] font-mono text-[#F5F2ED]/70">Noche</span>
-                      <span className="text-[9px] font-mono text-[#F5F2ED]/40">#212b20</span>
+                    <div className="p-2 rounded-xl bg-[#212B20] border border-[#F5F2ED]/20">
+                      <div className="text-[10px] font-mono font-medium text-[#F5F2ED]">Noche</div>
+                      <div className="text-[8px] font-mono text-[#F5F2ED]/50">#212b20</div>
                     </div>
-                    <div className="flex flex-col items-center">
-                      <div className="w-7 h-7 rounded-full bg-[#8D996E] mb-1" />
-                      <span className="text-[10px] font-mono text-[#F5F2ED]/70">Tierra</span>
-                      <span className="text-[9px] font-mono text-[#8D996E]">#8d996e</span>
+                    <div className="p-2 rounded-xl bg-[#8D996E] text-[#212B20]">
+                      <div className="text-[10px] font-mono font-semibold">Tierra</div>
+                      <div className="text-[8px] font-mono opacity-80">#8d996e</div>
                     </div>
-                    <div className="flex flex-col items-center">
-                      <div className="w-7 h-7 rounded-full bg-[#A45D41] mb-1" />
-                      <span className="text-[10px] font-mono text-[#F5F2ED]/70">Alma</span>
-                      <span className="text-[9px] font-mono text-[#A45D41]">#a45d41</span>
+                    <div className="p-2 rounded-xl bg-[#A45D41] text-[#F5F2ED]">
+                      <div className="text-[10px] font-mono font-semibold">Alma</div>
+                      <div className="text-[8px] font-mono opacity-80">#a45d41</div>
                     </div>
-                    <div className="flex flex-col items-center">
-                      <div className="w-7 h-7 rounded-full bg-[#F5F2ED] mb-1" />
-                      <span className="text-[10px] font-mono text-[#F5F2ED]/70">Luz</span>
-                      <span className="text-[9px] font-mono text-[#F5F2ED]/40">#f5f2ed</span>
+                    <div className="p-2 rounded-xl bg-[#F5F2ED] text-[#212B20]">
+                      <div className="text-[10px] font-mono font-semibold">Luz</div>
+                      <div className="text-[8px] font-mono opacity-80">#f5f2ed</div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Footer Integrado */}
-            <footer className="pt-6 border-t border-[#8D996E]/15 flex flex-col sm:flex-row items-center justify-between text-xs text-[#F5F2ED]/60 font-light gap-3">
-              <div className="flex items-center gap-3">
-                <div className="w-6 h-6 relative">
+            {/* Footer con imagotipo y créditos */}
+            <footer className="pt-4 border-t border-[#8D996E]/15 flex flex-col sm:flex-row items-center justify-between text-[11px] text-[#F5F2ED]/60 font-light gap-2">
+              <div className="flex items-center gap-2">
+                <div className="w-5 h-5 relative">
                   <Image
                     src="/brand/simbolo-pazionart.svg"
                     alt="Pazionart"
@@ -837,7 +490,7 @@ export default function Home() {
                 </div>
                 <span>© {new Date().getFullYear()} Pazionart. Todos los derechos reservados.</span>
               </div>
-              <div className="text-[11px] tracking-wider text-[#8D996E]">
+              <div className="text-[10px] tracking-widest text-[#8D996E] font-mono">
                 AMOR · NATURALEZA · ARTE — CHALETS & EXPERIENCIAS
               </div>
             </footer>
