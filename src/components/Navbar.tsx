@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Menu, X, Compass, Sparkles } from "lucide-react";
+import LogoTexto from "@/components/LogoTexto";
 
 interface NavbarProps {
   onOpenBooking: () => void;
@@ -63,10 +64,14 @@ export default function Navbar({ onOpenBooking }: NavbarProps) {
                 priority
               />
             </div>
-            <div className="flex flex-col">
-              <span className="text-sm md:text-base font-light tracking-[0.22em] text-[#F5F2ED] uppercase font-sans">
-                Pazionart
-              </span>
+            <div className="flex flex-col justify-center">
+              <div className="h-5 md:h-6 w-24 md:w-32 flex items-center">
+                <LogoTexto
+                  viewBox="0 0 1920 880"
+                  className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+                  fill="#F5F2ED"
+                />
+              </div>
               <span className="text-[7px] md:text-[8px] tracking-[0.3em] text-[#8D996E] uppercase -mt-0.5 font-mono">
                 Amor · Naturaleza · Arte
               </span>

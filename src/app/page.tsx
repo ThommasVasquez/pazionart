@@ -34,6 +34,7 @@ import ChaletConfigurator from "@/components/ChaletConfigurator";
 import ValuesAccordion from "@/components/ValuesAccordion";
 import KineticQuote from "@/components/KineticQuote";
 import SplashMask from "@/components/SplashMask";
+import LogoTexto from "@/components/LogoTexto";
 
 export default function Home() {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
@@ -121,10 +122,15 @@ export default function Home() {
               <span className="w-8 h-[1px] bg-[#8D996E]" />
             </div>
 
-            {/* Título de la marca */}
-            <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-light tracking-[0.15em] uppercase text-[#F5F2ED] font-sans drop-shadow-2xl">
-              Pazionart
-            </h1>
+            {/* Título de la marca con Logo Texto Oficial SVG */}
+            <h1 className="sr-only">Pazionart</h1>
+            <div className="w-full max-w-sm sm:max-w-xl md:max-w-2xl lg:max-w-3xl h-20 sm:h-28 md:h-36 lg:h-44 my-3 flex items-center justify-center">
+              <LogoTexto
+                viewBox="0 0 1920 880"
+                className="w-full h-full object-contain filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.8)]"
+                fill="#F5F2ED"
+              />
+            </div>
 
             {/* Cita del Propósito del Brandbook */}
             <p className="text-sm sm:text-base md:text-lg text-[#F5F2ED]/90 max-w-2xl font-light leading-relaxed mt-3 mb-8 drop-shadow-md">
