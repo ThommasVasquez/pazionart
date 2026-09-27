@@ -64,11 +64,11 @@ export default function Navbar({ onOpenBooking }: NavbarProps) {
                 priority
               />
             </div>
-            <div className="flex flex-col justify-center">
-              <div className="h-5 md:h-6 w-24 md:w-32 flex items-center">
+            <div className="flex flex-col">
+              <div className="h-4 md:h-[18px] flex items-center">
                 <LogoTexto
-                  viewBox="0 0 1920 880"
-                  className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+                  className="h-full w-auto"
+                  preserveAspectRatio="xMinYMid meet"
                   fill="#F5F2ED"
                 />
               </div>

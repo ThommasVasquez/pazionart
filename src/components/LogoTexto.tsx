@@ -4,12 +4,14 @@ interface LogoTextoProps {
   className?: string;
   fill?: string;
   viewBox?: string;
+  preserveAspectRatio?: string;
 }
 
 export default function LogoTexto({
   className = "w-auto h-auto",
   fill = "#F5F2ED",
-  viewBox = "0 0 1920 1080",
+  viewBox = "4 207 1912 661",
+  preserveAspectRatio = "xMidYMid meet",
 }: LogoTextoProps) {
   return (
     <svg
@@ -18,7 +20,7 @@ export default function LogoTexto({
       xmlns="http://www.w3.org/2000/svg"
       viewBox={viewBox}
       className={className}
-      preserveAspectRatio="xMidYMid meet"
+      preserveAspectRatio={preserveAspectRatio}
       aria-label="Pazionart"
     >
       <g>

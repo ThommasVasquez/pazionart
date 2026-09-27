@@ -124,10 +124,9 @@ export default function Home() {
 
             {/* Título de la marca con Logo Texto Oficial SVG */}
             <h1 className="sr-only">Pazionart</h1>
-            <div className="w-full max-w-sm sm:max-w-xl md:max-w-2xl lg:max-w-3xl h-20 sm:h-28 md:h-36 lg:h-44 my-3 flex items-center justify-center">
+            <div className="h-12 sm:h-[72px] md:h-24 lg:h-32 flex items-center justify-center">
               <LogoTexto
-                viewBox="0 0 1920 880"
-                className="w-full h-full object-contain filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.8)]"
+                className="h-full w-auto filter drop-shadow-2xl"
                 fill="#F5F2ED"
               />
             </div>
