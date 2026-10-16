@@ -933,13 +933,13 @@ export default function Home() {
                 <Image
                   src={
                     activeWorld === "restaurante"
-                      ? "/images/gallery/aroma-comedor-rosas.jpg"
-                      : "/images/gallery/spa-sales-corazon.jpg"
+                      ? "/images/gallery/aroma-planta-baja.jpg"
+                      : "/images/gallery/spa-detalle-aromas.jpg"
                   }
                   alt={
                     activeWorld === "restaurante"
-                      ? "Mesa servida con detalles florales en Pazionart"
-                      : "Detalles artesanales y botánicos en Pazionart"
+                      ? "Arquitectura interior y espacio de encuentro en Pazionart"
+                      : "Aromaterapia andina y elementos botánicos en Pazionart"
                   }
                   fill
                   className="object-cover hover:scale-105 transition-transform duration-700"

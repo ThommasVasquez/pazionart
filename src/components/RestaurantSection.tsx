@@ -160,8 +160,8 @@ export default function RestaurantSection({ onOpenBooking }: RestaurantSectionPr
           <div className="lg:col-span-5 relative">
             <div className="restaurant-photo-box relative aspect-[3/4] max-w-md mx-auto rounded-3xl overflow-hidden border border-[#A45D41]/35 shadow-2xl group">
               <Image
-                src="/images/gallery/spa-preparacion-completa.jpg"
-                alt="Pazionart Restaurante vino, fuego y mesa"
+                src="/images/gallery/aroma-comedor-rosas.jpg"
+                alt="Pazionart Restaurante mesa servida con copas y detalles florales"
                 fill
                 className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
               />

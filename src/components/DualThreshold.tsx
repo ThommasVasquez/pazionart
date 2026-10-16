@@ -101,7 +101,7 @@ export default function DualThreshold({ isOpen, onSelectWorld }: DualThresholdPr
         {/* Imagen de Fondo con Ken Burns suave al hover */}
         <div className="absolute inset-0 z-0 overflow-hidden">
           <Image
-            src="/images/gallery/aroma-atardecer.jpg"
+            src="/images/gallery/aroma-fachada-completa.jpg"
             alt="Pazionart Chalets de Montaña"
             fill
             priority
@@ -157,7 +157,7 @@ export default function DualThreshold({ isOpen, onSelectWorld }: DualThresholdPr
         {/* Imagen de Fondo Restaurante */}
         <div className="absolute inset-0 z-0 overflow-hidden">
           <Image
-            src="/images/gallery/spa-preparacion-completa.jpg"
+            src="/images/gallery/spa-composicion-relajante.jpg"
             alt="Pazionart Restaurante & Fogón de Origen"
             fill
             priority

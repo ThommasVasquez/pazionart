@@ -94,7 +94,7 @@ export default function KineticQuote({
       desc: "Shinrin-yoku adaptado a los Andes. Caminata contemplativa por senderos empedrados entre la niebla, respiración guiada y reconocimiento botánico.",
       duration: "2 horas",
       materials: "Guía de la reserva, senderos empedrados y aromaterapia",
-      image: "/images/gallery/susurros-fachada.jpg",
+      image: "/images/gallery/susurros-interior.jpg",
       badge: "Inmersión Silenciosa",
     },
     {
@@ -104,7 +104,7 @@ export default function KineticQuote({
       desc: "Al caer la tarde, la luz dorada baña los ventanales alpinos. Encendemos el fuego en la terraza con copas de vino y fogata bajo las estrellas.",
       duration: "3 horas",
       materials: "Leña seca de roble, copas de vino y mantas de lana",
-      image: "/images/gallery/aroma-atardecer.jpg",
+      image: "/images/gallery/bruma-altillo-vista.jpg",
       badge: "Pausa Nocturna",
     },
   ];

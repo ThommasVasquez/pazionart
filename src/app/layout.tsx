@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     siteName: "Pazionart",
     images: [
       {
-        url: "/images/gallery/aroma-atardecer.jpg",
+        url: "/images/gallery/bruma-cama-botanica.jpg",
         width: 1920,
         height: 1080,
         alt: "Pazionart Chalet en la naturaleza",

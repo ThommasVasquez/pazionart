@@ -112,7 +112,6 @@ export default function ChaletConfigurator({ onSelectBooking }: ChaletConfigurat
     {
       id: "chalet-susurros",
       name: "Chalet Susurros",
-      code: "CH-01",
       tagline: "Pabellón de cristal con jacuzzi privado y vista al bosque",
       basePrice: "$280.000 COP",
       area: "Pabellón Panorámico + Deck con Jacuzzi",
@@ -136,7 +135,6 @@ export default function ChaletConfigurator({ onSelectBooking }: ChaletConfigurat
     {
       id: "chalet-aroma",
       name: "Chalet Aroma",
-      code: "CH-02",
       tagline: "Arquitectura A-Frame clásica entre jardines y palmeras",
       basePrice: "$200.000 COP",
       area: "Doble nivel con altillo + Jardín exterior",
@@ -160,7 +158,6 @@ export default function ChaletConfigurator({ onSelectBooking }: ChaletConfigurat
     {
       id: "chalet-bruma",
       name: "Chalet Bruma",
-      code: "CH-03",
       tagline: "Refugio alpino en el corazón del bosque nuboso",
       basePrice: "$220.000 COP",
       area: "Doble nivel con altillo + Zona verde con columpio",
@@ -221,7 +218,7 @@ export default function ChaletConfigurator({ onSelectBooking }: ChaletConfigurat
             <button
               key={ch.id}
               onClick={() => handleSelectChalet(idx)}
-              className={`px-4 py-1.5 rounded-full text-xs font-mono tracking-wider transition-all duration-300 cursor-pointer ${
+              className={`px-4 py-1.5 rounded-full text-xs font-sans tracking-wide transition-all duration-300 cursor-pointer ${
                 selectedId === idx
                   ? "bg-[#A45D41] text-[#F5F2ED] shadow-md shadow-[#A45D41]/30 font-medium"
                   : isLight
@@ -229,7 +226,7 @@ export default function ChaletConfigurator({ onSelectBooking }: ChaletConfigurat
                   : "text-[#F5F2ED]/60 hover:text-[#F5F2ED]"
               }`}
             >
-              {ch.code}
+              {ch.name}
             </button>
           ))}
         </div>
@@ -257,7 +254,7 @@ export default function ChaletConfigurator({ onSelectBooking }: ChaletConfigurat
             {/* Badges superiores sobre la imagen */}
             <div className="absolute top-4 left-4 right-4 flex items-center justify-between">
               <span className="glass-pill px-3 py-1 rounded-full text-[10px] font-mono tracking-wider text-[#F5F2ED] uppercase">
-                {currentChalet.code} · {currentChalet.area}
+                {currentChalet.name} · {currentChalet.area}
               </span>
 
               {/* Angle View Selector */}
