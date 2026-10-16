@@ -68,14 +68,14 @@ export default function KineticQuote({
 
   const experiences = [
     {
-      id: "alfareria",
-      title: "Modelado de Arcilla & Torno",
-      category: "Sabiduría Manual",
-      desc: "Tacto directo con la tierra húmeda. Un maestro alfarero te enseñará a centrar el barro y dar forma a tu propia vasija conmemorativa.",
+      id: "botanica-artesanal",
+      title: "Alquimia Botánica & Sales de Baño",
+      category: "Sabiduría Manual & Bienestar",
+      desc: "Tacto directo con los elementos puros. Preparación de sales minerales aromatizadas con hierbas de la huerta y pétalos en cuencos artesanales para tu ritual de descanso.",
       duration: "2.5 horas",
-      materials: "Arcilla roja local y esmaltes naturales",
-      image: "/images/artesania-barro.jpg",
-      badge: "Taller en Taller Rural",
+      materials: "Sales minerales, cuencos artesanales y pétalos frescos",
+      image: "/images/gallery/spa-sales-corazon.jpg",
+      badge: "Taller Botánico",
     },
     {
       id: "hierbas",
@@ -84,7 +84,7 @@ export default function KineticQuote({
       desc: "Tina caliente de inmersión aromatizada con flores, romero fresco, menta y eucalipto andino. Incluye sales minerales exfoliantes y copa de vino tinto.",
       duration: "2 horas",
       materials: "Hierbas de huerta, sales botánicas, velas y vino",
-      image: "/images/experiencias/bano-hierbas.jpg",
+      image: "/images/gallery/spa-ramilletes-frescos.jpg",
       badge: "Ritual de Bienestar",
     },
     {
@@ -94,7 +94,7 @@ export default function KineticQuote({
       desc: "Shinrin-yoku adaptado a los Andes. Caminata contemplativa por senderos empedrados entre la niebla, respiración guiada y reconocimiento botánico.",
       duration: "2 horas",
       materials: "Guía de la reserva, senderos empedrados y aromaterapia",
-      image: "/images/chalets/susurros-exterior.jpg",
+      image: "/images/gallery/susurros-fachada.jpg",
       badge: "Inmersión Silenciosa",
     },
     {
@@ -104,7 +104,7 @@ export default function KineticQuote({
       desc: "Al caer la tarde, la luz dorada baña los ventanales alpinos. Encendemos el fuego en la terraza con copas de vino y fogata bajo las estrellas.",
       duration: "3 horas",
       materials: "Leña seca de roble, copas de vino y mantas de lana",
-      image: "/images/chalets/aroma-sunset.jpg",
+      image: "/images/gallery/aroma-atardecer.jpg",
       badge: "Pausa Nocturna",
     },
   ];

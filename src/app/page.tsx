@@ -439,8 +439,8 @@ export default function Home() {
             <Image
               src={
                 activeWorld === "restaurante"
-                  ? "/images/restaurante-fogon.jpg"
-                  : "/images/hero-chalet.jpg"
+                  ? "/images/gallery/spa-preparacion-completa.jpg"
+                  : "/images/gallery/aroma-atardecer.jpg"
               }
               alt={
                 activeWorld === "restaurante"
@@ -931,8 +931,16 @@ export default function Home() {
                 isRestaurante ? "border border-[#A45D41]/35" : "border border-[#8D996E]/25"
               }`}>
                 <Image
-                  src="/images/artesania-barro.jpg"
-                  alt="Manos artesanas modelando barro en Pazionart"
+                  src={
+                    activeWorld === "restaurante"
+                      ? "/images/gallery/aroma-comedor-rosas.jpg"
+                      : "/images/gallery/spa-sales-corazon.jpg"
+                  }
+                  alt={
+                    activeWorld === "restaurante"
+                      ? "Mesa servida con detalles florales en Pazionart"
+                      : "Detalles artesanales y botánicos en Pazionart"
+                  }
                   fill
                   className="object-cover hover:scale-105 transition-transform duration-700"
                 />

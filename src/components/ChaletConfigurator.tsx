@@ -120,9 +120,9 @@ export default function ChaletConfigurator({ onSelectBooking }: ChaletConfigurat
       orientation: "Noreste · Amanecer sobre el bosque de eucaliptos",
       thermal: "Acristalamiento panorámico con cortinajes térmicos",
       views: {
-        exterior: "/images/chalets/susurros-exterior.jpg",
-        interior: "/images/chalets/susurros-suite.jpg",
-        deck: "/images/chalets/susurros-jacuzzi.jpg",
+        exterior: "/images/gallery/susurros-fachada.jpg",
+        interior: "/images/gallery/susurros-suite.jpg",
+        deck: "/images/gallery/susurros-jacuzzi.jpg",
       },
       story:
         "Diseñado como un santuario de intimidad y romance. Su estructura acristalada sumerge la habitación en la serenidad del bosque, mientras su terraza exterior acoge un jacuzzi privado con agua caliente y espuma aromatizada entre los árboles.",
@@ -144,9 +144,9 @@ export default function ChaletConfigurator({ onSelectBooking }: ChaletConfigurat
       orientation: "Oeste · Luz dorada del atardecer en ventanales",
       thermal: "Madera natural de pino y teca con piso lustrado",
       views: {
-        exterior: "/images/chalets/aroma-exterior.jpg",
-        interior: "/images/chalets/aroma-interior.jpg",
-        deck: "/images/chalets/aroma-view.jpg",
+        exterior: "/images/gallery/aroma-jardin.jpg",
+        interior: "/images/gallery/aroma-altillo-edison.jpg",
+        deck: "/images/gallery/aroma-ventanal-jardin.jpg",
       },
       story:
         "Una cabaña alpina clásica con estructura A-Frame que celebra la calidez de la madera. Su altillo ofrece iluminación vintage de filamento Edison y amplios ventanales que abren hacia un jardín privado con palmeras andinas y sendero de piedra blanca.",
@@ -168,9 +168,9 @@ export default function ChaletConfigurator({ onSelectBooking }: ChaletConfigurat
       orientation: "Norte · Vista a la montaña y el paso de la niebla",
       thermal: "Estructura de madera aislante y techos altos inclinados",
       views: {
-        exterior: "/images/chalets/bruma-exterior.jpg",
-        interior: "/images/chalets/bruma-interior.jpg",
-        deck: "/images/chalets/bruma-living.jpg",
+        exterior: "/images/gallery/bruma-fachada-columpio.jpg",
+        interior: "/images/gallery/bruma-cama-altillo.jpg",
+        deck: "/images/gallery/bruma-sala-cuero.jpg",
       },
       story:
         "Emplazado en el punto donde la bruma desciende cada tarde sobre el valle andino. Rodeado de flores de jardín, cuenta con su propio columpio rústico al aire libre y una acogedora sala con ventanal corredizo de suelo a techo.",
