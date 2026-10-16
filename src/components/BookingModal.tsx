@@ -225,14 +225,14 @@ export default function BookingModal({
                       </>
                     ) : (
                       <>
-                        <option value="Chalet Niebla & Fuego" className={isLight ? "bg-white" : "bg-[#212B20]"}>
-                          Chalet Niebla & Fuego
+                        <option value="Chalet Susurros (con Jacuzzi Privado)" className={isLight ? "bg-white" : "bg-[#212B20]"}>
+                          Chalet Susurros (con Jacuzzi Privado)
                         </option>
-                        <option value="Chalet Bosque Andino" className={isLight ? "bg-white" : "bg-[#212B20]"}>
-                          Chalet Bosque Andino
+                        <option value="Chalet Aroma (Cabaña A-Frame)" className={isLight ? "bg-white" : "bg-[#212B20]"}>
+                          Chalet Aroma (Cabaña A-Frame)
                         </option>
-                        <option value="Chalet El Refugio de Arte" className={isLight ? "bg-white" : "bg-[#212B20]"}>
-                          Chalet El Refugio de Arte
+                        <option value="Chalet Bruma (Cabaña de Montaña)" className={isLight ? "bg-white" : "bg-[#212B20]"}>
+                          Chalet Bruma (Cabaña de Montaña)
                         </option>
                       </>
                     )}

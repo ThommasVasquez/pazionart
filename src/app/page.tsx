@@ -60,7 +60,7 @@ export default function Home() {
   const isLight = theme === "light";
 
   // Hero Quick Booking Bar State - Chalets
-  const [heroChalet, setHeroChalet] = useState("Chalet Niebla & Fuego");
+  const [heroChalet, setHeroChalet] = useState("Chalet Susurros");
   const [heroGuests, setHeroGuests] = useState("2 Huéspedes");
   const [heroDate, setHeroDate] = useState("");
 
@@ -790,14 +790,14 @@ export default function Home() {
                       isLight ? "text-[#1A2219]" : "text-[#F5F2ED]"
                     }`}
                   >
-                    <option value="Chalet Niebla & Fuego" className={isLight ? "bg-white text-[#1A2219]" : "bg-[#212B20] text-[#F5F2ED]"}>
-                      Chalet Niebla & Fuego
+                    <option value="Chalet Susurros" className={isLight ? "bg-white text-[#1A2219]" : "bg-[#212B20] text-[#F5F2ED]"}>
+                      Chalet Susurros (con Jacuzzi Privado)
                     </option>
-                    <option value="Chalet Bosque Andino" className={isLight ? "bg-white text-[#1A2219]" : "bg-[#212B20] text-[#F5F2ED]"}>
-                      Chalet Bosque Andino
+                    <option value="Chalet Aroma" className={isLight ? "bg-white text-[#1A2219]" : "bg-[#212B20] text-[#F5F2ED]"}>
+                      Chalet Aroma (Cabaña A-Frame)
                     </option>
-                    <option value="Chalet El Refugio de Arte" className={isLight ? "bg-white text-[#1A2219]" : "bg-[#212B20] text-[#F5F2ED]"}>
-                      Chalet El Refugio de Arte
+                    <option value="Chalet Bruma" className={isLight ? "bg-white text-[#1A2219]" : "bg-[#212B20] text-[#F5F2ED]"}>
+                      Chalet Bruma (Cabaña de Montaña)
                     </option>
                   </select>
                 </div>

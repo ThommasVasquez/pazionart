@@ -73,7 +73,7 @@ export default function ValuesAccordion({ activeWorld = "chalets" }: ValuesAccor
       tag: "Hospitalidad",
       desc: "Servimos desde el corazón, con calidez, respeto y atención genuina a cada persona que llega a Pazionart.",
       icon: Heart,
-      image: "/images/artesania-barro.jpg",
+      image: "/images/experiencias/bano-hierbas.jpg",
       color: "#A45D41",
     },
     {
@@ -82,7 +82,7 @@ export default function ValuesAccordion({ activeWorld = "chalets" }: ValuesAccor
       tag: "Biophilia",
       desc: "Valoramos y protegemos el entorno natural, integrándolo en cada experiencia para generar bienestar y armonía viva.",
       icon: Leaf,
-      image: "/images/hero-chalet.jpg",
+      image: "/images/chalets/susurros-exterior.jpg",
       color: "#8D996E",
     },
     {
@@ -91,7 +91,7 @@ export default function ValuesAccordion({ activeWorld = "chalets" }: ValuesAccor
       tag: "Detalle",
       desc: "Hacer todo con calidad, detalle y compromiso, entendiendo que cada acción impacta la experiencia del cliente.",
       icon: Award,
-      image: "/images/chalet-interior.jpg",
+      image: "/images/chalets/aroma-interior.jpg",
       color: "#A45D41",
     },
     {
@@ -100,7 +100,7 @@ export default function ValuesAccordion({ activeWorld = "chalets" }: ValuesAccor
       tag: "Esencia",
       desc: "Somos reales, cercanos y coherentes. Cada rincón y objeto refleja nuestra esencia y nuestra historia.",
       icon: ShieldCheck,
-      image: "/images/experiencia-pausa.jpg",
+      image: "/images/chalets/aroma-exterior.jpg",
       color: "#8D996E",
     },
     {
@@ -109,7 +109,7 @@ export default function ValuesAccordion({ activeWorld = "chalets" }: ValuesAccor
       tag: "Armonía",
       desc: "Promovemos experiencias que nutren cuerpo, mente y espíritu, tanto para nuestros visitantes como para nuestro equipo.",
       icon: Sun,
-      image: "/images/hero-chalet.jpg",
+      image: "/images/chalets/susurros-jacuzzi.jpg",
       color: "#A45D41",
     },
     {
@@ -118,7 +118,7 @@ export default function ValuesAccordion({ activeWorld = "chalets" }: ValuesAccor
       tag: "Evolución",
       desc: "En constante evolución, creando experiencias nuevas y significativas sin perder jamás nuestra esencia natural y humana.",
       icon: Sparkles,
-      image: "/images/chalet-interior.jpg",
+      image: "/images/chalets/bruma-living.jpg",
       color: "#8D996E",
     },
   ];
