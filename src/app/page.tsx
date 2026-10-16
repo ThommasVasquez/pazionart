@@ -41,6 +41,7 @@ import SplashMask from "@/components/SplashMask";
 import LogoTexto from "@/components/LogoTexto";
 import DualThreshold from "@/components/DualThreshold";
 import RestaurantSection from "@/components/RestaurantSection";
+import VisualGallery from "@/components/VisualGallery";
 import { startSafeViewTransition } from "@/lib/viewTransition";
 import { usePreferences } from "@/context/PreferencesContext";
 
@@ -51,7 +52,7 @@ if (typeof window !== "undefined") {
 export default function Home() {
   const [showSplash, setShowSplash] = useState(true);
   const [isBookingOpen, setIsBookingOpen] = useState(false);
-  const [selectedChalet, setSelectedChalet] = useState("Chalet Niebla & Fuego");
+  const [selectedChalet, setSelectedChalet] = useState("Chalet Susurros");
   const [showThreshold, setShowThreshold] = useState(true);
   const [activeWorld, setActiveWorld] = useState<"chalets" | "restaurante" | "explore">("chalets");
   const isRestaurante = activeWorld === "restaurante";
@@ -1279,6 +1280,11 @@ export default function Home() {
         </section>
 
         {/* ========================================================
+            SECCIÓN FOTOGRÁFICA COMPLETA: GALERÍA DE LOS 34 ARCHIVOS
+            ======================================================== */}
+        <VisualGallery onSelectBooking={(chalet) => openBookingFor(chalet)} />
+
+        {/* ========================================================
             SECCIÓN 06: CONTACTO & MANIFIESTO FINAL
             ======================================================== */}
         <section
@@ -1429,7 +1435,7 @@ export default function Home() {
 
                 <div className="space-y-3">
                   <button
-                    onClick={() => openBookingFor(isRestaurante ? "Mesa en El Fogón" : "Chalet Niebla & Fuego")}
+                    onClick={() => openBookingFor(isRestaurante ? "Mesa en El Fogón" : "Chalet Susurros")}
                     className="w-full py-3.5 rounded-xl text-xs font-semibold tracking-[0.2em] uppercase bg-[#A45D41] hover:bg-[#bd7356] text-[#F5F2ED] transition-all duration-300 shadow-xl flex items-center justify-center gap-2 cursor-pointer hover:scale-[1.02]"
                   >
                     <Calendar className="w-4 h-4" />

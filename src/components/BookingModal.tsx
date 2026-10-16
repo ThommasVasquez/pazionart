@@ -14,7 +14,7 @@ interface BookingModalProps {
 export default function BookingModal({
   isOpen,
   onClose,
-  selectedChalet = "Chalet Niebla & Fuego",
+  selectedChalet = "Chalet Susurros",
 }: BookingModalProps) {
   const { theme, t } = usePreferences();
   const isLight = theme === "light";

@@ -42,6 +42,7 @@ export default function Navbar({
           { name: t.nav.menu, href: "#restaurante" },
           { name: t.nav.filosofia, href: "#valores" },
           { name: t.nav.vivencias, href: "#experiencias" },
+          { name: t.nav.galeria, href: "#galeria" },
           { name: t.nav.contacto, href: "#contacto" },
         ]
       : activeWorld === "chalets"
@@ -51,6 +52,7 @@ export default function Navbar({
           { name: t.nav.chalets, href: "#chalets" },
           { name: t.nav.filosofia, href: "#valores" },
           { name: t.nav.vivencias, href: "#experiencias" },
+          { name: t.nav.galeria, href: "#galeria" },
           { name: t.nav.contacto, href: "#contacto" },
         ]
       : [
@@ -60,6 +62,7 @@ export default function Navbar({
           { name: t.nav.chalets, href: "#chalets" },
           { name: t.nav.filosofia, href: "#valores" },
           { name: t.nav.vivencias, href: "#experiencias" },
+          { name: t.nav.galeria, href: "#galeria" },
           { name: t.nav.contacto, href: "#contacto" },
         ];
 

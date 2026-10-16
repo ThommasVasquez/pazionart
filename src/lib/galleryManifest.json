@@ -1,0 +1,342 @@
+[
+  {
+    "id": "susurros-fachada",
+    "title": "Fachada de Cristal en el Bosque",
+    "chalet": "Chalet Susurros",
+    "category": "susurros",
+    "description": "Pabellón flotante sobre pilotes rodeado de eucaliptos y sendero de piedra blanca.",
+    "src": "/images/gallery/susurros-fachada.jpg",
+    "width": 1365,
+    "height": 2048
+  },
+  {
+    "id": "susurros-bosque",
+    "title": "Inmersión en Bosque Nativo",
+    "chalet": "Chalet Susurros",
+    "category": "susurros",
+    "description": "Estructura acristalada que disuelve el límite entre interior y naturaleza.",
+    "src": "/images/gallery/susurros-bosque.jpg",
+    "width": 1365,
+    "height": 2048
+  },
+  {
+    "id": "susurros-jacuzzi",
+    "title": "Jacuzzi Privado con Espuma & Rosas",
+    "chalet": "Chalet Susurros",
+    "category": "susurros",
+    "description": "Inmersión caliente en la terraza de madera con vista al dosel del bosque.",
+    "src": "/images/gallery/susurros-jacuzzi.jpg",
+    "width": 1365,
+    "height": 2048
+  },
+  {
+    "id": "susurros-interior",
+    "title": "Sala, Cocina & Baño Moderno",
+    "chalet": "Chalet Susurros",
+    "category": "susurros",
+    "description": "Ambiente íntimo con cocina semi-integral, sofá blanco y acabados en madera maciza.",
+    "src": "/images/gallery/susurros-interior.jpg",
+    "width": 1365,
+    "height": 2048
+  },
+  {
+    "id": "susurros-suite",
+    "title": "Suite Panorámica con Dosel",
+    "chalet": "Chalet Susurros",
+    "category": "susurros",
+    "description": "Cama doble de madera tallada rodeada de cortinajes y ventanales al jardín.",
+    "src": "/images/gallery/susurros-suite.jpg",
+    "width": 1365,
+    "height": 2048
+  },
+  {
+    "id": "susurros-caracteristicas",
+    "title": "Ficha Oficial · Chalet Susurros",
+    "chalet": "Chalet Susurros",
+    "category": "fichas",
+    "description": "Capacidad 2 personas, jacuzzi, baño con agua caliente, cocina semi-integral.",
+    "src": "/images/gallery/susurros-caracteristicas.jpg",
+    "width": 1080,
+    "height": 1920
+  },
+  {
+    "id": "susurros-tarifa",
+    "title": "Tarifa Oficial · Chalet Susurros",
+    "chalet": "Chalet Susurros",
+    "category": "fichas",
+    "description": "Desde .000 COP por pareja / noche.",
+    "src": "/images/gallery/susurros-tarifa.jpg",
+    "width": 1080,
+    "height": 1920
+  },
+  {
+    "id": "aroma-jardin",
+    "title": "Fachada A-Frame entre Palmeras",
+    "chalet": "Chalet Aroma",
+    "category": "aroma",
+    "description": "Cabaña alpina de dos niveles enmarcada por vegetación andina y sendero.",
+    "src": "/images/gallery/aroma-jardin.jpg",
+    "width": 1365,
+    "height": 2048
+  },
+  {
+    "id": "aroma-atardecer",
+    "title": "Reflejo Dorado del Atardecer",
+    "chalet": "Chalet Aroma",
+    "category": "aroma",
+    "description": "La puesta de sol proyectada en los grandes ventanales de la cabaña.",
+    "src": "/images/gallery/aroma-atardecer.jpg",
+    "width": 960,
+    "height": 1242
+  },
+  {
+    "id": "aroma-fachada-completa",
+    "title": "Perspectiva Vertical A-Frame",
+    "chalet": "Chalet Aroma",
+    "category": "aroma",
+    "description": "Geometría alpina en madera con altillo y cubierta a dos aguas.",
+    "src": "/images/gallery/aroma-fachada-completa.jpg",
+    "width": 960,
+    "height": 2079
+  },
+  {
+    "id": "aroma-altillo-edison",
+    "title": "Altillo & Lámparas Edison",
+    "chalet": "Chalet Aroma",
+    "category": "aroma",
+    "description": "Iluminación vintage de filamento cálido sobre sala en madera lustrada.",
+    "src": "/images/gallery/aroma-altillo-edison.jpg",
+    "width": 1365,
+    "height": 2048
+  },
+  {
+    "id": "aroma-ventanal-jardin",
+    "title": "Apertura al Jardín Andino",
+    "chalet": "Chalet Aroma",
+    "category": "aroma",
+    "description": "Puerta corrediza de vidrio hacia el patio de piedra blanca y palmeras.",
+    "src": "/images/gallery/aroma-ventanal-jardin.jpg",
+    "width": 1365,
+    "height": 2048
+  },
+  {
+    "id": "aroma-comedor-rosas",
+    "title": "Comedor con Pétalos de Rosa",
+    "chalet": "Chalet Aroma",
+    "category": "aroma",
+    "description": "Bienvenida romántica con mesa de comedor, florero y sendero de pétalos.",
+    "src": "/images/gallery/aroma-comedor-rosas.jpg",
+    "width": 1536,
+    "height": 2048
+  },
+  {
+    "id": "aroma-sala-bienvenida",
+    "title": "Sala Acogedora & Mesa de Carrete",
+    "chalet": "Chalet Aroma",
+    "category": "aroma",
+    "description": "Sofá aterciopelado, mesa de centro en carrete recuperado y ambientación cálida.",
+    "src": "/images/gallery/aroma-sala-bienvenida.jpg",
+    "width": 960,
+    "height": 1268
+  },
+  {
+    "id": "aroma-planta-baja",
+    "title": "Arquitectura Interior & Escalera",
+    "chalet": "Chalet Aroma",
+    "category": "aroma",
+    "description": "Vista hacia la cocina, habitación en planta baja y escalera hacia el altillo.",
+    "src": "/images/gallery/aroma-planta-baja.jpg",
+    "width": 960,
+    "height": 1249
+  },
+  {
+    "id": "aroma-bano-madera",
+    "title": "Baño con Lavamanos Artesanal",
+    "chalet": "Chalet Aroma",
+    "category": "aroma",
+    "description": "Losa de madera viva, bowl de cerámica y luz natural de montaña.",
+    "src": "/images/gallery/aroma-bano-madera.jpg",
+    "width": 960,
+    "height": 1260
+  },
+  {
+    "id": "aroma-ducha-bosque",
+    "title": "Ducha con Ventanal al Follaje",
+    "chalet": "Chalet Aroma",
+    "category": "aroma",
+    "description": "Ducha de lluvia con agua caliente y vista privada al bosque verde.",
+    "src": "/images/gallery/aroma-ducha-bosque.jpg",
+    "width": 960,
+    "height": 1246
+  },
+  {
+    "id": "aroma-caracteristicas",
+    "title": "Ficha Oficial · Chalet Aroma",
+    "chalet": "Chalet Aroma",
+    "category": "fichas",
+    "description": "Capacidad 4 a 6 personas, 2 camas dobles, baño agua caliente, cocina equipada.",
+    "src": "/images/gallery/aroma-caracteristicas.jpg",
+    "width": 1080,
+    "height": 1920
+  },
+  {
+    "id": "aroma-tarifa",
+    "title": "Tarifa Oficial · Chalet Aroma",
+    "chalet": "Chalet Aroma",
+    "category": "fichas",
+    "description": "Desde .000 COP por pareja / noche.",
+    "src": "/images/gallery/aroma-tarifa.jpg",
+    "width": 1080,
+    "height": 1920
+  },
+  {
+    "id": "bruma-fachada-columpio",
+    "title": "Fachada con Columpio & Jardín",
+    "chalet": "Chalet Bruma",
+    "category": "bruma",
+    "description": "Cabaña alpina en madera con zona de descanso en césped y columpio privado.",
+    "src": "/images/gallery/bruma-fachada-columpio.jpg",
+    "width": 960,
+    "height": 1254
+  },
+  {
+    "id": "bruma-cama-altillo",
+    "title": "Dormitorio Cálido en Altillo",
+    "chalet": "Chalet Bruma",
+    "category": "bruma",
+    "description": "Cama doble bajo las vigas inclinadas con entrada de sol matutino.",
+    "src": "/images/gallery/bruma-cama-altillo.jpg",
+    "width": 1365,
+    "height": 2048
+  },
+  {
+    "id": "bruma-altillo-vista",
+    "title": "Perspectiva del Altillo de Madera",
+    "chalet": "Chalet Bruma",
+    "category": "bruma",
+    "description": "Espacio íntimo bajo el techo de dos aguas con ventanal panorámico.",
+    "src": "/images/gallery/bruma-altillo-vista.jpg",
+    "width": 1365,
+    "height": 2048
+  },
+  {
+    "id": "bruma-sala-cuero",
+    "title": "Sala con Sofá de Cuero & Ventanal",
+    "chalet": "Chalet Bruma",
+    "category": "bruma",
+    "description": "Luz natural sobre piso de pino brillante y gran puerta corrediza.",
+    "src": "/images/gallery/bruma-sala-cuero.jpg",
+    "width": 1365,
+    "height": 2048
+  },
+  {
+    "id": "bruma-rincon-lectura",
+    "title": "Rincón de Descanso en Madera",
+    "chalet": "Chalet Bruma",
+    "category": "bruma",
+    "description": "Mobiliario acogedor para contemplar el paso de la niebla en la montaña.",
+    "src": "/images/gallery/bruma-rincon-lectura.jpg",
+    "width": 1365,
+    "height": 2048
+  },
+  {
+    "id": "bruma-cocina-comedor",
+    "title": "Cocina Equipada & Escalera Rústica",
+    "chalet": "Chalet Bruma",
+    "category": "bruma",
+    "description": "Mesa alta de comedor, nevera, cocina y acceso al segundo nivel.",
+    "src": "/images/gallery/bruma-cocina-comedor.jpg",
+    "width": 960,
+    "height": 1227
+  },
+  {
+    "id": "bruma-cama-botanica",
+    "title": "Cama Doble con Cojines Botánicos",
+    "chalet": "Chalet Bruma",
+    "category": "bruma",
+    "description": "Cortinas verdes, edredón cálido y ventana con vista a las colinas.",
+    "src": "/images/gallery/bruma-cama-botanica.jpg",
+    "width": 960,
+    "height": 1215
+  },
+  {
+    "id": "bruma-bano-privado",
+    "title": "Baño Privado con Ducha Caliente",
+    "chalet": "Chalet Bruma",
+    "category": "bruma",
+    "description": "Acabados en madera, lavamanos y dotación completa de toallas.",
+    "src": "/images/gallery/bruma-bano-privado.jpg",
+    "width": 960,
+    "height": 1263
+  },
+  {
+    "id": "bruma-caracteristicas",
+    "title": "Ficha Oficial · Chalet Bruma",
+    "chalet": "Chalet Bruma",
+    "category": "fichas",
+    "description": "Capacidad 4 a 6 personas, 2 camas dobles, baño agua caliente, cocina equipada.",
+    "src": "/images/gallery/bruma-caracteristicas.jpg",
+    "width": 1080,
+    "height": 1920
+  },
+  {
+    "id": "spa-preparacion-completa",
+    "title": "Ritual de Inmersión & Bienestar",
+    "chalet": "Baño de Hierbas",
+    "category": "spa",
+    "description": "Bateas con sales minerales, hierbas medicinales, velas aromáticas y vino Malbec.",
+    "src": "/images/gallery/spa-preparacion-completa.jpg",
+    "width": 1365,
+    "height": 2048
+  },
+  {
+    "id": "spa-sales-corazon",
+    "title": "Sales Botánicas en Cuencos de Corazón",
+    "chalet": "Baño de Hierbas",
+    "category": "spa",
+    "description": "Sales exfoliantes perfumadas con lavanda, romero y rosas silvestres.",
+    "src": "/images/gallery/spa-sales-corazon.jpg",
+    "width": 1365,
+    "height": 2048
+  },
+  {
+    "id": "spa-ramilletes-frescos",
+    "title": "Ramos de Eucalipto, Menta & Romero",
+    "chalet": "Baño de Hierbas",
+    "category": "spa",
+    "description": "Hierbas frescas recolectadas de la huerta para infusión en agua caliente.",
+    "src": "/images/gallery/spa-ramilletes-frescos.jpg",
+    "width": 1365,
+    "height": 2048
+  },
+  {
+    "id": "spa-detalle-aromas",
+    "title": "Aromaterapia Andina & Velas",
+    "chalet": "Baño de Hierbas",
+    "category": "spa",
+    "description": "Ambiente sensorial diseñado para relajar los sentidos y conectar con la tierra.",
+    "src": "/images/gallery/spa-detalle-aromas.jpg",
+    "width": 1365,
+    "height": 2048
+  },
+  {
+    "id": "spa-composicion-relajante",
+    "title": "Armonía de Fuego, Vino & Botánica",
+    "chalet": "Baño de Hierbas",
+    "category": "spa",
+    "description": "Copa de vino tinto y esencias naturales para la pausa consciente.",
+    "src": "/images/gallery/spa-composicion-relajante.jpg",
+    "width": 1365,
+    "height": 2048
+  },
+  {
+    "id": "spa-vista-cenital",
+    "title": "Composición Cenital del Ritual",
+    "chalet": "Baño de Hierbas",
+    "category": "spa",
+    "description": "Detalle minucioso de cada elemento del baño de hierbas ancestral.",
+    "src": "/images/gallery/spa-vista-cenital.jpg",
+    "width": 1365,
+    "height": 2048
+  }
+]

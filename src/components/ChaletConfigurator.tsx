@@ -122,7 +122,7 @@ export default function ChaletConfigurator({ onSelectBooking }: ChaletConfigurat
       views: {
         exterior: "/images/chalets/susurros-exterior.jpg",
         interior: "/images/chalets/susurros-suite.jpg",
-        deck: "/images/chalets/susurros-jacuzzi.x12jpg",
+        deck: "/images/chalets/susurros-jacuzzi.jpg",
       },
       story:
         "Diseñado como un santuario de intimidad y romance. Su estructura acristalada sumerge la habitación en la serenidad del bosque, mientras su terraza exterior acoge un jacuzzi privado con agua caliente y espuma aromatizada entre los árboles.",
