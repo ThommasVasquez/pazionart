@@ -1021,11 +1021,11 @@ export default function Home() {
                       <MapPin className="w-4 h-4" />
                     </div>
                     <div>
-                      <span className="font-medium block">Reserva Pazionart</span>
+                      <span className="font-medium block">Pazionart</span>
                       <span className={`text-[11px] font-light ${
                         isLight ? "text-[#1A2219]/65" : "text-[#F5F2ED]/60"
                       }`}>
-                        Antioquia, Colombia · Naturaleza Viva y Miradores
+                        Antioquia, Colombia
                       </span>
                     </div>
                   </div>
@@ -1110,36 +1110,48 @@ export default function Home() {
                 </div>
 
                 <div className="space-y-3">
-                  <button
-                    onClick={() => openBookingFor(isRestaurante ? "Mesa en Restaurante" : "Chalet Susurros")}
-                    className="w-full py-3.5 rounded-xl text-xs font-semibold tracking-[0.2em] uppercase bg-[#A45D41] hover:bg-[#bd7356] text-[#F5F2ED] transition-all duration-300 shadow-xl flex items-center justify-center gap-2 cursor-pointer hover:scale-[1.02]"
+                  <a
+                    href={
+                      isRestaurante
+                        ? "mailto:pazionartchalets@gmail.com?subject=Reserva%20Mesa%20Restaurante%20Pazionart&body=Hola%20Pazionart,%20deseo%20reservar%20una%20mesa%20en%20el%20Restaurante%20o%20solicitar%20información."
+                        : "mailto:pazionartchalets@gmail.com?subject=Reserva%20Chalet%20Pazionart&body=Hola%20Pazionart,%20deseo%20solicitar%20información%20y%20reservar%20una%20estancia%20en%20los%20chalets."
+                    }
+                    className={`w-full py-3.5 rounded-xl text-xs font-semibold tracking-[0.18em] uppercase transition-all duration-300 shadow-xl flex items-center justify-center gap-2 cursor-pointer hover:scale-[1.02] ${
+                      isRestaurante
+                        ? "bg-[#A45D41] hover:bg-[#bd7356] text-[#F5F2ED]"
+                        : isLight
+                        ? "bg-[#5B6D49] hover:bg-[#4a5a3b] text-[#F5F2ED]"
+                        : "bg-[#8D996E] hover:bg-[#9eb07d] text-[#151D14]"
+                    }`}
                   >
-                    <Calendar className="w-4 h-4" />
-                    <span>{isRestaurante ? "Reservar Mesa en el Restaurante" : "Abrir Calendario & Fechas"}</span>
-                  </button>
+                    <Mail className="w-4 h-4" />
+                    <span>Enviar Correo</span>
+                  </a>
 
                   <a
                     href={
                       isRestaurante
-                        ? "https://wa.me/573505791093?text=Hola%20Pazionart,%20deseo%20reservar%20una%20mesa%20en%20el%20Fog%C3%B3n%20y%20conocer%20el%20men%C3%BA."
-                        : "https://wa.me/?text=Hola%20Pazionart,%20deseo%20m%C3%A1s%20informaci%C3%B3n%20sobre%20los%20chalets%20y%20experiencias."
+                        ? "https://wa.me/573505791093?text=Hola%20Pazionart,%20deseo%20reservar%20una%20mesa%20en%20el%20Restaurante%20y%20conocer%20los%20servicios."
+                        : "https://wa.me/?text=Hola%20Pazionart,%20deseo%20m%C3%A1s%20informaci%C3%B3n%20sobre%20los%20chalets%20y%20reservas."
                     }
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`w-full py-3 rounded-xl text-xs font-semibold tracking-[0.16em] uppercase transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer ${
-                      isLight
-                        ? isRestaurante
-                          ? "bg-[#FAF5EF] text-[#2A1B14] border border-[#A45D41]/30 hover:border-[#A45D41]"
-                          : "bg-[#F7F5EE] text-[#1A2219] border border-[#8D996E]/30 hover:border-[#5B6D49]"
-                        : isRestaurante
-                        ? "bg-[#18110F]/80 text-[#F5F2ED] border border-[#A45D41]/30 hover:border-[#A45D41]"
-                        : "glass-panel-dark text-[#F5F2ED] hover:border-[#8D996E]"
+                    className="w-full py-3.5 rounded-xl text-xs font-semibold tracking-[0.18em] uppercase transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer hover:scale-[1.02] bg-[#25D366] hover:bg-[#20ba5a] text-[#121B12] shadow-lg"
+                  >
+                    <MessageCircle className="w-4 h-4 fill-current" />
+                    <span>Conectar por WhatsApp</span>
+                    <ExternalLink className="w-3.5 h-3.5 opacity-70" />
+                  </a>
+
+                  <button
+                    type="button"
+                    onClick={() => openBookingFor(isRestaurante ? "Mesa en Restaurante" : "Chalet Susurros")}
+                    className={`w-full text-center text-[11px] font-mono tracking-wider underline transition-opacity cursor-pointer pt-1 block ${
+                      isLight ? "text-[#1A2219]/60 hover:text-[#1A2219]" : "text-[#F5F2ED]/60 hover:text-[#F5F2ED]"
                     }`}
                   >
-                    <MessageCircle className={`w-4 h-4 ${isRestaurante ? "text-[#D48B6A]" : isLight ? "text-[#5B6D49]" : "text-[#8D996E]"}`} />
-                    <span>Conectar por WhatsApp</span>
-                    <ExternalLink className={`w-3 h-3 ${isLight ? "opacity-60" : "text-[#F5F2ED]/40"}`} />
-                  </a>
+                    O abrir formulario de reserva en línea
+                  </button>
                 </div>
               </div>
             </div>

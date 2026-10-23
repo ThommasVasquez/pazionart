@@ -76,7 +76,7 @@ export const translations = {
     },
     // Propósito
     proposito: {
-      tagChalets: "[ Brandbook 2026 · Propósito Chalets ]",
+      tagChalets: "[ Propósito · Chalets & Refugios ]",
       tagRestaurant: "[ Restaurante de Pazionart · Sabiduría de Origen ]",
       headingChalets: "Habitar el Silencio y la Belleza Natural",
       headingRestaurant: "Gastronomía Tradicional y Sabores de Nuestra Tierra",
@@ -134,8 +134,8 @@ export const translations = {
     },
     // Values
     values: {
-      tagChalets: "[ Brandbook 2026 · Sección Valores ]",
-      tagRestaurant: "[ Restaurante de Pazionart · Brandbook Valores ]",
+      tagChalets: "[ Filosofía · Chalets & Refugios ]",
+      tagRestaurant: "[ Filosofía · Restaurante de Pazionart ]",
       titlePre: "La Filosofía que",
       titleHighlight: "Nos Representa",
       hoverHint: "Pasa el cursor para explorar cada principio",
@@ -253,7 +253,7 @@ export const translations = {
     },
     // Propósito
     proposito: {
-      tagChalets: "[ Brandbook 2026 · Chalet Purpose ]",
+      tagChalets: "[ Purpose · Chalets & Refuges ]",
       tagRestaurant: "[ Pazionart Restaurant · Wisdom of Origin ]",
       headingChalets: "Inhabiting Silence and Natural Beauty",
       headingRestaurant: "Traditional Gastronomy & Flavors of Our Land",
@@ -311,8 +311,8 @@ export const translations = {
     },
     // Values
     values: {
-      tagChalets: "[ Brandbook 2026 · Values Section ]",
-      tagRestaurant: "[ Pazionart Restaurant · Brandbook Values ]",
+      tagChalets: "[ Philosophy · Chalets & Refuges ]",
+      tagRestaurant: "[ Philosophy · Pazionart Restaurant ]",
       titlePre: "The Philosophy that",
       titleHighlight: "Guides Us",
       hoverHint: "Hover to explore each guiding principle",
