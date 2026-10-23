@@ -4,18 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import {
-  Heart,
-  Leaf,
-  Award,
-  ShieldCheck,
-  Sun,
-  Sparkles,
-  Users,
-  Eye,
-  Wind,
-  CheckCircle,
-} from "lucide-react";
+import { Heart, Leaf, Sparkles } from "lucide-react";
 import { startSafeViewTransition } from "@/lib/viewTransition";
 
 if (typeof window !== "undefined") {
@@ -58,7 +47,7 @@ export default function ValuesAccordion({ activeWorld = "chalets" }: ValuesAccor
       ).fromTo(
         ".values-card",
         { opacity: 0, y: 45 },
-        { opacity: 1, y: 0, duration: 0.7, stagger: 0.08 },
+        { opacity: 1, y: 0, duration: 0.7, stagger: 0.1 },
         "-=0.4"
       );
     }, containerRef);
@@ -70,120 +59,74 @@ export default function ValuesAccordion({ activeWorld = "chalets" }: ValuesAccor
     ? [
         {
           num: "01",
-          title: "Amor por la Brasa",
-          tag: "Fuego Vivo",
-          desc: "Cocinamos desde el corazón, con leña de roble y el calor paciente del rescoldo para alimentar el alma.",
+          title: "Amor",
+          tag: "Hospitalidad & Buena Mesa",
+          desc: "Cocinamos desde el corazón, con calidez y dedicación. Cada plato de nuestra cocina tradicional colombiana se prepara con esmero para compartir momentos entrañables con los que uno más quiere.",
           icon: Heart,
           image: "/images/gallery/bruma-cocina-comedor.jpg",
           color: "#C85A32",
         },
         {
           num: "02",
-          title: "Cosecha Viva & Huerto",
-          tag: "Agroecología",
-          desc: "Honramos la tierra cultivando nuestros propios ingredientes andinos, cosechados frescos para cada servicio.",
+          title: "Naturaleza",
+          tag: "Entorno Campestre & Aire Puro",
+          desc: "Un remanso de paz inmerso en la vegetación andina. Desconecta de la rutina citadina y disfruta de la buena mesa en un ambiente abierto, sereno y en total armonía con el paisaje natural.",
           icon: Leaf,
-          image: "/images/gallery/spa-ramilletes-frescos.jpg",
+          image: "/images/gallery/aroma-jardin.jpg",
           color: "#7A9652",
         },
         {
           num: "03",
-          title: "Vajilla en Barro Vivo",
-          tag: "Artesanía",
-          desc: "Servimos en platos y cuencos modelados a mano por maestros alfareros de nuestra cordillera.",
-          icon: Award,
-          image: "/images/gallery/spa-sales-corazon.jpg",
-          color: "#B8684A",
-        },
-        {
-          num: "04",
-          title: "Sobremesa Serena",
-          tag: "Tiempo Lento",
-          desc: "Nuestra cocina no tiene prisa. Promovemos la pausa consciente, la conversación fértil y el disfrute pausado.",
-          icon: ShieldCheck,
-          image: "/images/gallery/aroma-comedor-rosas.jpg",
-          color: "#D48B6A",
-        },
-        {
-          num: "05",
-          title: "Maridaje con Alma",
-          tag: "Sensorial",
-          desc: "Vinos selectos y botánica andina infusionada para elevar cada bocado en perfecta armonía con el entorno.",
-          icon: Sun,
-          image: "/images/gallery/spa-preparacion-completa.jpg",
-          color: "#C4924A",
-        },
-        {
-          num: "06",
-          title: "Memoria de la Tierra",
-          tag: "Origen",
-          desc: "Rescatamos saberes culinarios colombianos nacidos en Antioquia, reinterpretados con respeto por la estación y la memoria de nuestra tierra.",
+          title: "Arte",
+          tag: "Identidad, Sabor & Atmósfera",
+          desc: "Cuidamos cada detalle estético y sensorial: la música en directo, la calidez de la leña, la presentación acogedora y la autenticidad de recetas colombianas preparadas con verdadera identidad.",
           icon: Sparkles,
-          image: "/images/gallery/spa-vista-cenital.jpg",
-          color: "#9E6746",
+          image: "/images/gallery/aroma-comedor-rosas.jpg",
+          color: "#B8684A",
         },
       ]
     : [
         {
           num: "01",
-          title: "Amor por el servicio",
-          tag: "Hospitalidad",
-          desc: "Servimos desde el corazón, con calidez, respeto y atención genuina a cada persona que llega a los refugios.",
+          title: "Amor",
+          tag: "Calidez & Descanso Íntimo",
+          desc: "Servimos con vocación y atención genuina. Cabañas concebidas para el descanso profundo, el romance y la desconexión total junto a las personas que más valoras.",
           icon: Heart,
           image: "/images/gallery/aroma-sala-bienvenida.jpg",
           color: "#C86446",
         },
         {
           num: "02",
-          title: "Conexión natural",
-          tag: "Biophilia",
-          desc: "Valoramos y protegemos el entorno natural, integrando la naturaleza a cada despertar.",
+          title: "Naturaleza",
+          tag: "Santuario Andino & Bosque",
+          desc: "Refugios integrados respetuosamente en la naturaleza. Despierta con el canto de las aves, respira aire limpio y contempla el paisaje desde tu terraza o jacuzzi privado.",
           icon: Leaf,
           image: "/images/gallery/susurros-bosque.jpg",
           color: "#7D9B65",
         },
         {
           num: "03",
-          title: "Arquitectura con propósito",
-          tag: "Diseño Alpino",
-          desc: "Cabañas de arquitectura orgánica construidas con maderas nobles, techos inclinados y respeto por la naturaleza.",
-          icon: Award,
-          image: "/images/gallery/bruma-rincon-lectura.jpg",
-          color: "#D19A4B",
-        },
-        {
-          num: "04",
-          title: "Autenticidad & Raíz",
-          tag: "Esencia",
-          desc: "Piedra viva, madera lustrada y detalles artesanales que reflejan nuestra identidad natural.",
-          icon: ShieldCheck,
-          image: "/images/gallery/aroma-bano-madera.jpg",
-          color: "#A06248",
-        },
-        {
-          num: "05",
-          title: "Descanso sagrado",
-          tag: "Armonía",
-          desc: "Promovemos el silencio fértil y el descanso reparador rodeado de aire puro y naturaleza.",
-          icon: Sun,
-          image: "/images/gallery/bruma-cama-altillo.jpg",
-          color: "#568779",
-        },
-        {
-          num: "06",
-          title: "Convivencia serena",
-          tag: "Encuentro",
-          desc: "Espacios diáfanos con cocina equipada, altillos cálidos y terrazas privadas para reconectar con los que uno más quiere.",
+          title: "Arte",
+          tag: "Arquitectura Orgánica & Detalle",
+          desc: "Cabañas con diseño arquitectónico en madera natural, amplios ventanales, altillos acogedores y acabados cuidados que convierten cada estancia en una vivencia única.",
           icon: Sparkles,
-          image: "/images/gallery/bruma-cocina-comedor.jpg",
-          color: "#B57351",
+          image: "/images/gallery/susurros-fachada.jpg",
+          color: "#D19A4B",
         },
       ];
 
   return (
     <div ref={containerRef} className="w-full max-w-7xl mx-auto h-full flex flex-col justify-center py-6">
-      {/* Editorial Header - Limpio sin etiquetas redundantes */}
-      <div className="values-header mb-5">
+      {/* Editorial Header */}
+      <div className="values-header mb-6">
+        <div className="flex items-center gap-2 mb-2">
+          <Sparkles className={`w-3.5 h-3.5 ${isCoffee ? "text-[#A45D41]" : "text-[#8D996E]"}`} />
+          <span className={`text-[10px] font-mono tracking-widest uppercase ${
+            isCoffee ? "text-[#D48B6A]" : "text-[#8D996E]"
+          }`}>
+            {isCoffee ? "[ 04 · Amor · Naturaleza · Arte ]" : "[ 04 · Amor · Naturaleza · Arte ]"}
+          </span>
+        </div>
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-[#F5F2ED] tracking-wide font-sans">
           {isCoffee ? (
             <>
@@ -191,14 +134,17 @@ export default function ValuesAccordion({ activeWorld = "chalets" }: ValuesAccor
             </>
           ) : (
             <>
-              La Filosofía que <span className="italic font-normal text-[#8D996E]">Nos Inspira</span>
+              La Filosofía de Nuestros <span className="italic font-normal text-[#8D996E]">Chalets</span>
             </>
           )}
         </h2>
+        <p className="text-xs sm:text-sm text-[#F5F2ED]/75 font-light mt-1.5 max-w-xl">
+          Amor, Naturaleza y Arte: los tres pilares fundamentales que guían cada vivencia en Pazionart.
+        </p>
       </div>
 
-      {/* Horizontal Interactive Accordion */}
-      <div className="w-full h-[52vh] min-h-[380px] max-h-[500px] flex flex-col md:flex-row gap-2.5 rounded-3xl overflow-hidden">
+      {/* Horizontal Interactive Accordion con los 3 Pilares Reales */}
+      <div className="w-full h-[54vh] min-h-[400px] max-h-[520px] flex flex-col md:flex-row gap-3.5 rounded-3xl overflow-hidden">
         {values.map((val, idx) => {
           const isActive = activeIdx === idx;
           const IconComp = val.icon;
@@ -208,11 +154,11 @@ export default function ValuesAccordion({ activeWorld = "chalets" }: ValuesAccor
               key={val.num}
               onMouseEnter={() => handleSelectValue(idx)}
               onClick={() => handleSelectValue(idx)}
-              className={`values-card relative overflow-hidden rounded-2xl cursor-pointer transition-all duration-700 ease-out flex flex-col justify-between p-5 md:p-6 border ${
+              className={`values-card relative overflow-hidden rounded-2xl cursor-pointer transition-all duration-700 ease-out flex flex-col justify-between p-6 md:p-8 border ${
                 isActive
                   ? isCoffee
-                    ? "md:flex-[3.5] bg-[#241A17] shadow-2xl"
-                    : "md:flex-[3.5] bg-[#212B20] shadow-2xl"
+                    ? "md:flex-[2.6] bg-[#241A17] shadow-2xl"
+                    : "md:flex-[2.6] bg-[#212B20] shadow-2xl"
                   : isCoffee
                   ? "md:flex-1 bg-[#17100D]/85 hover:bg-[#241A17]/90"
                   : "md:flex-1 bg-[#182017]/80 hover:bg-[#212B20]/90"
@@ -254,19 +200,19 @@ export default function ValuesAccordion({ activeWorld = "chalets" }: ValuesAccor
                 </span>
 
                 <div
-                  className="w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300"
+                  className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300"
                   style={{
                     backgroundColor: isActive ? val.color : `${val.color}25`,
                     color: isActive ? "#F5F2ED" : val.color,
                     boxShadow: isActive ? `0 4px 18px ${val.color}50` : "none",
-                    transform: isActive ? "scale(1.12)" : "scale(1)",
+                    transform: isActive ? "scale(1.1)" : "scale(1)",
                   }}
                 >
-                  <IconComp className="w-4 h-4" />
+                  <IconComp className="w-5 h-5" />
                 </div>
               </div>
 
-              {/* Content bottom - SOLO visible en la tarjeta abierta/activa (elimina el texto partido/duplicado con ❌) */}
+              {/* Content bottom - Visible en la tarjeta abierta/activa */}
               <div
                 className={`relative z-10 mt-auto transition-all duration-500 ${
                   isActive
@@ -281,11 +227,11 @@ export default function ValuesAccordion({ activeWorld = "chalets" }: ValuesAccor
                   {val.tag}
                 </span>
 
-                <h3 className="text-xl md:text-2xl font-light text-[#F5F2ED] mb-2 font-normal tracking-wide">
+                <h3 className="text-2xl md:text-3xl font-light text-[#F5F2ED] mb-2 font-normal tracking-wide">
                   {val.title}
                 </h3>
 
-                <p className="text-xs sm:text-sm text-[#F5F2ED]/85 font-light leading-relaxed max-w-md">
+                <p className="text-xs sm:text-sm text-[#F5F2ED]/85 font-light leading-relaxed max-w-lg">
                   {val.desc}
                 </p>
               </div>
@@ -294,7 +240,7 @@ export default function ValuesAccordion({ activeWorld = "chalets" }: ValuesAccor
               {!isActive && (
                 <div className="hidden md:flex absolute inset-0 items-center justify-center pointer-events-none z-10 opacity-70 group-hover:opacity-100 transition-opacity">
                   <span
-                    className="text-xs font-mono uppercase tracking-[0.28em] rotate-90 whitespace-nowrap"
+                    className="text-sm font-mono uppercase tracking-[0.28em] rotate-90 whitespace-nowrap font-medium"
                     style={{ color: val.color }}
                   >
                     {val.title}
