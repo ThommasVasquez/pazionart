@@ -53,9 +53,30 @@ export default function Home() {
   const [showSplash, setShowSplash] = useState(true);
   const [isBookingOpen, setIsBookingOpen] = useState(false);
   const [selectedChalet, setSelectedChalet] = useState("Chalet Susurros");
+  const [selectedChaletPhotoSrc, setSelectedChaletPhotoSrc] = useState<string | undefined>(undefined);
+  const [galleryTab, setGalleryTab] = useState<string>("all");
   const [showThreshold, setShowThreshold] = useState(true);
   const [activeWorld, setActiveWorld] = useState<"chalets" | "restaurante">("chalets");
   const isRestaurante = activeWorld === "restaurante";
+
+  const handleGoToChalet = (chaletName: string, photoSrc?: string) => {
+    setSelectedChalet(chaletName);
+    if (photoSrc) {
+      setSelectedChaletPhotoSrc(photoSrc);
+    }
+    const chaletSection = document.getElementById("chalets");
+    if (chaletSection) {
+      chaletSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const handleViewInGallery = (chaletSlug: string) => {
+    setGalleryTab(chaletSlug);
+    const gallerySection = document.getElementById("galeria");
+    if (gallerySection) {
+      gallerySection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   const { t, theme } = usePreferences();
   const isLight = theme === "light";
@@ -960,7 +981,13 @@ export default function Home() {
 
             <div className="relative z-20 w-full">
               <ChaletConfigurator
-                onSelectBooking={(chaletName) => openBookingFor(chaletName)}
+                selectedChaletName={selectedChalet}
+                onChaletChange={(name) => setSelectedChalet(name)}
+                selectedPhotoSrc={selectedChaletPhotoSrc}
+                onSelectBooking={(chaletName, nights) =>
+                  openBookingFor(`${chaletName} (${nights} noches)`)
+                }
+                onViewInGallery={handleViewInGallery}
               />
             </div>
 
@@ -1058,7 +1085,10 @@ export default function Home() {
             ======================================================== */}
         <VisualGallery
           onSelectBooking={(chalet) => openBookingFor(chalet)}
+          onGoToChalet={handleGoToChalet}
           activeWorld={activeWorld}
+          activeTab={galleryTab}
+          onTabChange={setGalleryTab}
         />
 
         {/* ========================================================

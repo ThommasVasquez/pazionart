@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -11,6 +11,9 @@ import {
   Maximize2,
   Sparkles,
   ChevronRight,
+  ChevronLeft,
+  Camera,
+  X,
   ShieldCheck,
   Calendar,
   Layers,
@@ -20,6 +23,20 @@ import {
 } from "lucide-react";
 import { startSafeViewTransition } from "@/lib/viewTransition";
 import { usePreferences } from "@/context/PreferencesContext";
+import galleryItems from "@/lib/galleryManifest.json";
+
+interface GalleryPhoto {
+  id: string;
+  title: string;
+  chalet: string;
+  category?: string;
+  description: string;
+  src: string;
+  width?: number;
+  height?: number;
+}
+
+const allGalleryItems = galleryItems as GalleryPhoto[];
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -27,28 +44,27 @@ if (typeof window !== "undefined") {
 
 interface ChaletConfiguratorProps {
   onSelectBooking: (chaletName: string, nights: number) => void;
+  selectedChaletName?: string;
+  onChaletChange?: (chaletName: string) => void;
+  selectedPhotoSrc?: string;
+  onViewInGallery?: (chaletSlug: string) => void;
 }
 
-export default function ChaletConfigurator({ onSelectBooking }: ChaletConfiguratorProps) {
+export default function ChaletConfigurator({
+  onSelectBooking,
+  selectedChaletName,
+  onChaletChange,
+  selectedPhotoSrc,
+  onViewInGallery,
+}: ChaletConfiguratorProps) {
   const { theme, t } = usePreferences();
   const isLight = theme === "light";
 
   const [selectedId, setSelectedId] = useState(0);
-  const [activeView, setActiveView] = useState<"exterior" | "interior" | "deck">("exterior");
+  const [photoIndex, setPhotoIndex] = useState(0);
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const [nights, setNights] = useState(2);
   const chaletRef = useRef<HTMLDivElement>(null);
-
-  const handleSelectChalet = (idx: number) => {
-    startSafeViewTransition(() => {
-      setSelectedId(idx);
-    });
-  };
-
-  const handleSelectView = (view: "exterior" | "interior" | "deck") => {
-    startSafeViewTransition(() => {
-      setActiveView(view);
-    });
-  };
 
   useEffect(() => {
     if (!chaletRef.current) return;
@@ -112,6 +128,7 @@ export default function ChaletConfigurator({ onSelectBooking }: ChaletConfigurat
   const chalets = [
     {
       id: "chalet-susurros",
+      slug: "susurros",
       name: "Chalet Susurros",
       tagline: "Pabellón de cristal con jacuzzi privado y vista a la naturaleza",
       basePrice: "$280.000 COP",
@@ -135,6 +152,7 @@ export default function ChaletConfigurator({ onSelectBooking }: ChaletConfigurat
     },
     {
       id: "chalet-aroma",
+      slug: "aroma",
       name: "Chalet Aroma",
       tagline: "Arquitectura A-Frame clásica entre jardines y palmeras",
       basePrice: "$200.000 COP",
@@ -158,6 +176,7 @@ export default function ChaletConfigurator({ onSelectBooking }: ChaletConfigurat
     },
     {
       id: "chalet-bruma",
+      slug: "bruma",
       name: "Chalet Bruma",
       tagline: "Refugio familiar con espacios de juegos y ocio al aire libre",
       basePrice: "$220.000 COP",
@@ -181,7 +200,56 @@ export default function ChaletConfigurator({ onSelectBooking }: ChaletConfigurat
     },
   ];
 
+  // Sincronizar selección externa de chalet
+  useEffect(() => {
+    if (!selectedChaletName) return;
+    const lower = selectedChaletName.toLowerCase();
+    let targetIdx = 0;
+    if (lower.includes("aroma")) targetIdx = 1;
+    else if (lower.includes("bruma")) targetIdx = 2;
+    else targetIdx = 0;
+    if (targetIdx !== selectedId) {
+      setSelectedId(targetIdx);
+      setPhotoIndex(0);
+    }
+  }, [selectedChaletName]);
+
   const currentChalet = chalets[selectedId];
+
+  // Todas las fotos reales del chalet seleccionado
+  const currentPhotos = useMemo(() => {
+    const list = allGalleryItems.filter((it: GalleryPhoto) => it.chalet === currentChalet.name);
+    return list.length > 0
+      ? list
+      : [
+          {
+            id: currentChalet.id,
+            title: currentChalet.name,
+            chalet: currentChalet.name,
+            description: currentChalet.tagline,
+            src: currentChalet.views.exterior,
+          },
+        ];
+  }, [currentChalet]);
+
+  // Sincronizar foto específica si viene desde la galería
+  useEffect(() => {
+    if (!selectedPhotoSrc) return;
+    const foundIdx = currentPhotos.findIndex((p) => p.src === selectedPhotoSrc);
+    if (foundIdx !== -1) {
+      setPhotoIndex(foundIdx);
+    }
+  }, [selectedPhotoSrc, currentPhotos]);
+
+  const handleSelectChalet = (idx: number) => {
+    startSafeViewTransition(() => {
+      setSelectedId(idx);
+      setPhotoIndex(0);
+      onChaletChange?.(chalets[idx].name);
+    });
+  };
+
+  const activePhoto = currentPhotos[photoIndex] || currentPhotos[0];
 
   return (
     <div ref={chaletRef} className="w-full max-w-7xl mx-auto h-full flex flex-col justify-center py-4">
@@ -214,6 +282,7 @@ export default function ChaletConfigurator({ onSelectBooking }: ChaletConfigurat
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
         {chalets.map((ch, idx) => {
           const isSelected = selectedId === idx;
+          const photosCount = allGalleryItems.filter((it: GalleryPhoto) => it.chalet === ch.name).length;
           return (
             <button
               key={ch.id}
@@ -240,11 +309,16 @@ export default function ChaletConfigurator({ onSelectBooking }: ChaletConfigurat
                 )}
               </div>
               <div className="min-w-0 flex-1">
-                <span className={`text-[9px] font-mono uppercase tracking-widest block truncate ${
-                  isSelected ? "text-[#D48B6A] font-semibold" : "text-[#8D996E]"
-                }`}>
-                  Refugio 0{idx + 1} · {ch.capacity.split("·")[0].trim()}
-                </span>
+                <div className="flex items-center justify-between gap-1">
+                  <span className={`text-[9px] font-mono uppercase tracking-widest block truncate ${
+                    isSelected ? "text-[#D48B6A] font-semibold" : "text-[#8D996E]"
+                  }`}>
+                    Refugio 0{idx + 1} · {ch.capacity.split("·")[0].trim()}
+                  </span>
+                  <span className="text-[9px] font-mono text-[#F5F2ED]/60 bg-black/30 px-1.5 py-0.5 rounded">
+                    {photosCount} fotos
+                  </span>
+                </div>
                 <h3 className={`text-sm sm:text-base font-medium tracking-tight truncate ${
                   isSelected
                     ? "text-[#F5F2ED] font-semibold"
@@ -267,7 +341,7 @@ export default function ChaletConfigurator({ onSelectBooking }: ChaletConfigurat
 
       {/* Main Interactive Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
-        {/* Columna Izquierda: Visor Fotográfico con Selector de Ángulo */}
+        {/* Columna Izquierda: Visor Fotográfico con Galería Completa de Fotos del Chalet */}
         <div className="lg:col-span-7 flex flex-col justify-start">
           <div
             className={`chalet-visor relative aspect-[16/11] lg:aspect-[16/10] w-full rounded-3xl overflow-hidden shadow-2xl group ${
@@ -277,45 +351,122 @@ export default function ChaletConfigurator({ onSelectBooking }: ChaletConfigurat
             style={{ viewTransitionName: "chalet-active-photo" }}
           >
             <Image
-              src={currentChalet.views[activeView]}
-              alt={`${currentChalet.name} - ${activeView}`}
+              src={activePhoto.src}
+              alt={`${currentChalet.name} - ${activePhoto.title}`}
               fill
               className="object-cover transition-all duration-700 group-hover:scale-105"
+              priority
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#212B20]/90 via-[#212B20]/20 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#212B20]/90 via-[#212B20]/25 to-transparent pointer-events-none" />
 
             {/* Badges superiores sobre la imagen */}
-            <div className="absolute top-4 left-4 right-4 flex items-center justify-between">
-              <span className="glass-pill px-3 py-1 rounded-full text-[10px] font-mono tracking-wider text-[#F5F2ED] uppercase">
-                {currentChalet.name} · {currentChalet.area}
+            <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-10">
+              <span className="glass-pill px-3 py-1.5 rounded-full text-[10px] font-mono tracking-wider text-[#F5F2ED] uppercase flex items-center gap-1.5 shadow-md">
+                <Camera className="w-3.5 h-3.5 text-[#D48B6A]" />
+                <span>Foto {photoIndex + 1} de {currentPhotos.length} · {currentChalet.name}</span>
               </span>
 
-              {/* Angle View Selector */}
-              <div className="flex items-center gap-1 p-1 rounded-full glass-panel-dark text-[10px] font-mono">
-                {(["exterior", "interior", "deck"] as const).map((view) => (
+              {/* Botones de acción */}
+              <div className="flex items-center gap-1.5">
+                <button
+                  onClick={() => setIsLightboxOpen(true)}
+                  className="px-3 py-1.5 rounded-full glass-panel-dark text-[10px] font-mono text-[#F5F2ED] hover:bg-[#A45D41] hover:text-white transition-all flex items-center gap-1.5 cursor-pointer shadow-md"
+                  title="Ver todas las fotos en tamaño completo"
+                >
+                  <Maximize2 className="w-3 h-3" />
+                  <span className="hidden sm:inline">Ver las {currentPhotos.length} fotos</span>
+                </button>
+
+                {onViewInGallery && (
                   <button
-                    key={view}
-                    onClick={() => handleSelectView(view)}
-                    className={`px-2.5 py-1 rounded-full capitalize transition-all cursor-pointer ${
-                      activeView === view
-                        ? "bg-[#8D996E] text-[#212B20] font-semibold"
-                        : "text-[#F5F2ED]/70 hover:text-[#F5F2ED]"
-                    }`}
+                    onClick={() => onViewInGallery(currentChalet.slug)}
+                    className="px-3 py-1.5 rounded-full glass-panel-dark text-[10px] font-mono text-[#8D996E] hover:text-white hover:bg-[#8D996E]/40 transition-all flex items-center gap-1 cursor-pointer shadow-md"
+                    title="Ver álbum completo en la Galería"
                   >
-                    {view === "exterior" ? t.configurator.facade : view === "interior" ? t.configurator.interior : t.configurator.deck}
+                    <span>Galería ↓</span>
                   </button>
-                ))}
+                )}
               </div>
             </div>
 
-            {/* Info inferior sobre la imagen */}
-            <div className="absolute bottom-4 left-5 right-5">
-              <span className="text-[10px] font-mono text-[#8D996E] tracking-widest uppercase">
-                {currentChalet.tagline}
+            {/* Flechas Prev / Next directamente sobre la imagen */}
+            {currentPhotos.length > 1 && (
+              <>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setPhotoIndex((photoIndex - 1 + currentPhotos.length) % currentPhotos.length);
+                  }}
+                  className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-black/60 hover:bg-black/85 backdrop-blur-md text-white flex items-center justify-center transition-all cursor-pointer z-10 opacity-80 group-hover:opacity-100 hover:scale-110 shadow-xl"
+                  aria-label="Foto anterior"
+                >
+                  <ChevronLeft className="w-5 h-5" />
+                </button>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setPhotoIndex((photoIndex + 1) % currentPhotos.length);
+                  }}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-black/60 hover:bg-black/85 backdrop-blur-md text-white flex items-center justify-center transition-all cursor-pointer z-10 opacity-80 group-hover:opacity-100 hover:scale-110 shadow-xl"
+                  aria-label="Siguiente foto"
+                >
+                  <ChevronRight className="w-5 h-5" />
+                </button>
+              </>
+            )}
+
+            {/* Info inferior sobre la foto activa */}
+            <div className="absolute bottom-4 left-5 right-5 z-10 pointer-events-none">
+              <span className="text-[10px] font-mono text-[#D48B6A] tracking-widest uppercase font-semibold block mb-0.5">
+                {activePhoto.title}
               </span>
-              <h3 className="text-xl sm:text-2xl font-light text-[#F5F2ED]">
-                {currentChalet.name}
-              </h3>
+              <p className="text-xs text-[#F5F2ED]/90 font-light line-clamp-2 max-w-xl">
+                {activePhoto.description}
+              </p>
+            </div>
+          </div>
+
+          {/* Tira horizontal de miniaturas de TODAS las fotos de este chalet */}
+          <div className="mt-3">
+            <div className="flex items-center justify-between mb-1.5 px-1">
+              <span className="text-[10px] font-mono text-[#8D996E] uppercase tracking-wider flex items-center gap-1.5">
+                <span>Fotos de {currentChalet.name}</span>
+                <span className="text-[#F5F2ED]/40">({currentPhotos.length} fotos disponibles)</span>
+              </span>
+              <button
+                onClick={() => setIsLightboxOpen(true)}
+                className="text-[10px] font-mono text-[#D48B6A] hover:underline cursor-pointer"
+              >
+                Ampliar todas ↗
+              </button>
+            </div>
+
+            <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-thin scrollbar-thumb-[#8D996E]/20">
+              {currentPhotos.map((photo, idx) => {
+                const isActive = photoIndex === idx;
+                return (
+                  <button
+                    key={photo.id || idx}
+                    onClick={() => setPhotoIndex(idx)}
+                    className={`relative w-16 h-12 sm:w-20 sm:h-14 rounded-xl overflow-hidden shrink-0 border transition-all duration-300 cursor-pointer ${
+                      isActive
+                        ? "border-[#A45D41] ring-2 ring-[#A45D41] scale-105 shadow-lg"
+                        : "border-white/15 opacity-60 hover:opacity-100 hover:border-white/40"
+                    }`}
+                    title={photo.title}
+                  >
+                    <Image
+                      src={photo.src}
+                      alt={photo.title}
+                      fill
+                      className="object-cover"
+                    />
+                    {isActive && (
+                      <div className="absolute inset-0 bg-[#A45D41]/20" />
+                    )}
+                  </button>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -420,6 +571,121 @@ export default function ChaletConfigurator({ onSelectBooking }: ChaletConfigurat
           </div>
         </div>
       </div>
+
+      {/* Lightbox Modal de ChaletConfigurator */}
+      {isLightboxOpen && (
+        <div
+          className="fixed inset-0 z-[9999] bg-black/95 backdrop-blur-xl flex items-center justify-center p-4 sm:p-6"
+          onClick={() => setIsLightboxOpen(false)}
+        >
+          {/* Botón cerrar */}
+          <button
+            onClick={() => setIsLightboxOpen(false)}
+            className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors cursor-pointer z-30"
+            aria-label="Cerrar galería"
+          >
+            <X className="w-5 h-5" />
+          </button>
+
+          {/* Flecha Izquierda */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setPhotoIndex((photoIndex - 1 + currentPhotos.length) % currentPhotos.length);
+            }}
+            className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-white/25 text-white flex items-center justify-center transition-colors cursor-pointer z-30 shadow-2xl"
+            aria-label="Foto anterior"
+          >
+            <ChevronLeft className="w-6 h-6" />
+          </button>
+
+          {/* Flecha Derecha */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setPhotoIndex((photoIndex + 1) % currentPhotos.length);
+            }}
+            className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-white/25 text-white flex items-center justify-center transition-colors cursor-pointer z-30 shadow-2xl"
+            aria-label="Siguiente foto"
+          >
+            <ChevronRight className="w-6 h-6" />
+          </button>
+
+          {/* Contenedor Modal */}
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="relative max-w-5xl max-h-[92vh] w-full flex flex-col bg-[#151D14] border border-[#8D996E]/30 rounded-3xl overflow-hidden shadow-2xl"
+          >
+            <div className="relative w-full h-[55vh] sm:h-[65vh] bg-black">
+              <Image
+                src={activePhoto.src}
+                alt={activePhoto.title}
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
+
+            {/* Info y miniaturas inferiores */}
+            <div className="p-4 sm:p-6 bg-[#151D14] border-t border-[#8D996E]/20 text-[#F5F2ED] flex flex-col gap-3">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div>
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="px-2 py-0.5 rounded text-[10px] font-mono uppercase tracking-widest bg-[#8D996E]/20 text-[#8D996E] border border-[#8D996E]/30">
+                      {currentChalet.name}
+                    </span>
+                    <span className="text-xs text-[#8D996E]/70 font-mono">
+                      Foto {photoIndex + 1} de {currentPhotos.length}
+                    </span>
+                  </div>
+                  <h4 className="text-base sm:text-lg font-medium text-white">{activePhoto.title}</h4>
+                  <p className="text-xs text-[#F5F2ED]/70 max-w-xl">{activePhoto.description}</p>
+                </div>
+
+                <div className="flex items-center gap-2 shrink-0">
+                  {onViewInGallery && (
+                    <button
+                      onClick={() => {
+                        setIsLightboxOpen(false);
+                        onViewInGallery(currentChalet.slug);
+                      }}
+                      className="px-4 py-2.5 rounded-xl text-xs font-mono uppercase tracking-wider text-[#8D996E] border border-[#8D996E]/30 hover:bg-[#8D996E]/20 transition-all cursor-pointer"
+                    >
+                      Ver en Galería General ↓
+                    </button>
+                  )}
+                  <button
+                    onClick={() => {
+                      setIsLightboxOpen(false);
+                      onSelectBooking(currentChalet.name, nights);
+                    }}
+                    className="px-5 py-2.5 rounded-xl text-xs font-semibold tracking-wider uppercase bg-[#A45D41] hover:bg-[#bd7356] text-white cursor-pointer shadow-lg transition-all"
+                  >
+                    Reservar {currentChalet.name}
+                  </button>
+                </div>
+              </div>
+
+              {/* Tira rápida de miniaturas dentro del modal */}
+              <div className="flex items-center gap-1.5 overflow-x-auto pt-2 border-t border-white/10 scrollbar-none">
+                {currentPhotos.map((p, idx) => (
+                  <button
+                    key={p.id || idx}
+                    onClick={() => setPhotoIndex(idx)}
+                    className={`relative w-12 h-9 sm:w-14 sm:h-10 rounded-lg overflow-hidden shrink-0 border transition-all cursor-pointer ${
+                      photoIndex === idx
+                        ? "border-[#A45D41] ring-2 ring-[#A45D41] scale-105"
+                        : "border-white/15 opacity-50 hover:opacity-100"
+                    }`}
+                  >
+                    <Image src={p.src} alt={p.title} fill className="object-cover" />
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -14,23 +14,35 @@ import {
   ChevronRight,
   Maximize2,
   Calendar,
+  ArrowUpRight,
 } from "lucide-react";
 
 interface VisualGalleryProps {
   onSelectBooking?: (chaletName: string) => void;
+  onGoToChalet?: (chaletName: string, photoSrc?: string) => void;
   activeWorld?: "chalets" | "restaurante";
+  activeTab?: string;
+  onTabChange?: (tab: string) => void;
 }
 
 export default function VisualGallery({
   onSelectBooking,
+  onGoToChalet,
   activeWorld = "chalets",
+  activeTab: externalTab,
+  onTabChange,
 }: VisualGalleryProps) {
   const { theme, lang } = usePreferences();
   const isLight = theme === "light";
   const isEn = lang === "en";
   const isRestaurante = activeWorld === "restaurante";
 
-  const [activeTab, setActiveTab] = useState<string>("all");
+  const [internalTab, setInternalTab] = useState<string>("all");
+  const activeTab = externalTab !== undefined ? externalTab : internalTab;
+  const setActiveTab = (tab: string) => {
+    setInternalTab(tab);
+    onTabChange?.(tab);
+  };
   const [selectedPhotoIndex, setSelectedPhotoIndex] = useState<number | null>(null);
 
   // Recalcular límites de scroll inmediatamente cuando cambian las pestañas o el mundo
@@ -205,7 +217,13 @@ export default function VisualGallery({
           {filteredItems.map((item, idx) => (
             <div
               key={item.id}
-              onClick={() => setSelectedPhotoIndex(idx)}
+              onClick={() => {
+                if (!isRestaurante && onGoToChalet && item.chalet.includes("Chalet")) {
+                  onGoToChalet(item.chalet, item.src);
+                } else {
+                  setSelectedPhotoIndex(idx);
+                }
+              }}
               className={`group relative rounded-2xl overflow-hidden border cursor-pointer transition-all duration-500 hover:-translate-y-1.5 hover:shadow-2xl ${
                 isLight
                   ? "bg-white border-[#8D996E]/20"
@@ -227,15 +245,26 @@ export default function VisualGallery({
 
                 {/* Badge top */}
                 <div className="absolute top-3 left-3">
-                  <span className="px-2 py-1 rounded-md text-[9px] font-mono uppercase tracking-widest bg-black/60 backdrop-blur-md text-[#E8EDDF] border border-white/10">
-                    {item.chalet}
+                  <span className="px-2.5 py-1 rounded-md text-[9px] font-mono uppercase tracking-widest bg-black/70 backdrop-blur-md text-[#E8EDDF] border border-white/10 flex items-center gap-1 group-hover:border-[#8D996E] transition-colors">
+                    <span>{item.chalet}</span>
+                    {!isRestaurante && item.chalet.includes("Chalet") && (
+                      <ArrowUpRight className="w-3 h-3 text-[#D48B6A]" />
+                    )}
                   </span>
                 </div>
 
+                {/* Botón de ampliar foto independiente */}
                 <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="w-7 h-7 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedPhotoIndex(idx);
+                    }}
+                    className="w-8 h-8 rounded-full bg-black/60 hover:bg-black/90 backdrop-blur-md flex items-center justify-center text-white border border-white/15 cursor-pointer shadow-lg hover:scale-110 transition-all"
+                    title="Ampliar foto"
+                  >
                     <Maximize2 className="w-3.5 h-3.5" />
-                  </div>
+                  </button>
                 </div>
 
                 {/* Bottom Captions */}
@@ -246,6 +275,12 @@ export default function VisualGallery({
                   <p className="text-white/70 text-[10px] leading-tight line-clamp-2">
                     {item.description}
                   </p>
+                  {!isRestaurante && item.chalet.includes("Chalet") && (
+                    <div className="mt-1.5 flex items-center gap-1 text-[10px] font-mono text-[#D48B6A] uppercase tracking-wider font-semibold opacity-0 group-hover:opacity-100 transition-opacity">
+                      <span>Ir a la ficha de este Chalet</span>
+                      <ArrowUpRight className="w-3 h-3" />
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -324,18 +359,33 @@ export default function VisualGallery({
                 </div>
               </div>
 
-              {onSelectBooking && currentPhoto.chalet.includes("Chalet") && (
-                <button
-                  onClick={() => {
-                    onSelectBooking(currentPhoto.chalet);
-                    setSelectedPhotoIndex(null);
-                  }}
-                  className="mt-6 w-full py-3 rounded-xl text-xs font-semibold tracking-wider uppercase bg-[#A45D41] hover:bg-[#bd7356] text-white flex items-center justify-center gap-2 transition-all cursor-pointer"
-                >
-                  <Calendar className="w-4 h-4" />
-                  <span>Reservar {currentPhoto.chalet}</span>
-                </button>
-              )}
+              <div className="flex flex-col gap-2.5 mt-6">
+                {onGoToChalet && currentPhoto.chalet.includes("Chalet") && (
+                  <button
+                    onClick={() => {
+                      onGoToChalet(currentPhoto.chalet, currentPhoto.src);
+                      setSelectedPhotoIndex(null);
+                    }}
+                    className="w-full py-3 rounded-xl text-xs font-semibold tracking-wider uppercase bg-[#8D996E] hover:bg-[#a1b07e] text-[#151D14] flex items-center justify-center gap-2 transition-all cursor-pointer font-bold shadow-lg"
+                  >
+                    <ArrowUpRight className="w-4 h-4" />
+                    <span>Ver este Chalet en la sección Chalets</span>
+                  </button>
+                )}
+
+                {onSelectBooking && currentPhoto.chalet.includes("Chalet") && (
+                  <button
+                    onClick={() => {
+                      onSelectBooking(currentPhoto.chalet);
+                      setSelectedPhotoIndex(null);
+                    }}
+                    className="w-full py-3 rounded-xl text-xs font-semibold tracking-wider uppercase bg-[#A45D41] hover:bg-[#bd7356] text-white flex items-center justify-center gap-2 transition-all cursor-pointer"
+                  >
+                    <Calendar className="w-4 h-4" />
+                    <span>Reservar {currentPhoto.chalet}</span>
+                  </button>
+                )}
+              </div>
             </div>
           </div>
         </div>
