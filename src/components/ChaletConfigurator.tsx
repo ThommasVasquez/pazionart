@@ -134,7 +134,7 @@ export default function ChaletConfigurator({
       basePrice: "$280.000 COP",
       area: "Pabellón Panorámico + Deck con Jacuzzi",
       capacity: "2 Huéspedes · 1 Cama Doble",
-      orientation: "Noreste · Amanecer sobre la naturaleza de montaña",
+      orientation: "Noreste · Amanecer sobre la naturaleza y bosque",
       thermal: "Acristalamiento panorámico con cortinajes térmicos",
       views: {
         exterior: "/images/gallery/susurros-fachada.jpg",
@@ -182,7 +182,7 @@ export default function ChaletConfigurator({
       basePrice: "$220.000 COP",
       area: "Doble nivel con altillo + Zona verde con columpio",
       capacity: "4 a 6 Huéspedes · 2 Camas Dobles",
-      orientation: "Norte · Vista a la montaña y aire puro",
+      orientation: "Norte · Vista a la naturaleza y aire puro",
       thermal: "Estructura de madera aislante y techos altos inclinados",
       views: {
         exterior: "/images/gallery/bruma-fachada-columpio.jpg",

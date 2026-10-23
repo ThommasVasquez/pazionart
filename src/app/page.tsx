@@ -447,7 +447,7 @@ export default function Home() {
               alt={
                 activeWorld === "restaurante"
                   ? "Pazionart Restaurante & Fogón Campesino"
-                  : "Pazionart Chalets en la montaña"
+                  : "Pazionart Chalets & Refugios"
               }
               fill
               priority
@@ -683,7 +683,7 @@ export default function Home() {
                       Chalet Aroma (Cabaña A-Frame)
                     </option>
                     <option value="Chalet Bruma" className={isLight ? "bg-white text-[#1A2219]" : "bg-[#212B20] text-[#F5F2ED]"}>
-                      Chalet Bruma (Cabaña de Montaña)
+                      Chalet Bruma (Cabaña Familiar)
                     </option>
                   </select>
                 </div>
@@ -1172,7 +1172,7 @@ export default function Home() {
                       <span className={`text-[11px] font-light ${
                         isLight ? "text-[#1A2219]/65" : "text-[#F5F2ED]/60"
                       }`}>
-                        Montañas Andinas · Naturaleza Viva y Miradores
+                        Antioquia, Colombia · Naturaleza Viva y Miradores
                       </span>
                     </div>
                   </div>

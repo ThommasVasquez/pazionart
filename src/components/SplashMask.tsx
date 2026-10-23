@@ -159,7 +159,7 @@ export default function SplashMask({ onClose }: SplashMaskProps) {
           ======================================================== */}
       <div ref={foliageContainerRef} className="absolute inset-0 pointer-events-none">
         {/* ========================================================
-            VARIANTE 1: VERDE SELVA / BOSQUE DE MONTAÑA (CHALETS)
+            VARIANTE 1: VERDE SELVA / BOSQUE ANDINO (CHALETS)
             ======================================================== */}
         {activeTheme === "bosque" && (
           <>

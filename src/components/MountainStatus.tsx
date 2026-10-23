@@ -25,7 +25,7 @@ export default function MountainStatus() {
 
   return (
     <div className="flex flex-wrap items-center gap-3 sm:gap-6 text-[10px] sm:text-[11px] font-mono tracking-widest text-[#F5F2ED]/70 uppercase">
-      {/* Hora local montaña */}
+      {/* Hora local */}
       <div className="flex items-center gap-1.5">
         <span className="w-1.5 h-1.5 rounded-full bg-[#8D996E] animate-pulse" />
         <span className="text-[#8D996E] font-medium">BOSQUE ANDINO</span>

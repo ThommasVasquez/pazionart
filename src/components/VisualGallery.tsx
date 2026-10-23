@@ -156,8 +156,8 @@ export default function VisualGallery({
                     ? "[ Culinary Visual Archive · El Fogón ]"
                     : "[ Registro Visual · El Fogón & la Mesa ]"
                   : isEn
-                  ? "[ Mountain Sanctuaries Archive · 27 Photos ]"
-                  : "[ Archivo Visual · Chalets de Montaña (27) ]"}
+                  ? "[ Sanctuaries Archive · 27 Photos ]"
+                  : "[ Archivo Visual · Chalets & Refugios (27) ]"}
               </span>
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-light font-sans tracking-tight">
@@ -182,11 +182,11 @@ export default function VisualGallery({
           }`}>
             {isRestaurante
               ? isEn
-                ? "Tables served by candlelight, glasses of Malbec wine, handmade clay vessels, and aromatic herbs harvested fresh from the mountain garden."
+                ? "Tables served by candlelight, glasses of Malbec wine, handmade clay vessels, and aromatic herbs harvested fresh from the garden."
                 : "Mesas servidas a la luz de las velas, copas de vino tinto, cazuelas de barro campesino y hierbas aromáticas recién cosechadas de la huerta."
               : isEn
-              ? "Every photograph reflects our true mountain refuges: Chalet Susurros, Chalet Aroma, and Chalet Bruma."
-              : "Cada registro fotográfico corresponde fielmente a nuestros 3 refugios de montaña: Chalet Susurros, Chalet Aroma y Chalet Bruma."}
+              ? "Every photograph reflects our true refuges: Chalet Susurros, Chalet Aroma, and Chalet Bruma."
+              : "Cada registro fotográfico corresponde fielmente a nuestros 3 refugios: Chalet Susurros, Chalet Aroma y Chalet Bruma."}
           </p>
         </div>
 

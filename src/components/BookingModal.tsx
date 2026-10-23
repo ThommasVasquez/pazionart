@@ -225,7 +225,7 @@ export default function BookingModal({
                         <option value="Mesa Íntima en el Fogón" className={isLight ? "bg-white" : "bg-[#1C1512]"}>
                           Mesa Íntima en el Fogón
                         </option>
-                        <option value="Mesa Terraza con Vista a la Montaña" className={isLight ? "bg-white" : "bg-[#1C1512]"}>
+                        <option value="Mesa Terraza Panorámica" className={isLight ? "bg-white" : "bg-[#1C1512]"}>
                           Mesa Terraza Panorámica
                         </option>
                         <option value="Menú Degustación 4 Tiempos" className={isLight ? "bg-white" : "bg-[#1C1512]"}>
@@ -240,8 +240,8 @@ export default function BookingModal({
                         <option value="Chalet Aroma (Cabaña A-Frame)" className={isLight ? "bg-white" : "bg-[#212B20]"}>
                           Chalet Aroma (Cabaña A-Frame)
                         </option>
-                        <option value="Chalet Bruma (Cabaña de Montaña)" className={isLight ? "bg-white" : "bg-[#212B20]"}>
-                          Chalet Bruma (Cabaña de Montaña)
+                        <option value="Chalet Bruma (Cabaña Familiar)" className={isLight ? "bg-white" : "bg-[#212B20]"}>
+                          Chalet Bruma (Cabaña Familiar)
                         </option>
                       </>
                     )}

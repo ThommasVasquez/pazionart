@@ -50,13 +50,13 @@ export const translations = {
       chaletsDescP1: "El puente entre la arquitectura orgánica y la",
       chaletsDescHighlight: "pausa sagrada",
       chaletsDescP2:
-        ". Desconecta del ruido en nuestros chalets de montaña diseñados para habitar el presente.",
+        ". Desconecta del ruido en nuestros chalets diseñados para habitar el presente.",
       restaurantDescP1: "El puente entre la",
       restaurantDescHighlight: "cocina viva de leña y huerto",
       restaurantDescP2:
-        "y la pausa sagrada. Sabores de montaña cocinados al rescoldo de brasas y servidos en barro ancestral.",
+        "y la pausa sagrada. Sabores tradicionales cocinados al rescoldo de brasas y servidos en barro ancestral.",
       exploreDescP1: "El santuario andino donde el",
-      exploreDescHighlight: "refugio de montaña y el fuego sagrado",
+      exploreDescHighlight: "refugio natural y el fuego sagrado",
       exploreDescP2:
         "se encuentran en una sola experiencia sensorial y consciente.",
       chaletLabel: "Refugio / Chalet",
@@ -78,10 +78,10 @@ export const translations = {
     proposito: {
       tagChalets: "[ Brandbook 2026 · Propósito Chalets ]",
       tagRestaurant: "[ Fogón & Huerto · Sabiduría de Origen ]",
-      headingChalets: "Habitar el Silencio y la Belleza de la Montaña",
+      headingChalets: "Habitar el Silencio y la Belleza Natural",
       headingRestaurant: "El Fuego Vivo y los Sabores del Huerto Andino",
       descChalets:
-        "Pazionart no es solo un destino; es una experiencia de reconexión íntima con la naturaleza y los que uno más quiere. Refugios de alta montaña diseñados para la pausa consciente, la intimidad y el descanso.",
+        "Pazionart no es solo un destino; es una experiencia de reconexión íntima con la naturaleza y los que uno más quiere. Refugios diseñados para la pausa consciente, la intimidad y el descanso.",
       descRestaurant:
         "Cada plato honra la tierra y la memoria campesina. Cocinamos a fuego lento sobre leña de poda controlada, usando ingredientes cultivados en nuestros bancales orgánicos y servidos en vajilla de barro cocido a mano.",
       trait1Title: "Arquitectura Bioclimática",
@@ -101,7 +101,7 @@ export const translations = {
       chaletCardTag: "Mundo 01 · Hospitalidad",
       chaletCardTitle: "Los Chalets de Altura",
       chaletCardDesc:
-        "Tres refugios de diseño orgánico con chimenea, tina de montaña y vistas panorámicas hacia la inmensidad de la naturaleza.",
+        "Tres refugios de diseño orgánico con chimenea, tina privada y vistas panorámicas hacia la inmensidad de la naturaleza.",
       chaletCardBtn: "Ver Refugios & Disponibilidad",
       restaurantCardTag: "Mundo 02 · Gastronomía",
       restaurantCardTitle: "El Fogón Campesino",
@@ -227,13 +227,13 @@ export const translations = {
       chaletsDescP1: "The bridge between organic architecture and",
       chaletsDescHighlight: "sacred pause",
       chaletsDescP2:
-        ". Disconnect from the rush in our high mountain chalets designed to deeply inhabit the present.",
+        ". Disconnect from the rush in our chalets designed to deeply inhabit the present.",
       restaurantDescP1: "The bridge between",
       restaurantDescHighlight: "live wood fire and organic garden",
       restaurantDescP2:
-        "and sacred pause. Mountain flavors slowly cooked on live embers and served in ancestral clay pottery.",
+        "and sacred pause. Traditional flavors slowly cooked on live embers and served in ancestral clay pottery.",
       exploreDescP1: "The Andean sanctuary where",
-      exploreDescHighlight: "mountain refuge and sacred fire",
+      exploreDescHighlight: "natural refuge and sacred fire",
       exploreDescP2:
         "meet in one singular conscious sensory immersion.",
       chaletLabel: "Refuge / Chalet",
@@ -255,10 +255,10 @@ export const translations = {
     proposito: {
       tagChalets: "[ Brandbook 2026 · Chalet Purpose ]",
       tagRestaurant: "[ Hearth & Garden · Wisdom of Origin ]",
-      headingChalets: "Inhabiting Silence and the Beauty of the Mountain",
+      headingChalets: "Inhabiting Silence and Natural Beauty",
       headingRestaurant: "Live Fire and Pure Flavors from the Andean Garden",
       descChalets:
-        "Pazionart is not just a destination; it is an intimate reconnection with nature and the ones you love most. High-mountain refuges designed for conscious stillness, intimacy, and restorative rest.",
+        "Pazionart is not just a destination; it is an intimate reconnection with nature and the ones you love most. Refuges designed for conscious stillness, intimacy, and restorative rest.",
       descRestaurant:
         "Each course honors the soil and ancestral peasant wisdom. We cook slowly over controlled pruning oak wood, using ingredients cultivated in our own organic beds and served on handmade clay pottery.",
       trait1Title: "Bioclimatic Architecture",
@@ -278,7 +278,7 @@ export const translations = {
       chaletCardTag: "World 01 · Hospitality",
       chaletCardTitle: "Highland Chalets",
       chaletCardDesc:
-        "Three organic designer cabins featuring indoor wood fireplaces, mountain soak tubs, and panoramic views toward nature's vastness.",
+        "Three organic designer cabins featuring indoor wood fireplaces, private soak tubs, and panoramic views toward nature's vastness.",
       chaletCardBtn: "View Chalets & Availability",
       restaurantCardTag: "World 02 · Gastronomy",
       restaurantCardTitle: "The Peasant Hearth",
@@ -330,7 +330,7 @@ export const translations = {
       chaletTitle: "Hospitality & Conscious Pause",
       restaurantTitle: "Gastronomy & Sacred Hearth",
       subtitle:
-        "Direct reservation with no middleman. We will contact you directly to tailor every detail of your mountain stay.",
+        "Direct reservation with no middleman. We will contact you directly to tailor every detail of your stay.",
       fullName: "Full Name",
       fullNamePlaceholder: "E.g. Sophia Montgomery",
       contact: "WhatsApp or Email",

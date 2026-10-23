@@ -126,7 +126,7 @@ export default function KineticQuote({
         },
         {
           id: "desayuno-campesino",
-          title: "Desayuno Tradicional de Montaña",
+          title: "Desayuno Tradicional Campesino",
           category: "Gastronomía Matutina",
           desc: "Delicioso desayuno preparado con ingredientes locales frescos: café de altura recién colado, huevos al gusto, arepas de maíz campesinas, queso fresco artesanal y fruta de temporada.",
           duration: "8:00 AM - 10:30 AM",

@@ -91,7 +91,7 @@ export default function RestaurantSection({ onOpenBooking }: RestaurantSectionPr
     {
       step: "Tiempo I",
       title: "Raíces & Huerto Silvestre",
-      desc: "Tubérculos de montaña cocinados al rescoldo de brasas, emulsión de hierbas del huerto orgánico propio y virutas de queso madurado campesino.",
+      desc: "Tubérculos campesinos cocinados al rescoldo de brasas, emulsión de hierbas del huerto orgánico propio y virutas de queso madurado.",
       pairing: "Maridaje sugerido: Infusión fría de poleo y manzana verde.",
       badge: "Entrada Fría / Caliente",
     },
@@ -265,7 +265,7 @@ export default function RestaurantSection({ onOpenBooking }: RestaurantSectionPr
                   onChange={(e) => setTableTime(e.target.value)}
                   className="w-full bg-[#130D0B]/85 text-[#F5F2ED] text-xs rounded-xl px-3 py-2 border border-[#A45D41]/30 focus:border-[#D48B6A] outline-none cursor-pointer"
                 >
-                  <option value="Almuerzo de Montaña (1:00 PM)" className="bg-[#1C1512]">Almuerzo (1:00 PM)</option>
+                  <option value="Almuerzo Campesino (1:00 PM)" className="bg-[#1C1512]">Almuerzo (1:00 PM)</option>
                   <option value="Cena al Atardecer (6:30 PM)" className="bg-[#1C1512]">Cena Atardecer (6:30 PM)</option>
                   <option value="Cena de Fuego Tardía (8:30 PM)" className="bg-[#1C1512]">Cena de Fuego (8:30 PM)</option>
                 </select>
