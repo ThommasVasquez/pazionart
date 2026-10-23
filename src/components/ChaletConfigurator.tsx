@@ -148,12 +148,12 @@ export default function ChaletConfigurator({ onSelectBooking }: ChaletConfigurat
         deck: "/images/gallery/aroma-ventanal-jardin.jpg",
       },
       story:
-        "Una cabaña alpina clásica con estructura A-Frame que celebra la calidez de la madera y el encuentro con los que uno más quiere. Su altillo ofrece iluminación vintage de filamento Edison y amplios ventanales que abren hacia un jardín privado con palmeras andinas y sendero de piedra blanca.",
+        "Una cabaña alpina clásica con estructura A-Frame que celebra la calidez de la madera y el encuentro con los que uno más quiere. Su altillo ofrece un acogedor espacio de descanso y amplios ventanales que abren hacia un jardín privado con palmeras andinas y sendero de piedra blanca.",
       highlights: [
         { label: "2 Camas Dobles", desc: "Capacidad para 4 personas (hasta 6 huéspedes)" },
-        { label: "Lámparas Edison", desc: "Iluminación cálida colgante sobre sala en madera" },
+        { label: "Altillo en Madera", desc: "Espacio cálido y acogedor en el segundo nivel" },
         { label: "Cocina Equipada", desc: "Semi-integral con nevera, fogón y utensilios" },
-        { label: "Ducha Panorámica", desc: "Lavamanos en mesón de madera viva y agua caliente" },
+        { label: "Jardín Privado", desc: "Zona verde exterior con palmeras y sendero de piedra" },
       ],
     },
     {
