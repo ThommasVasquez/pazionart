@@ -85,10 +85,6 @@ export default function Home() {
   const [heroGuests, setHeroGuests] = useState("2 Huéspedes");
   const [heroDate, setHeroDate] = useState("");
 
-  // Hero Quick Booking Bar State - Restaurante
-  const [heroTableGuests, setHeroTableGuests] = useState("2 Comensales");
-  const [heroTableService, setHeroTableService] = useState("Cena al Atardecer (5:30 PM)");
-
   // Leer preferencia previa o query param (?mundo=) en cliente
   useEffect(() => {
     try {
@@ -305,12 +301,11 @@ export default function Home() {
   }, [showThreshold, activeWorld]);
 
 
-  const handleHeroBooking = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleHeroBooking = (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
     if (activeWorld === "restaurante") {
-      const dateText = heroDate ? ` para la fecha ${heroDate}` : "";
       const msg = encodeURIComponent(
-        `Hola Pazionart, deseo reservar una mesa en El Fogón para ${heroTableGuests}${dateText} en el turno de ${heroTableService}. ¿Tienen disponibilidad?`
+        "Hola Pazionart, deseo contactarme con el Restaurante & Fogón para consultar disponibilidad y realizar una reserva."
       );
       window.open(`https://wa.me/?text=${msg}`, "_blank");
     } else {
@@ -419,7 +414,7 @@ export default function Home() {
             <Image
               src={
                 activeWorld === "restaurante"
-                  ? "/images/gallery/spa-preparacion-completa.jpg"
+                  ? "/images/gallery/aroma-comedor-rosas.jpg"
                   : "/images/gallery/aroma-atardecer.jpg"
               }
               alt={
@@ -527,107 +522,19 @@ export default function Home() {
             </p>
 
             {/* ========================================================
-                BARRA FLOTANTE DE RESERVA RÁPIDA (HERO BOOKING ENGINE)
+                BOTÓN DIRECTO DE CONTACTO PARA RESERVAS (RESTAURANTE)
                 ======================================================== */}
             {activeWorld === "restaurante" ? (
-              <form
-                onSubmit={handleHeroBooking}
-                className={`hero-booking-form w-full max-w-4xl backdrop-blur-xl p-3 sm:p-4 rounded-3xl shadow-2xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 items-center text-left transition-colors duration-500 ${
-                  isLight
-                    ? "bg-white/90 border border-[#A45D41]/35 text-[#2A1B14]"
-                    : "bg-[#16100E]/90 border border-[#A45D41]/35 text-[#F5F2ED]"
-                }`}
-              >
-                {/* Selector de Comensales */}
-                <div className={`p-2.5 rounded-2xl border transition-colors ${
-                  isLight
-                    ? "bg-[#FAF5EF] border-[#A45D41]/25"
-                    : "bg-[#140D0B]/80 border-[#A45D41]/25"
-                }`}>
-                  <div className="flex items-center gap-1.5 text-[9px] font-mono text-[#D48B6A] uppercase mb-1">
-                    <Users className="w-3 h-3 text-[#A45D41]" />
-                    <span>{t.hero.tableGuestsLabel}</span>
-                  </div>
-                  <select
-                    value={heroTableGuests}
-                    onChange={(e) => setHeroTableGuests(e.target.value)}
-                    className={`w-full bg-transparent text-xs font-medium focus:outline-none cursor-pointer ${
-                      isLight ? "text-[#2A1B14]" : "text-[#F5F2ED]"
-                    }`}
-                  >
-                    <option value="2 Comensales (Mesa Íntima)" className={isLight ? "bg-white text-[#2A1B14]" : "bg-[#1C1512] text-[#F5F2ED]"}>
-                      2 Comensales (Mesa Íntima)
-                    </option>
-                    <option value="3 a 4 Comensales (Mesa Familiar)" className={isLight ? "bg-white text-[#2A1B14]" : "bg-[#1C1512] text-[#F5F2ED]"}>
-                      3 a 4 Comensales (Mesa Familiar)
-                    </option>
-                    <option value="5 a 8 Comensales (Mesa del Fogón)" className={isLight ? "bg-white text-[#2A1B14]" : "bg-[#1C1512] text-[#F5F2ED]"}>
-                      5 a 8 Comensales (Mesa del Fogón)
-                    </option>
-                  </select>
-                </div>
-
-                {/* Turno / Experiencia */}
-                <div className={`p-2.5 rounded-2xl border transition-colors ${
-                  isLight
-                    ? "bg-[#FAF5EF] border-[#A45D41]/25"
-                    : "bg-[#140D0B]/80 border-[#A45D41]/25"
-                }`}>
-                  <div className="flex items-center gap-1.5 text-[9px] font-mono text-[#D48B6A] uppercase mb-1">
-                    <Clock className="w-3 h-3 text-[#D48B6A]" />
-                    <span>{t.hero.serviceLabel}</span>
-                  </div>
-                  <select
-                    value={heroTableService}
-                    onChange={(e) => setHeroTableService(e.target.value)}
-                    className={`w-full bg-transparent text-xs font-medium focus:outline-none cursor-pointer ${
-                      isLight ? "text-[#2A1B14]" : "text-[#F5F2ED]"
-                    }`}
-                  >
-                    <option value="Almuerzo de Huerto (12:30 PM)" className={isLight ? "bg-white text-[#2A1B14]" : "bg-[#1C1512] text-[#F5F2ED]"}>
-                      Almuerzo de Huerto (12:30 PM)
-                    </option>
-                    <option value="Cena al Atardecer (5:30 PM)" className={isLight ? "bg-white text-[#2A1B14]" : "bg-[#1C1512] text-[#F5F2ED]"}>
-                      Cena al Atardecer (5:30 PM)
-                    </option>
-                    <option value="Noche de Fuego & Vinos (7:30 PM)" className={isLight ? "bg-white text-[#2A1B14]" : "bg-[#1C1512] text-[#F5F2ED]"}>
-                      Noche de Fuego & Vinos (7:30 PM)
-                    </option>
-                  </select>
-                </div>
-
-                {/* Fecha Estimada */}
-                <div className={`p-2.5 rounded-2xl border transition-colors ${
-                  isLight
-                    ? "bg-[#FAF5EF] border-[#A45D41]/25"
-                    : "bg-[#140D0B]/80 border-[#A45D41]/25"
-                }`}>
-                  <div className="flex items-center gap-1.5 text-[9px] font-mono text-[#D48B6A] uppercase mb-1">
-                    <Calendar className="w-3 h-3 text-[#A45D41]" />
-                    <span>{t.hero.datesLabel}</span>
-                  </div>
-                  <input
-                    type="text"
-                    placeholder={t.hero.datesPlaceholder}
-                    value={heroDate}
-                    onChange={(e) => setHeroDate(e.target.value)}
-                    className={`w-full bg-transparent text-xs focus:outline-none ${
-                      isLight
-                        ? "text-[#2A1B14] placeholder-[#2A1B14]/40"
-                        : "text-[#F5F2ED] placeholder-[#F5F2ED]/40"
-                    }`}
-                  />
-                </div>
-
-                {/* Botón CTA de Acción Fogón */}
+              <div className="hero-booking-form flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-xl mx-auto">
                 <button
-                  type="submit"
-                  className="w-full h-full py-3.5 px-6 rounded-2xl text-xs font-semibold tracking-[0.18em] uppercase bg-[#A45D41] hover:bg-[#bd7356] text-[#F5F2ED] transition-all duration-300 shadow-xl flex items-center justify-center gap-2 cursor-pointer hover:scale-[1.02]"
+                  type="button"
+                  onClick={() => handleHeroBooking()}
+                  className="w-full sm:w-auto py-4 px-8 rounded-2xl text-xs sm:text-sm font-semibold tracking-[0.18em] uppercase bg-[#A45D41] hover:bg-[#bd7356] text-[#F5F2ED] transition-all duration-300 shadow-2xl flex items-center justify-center gap-3 cursor-pointer hover:scale-105 active:scale-95"
                 >
-                  <Flame className="w-4 h-4 text-[#F5F2ED]" />
-                  <span>{t.hero.reserveTableBtn}</span>
+                  <MessageCircle className="w-4 h-4 text-[#F5F2ED]" />
+                  <span>Contactar al Restaurante para Reservas</span>
                 </button>
-              </form>
+              </div>
             ) : (
               <form
                 onSubmit={handleHeroBooking}

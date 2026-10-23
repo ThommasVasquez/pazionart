@@ -52,9 +52,9 @@ export const translations = {
       chaletsDescP2:
         ". Desconecta del ruido en nuestros chalets diseñados para habitar el presente.",
       restaurantDescP1: "El puente entre la",
-      restaurantDescHighlight: "cocina viva de leña y huerto",
+      restaurantDescHighlight: "cocina tradicional de leña y huerto",
       restaurantDescP2:
-        "y la pausa sagrada. Sabores tradicionales cocinados al rescoldo de brasas y servidos en barro ancestral.",
+        " y la pausa sagrada. Gastronomía colombiana nacida en Antioquia, cocinada con amor y servida en barro ancestral para compartir con los que uno más quiere.",
       exploreDescP1: "El santuario andino donde el",
       exploreDescHighlight: "refugio natural y el fuego sagrado",
       exploreDescP2:
@@ -229,9 +229,9 @@ export const translations = {
       chaletsDescP2:
         ". Disconnect from the rush in our chalets designed to deeply inhabit the present.",
       restaurantDescP1: "The bridge between",
-      restaurantDescHighlight: "live wood fire and organic garden",
+      restaurantDescHighlight: "traditional wood fire and organic garden",
       restaurantDescP2:
-        "and sacred pause. Traditional flavors slowly cooked on live embers and served in ancestral clay pottery.",
+        " and sacred pause. Authentic Colombian gastronomy born in Antioquia, cooked with love and served in ancestral earthenware to share with those you love most.",
       exploreDescP1: "The Andean sanctuary where",
       exploreDescHighlight: "natural refuge and sacred fire",
       exploreDescP2:

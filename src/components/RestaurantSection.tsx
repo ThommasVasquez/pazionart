@@ -17,9 +17,6 @@ interface RestaurantSectionProps {
 
 export default function RestaurantSection({ onOpenBooking }: RestaurantSectionProps) {
   const [activeCourse, setActiveCourse] = useState(0);
-  const [tableGuests, setTableGuests] = useState("2 Comensales");
-  const [tableTime, setTableTime] = useState("Cena al Atardecer (6:30 PM)");
-  const [tableDate, setTableDate] = useState("");
   const sectionRef = useRef<HTMLElement>(null);
 
   const handleSelectCourse = (idx: number) => {
@@ -118,14 +115,6 @@ export default function RestaurantSection({ onOpenBooking }: RestaurantSectionPr
     },
   ];
 
-  const handleTableReservation = (e: React.FormEvent) => {
-    e.preventDefault();
-    const dateText = tableDate ? ` para la fecha ${tableDate}` : " para los próximos días";
-    const message = encodeURIComponent(
-      `Hola Pazionart, deseo reservar una mesa en el Restaurante & Fogón para ${tableGuests}${dateText} en el horario de ${tableTime}. ¿Tienen disponibilidad?`
-    );
-    window.open(`https://wa.me/?text=${message}`, "_blank");
-  };
 
   return (
     <section
@@ -160,8 +149,8 @@ export default function RestaurantSection({ onOpenBooking }: RestaurantSectionPr
           <div className="lg:col-span-5 relative">
             <div className="restaurant-photo-box relative aspect-[3/4] max-w-md mx-auto rounded-3xl overflow-hidden border border-[#A45D41]/35 shadow-2xl group">
               <Image
-                src="/images/gallery/aroma-comedor-rosas.jpg"
-                alt="Pazionart Restaurante mesa servida con copas y detalles florales"
+                src="/images/gallery/bruma-cocina-comedor.jpg"
+                alt="Pazionart Restaurante cocina rústica campesina y mesa de comedor"
                 fill
                 className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
               />
@@ -235,50 +224,30 @@ export default function RestaurantSection({ onOpenBooking }: RestaurantSectionPr
               </div>
             </div>
 
-            {/* Formulario de Reserva Rápida de Mesa */}
-            <form
-              onSubmit={handleTableReservation}
-              className="restaurant-booking-form bg-[#18110F]/90 backdrop-blur-md p-6 rounded-2xl border border-[#A45D41]/30 grid grid-cols-1 sm:grid-cols-3 gap-3 items-end shadow-xl"
-            >
+            {/* Botón Directo de Contacto para Reservas */}
+            <div className="restaurant-booking-form bg-[#18110F]/90 backdrop-blur-md p-6 rounded-2xl border border-[#A45D41]/30 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-xl">
               <div>
-                <label className="text-[9px] font-mono text-[#D48B6A] uppercase tracking-wider block mb-1">
-                  Comensales
-                </label>
-                <select
-                  value={tableGuests}
-                  onChange={(e) => setTableGuests(e.target.value)}
-                  className="w-full bg-[#130D0B]/85 text-[#F5F2ED] text-xs rounded-xl px-3 py-2 border border-[#A45D41]/30 focus:border-[#D48B6A] outline-none cursor-pointer"
-                >
-                  <option value="1 Persona" className="bg-[#1C1512]">1 Persona</option>
-                  <option value="2 Comensales" className="bg-[#1C1512]">2 Comensales</option>
-                  <option value="4 Comensales" className="bg-[#1C1512]">4 Comensales</option>
-                  <option value="Grupo Exclusivo (6+)" className="bg-[#1C1512]">Grupo Exclusivo (6+)</option>
-                </select>
+                <span className="text-xs font-mono text-[#D48B6A] uppercase tracking-wider block mb-1">
+                  Reserva tu Experiencia Gastronómica
+                </span>
+                <p className="text-xs text-[#F5F2ED]/75 font-light">
+                  Atención personalizada vía WhatsApp para coordinar tu mesa en El Fogón.
+                </p>
               </div>
-
-              <div>
-                <label className="text-[9px] font-mono text-[#D48B6A] uppercase tracking-wider block mb-1">
-                  Turno Culinario
-                </label>
-                <select
-                  value={tableTime}
-                  onChange={(e) => setTableTime(e.target.value)}
-                  className="w-full bg-[#130D0B]/85 text-[#F5F2ED] text-xs rounded-xl px-3 py-2 border border-[#A45D41]/30 focus:border-[#D48B6A] outline-none cursor-pointer"
-                >
-                  <option value="Almuerzo Campesino (1:00 PM)" className="bg-[#1C1512]">Almuerzo (1:00 PM)</option>
-                  <option value="Cena al Atardecer (6:30 PM)" className="bg-[#1C1512]">Cena Atardecer (6:30 PM)</option>
-                  <option value="Cena de Fuego Tardía (8:30 PM)" className="bg-[#1C1512]">Cena de Fuego (8:30 PM)</option>
-                </select>
-              </div>
-
               <button
-                type="submit"
-                className="w-full py-2.5 rounded-xl bg-[#A45D41] hover:bg-[#bd7356] text-[#F5F2ED] text-xs font-semibold uppercase tracking-[0.16em] transition-all duration-300 shadow-lg flex items-center justify-center gap-2 cursor-pointer hover:scale-[1.02]"
+                type="button"
+                onClick={() => {
+                  const message = encodeURIComponent(
+                    "Hola Pazionart, deseo contactarme con el Restaurante & Fogón para realizar una reserva. ¿Tienen disponibilidad?"
+                  );
+                  window.open(`https://wa.me/?text=${message}`, "_blank");
+                }}
+                className="w-full sm:w-auto py-3 px-6 rounded-xl bg-[#A45D41] hover:bg-[#bd7356] text-[#F5F2ED] text-xs font-semibold uppercase tracking-[0.16em] transition-all duration-300 shadow-lg flex items-center justify-center gap-2 cursor-pointer hover:scale-105 shrink-0"
               >
-                <MessageCircle className="w-3.5 h-3.5" />
-                <span>Reservar Mesa</span>
+                <MessageCircle className="w-4 h-4" />
+                <span>Contactar al Restaurante para Reservas</span>
               </button>
-            </form>
+            </div>
           </div>
         </div>
       </div>
