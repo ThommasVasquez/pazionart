@@ -11,6 +11,7 @@ import {
   Briefcase,
   Sparkles,
   MessageCircle,
+  Mail,
   CheckCircle2,
   Phone,
   ArrowRight,
@@ -309,18 +310,28 @@ export default function RestaurantSection({ onOpenBooking }: RestaurantSectionPr
                 ))}
               </div>
 
-              {/* Botón CTA contextual del servicio */}
-              <button
-                type="button"
-                onClick={() => handleWhatsAppClick(current.waMessage)}
-                className="w-full sm:w-auto py-3 px-6 rounded-xl bg-[#A45D41] hover:bg-[#bd7356] text-[#F5F2ED] text-xs font-semibold uppercase tracking-[0.16em] transition-all duration-300 shadow-lg flex items-center justify-center gap-2 cursor-pointer hover:scale-[1.02]"
-              >
-                <MessageCircle className="w-4 h-4" />
-                <span>{current.ctaText}</span>
-              </button>
+              {/* Botones de Llamado a la Acción: WhatsApp y Correo */}
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                <button
+                  type="button"
+                  onClick={() => handleWhatsAppClick(current.waMessage)}
+                  className="py-3 px-6 rounded-xl bg-[#25D366] hover:bg-[#20ba5a] text-[#121B12] text-xs font-semibold uppercase tracking-[0.16em] transition-all duration-300 shadow-lg flex items-center justify-center gap-2 cursor-pointer hover:scale-[1.02]"
+                >
+                  <MessageCircle className="w-4 h-4 fill-current" />
+                  <span>Contactar por WhatsApp</span>
+                </button>
+
+                <a
+                  href={`mailto:pazionartchalets@gmail.com?subject=${encodeURIComponent(`Consulta Restaurante Pazionart - ${current.title}`)}&body=${encodeURIComponent(current.waMessage)}`}
+                  className="py-3 px-6 rounded-xl bg-[#2A1B14] hover:bg-[#38241B] text-[#F5F2ED] border border-[#A45D41]/50 text-xs font-semibold uppercase tracking-[0.16em] transition-all duration-300 shadow-md flex items-center justify-center gap-2 cursor-pointer hover:scale-[1.02]"
+                >
+                  <Mail className="w-4 h-4 text-[#D48B6A]" />
+                  <span>Escribir por Correo</span>
+                </a>
+              </div>
             </div>
 
-            {/* Caja de Contacto Rápido & Atención Telefónica */}
+            {/* Caja de Contacto Rápido: Teléfono, WhatsApp y Correo */}
             <div className="restaurant-booking-form bg-[#18110F]/75 backdrop-blur-md p-5 rounded-2xl border border-[#A45D41]/25 flex flex-col sm:flex-row items-center justify-between gap-4">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-[#A45D41]/20 border border-[#A45D41]/35 flex items-center justify-center shrink-0">
@@ -339,22 +350,22 @@ export default function RestaurantSection({ onOpenBooking }: RestaurantSectionPr
                 </div>
               </div>
 
-              <div className="flex items-center gap-2 w-full sm:w-auto">
-                <button
-                  type="button"
-                  onClick={() => onOpenBooking("Restaurante de Pazionart")}
-                  className="w-full sm:w-auto py-2.5 px-4 rounded-xl border border-[#A45D41]/40 hover:bg-[#A45D41]/20 text-[#F5F2ED] text-xs font-mono uppercase tracking-wider transition-colors cursor-pointer text-center"
-                >
-                  Formulario de Reserva
-                </button>
+              <div className="flex items-center gap-2.5 w-full sm:w-auto">
                 <button
                   type="button"
                   onClick={() => handleWhatsAppClick("Hola Pazionart, me gustaría comunicarme con el Restaurante para reservas y eventos.")}
-                  className="w-full sm:w-auto py-2.5 px-4 rounded-xl bg-[#25D366]/90 hover:bg-[#25D366] text-[#121B12] text-xs font-semibold uppercase tracking-wider transition-all cursor-pointer flex items-center justify-center gap-1.5 shadow-md"
+                  className="flex-1 sm:flex-initial py-2.5 px-4 rounded-xl bg-[#25D366] hover:bg-[#20ba5a] text-[#121B12] text-xs font-semibold uppercase tracking-wider transition-all cursor-pointer flex items-center justify-center gap-1.5 shadow-md hover:scale-[1.02]"
                 >
-                  <MessageCircle className="w-3.5 h-3.5" />
+                  <MessageCircle className="w-3.5 h-3.5 fill-current" />
                   <span>WhatsApp</span>
                 </button>
+                <a
+                  href="mailto:pazionartchalets@gmail.com?subject=Consulta%20Restaurante%20Pazionart&body=Hola%20Pazionart,%20deseo%20m%C3%A1s%20informaci%C3%B3n%20sobre%20el%20restaurante,%20reservas%20o%20eventos."
+                  className="flex-1 sm:flex-initial py-2.5 px-4 rounded-xl bg-[#2A1B14] hover:bg-[#38241B] border border-[#A45D41]/40 text-[#F5F2ED] text-xs font-mono uppercase tracking-wider transition-colors cursor-pointer flex items-center justify-center gap-1.5 text-center hover:scale-[1.02]"
+                >
+                  <Mail className="w-3.5 h-3.5 text-[#D48B6A]" />
+                  <span>Correo</span>
+                </a>
               </div>
             </div>
           </div>
