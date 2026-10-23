@@ -66,6 +66,10 @@ export default function KineticQuote({
     return () => ctx.revert();
   }, [activeWorld]);
 
+  useEffect(() => {
+    setActiveExp(0);
+  }, [activeWorld]);
+
   const experiences = isCoffee
     ? [
         {
@@ -111,48 +115,38 @@ export default function KineticQuote({
       ]
     : [
         {
-          id: "jacuzzi-romance",
-          title: "Inmersión en Jacuzzi Panorámico",
-          category: "Descanso Sagrado en Chalet",
-          desc: "Deck privado en madera con jacuzzi caliente, espuma aromatizada y vista directa a la inmensidad de la naturaleza.",
-          duration: "2 horas",
-          materials: "Jacuzzi privado con agua caliente, espuma y pétalos",
+          id: "kits-bano-jacuzzi",
+          title: "Kits de Baño para Jacuzzi",
+          category: "Bienestar & Relajación",
+          desc: "Disfruta al máximo de tu jacuzzi privado. Incluye sales minerales relajantes, espuma aromática de baño y pétalos de rosas frescas para una inmersión cálida e inolvidable con vista a la naturaleza.",
+          duration: "Bajo Solicitud",
+          materials: "Sales minerales andinas, espuma relajante y pétalos naturales",
           image: "/images/gallery/susurros-jacuzzi.jpg",
-          badge: "Refugio Susurros",
+          badge: "Para tu Jacuzzi",
         },
         {
-          id: "bosque-niebla",
-          title: "Sendero de Eucaliptos & Naturaleza Viva",
-          category: "Conexión Natural & Silencio",
-          desc: "Caminata contemplativa por los senderos empedrados de la reserva, respiración guiada entre los árboles andinos y retorno para compartir con los que uno más quiere.",
-          duration: "2 horas",
-          materials: "Senderos de montaña, naturaleza andina y silencio",
-          image: "/images/gallery/susurros-bosque.jpg",
-          badge: "Pausa en la Naturaleza",
+          id: "desayuno-campesino",
+          title: "Desayuno Tradicional de Montaña",
+          category: "Gastronomía Matutina",
+          desc: "Delicioso desayuno preparado con ingredientes locales frescos: café de altura recién colado, huevos al gusto, arepas de maíz campesinas, queso fresco artesanal y fruta de temporada.",
+          duration: "8:00 AM - 10:30 AM",
+          materials: "Café andino, huevos campesinos, arepa de maíz, queso y fruta fresca",
+          image: "/images/gallery/aroma-comedor-rosas.jpg",
+          badge: "Servicio al Chalet",
         },
         {
-          id: "atardecer-altillo",
-          title: "Atardecer Dorado en el Altillo",
-          category: "Arquitectura & Luz Natural",
-          desc: "Al caer la tarde, la luz crepuscular baña los ventanales alpinos de tu cabaña A-frame. Descanso íntimo con vistas a la cordillera.",
-          duration: "3 horas",
-          materials: "Ventanales panorámicos, linos de montaña y luz dorada",
-          image: "/images/gallery/bruma-altillo-vista.jpg",
-          badge: "Atardecer Alpino",
-        },
-        {
-          id: "ritual-sales",
-          title: "Alquimia de Sales & Botánica",
-          category: "Bienestar en tu Refugio",
-          desc: "Sales minerales aromatizadas con botánica andina en cuencos de barro artesanales para nutrir cuerpo y mente durante tu estadía.",
-          duration: "1.5 horas",
-          materials: "Cuencos de barro, sales minerales y pétalos frescos",
-          image: "/images/gallery/spa-sales-corazon.jpg",
-          badge: "Ritual en Cabaña",
+          id: "productos-minibar",
+          title: "Productos de Minibar & Snacks",
+          category: "Bebidas & Pasabocas",
+          desc: "Surtido seleccionado directamente en tu cabaña para deleitarte en cualquier momento: bebidas frías, cervezas artesanales, vinos selectos y pasabocas para acompañar tu descanso.",
+          duration: "Disponible 24h",
+          materials: "Vinos selectos, cervezas artesanales, bebidas frías y variedad de pasabocas",
+          image: "/images/gallery/spa-composicion-relajante.jpg",
+          badge: "En tu Cabaña",
         },
       ];
 
-  const current = experiences[activeExp];
+  const current = experiences[activeExp] || experiences[0];
 
   return (
     <div ref={containerRef} className="w-full max-w-7xl mx-auto h-full flex flex-col justify-center py-4">
@@ -162,15 +156,23 @@ export default function KineticQuote({
           <span className={`text-[10px] font-mono tracking-widest uppercase ${
             isCoffee ? "text-[#D48B6A]" : "text-[#8D996E]"
           }`}>
-            [ Misión Multisensorial ]
+            {isCoffee ? "[ Sabores & Sobremesa ]" : "[ Confort & Hospitalidad ]"}
           </span>
           <span className={isCoffee ? "text-[#A45D41]/40" : "text-[#8D996E]/40"}>•</span>
           <span className="text-[10px] font-mono text-[#A45D41] tracking-widest uppercase">
-            Vivencias & Aprendizaje
+            {isCoffee ? "Vivencias & Aprendizaje" : "Servicios para tu Estadía"}
           </span>
         </div>
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-[#F5F2ED] tracking-wide font-sans">
-          La Pausa <span className={`italic font-normal ${isCoffee ? "text-[#A45D41]" : "text-[#8D996E]"}`}>Consciente</span>
+          {isCoffee ? (
+            <>
+              La Pausa <span className="italic font-normal text-[#A45D41]">Consciente</span>
+            </>
+          ) : (
+            <>
+              Servicios <span className="italic font-normal text-[#8D996E]">Adicionales</span>
+            </>
+          )}
         </h2>
       </div>
 
@@ -263,14 +265,14 @@ export default function KineticQuote({
 
             <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-[#F5F2ED]/15">
               <span className="text-[11px] font-mono text-[#F5F2ED]/70">
-                Materiales: <span className={isCoffee ? "text-[#D48B6A]" : "text-[#8D996E]"}>{current.materials}</span>
+                Incluye: <span className={isCoffee ? "text-[#D48B6A]" : "text-[#8D996E]"}>{current.materials}</span>
               </span>
 
               <button
                 onClick={() => onBookExperience(current.title)}
                 className="px-5 py-2 rounded-full text-[11px] font-semibold tracking-wider uppercase bg-[#A45D41] hover:bg-[#bd7356] text-[#F5F2ED] transition-colors flex items-center gap-1.5 cursor-pointer shadow-lg hover:scale-[1.02]"
               >
-                <span>Añadir a mi experiencia</span>
+                <span>{isCoffee ? "Añadir a mi experiencia" : "Solicitar Servicio"}</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
               </button>
             </div>

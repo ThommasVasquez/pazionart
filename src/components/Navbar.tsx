@@ -50,7 +50,7 @@ export default function Navbar({
           { name: t.nav.proposito, href: "#proposito" },
           { name: t.nav.chalets, href: "#chalets" },
           { name: t.nav.filosofia, href: "#valores" },
-          { name: t.nav.vivencias, href: "#experiencias" },
+          { name: t.nav.servicios, href: "#experiencias" },
           { name: t.nav.galeria, href: "#galeria" },
           { name: t.nav.contacto, href: "#contacto" },
         ];

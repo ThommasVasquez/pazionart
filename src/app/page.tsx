@@ -300,7 +300,7 @@ export default function Home() {
           { id: "proposito", label: `02 ${t.nav.proposito}` },
           { id: "chalets", label: `03 ${t.nav.chalets}` },
           { id: "valores", label: `04 ${t.nav.filosofia}` },
-          { id: "experiencias", label: `05 ${t.nav.vivencias}` },
+          { id: "experiencias", label: `05 ${t.nav.servicios}` },
           { id: "galeria", label: `06 ${t.nav.galeria}` },
           { id: "contacto", label: `07 ${t.nav.contacto}` },
         ];
@@ -1031,7 +1031,11 @@ export default function Home() {
 
           <div className="relative z-20 w-full">
             <KineticQuote
-              onBookExperience={(expTitle) => openBookingFor(`Experiencia: ${expTitle}`)}
+              onBookExperience={(expTitle) =>
+                openBookingFor(
+                  isRestaurante ? `Experiencia: ${expTitle}` : `Servicio: ${expTitle}`
+                )
+              }
               activeWorld={activeWorld}
             />
           </div>
