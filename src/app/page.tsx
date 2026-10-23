@@ -1207,11 +1207,14 @@ export default function Home() {
                     </div>
                     <div>
                       <span className="font-medium block">Correspondencia Digital</span>
-                      <span className={`text-[11px] font-light ${
-                        isLight ? "text-[#1A2219]/65" : "text-[#F5F2ED]/60"
-                      }`}>
-                        contacto@pazionart.com
-                      </span>
+                      <a
+                        href="mailto:pazionartchalets@gmail.com"
+                        className={`text-[11px] font-light hover:underline transition-colors block ${
+                          isLight ? "text-[#1A2219]/65 hover:text-[#1A2219]" : "text-[#F5F2ED]/60 hover:text-[#F5F2ED]"
+                        }`}
+                      >
+                        pazionartchalets@gmail.com
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -1271,64 +1274,6 @@ export default function Home() {
                     <span>Conectar por WhatsApp</span>
                     <ExternalLink className={`w-3 h-3 ${isLight ? "opacity-60" : "text-[#F5F2ED]/40"}`} />
                   </a>
-                </div>
-
-                {/* Paleta de Fusión Oficial del Brandbook */}
-                <div className={`mt-6 pt-5 border-t ${
-                  isRestaurante ? "border-[#A45D41]/25" : "border-[#8D996E]/20"
-                }`}>
-                  <div className="flex items-center justify-between mb-2">
-                    <span className={`text-[9px] font-mono tracking-widest uppercase ${
-                      isRestaurante ? "text-[#D48B6A]" : isLight ? "text-[#5B6D49]" : "text-[#8D996E]"
-                    }`}>
-                      {isRestaurante ? "Paleta Fusión Fogón (Brandbook)" : "Paleta de Fusión Oficial (Brandbook)"}
-                    </span>
-                    <span className={`text-[9px] font-mono ${isLight ? "opacity-60" : "text-[#F5F2ED]/40"}`}>
-                      {isRestaurante
-                        ? "#1c1512 · #a45d41 · #d48b6a · #f5f2ed"
-                        : "#212b20 · #8d996e · #a45d41 · #f5f2ed"}
-                    </span>
-                  </div>
-
-                  {isRestaurante ? (
-                    <div className="grid grid-cols-4 gap-2 text-center">
-                      <div className="contacto-palette-item p-2 rounded-xl bg-[#1C1512] border border-[#A45D41]/40">
-                        <div className="text-[10px] font-mono font-medium text-[#F5F2ED]">Café</div>
-                        <div className="text-[8px] font-mono text-[#F5F2ED]/50">#1c1512</div>
-                      </div>
-                      <div className="contacto-palette-item p-2 rounded-xl bg-[#A45D41] text-[#F5F2ED]">
-                        <div className="text-[10px] font-mono font-semibold">Brasa</div>
-                        <div className="text-[8px] font-mono opacity-80">#a45d41</div>
-                      </div>
-                      <div className="contacto-palette-item p-2 rounded-xl bg-[#D48B6A] text-[#1C1512]">
-                        <div className="text-[10px] font-mono font-semibold">Leña</div>
-                        <div className="text-[8px] font-mono opacity-80">#d48b6a</div>
-                      </div>
-                      <div className="contacto-palette-item p-2 rounded-xl bg-[#F5F2ED] text-[#1C1512]">
-                        <div className="text-[10px] font-mono font-semibold">Humo</div>
-                        <div className="text-[8px] font-mono opacity-80">#f5f2ed</div>
-                      </div>
-                    </div>
-                  ) : (
-                    <div className="grid grid-cols-4 gap-2 text-center">
-                      <div className="contacto-palette-item p-2 rounded-xl bg-[#212B20] border border-[#F5F2ED]/20">
-                        <div className="text-[10px] font-mono font-medium text-[#F5F2ED]">Noche</div>
-                        <div className="text-[8px] font-mono text-[#F5F2ED]/50">#212b20</div>
-                      </div>
-                      <div className="contacto-palette-item p-2 rounded-xl bg-[#8D996E] text-[#212B20]">
-                        <div className="text-[10px] font-mono font-semibold">Tierra</div>
-                        <div className="text-[8px] font-mono opacity-80">#8d996e</div>
-                      </div>
-                      <div className="contacto-palette-item p-2 rounded-xl bg-[#A45D41] text-[#F5F2ED]">
-                        <div className="text-[10px] font-mono font-semibold">Alma</div>
-                        <div className="text-[8px] font-mono opacity-80">#a45d41</div>
-                      </div>
-                      <div className="contacto-palette-item p-2 rounded-xl bg-[#F5F2ED] text-[#212B20]">
-                        <div className="text-[10px] font-mono font-semibold">Luz</div>
-                        <div className="text-[8px] font-mono opacity-80">#f5f2ed</div>
-                      </div>
-                    </div>
-                  )}
                 </div>
               </div>
             </div>
