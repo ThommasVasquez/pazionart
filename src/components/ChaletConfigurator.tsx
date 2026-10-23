@@ -159,11 +159,11 @@ export default function ChaletConfigurator({ onSelectBooking }: ChaletConfigurat
     {
       id: "chalet-bruma",
       name: "Chalet Bruma",
-      tagline: "Refugio alpino en el corazón de la naturaleza de montaña",
+      tagline: "Refugio familiar con espacios de juegos y ocio al aire libre",
       basePrice: "$220.000 COP",
       area: "Doble nivel con altillo + Zona verde con columpio",
       capacity: "4 a 6 Huéspedes · 2 Camas Dobles",
-      orientation: "Norte · Vista a la montaña y el aire puro andino",
+      orientation: "Norte · Vista a la montaña y aire puro",
       thermal: "Estructura de madera aislante y techos altos inclinados",
       views: {
         exterior: "/images/gallery/bruma-fachada-columpio.jpg",
@@ -171,12 +171,12 @@ export default function ChaletConfigurator({ onSelectBooking }: ChaletConfigurat
         deck: "/images/gallery/bruma-sala-cuero.jpg",
       },
       story:
-        "Emplazado en el punto donde la bruma desciende cada tarde sobre el valle andino. Rodeado de flores de jardín, cuenta con su propio columpio rústico al aire libre y una acogedora sala con ventanal corredizo de suelo a techo.",
+        "Un refugio acogedor diseñado para compartir y disfrutar con los que uno más quiere. Rodeado de naturaleza y flores de jardín, cuenta con amplios espacios pensados para el descanso, el entretenimiento y el ocio tanto dentro como fuera de la cabaña, incluyendo su propia zona verde privada con columpio rústico.",
       highlights: [
-        { label: "Altillo Rústico", desc: "Dormitorio acogedor bajo las vigas de madera" },
-        { label: "Columpio Privado", desc: "Zona exterior en césped con mesa rústica" },
-        { label: "Sala con Sofá de Cuero", desc: "Pisos en madera brillante y ventanal al jardín" },
-        { label: "Cocina & Baño Caliente", desc: "Equipamiento completo para estadías familiares" },
+        { label: "Juegos y Ocio", desc: "Espacios de entretenimiento para disfrutar dentro y fuera del chalet" },
+        { label: "Columpio Privado", desc: "Zona verde exterior en césped para relajarse en familia" },
+        { label: "Sala de Estar", desc: "Ambiente cálido con amplio ventanal corredizo hacia el jardín" },
+        { label: "Altillo & Cocina", desc: "2 camas dobles, cocina equipada y baño con agua caliente" },
       ],
     },
   ];
