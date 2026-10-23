@@ -307,7 +307,7 @@ export default function Home() {
       const msg = encodeURIComponent(
         "Hola Pazionart, deseo contactarme con el Restaurante & Fogón para consultar disponibilidad y realizar una reserva."
       );
-      window.open(`https://wa.me/?text=${msg}`, "_blank");
+      window.open(`https://wa.me/573505791093?text=${msg}`, "_blank");
     } else {
       setSelectedChalet(heroChalet);
       setIsBookingOpen(true);
@@ -382,7 +382,7 @@ export default function Home() {
         />
       )}
       {!showThreshold && <AmbientAudio />}
-      {!showThreshold && <WhatsAppButton />}
+      {!showThreshold && <WhatsAppButton activeWorld={activeWorld} />}
       <BookingModal
         isOpen={isBookingOpen}
         onClose={handleCloseBooking}
@@ -1074,11 +1074,24 @@ export default function Home() {
                       <span className="font-medium block">
                         {isRestaurante ? "Línea Exclusiva del Fogón" : "Línea Exclusiva de Hospitalidad"}
                       </span>
-                      <span className={`text-[11px] font-light ${
-                        isLight ? "text-[#1A2219]/65" : "text-[#F5F2ED]/60"
-                      }`}>
-                        Atención personalizada vía WhatsApp todos los días
-                      </span>
+                      {isRestaurante ? (
+                        <a
+                          href="https://wa.me/573505791093"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={`text-[11px] font-light hover:underline transition-colors block ${
+                            isLight ? "text-[#1A2219]/65 hover:text-[#1A2219]" : "text-[#F5F2ED]/60 hover:text-[#F5F2ED]"
+                          }`}
+                        >
+                          +57 350 579 1093 · Reservas Fogón
+                        </a>
+                      ) : (
+                        <span className={`text-[11px] font-light ${
+                          isLight ? "text-[#1A2219]/65" : "text-[#F5F2ED]/60"
+                        }`}>
+                          Atención personalizada vía WhatsApp todos los días
+                        </span>
+                      )}
                     </div>
                   </div>
 
@@ -1140,7 +1153,7 @@ export default function Home() {
                   <a
                     href={
                       isRestaurante
-                        ? "https://wa.me/?text=Hola%20Pazionart,%20deseo%20reservar%20una%20mesa%20en%20el%20Fog%C3%B3n%20y%20conocer%20el%20men%C3%BA."
+                        ? "https://wa.me/573505791093?text=Hola%20Pazionart,%20deseo%20reservar%20una%20mesa%20en%20el%20Fog%C3%B3n%20y%20conocer%20el%20men%C3%BA."
                         : "https://wa.me/?text=Hola%20Pazionart,%20deseo%20m%C3%A1s%20informaci%C3%B3n%20sobre%20los%20chalets%20y%20experiencias."
                     }
                     target="_blank"

@@ -57,8 +57,9 @@ export default function BookingModal({
     const message = encodeURIComponent(
       `Hola Pazionart, mi nombre es ${name}. Deseo consultar disponibilidad para ${chalet}, para ${guests}, en las fechas: ${dates || "Por definir"}. Mi contacto es ${emailOrPhone}. ¡Gracias!`
     );
+    const phone = isRestaurant ? "573505791093" : "";
     setTimeout(() => {
-      window.open(`https://wa.me/?text=${message}`, "_blank");
+      window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
     }, 1200);
   };
 

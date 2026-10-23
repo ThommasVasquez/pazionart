@@ -240,7 +240,7 @@ export default function RestaurantSection({ onOpenBooking }: RestaurantSectionPr
                   const message = encodeURIComponent(
                     "Hola Pazionart, deseo contactarme con el Restaurante & Fogón para realizar una reserva. ¿Tienen disponibilidad?"
                   );
-                  window.open(`https://wa.me/?text=${message}`, "_blank");
+                  window.open(`https://wa.me/573505791093?text=${message}`, "_blank");
                 }}
                 className="w-full sm:w-auto py-3 px-6 rounded-xl bg-[#A45D41] hover:bg-[#bd7356] text-[#F5F2ED] text-xs font-semibold uppercase tracking-[0.16em] transition-all duration-300 shadow-lg flex items-center justify-center gap-2 cursor-pointer hover:scale-105 shrink-0"
               >

@@ -2,12 +2,21 @@
 
 import { MessageCircle } from "lucide-react";
 
-export default function WhatsAppButton() {
+interface WhatsAppButtonProps {
+  activeWorld?: "chalets" | "restaurante";
+}
+
+export default function WhatsAppButton({ activeWorld = "chalets" }: WhatsAppButtonProps) {
+  const isRestaurante = activeWorld === "restaurante";
+
   const handleClick = () => {
     const msg = encodeURIComponent(
-      "Hola Pazionart, me gustaría consultar disponibilidad para una estadía consciente en los chalets."
+      isRestaurante
+        ? "Hola Pazionart, me gustaría consultar disponibilidad para una reserva en El Fogón."
+        : "Hola Pazionart, me gustaría consultar disponibilidad para una estadía en los chalets."
     );
-    window.open(`https://wa.me/?text=${msg}`, "_blank");
+    const phone = isRestaurante ? "573505791093" : "";
+    window.open(`https://wa.me/${phone}?text=${msg}`, "_blank");
   };
 
   return (
