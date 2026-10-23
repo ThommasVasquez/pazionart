@@ -17,48 +17,82 @@ import {
 
 interface VisualGalleryProps {
   onSelectBooking?: (chaletName: string) => void;
+  activeWorld?: "chalets" | "restaurante";
 }
 
-export default function VisualGallery({ onSelectBooking }: VisualGalleryProps) {
+export default function VisualGallery({
+  onSelectBooking,
+  activeWorld = "chalets",
+}: VisualGalleryProps) {
   const { theme, lang } = usePreferences();
   const isLight = theme === "light";
   const isEn = lang === "en";
+  const isRestaurante = activeWorld === "restaurante";
 
   const [activeTab, setActiveTab] = useState<string>("all");
   const [selectedPhotoIndex, setSelectedPhotoIndex] = useState<number | null>(null);
 
-  const categories = [
-    { id: "all", label: isEn ? "All Assets (34)" : "Todos los Espacios (34)" },
-    { id: "susurros", label: isEn ? "Chalet Susurros (7)" : "Chalet Susurros (7)" },
-    { id: "aroma", label: isEn ? "Chalet Aroma (12)" : "Chalet Aroma (12)" },
-    { id: "bruma", label: isEn ? "Chalet Bruma (9)" : "Chalet Bruma (9)" },
-    { id: "spa", label: isEn ? "Herbal Spa Ritual (6)" : "Spa & Baño de Hierbas (6)" },
-  ];
+  // Chalet items contienen estrictamente los 3 chalets (27 fotos)
+  // Restaurante contiene estrictamente mesa, vino, fuego y huerta (7 fotos)
+  const baseItems = useMemo(() => {
+    if (isRestaurante) {
+      return galleryItems.filter(
+        (it) => it.category === "spa" || it.id === "aroma-06"
+      );
+    }
+    return galleryItems.filter(
+      (it) => it.category !== "spa" && it.id !== "aroma-06"
+    );
+  }, [isRestaurante]);
+
+  const categories = useMemo(() => {
+    if (isRestaurante) {
+      return [
+        { id: "all", label: isEn ? "All Fogón & Mesa (7)" : "Todo El Fogón & Mesa (7)" },
+        { id: "mesas", label: isEn ? "Tables & Candles" : "Mesas & Cenas Íntimas" },
+        { id: "huerta", label: isEn ? "Garden & Botanicals" : "Huerta & Botánica" },
+      ];
+    }
+    return [
+      { id: "all", label: isEn ? "All Chalets (27)" : "Todos los Chalets (27)" },
+      { id: "susurros", label: isEn ? "Chalet Susurros (7)" : "Chalet Susurros (7)" },
+      { id: "aroma", label: isEn ? "Chalet Aroma (11)" : "Chalet Aroma (11)" },
+      { id: "bruma", label: isEn ? "Chalet Bruma (9)" : "Chalet Bruma (9)" },
+    ];
+  }, [isRestaurante, isEn]);
 
   const filteredItems = useMemo(() => {
-    if (activeTab === "all") return galleryItems;
+    if (activeTab === "all") return baseItems;
+    if (isRestaurante) {
+      if (activeTab === "mesas") {
+        return baseItems.filter((it) =>
+          ["aroma-06", "spa-01", "spa-05", "spa-06"].includes(it.id)
+        );
+      }
+      if (activeTab === "huerta") {
+        return baseItems.filter((it) =>
+          ["spa-02", "spa-03", "spa-04"].includes(it.id)
+        );
+      }
+      return baseItems;
+    }
     if (activeTab === "susurros") {
-      return galleryItems.filter(
+      return baseItems.filter(
         (it) => it.category === "susurros" || it.chalet === "Chalet Susurros"
       );
     }
     if (activeTab === "aroma") {
-      return galleryItems.filter(
+      return baseItems.filter(
         (it) => it.category === "aroma" || it.chalet === "Chalet Aroma"
       );
     }
     if (activeTab === "bruma") {
-      return galleryItems.filter(
+      return baseItems.filter(
         (it) => it.category === "bruma" || it.chalet === "Chalet Bruma"
       );
     }
-    if (activeTab === "spa") {
-      return galleryItems.filter(
-        (it) => it.category === "spa" || it.chalet === "Baño de Hierbas"
-      );
-    }
-    return galleryItems;
-  }, [activeTab]);
+    return baseItems;
+  }, [activeTab, baseItems, isRestaurante]);
 
   const currentPhoto =
     selectedPhotoIndex !== null ? filteredItems[selectedPhotoIndex] : null;
@@ -93,21 +127,42 @@ export default function VisualGallery({ onSelectBooking }: VisualGalleryProps) {
             <div className="flex items-center gap-2 mb-2">
               <Camera className="w-4 h-4 text-[#A45D41]" />
               <span className="text-[10px] font-mono text-[#A45D41] tracking-widest uppercase">
-                {isEn ? "[ Visual Archive · 34 Verified Assets ]" : "[ Archivo Visual · 34 Fotografías Reales ]"}
+                {isRestaurante
+                  ? isEn
+                    ? "[ Culinary Visual Archive · El Fogón ]"
+                    : "[ Registro Visual · El Fogón & la Mesa ]"
+                  : isEn
+                  ? "[ Mountain Sanctuaries Archive · 27 Photos ]"
+                  : "[ Archivo Visual · Chalets de Montaña (27) ]"}
               </span>
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-light font-serif tracking-tight">
-              {isEn ? "The Inhabited Space of" : "El Espacio Habitado de"}{" "}
-              <span className="italic font-normal text-[#8D996E]">Pazionart</span>
+              {isRestaurante ? (
+                <>
+                  {isEn ? "The Culinary Ritual of" : "El Ritual del Fogón &"}{" "}
+                  <span className="italic font-normal text-[#A45D41]">
+                    {isEn ? "El Fogón" : "la Mesa"}
+                  </span>
+                </>
+              ) : (
+                <>
+                  {isEn ? "The Inhabited Space of" : "El Espacio Habitado de"}{" "}
+                  <span className="italic font-normal text-[#8D996E]">los Chalets</span>
+                </>
+              )}
             </h2>
           </div>
 
           <p className={`text-xs max-w-md leading-relaxed ${
             isLight ? "text-[#1A2219]/70" : "text-[#F5F2ED]/70"
           }`}>
-            {isEn
-              ? "Every photograph reflects our true Andean sanctuaries: Chalet Susurros, Chalet Aroma, Chalet Bruma, and the ancestral herbal immersion ritual."
-              : "Cada registro corresponde a nuestros santuarios de montaña: Chalet Susurros, Chalet Aroma, Chalet Bruma y el ritual de inmersión en hierbas medicinales."}
+            {isRestaurante
+              ? isEn
+                ? "Tables served by candlelight, glasses of Malbec wine, handmade clay vessels, and aromatic herbs harvested fresh from the mountain garden."
+                : "Mesas servidas a la luz de las velas, copas de vino tinto, cazuelas de barro campesino y hierbas aromáticas recién cosechadas de la huerta."
+              : isEn
+              ? "Every photograph reflects our true mountain refuges: Chalet Susurros, Chalet Aroma, and Chalet Bruma."
+              : "Cada registro fotográfico corresponde fielmente a nuestros 3 refugios de montaña: Chalet Susurros, Chalet Aroma y Chalet Bruma."}
           </p>
         </div>
 

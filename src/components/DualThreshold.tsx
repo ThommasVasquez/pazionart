@@ -12,7 +12,7 @@ import { usePreferences } from "@/context/PreferencesContext";
 
 interface DualThresholdProps {
   isOpen: boolean;
-  onSelectWorld: (world: "chalets" | "restaurante" | "explore") => void;
+  onSelectWorld: (world: "chalets" | "restaurante") => void;
 }
 
 export default function DualThreshold({ isOpen, onSelectWorld }: DualThresholdProps) {
@@ -25,13 +25,13 @@ export default function DualThreshold({ isOpen, onSelectWorld }: DualThresholdPr
   const isLight = theme === "light";
 
   // Transición cinematográfica fluida y orgánica usando la API nativa de View Transitions
-  const handleChoice = (world: "chalets" | "restaurante" | "explore") => {
+  const handleChoice = (world: "chalets" | "restaurante") => {
     // 1. Asignar dinámicamente nombres de transición para que la imagen elegida se expanda al hero
     if (chaletsColRef.current && restauranteColRef.current) {
       const chaletImg = chaletsColRef.current.querySelector("img");
       const restImg = restauranteColRef.current.querySelector("img");
 
-      if (world === "chalets" || world === "explore") {
+      if (world === "chalets") {
         if (chaletImg) (chaletImg as HTMLElement).style.viewTransitionName = "hero-sanctuary-image";
         if (restImg) (restImg as HTMLElement).style.viewTransitionName = "none";
       } else if (world === "restaurante") {
@@ -230,27 +230,6 @@ export default function DualThreshold({ isOpen, onSelectWorld }: DualThresholdPr
         <span className="text-[7px] sm:text-[8px] md:text-[9px] font-mono tracking-[0.3em] uppercase text-[#8D996E] mt-0.5 sm:mt-1 font-semibold">
           {t.threshold.medallionTag}
         </span>
-      </div>
-
-      {/* ========================================================
-          BOTÓN INFERIOR: EXPLORAR TODO EL SANTUARIO
-          ======================================================== */}
-      <div className="absolute bottom-3 sm:bottom-6 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center">
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            handleChoice("explore");
-          }}
-          className={`group inline-flex items-center gap-2 px-4 sm:px-5 py-1.5 sm:py-2 rounded-full border transition-all duration-300 text-[9px] sm:text-[10px] md:text-[11px] font-mono uppercase tracking-[0.2em] shadow-xl cursor-pointer backdrop-blur-md ${
-            isLight
-              ? "bg-[#FFFFFF]/90 text-[#1C231A] border-[#8D996E]/40 hover:border-[#8D996E]"
-              : "bg-[#151D14]/85 text-[#F5F2ED]/85 hover:text-[#F5F2ED] border-[#F5F2ED]/20 hover:border-[#8D996E]/50"
-          }`}
-        >
-          <Sparkles className="w-3.5 h-3.5 text-[#8D996E] transition-transform duration-300 group-hover:rotate-45" />
-          <span>{t.threshold.exploreBtn}</span>
-          <ChevronDown className="w-3.5 h-3.5 text-[#8D996E] animate-bounce" />
-        </button>
       </div>
     </div>
   );

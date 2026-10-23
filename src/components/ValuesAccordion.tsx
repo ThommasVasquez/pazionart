@@ -23,7 +23,7 @@ if (typeof window !== "undefined") {
 }
 
 interface ValuesAccordionProps {
-  activeWorld?: "chalets" | "restaurante" | "explore";
+  activeWorld?: "chalets" | "restaurante";
 }
 
 export default function ValuesAccordion({ activeWorld = "chalets" }: ValuesAccordionProps) {
@@ -66,62 +66,119 @@ export default function ValuesAccordion({ activeWorld = "chalets" }: ValuesAccor
     return () => ctx.revert();
   }, [activeWorld]);
 
-  const values = [
-    {
-      num: "01",
-      title: "Amor por el servicio",
-      tag: "Hospitalidad",
-      desc: "Servimos desde el corazón, con calidez, respeto y atención genuina a cada persona que llega a Pazionart.",
-      icon: Heart,
-      image: "/images/gallery/aroma-sala-bienvenida.jpg",
-      color: "#A45D41",
-    },
-    {
-      num: "02",
-      title: "Conexión natural",
-      tag: "Biophilia",
-      desc: "Valoramos y protegemos el entorno natural, integrándolo en cada experiencia para generar bienestar y armonía viva.",
-      icon: Leaf,
-      image: "/images/gallery/susurros-bosque.jpg",
-      color: "#8D996E",
-    },
-    {
-      num: "03",
-      title: "Excelencia con propósito",
-      tag: "Detalle",
-      desc: "Hacer todo con calidad, detalle y compromiso, entendiendo que cada acción impacta la experiencia del cliente.",
-      icon: Award,
-      image: "/images/gallery/bruma-rincon-lectura.jpg",
-      color: "#A45D41",
-    },
-    {
-      num: "04",
-      title: "Autenticidad & Raíz",
-      tag: "Esencia",
-      desc: "Somos reales, cercanos y coherentes. Cada rincón y objeto refleja nuestra esencia y nuestra historia.",
-      icon: ShieldCheck,
-      image: "/images/gallery/aroma-bano-madera.jpg",
-      color: "#8D996E",
-    },
-    {
-      num: "05",
-      title: "Bienestar integral",
-      tag: "Armonía",
-      desc: "Promovemos experiencias que nutren cuerpo, mente y espíritu, tanto para nuestros visitantes como para nuestro equipo.",
-      icon: Sun,
-      image: "/images/gallery/spa-vista-cenital.jpg",
-      color: "#A45D41",
-    },
-    {
-      num: "06",
-      title: "Innovación consciente",
-      tag: "Evolución",
-      desc: "En constante evolución, creando experiencias nuevas y significativas sin perder jamás nuestra esencia natural y humana.",
-      icon: Sparkles,
-      image: "/images/gallery/bruma-cocina-comedor.jpg",
-      color: "#8D996E",
-    },
-  ];
+  const values = isCoffee
+    ? [
+        {
+          num: "01",
+          title: "Amor por la Brasa",
+          tag: "Fuego Vivo",
+          desc: "Cocinamos desde el corazón, con leña de roble y el calor paciente del rescoldo para alimentar el alma.",
+          icon: Heart,
+          image: "/images/gallery/spa-composicion-relajante.jpg",
+          color: "#A45D41",
+        },
+        {
+          num: "02",
+          title: "Cosecha Viva & Huerto",
+          tag: "Agroecología",
+          desc: "Honramos la tierra cultivando nuestros propios ingredientes andinos, cosechados frescos para cada servicio.",
+          icon: Leaf,
+          image: "/images/gallery/spa-ramilletes-frescos.jpg",
+          color: "#D48B6A",
+        },
+        {
+          num: "03",
+          title: "Vajilla en Barro Vivo",
+          tag: "Artesanía",
+          desc: "Servimos en platos y cuencos modelados a mano por maestros alfareros de nuestra cordillera.",
+          icon: Award,
+          image: "/images/gallery/spa-sales-corazon.jpg",
+          color: "#A45D41",
+        },
+        {
+          num: "04",
+          title: "Sobremesa Serena",
+          tag: "Tiempo Lento",
+          desc: "El fogón no tiene prisa. Promovemos la pausa consciente, la conversación fértil y el disfrute pausado.",
+          icon: ShieldCheck,
+          image: "/images/gallery/aroma-comedor-rosas.jpg",
+          color: "#D48B6A",
+        },
+        {
+          num: "05",
+          title: "Maridaje con Alma",
+          tag: "Sensorial",
+          desc: "Vinos selectos y botánica andina infusionada para elevar cada bocado en perfecta armonía con el entorno.",
+          icon: Sun,
+          image: "/images/gallery/spa-preparacion-completa.jpg",
+          color: "#A45D41",
+        },
+        {
+          num: "06",
+          title: "Memoria de la Tierra",
+          tag: "Origen",
+          desc: "Rescatamos saberes culinarios campesinos reinterpretados con respeto por la estación y la memoria rural.",
+          icon: Sparkles,
+          image: "/images/gallery/spa-vista-cenital.jpg",
+          color: "#D48B6A",
+        },
+      ]
+    : [
+        {
+          num: "01",
+          title: "Amor por el servicio",
+          tag: "Hospitalidad",
+          desc: "Servimos desde el corazón, con calidez, respeto y atención genuina a cada persona que llega a los refugios.",
+          icon: Heart,
+          image: "/images/gallery/aroma-sala-bienvenida.jpg",
+          color: "#A45D41",
+        },
+        {
+          num: "02",
+          title: "Conexión natural",
+          tag: "Biophilia",
+          desc: "Valoramos y protegemos el entorno natural, integrando el bosque de eucaliptos a cada despertar.",
+          icon: Leaf,
+          image: "/images/gallery/susurros-bosque.jpg",
+          color: "#8D996E",
+        },
+        {
+          num: "03",
+          title: "Arquitectura con propósito",
+          tag: "Diseño Alpino",
+          desc: "Cabañas de alta montaña construidas con maderas nobles, techos inclinados y respeto por la orografía.",
+          icon: Award,
+          image: "/images/gallery/bruma-rincon-lectura.jpg",
+          color: "#A45D41",
+        },
+        {
+          num: "04",
+          title: "Autenticidad & Raíz",
+          tag: "Esencia",
+          desc: "Piedra viva, madera lustrada y detalles artesanales que reflejan nuestra identidad de montaña.",
+          icon: ShieldCheck,
+          image: "/images/gallery/aroma-bano-madera.jpg",
+          color: "#8D996E",
+        },
+        {
+          num: "05",
+          title: "Descanso sagrado",
+          tag: "Armonía",
+          desc: "Promovemos el silencio fértil y el sueño reparador rodeado de aire puro y mar de niebla.",
+          icon: Sun,
+          image: "/images/gallery/bruma-cama-altillo.jpg",
+          color: "#A45D41",
+        },
+        {
+          num: "06",
+          title: "Convivencia serena",
+          tag: "Encuentro",
+          desc: "Espacios diáfanos con cocina equipada, altillos cálidos y terrazas privadas para reconectar.",
+          icon: Sparkles,
+          image: "/images/gallery/bruma-cocina-comedor.jpg",
+          color: "#8D996E",
+        },
+      ];
 
   return (
     <div ref={containerRef} className="w-full max-w-7xl mx-auto h-full flex flex-col justify-center py-6">
@@ -131,10 +188,18 @@ export default function ValuesAccordion({ activeWorld = "chalets" }: ValuesAccor
           <span className={`text-[10px] font-mono tracking-widest uppercase block mb-1 ${
             isCoffee ? "text-[#D48B6A]" : "text-[#8D996E]"
           }`}>
-            {isCoffee ? "[ Fogón & Huerto · Brandbook Valores ]" : "[ Brandbook 2026 · Sección Valores ]"}
+            {isCoffee ? "[ Filosofía del Fogón & la Brasa ]" : "[ Filosofía de los Refugios Pazionart ]"}
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-[#F5F2ED] tracking-wide font-sans">
-            La Filosofía que <span className="font-serif italic text-[#A45D41]">Nos Representa</span>
+            {isCoffee ? (
+              <>
+                Los Pilares de Nuestro <span className="font-serif italic text-[#A45D41]">Fogón</span>
+              </>
+            ) : (
+              <>
+                La Filosofía que <span className="font-serif italic text-[#8D996E]">Nos Inspira</span>
+              </>
+            )}
           </h2>
         </div>
         <p className="text-xs text-[#F5F2ED]/60 font-mono tracking-wider mt-2 sm:mt-0 uppercase">

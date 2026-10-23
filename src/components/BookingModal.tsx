@@ -9,27 +9,36 @@ interface BookingModalProps {
   isOpen: boolean;
   onClose: () => void;
   selectedChalet?: string;
+  activeWorld?: "chalets" | "restaurante";
 }
 
 export default function BookingModal({
   isOpen,
   onClose,
   selectedChalet = "Chalet Susurros",
+  activeWorld = "chalets",
 }: BookingModalProps) {
   const { theme, t } = usePreferences();
   const isLight = theme === "light";
 
-  const [chalet, setChalet] = useState(selectedChalet);
-  const [guests, setGuests] = useState("2 Huéspedes");
+  const isRestaurant =
+    activeWorld === "restaurante" ||
+    selectedChalet.toLowerCase().includes("fogón") ||
+    selectedChalet.toLowerCase().includes("restaurante") ||
+    selectedChalet.toLowerCase().includes("mesa");
+
+  const [chalet, setChalet] = useState(
+    isRestaurant &&
+      !selectedChalet.toLowerCase().includes("mesa") &&
+      !selectedChalet.toLowerCase().includes("fogón")
+      ? "Mesa Íntima en el Fogón"
+      : selectedChalet
+  );
+  const [guests, setGuests] = useState(isRestaurant ? "2 Comensales" : "2 Huéspedes");
   const [dates, setDates] = useState("");
   const [name, setName] = useState("");
   const [emailOrPhone, setEmailOrPhone] = useState("");
   const [submitted, setSubmitted] = useState(false);
-
-  const isRestaurant =
-    selectedChalet.toLowerCase().includes("fogón") ||
-    selectedChalet.toLowerCase().includes("restaurante") ||
-    selectedChalet.toLowerCase().includes("mesa");
 
   if (!isOpen) return null;
 
@@ -276,18 +285,34 @@ export default function BookingModal({
                           : "bg-[#151D14]/80 text-[#F5F2ED] border border-[#8D996E]/30 focus:border-[#A45D41]"
                       }`}
                     >
-                      <option value="1 Persona" className={isLight ? "bg-white" : isRestaurant ? "bg-[#1C1512]" : "bg-[#212B20]"}>
-                        1 Persona
-                      </option>
-                      <option value="2 Personas" className={isLight ? "bg-white" : isRestaurant ? "bg-[#1C1512]" : "bg-[#212B20]"}>
-                        2 Personas
-                      </option>
-                      <option value="3-4 Personas" className={isLight ? "bg-white" : isRestaurant ? "bg-[#1C1512]" : "bg-[#212B20]"}>
-                        3 a 4 Personas
-                      </option>
-                      <option value="Grupo Exclusivo (5+)" className={isLight ? "bg-white" : isRestaurant ? "bg-[#1C1512]" : "bg-[#212B20]"}>
-                        Grupo Exclusivo (5+)
-                      </option>
+                      {isRestaurant ? (
+                        <>
+                          <option value="2 Comensales" className={isLight ? "bg-white text-[#2A1B14]" : "bg-[#1C1512] text-[#F5F2ED]"}>
+                            2 Comensales (Mesa Íntima)
+                          </option>
+                          <option value="3 a 4 Comensales" className={isLight ? "bg-white text-[#2A1B14]" : "bg-[#1C1512] text-[#F5F2ED]"}>
+                            3 a 4 Comensales (Mesa Familiar)
+                          </option>
+                          <option value="5 a 8 Comensales" className={isLight ? "bg-white text-[#2A1B14]" : "bg-[#1C1512] text-[#F5F2ED]"}>
+                            5 a 8 Comensales (Celebración)
+                          </option>
+                        </>
+                      ) : (
+                        <>
+                          <option value="1 Huésped" className={isLight ? "bg-white text-[#1A2219]" : "bg-[#212B20] text-[#F5F2ED]"}>
+                            1 Huésped (Retiro Personal)
+                          </option>
+                          <option value="2 Huéspedes" className={isLight ? "bg-white text-[#1A2219]" : "bg-[#212B20] text-[#F5F2ED]"}>
+                            2 Huéspedes (Pareja)
+                          </option>
+                          <option value="3 a 4 Huéspedes" className={isLight ? "bg-white text-[#1A2219]" : "bg-[#212B20] text-[#F5F2ED]"}>
+                            3 a 4 Huéspedes (Familiar)
+                          </option>
+                          <option value="5 a 6 Huéspedes" className={isLight ? "bg-white text-[#1A2219]" : "bg-[#212B20] text-[#F5F2ED]"}>
+                            5 a 6 Huéspedes (Cabaña Completa)
+                          </option>
+                        </>
+                      )}
                     </select>
                   </div>
                 </div>

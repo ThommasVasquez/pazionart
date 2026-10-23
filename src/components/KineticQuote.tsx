@@ -13,7 +13,7 @@ if (typeof window !== "undefined") {
 
 interface KineticQuoteProps {
   onBookExperience: (title: string) => void;
-  activeWorld?: "chalets" | "restaurante" | "explore";
+  activeWorld?: "chalets" | "restaurante";
 }
 
 export default function KineticQuote({
@@ -66,48 +66,91 @@ export default function KineticQuote({
     return () => ctx.revert();
   }, [activeWorld]);
 
-  const experiences = [
-    {
-      id: "botanica-artesanal",
-      title: "Alquimia Botánica & Sales de Baño",
-      category: "Sabiduría Manual & Bienestar",
-      desc: "Tacto directo con los elementos puros. Preparación de sales minerales aromatizadas con hierbas de la huerta y pétalos en cuencos artesanales para tu ritual de descanso.",
-      duration: "2.5 horas",
-      materials: "Sales minerales, cuencos artesanales y pétalos frescos",
-      image: "/images/gallery/spa-sales-corazon.jpg",
-      badge: "Taller Botánico",
-    },
-    {
-      id: "hierbas",
-      title: "Baño de Hierbas & Spa Ancestral",
-      category: "Inmersión Térmica & Botánica",
-      desc: "Tina caliente de inmersión aromatizada con flores, romero fresco, menta y eucalipto andino. Incluye sales minerales exfoliantes y copa de vino tinto.",
-      duration: "2 horas",
-      materials: "Hierbas de huerta, sales botánicas, velas y vino",
-      image: "/images/gallery/spa-ramilletes-frescos.jpg",
-      badge: "Ritual de Bienestar",
-    },
-    {
-      id: "bosque",
-      title: "Baño de Bosque de Eucaliptos",
-      category: "Conexión Botánica",
-      desc: "Shinrin-yoku adaptado a los Andes. Caminata contemplativa por senderos empedrados entre la niebla, respiración guiada y reconocimiento botánico.",
-      duration: "2 horas",
-      materials: "Guía de la reserva, senderos empedrados y aromaterapia",
-      image: "/images/gallery/susurros-interior.jpg",
-      badge: "Inmersión Silenciosa",
-    },
-    {
-      id: "fuego",
-      title: "Atardecer Dorado & Fogón Andino",
-      category: "Hospitalidad & Relato",
-      desc: "Al caer la tarde, la luz dorada baña los ventanales alpinos. Encendemos el fuego en la terraza con copas de vino y fogata bajo las estrellas.",
-      duration: "3 horas",
-      materials: "Leña seca de roble, copas de vino y mantas de lana",
-      image: "/images/gallery/bruma-altillo-vista.jpg",
-      badge: "Pausa Nocturna",
-    },
-  ];
+  const experiences = isCoffee
+    ? [
+        {
+          id: "cena-brasas",
+          title: "Cena Maridaje a la Luz de las Velas",
+          category: "Velada & Sabores de Altura",
+          desc: "Copa de vino tinto Malbec de reserva, iluminación cálida de velas y el crujir de las brasas vivas en el comedor de piedra natural.",
+          duration: "2.5 horas",
+          materials: "Vino tinto reserva, velas botánicas y cristalería fina",
+          image: "/images/gallery/spa-preparacion-completa.jpg",
+          badge: "Cena de Autor",
+        },
+        {
+          id: "fogon-origen",
+          title: "Cocina de Origen & Leña de Roble",
+          category: "Brasa & Gastronomía Ancestral",
+          desc: "El ritual de los 4 tiempos cocinados al rescoldo de brasas andinas, honrando recetas tradicionales en cazuelas de barro hechas a mano.",
+          duration: "3 horas",
+          materials: "Brasas de roble, cazuelas de barro y productos agroecológicos",
+          image: "/images/gallery/spa-composicion-relajante.jpg",
+          badge: "Ritual Gastronómico",
+        },
+        {
+          id: "mesa-rosas",
+          title: "Mesa Campesina con Flores de Altura",
+          category: "Hospitalidad & Sobremesa",
+          desc: "Comedor rústico vestido con pétalos de rosa fresca, pan campesino horneado en leña y una sobremesa serena frente al paisaje andino.",
+          duration: "2 horas",
+          materials: "Mesa de madera viva, rosas andinas y vajilla artesanal",
+          image: "/images/gallery/aroma-comedor-rosas.jpg",
+          badge: "Sobremesa Serena",
+        },
+        {
+          id: "huerta-cosecha",
+          title: "Ramilletes de la Huerta & Aromas",
+          category: "Botánica del Fogón",
+          desc: "Hierbas aromáticas cosechadas al amanecer: menta silvestre, romero fresco y poleo para infusiones digestivas y aderezos de cocina viva.",
+          duration: "1.5 horas",
+          materials: "Hierbas del huerto propio, agua de manantial y hojas frescas",
+          image: "/images/gallery/spa-ramilletes-frescos.jpg",
+          badge: "Cosecha Fresca",
+        },
+      ]
+    : [
+        {
+          id: "jacuzzi-romance",
+          title: "Inmersión en Jacuzzi Panorámico",
+          category: "Descanso Sagrado en Chalet",
+          desc: "Deck privado en madera con jacuzzi caliente, espuma aromatizada y vista directa al mar de niebla sobre el bosque de eucaliptos.",
+          duration: "2 horas",
+          materials: "Jacuzzi privado con agua caliente, espuma y pétalos",
+          image: "/images/gallery/susurros-jacuzzi.jpg",
+          badge: "Refugio Susurros",
+        },
+        {
+          id: "bosque-niebla",
+          title: "Sendero de Eucaliptos & Mar de Niebla",
+          category: "Conexión Natural & Silencio",
+          desc: "Caminata contemplativa por los senderos empedrados de la reserva, respiración guiada entre los árboles andinos y retorno a tu cabaña.",
+          duration: "2 horas",
+          materials: "Senderos de montaña, bosque de eucaliptos y silencio",
+          image: "/images/gallery/susurros-bosque.jpg",
+          badge: "Pausa en el Bosque",
+        },
+        {
+          id: "atardecer-altillo",
+          title: "Atardecer Dorado en el Altillo",
+          category: "Arquitectura & Luz Natural",
+          desc: "Al caer la tarde, la luz crepuscular baña los ventanales alpinos de tu cabaña A-frame. Descanso íntimo con vistas a la cordillera.",
+          duration: "3 horas",
+          materials: "Ventanales panorámicos, linos de montaña y luz dorada",
+          image: "/images/gallery/bruma-altillo-vista.jpg",
+          badge: "Atardecer Alpino",
+        },
+        {
+          id: "ritual-sales",
+          title: "Alquimia de Sales & Botánica",
+          category: "Bienestar en tu Refugio",
+          desc: "Sales minerales aromatizadas con botánica andina en cuencos de barro artesanales para nutrir cuerpo y mente durante tu estadía.",
+          duration: "1.5 horas",
+          materials: "Cuencos de barro, sales minerales y pétalos frescos",
+          image: "/images/gallery/spa-sales-corazon.jpg",
+          badge: "Ritual en Cabaña",
+        },
+      ];
 
   const current = experiences[activeExp];
 

@@ -54,7 +54,7 @@ export default function Home() {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
   const [selectedChalet, setSelectedChalet] = useState("Chalet Susurros");
   const [showThreshold, setShowThreshold] = useState(true);
-  const [activeWorld, setActiveWorld] = useState<"chalets" | "restaurante" | "explore">("chalets");
+  const [activeWorld, setActiveWorld] = useState<"chalets" | "restaurante">("chalets");
   const isRestaurante = activeWorld === "restaurante";
 
   const { t, theme } = usePreferences();
@@ -69,15 +69,12 @@ export default function Home() {
   const [heroTableGuests, setHeroTableGuests] = useState("2 Comensales");
   const [heroTableService, setHeroTableService] = useState("Cena al Atardecer (5:30 PM)");
 
-  // Hero Quick Booking Bar State - Explore
-  const [heroExploreType, setHeroExploreType] = useState("Estadía en Chalet");
-
   // Leer preferencia previa o query param (?mundo=) en cliente
   useEffect(() => {
     try {
       const params = new URLSearchParams(window.location.search);
       const urlWorld = params.get("mundo");
-      if (urlWorld === "chalets" || urlWorld === "restaurante" || urlWorld === "explore") {
+      if (urlWorld === "chalets" || urlWorld === "restaurante") {
         setActiveWorld(urlWorld);
         setShowThreshold(false);
         return;
@@ -85,9 +82,8 @@ export default function Home() {
       const savedWorld = localStorage.getItem("pazionart_active_world") as
         | "chalets"
         | "restaurante"
-        | "explore"
         | null;
-      if (savedWorld && ["chalets", "restaurante", "explore"].includes(savedWorld)) {
+      if (savedWorld && (savedWorld === "chalets" || savedWorld === "restaurante")) {
         setActiveWorld(savedWorld);
       }
     } catch {}
@@ -298,23 +294,13 @@ export default function Home() {
           { id: "experiencias", label: `05 ${t.nav.vivencias}` },
           { id: "contacto", label: `06 ${t.nav.contacto}` },
         ]
-      : activeWorld === "chalets"
-      ? [
+      : [
           { id: "esencia", label: `01 ${t.nav.esencia}` },
           { id: "proposito", label: `02 ${t.nav.proposito}` },
           { id: "chalets", label: `03 ${t.nav.chalets}` },
           { id: "valores", label: `04 ${t.nav.filosofia}` },
           { id: "experiencias", label: `05 ${t.nav.vivencias}` },
           { id: "contacto", label: `06 ${t.nav.contacto}` },
-        ]
-      : [
-          { id: "esencia", label: `01 ${t.nav.esencia}` },
-          { id: "proposito", label: `02 ${t.nav.proposito}` },
-          { id: "restaurante", label: `03 ${t.nav.fogon}` },
-          { id: "chalets", label: `04 ${t.nav.chalets}` },
-          { id: "valores", label: `05 ${t.nav.filosofia}` },
-          { id: "experiencias", label: `06 ${t.nav.vivencias}` },
-          { id: "contacto", label: `07 ${t.nav.contacto}` },
         ];
 
   const handleHeroBooking = (e: React.FormEvent) => {
@@ -325,17 +311,6 @@ export default function Home() {
         `Hola Pazionart, deseo reservar una mesa en El Fogón para ${heroTableGuests}${dateText} en el turno de ${heroTableService}. ¿Tienen disponibilidad?`
       );
       window.open(`https://wa.me/?text=${msg}`, "_blank");
-    } else if (activeWorld === "explore") {
-      if (heroExploreType.includes("Fogón")) {
-        const dateText = heroDate ? ` para la fecha ${heroDate}` : "";
-        const msg = encodeURIComponent(
-          `Hola Pazionart, deseo consultar disponibilidad para una mesa en El Fogón para ${heroGuests}${dateText}. ¿Tienen disponibilidad?`
-        );
-        window.open(`https://wa.me/?text=${msg}`, "_blank");
-      } else {
-        setSelectedChalet(heroChalet);
-        setIsBookingOpen(true);
-      }
     } else {
       setSelectedChalet(heroChalet);
       setIsBookingOpen(true);
@@ -361,12 +336,15 @@ export default function Home() {
     });
   };
 
-  const handleWorldSelection = (world: "chalets" | "restaurante" | "explore") => {
+  const handleWorldSelection = (world: "chalets" | "restaurante") => {
     startSafeViewTransition(
       () => {
         setActiveWorld(world);
         try {
           localStorage.setItem("pazionart_active_world", world);
+          const url = new URL(window.location.href);
+          url.searchParams.set("mundo", world);
+          window.history.replaceState(null, "", url.toString());
         } catch {}
         setShowThreshold(false);
       },
@@ -413,6 +391,7 @@ export default function Home() {
         isOpen={isBookingOpen}
         onClose={handleCloseBooking}
         selectedChalet={selectedChalet}
+        activeWorld={activeWorld}
       />
 
       <main
@@ -666,105 +645,6 @@ export default function Home() {
                   <span>{t.hero.reserveTableBtn}</span>
                 </button>
               </form>
-            ) : activeWorld === "explore" ? (
-              <form
-                onSubmit={handleHeroBooking}
-                className={`hero-booking-form w-full max-w-4xl backdrop-blur-xl p-3 sm:p-4 rounded-3xl shadow-2xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 items-center text-left transition-colors duration-500 ${
-                  isLight
-                    ? "bg-white/90 border border-[#8D996E]/30 text-[#1A2219]"
-                    : "glass-panel-dark border border-[#8D996E]/30 text-[#F5F2ED]"
-                }`}
-              >
-                {/* Selector de Experiencia */}
-                <div className={`p-2.5 rounded-2xl border transition-colors ${
-                  isLight
-                    ? "bg-[#F7F5EE] border-[#8D996E]/25"
-                    : "bg-[#151D14]/70 border-[#8D996E]/20"
-                }`}>
-                  <div className="flex items-center gap-1.5 text-[9px] font-mono text-[#8D996E] uppercase mb-1">
-                    <Sparkles className="w-3 h-3 text-[#A45D41]" />
-                    <span>{t.hero.experienceTypeLabel}</span>
-                  </div>
-                  <select
-                    value={heroExploreType}
-                    onChange={(e) => setHeroExploreType(e.target.value)}
-                    className={`w-full bg-transparent text-xs font-medium focus:outline-none cursor-pointer ${
-                      isLight ? "text-[#1A2219]" : "text-[#F5F2ED]"
-                    }`}
-                  >
-                    <option value="Estadía en Chalet" className={isLight ? "bg-white text-[#1A2219]" : "bg-[#212B20] text-[#F5F2ED]"}>
-                      {t.hero.stayInChalet}
-                    </option>
-                    <option value="Mesa en El Fogón" className={isLight ? "bg-white text-[#1A2219]" : "bg-[#212B20] text-[#F5F2ED]"}>
-                      {t.hero.lunchDinner}
-                    </option>
-                    <option value="Santuario Completo (Estadía + Fogón)" className={isLight ? "bg-white text-[#1A2219]" : "bg-[#212B20] text-[#F5F2ED]"}>
-                      {t.hero.completeExperience}
-                    </option>
-                  </select>
-                </div>
-
-                {/* Selector de Personas */}
-                <div className={`p-2.5 rounded-2xl border transition-colors ${
-                  isLight
-                    ? "bg-[#F7F5EE] border-[#8D996E]/25"
-                    : "bg-[#151D14]/70 border-[#8D996E]/20"
-                }`}>
-                  <div className="flex items-center gap-1.5 text-[9px] font-mono text-[#8D996E] uppercase mb-1">
-                    <Users className="w-3 h-3 text-[#8D996E]" />
-                    <span>{t.hero.guestsLabel}</span>
-                  </div>
-                  <select
-                    value={heroGuests}
-                    onChange={(e) => setHeroGuests(e.target.value)}
-                    className={`w-full bg-transparent text-xs font-medium focus:outline-none cursor-pointer ${
-                      isLight ? "text-[#1A2219]" : "text-[#F5F2ED]"
-                    }`}
-                  >
-                    <option value="1 Persona (Retiro)" className={isLight ? "bg-white text-[#1A2219]" : "bg-[#212B20] text-[#F5F2ED]"}>
-                      1 Persona (Retiro)
-                    </option>
-                    <option value="2 Personas (Pareja)" className={isLight ? "bg-white text-[#1A2219]" : "bg-[#212B20] text-[#F5F2ED]"}>
-                      2 Personas (Pareja)
-                    </option>
-                    <option value="3 a 4 Personas" className={isLight ? "bg-white text-[#1A2219]" : "bg-[#212B20] text-[#F5F2ED]"}>
-                      3 a 4 Personas
-                    </option>
-                  </select>
-                </div>
-
-                {/* Fecha Estimada */}
-                <div className={`p-2.5 rounded-2xl border transition-colors ${
-                  isLight
-                    ? "bg-[#F7F5EE] border-[#8D996E]/25"
-                    : "bg-[#151D14]/70 border-[#8D996E]/20"
-                }`}>
-                  <div className="flex items-center gap-1.5 text-[9px] font-mono text-[#8D996E] uppercase mb-1">
-                    <Calendar className="w-3 h-3 text-[#A45D41]" />
-                    <span>{t.hero.datesLabel}</span>
-                  </div>
-                  <input
-                    type="text"
-                    placeholder={t.hero.datesPlaceholder}
-                    value={heroDate}
-                    onChange={(e) => setHeroDate(e.target.value)}
-                    className={`w-full bg-transparent text-xs focus:outline-none ${
-                      isLight
-                        ? "text-[#1A2219] placeholder-[#1A2219]/40"
-                        : "text-[#F5F2ED] placeholder-[#F5F2ED]/40"
-                    }`}
-                  />
-                </div>
-
-                {/* Botón CTA Explore */}
-                <button
-                  type="submit"
-                  className="w-full h-full py-3.5 px-6 rounded-2xl text-xs font-semibold tracking-[0.18em] uppercase bg-[#A45D41] hover:bg-[#bd7356] text-[#F5F2ED] transition-all duration-300 shadow-xl flex items-center justify-center gap-2 cursor-pointer hover:scale-[1.02]"
-                >
-                  <Compass className="w-4 h-4" />
-                  <span>{t.hero.exploreBtn}</span>
-                </button>
-              </form>
             ) : (
               <form
                 onSubmit={handleHeroBooking}
@@ -933,13 +813,13 @@ export default function Home() {
                 <Image
                   src={
                     activeWorld === "restaurante"
-                      ? "/images/gallery/aroma-planta-baja.jpg"
-                      : "/images/gallery/spa-detalle-aromas.jpg"
+                      ? "/images/gallery/spa-composicion-relajante.jpg"
+                      : "/images/gallery/susurros-bosque.jpg"
                   }
                   alt={
                     activeWorld === "restaurante"
-                      ? "Arquitectura interior y espacio de encuentro en Pazionart"
-                      : "Aromaterapia andina y elementos botánicos en Pazionart"
+                      ? "Mesa campesina y atmósfera gastronómica en El Fogón"
+                      : "Arquitectura bioclimática en el bosque andino"
                   }
                   fill
                   className="object-cover hover:scale-105 transition-transform duration-700"
@@ -1106,52 +986,11 @@ export default function Home() {
         </section>
 
         {/* ========================================================
-            SECCIÓN RESTAURANTE: SOLO SI RESTAURANTE O EXPLORAR
+            SECCIÓN 03: RESTAURANTE O CHALETS (ESTRICTAMENTE SEPARADOS)
             ======================================================== */}
-        {(activeWorld === "restaurante" || activeWorld === "explore") && (
+        {activeWorld === "restaurante" ? (
           <RestaurantSection onOpenBooking={(details) => openBookingFor(details || "Restaurante & Fogón")} />
-        )}
-
-        {/* Portal de enlace a Chalets cuando está en modo solo Restaurante */}
-        {activeWorld === "restaurante" && (
-          <div className="portal-card w-full max-w-5xl mx-auto px-6 py-12 relative z-20">
-            <div className="bg-[#18110F]/90 backdrop-blur-xl p-8 md:p-12 rounded-3xl border border-[#A45D41]/35 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden shadow-2xl">
-              <div className="absolute top-0 right-0 w-80 h-80 bg-radial from-[#A45D41]/20 to-transparent blur-3xl pointer-events-none" />
-              <div className="flex flex-col text-left">
-                <div className="inline-flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.25em] text-[#D48B6A] mb-2">
-                  <Compass className="w-3.5 h-3.5 text-[#A45D41]" />
-                  <span>El Otro Lado del Santuario</span>
-                </div>
-                <h3 className="text-2xl md:text-3xl font-light text-[#F5F2ED] tracking-wide">
-                  ¿Deseas pernoctar bajo las estrellas del bosque?
-                </h3>
-                <p className="text-xs md:text-sm text-[#F5F2ED]/75 font-light mt-2 max-w-xl leading-relaxed">
-                  Descubre los Chalets de Pazionart: arquitectura biofílica suspendida sobre el sotobosque andino, chimenea viva, ritual pour-over y descanso sagrado.
-                </p>
-              </div>
-              <div className="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
-                <button
-                  onClick={() => handleWorldSelection("chalets")}
-                  className="w-full sm:w-auto whitespace-nowrap px-7 py-3.5 rounded-full text-xs font-semibold tracking-[0.18em] uppercase bg-[#8D996E] hover:bg-[#a2af7e] text-[#151D14] transition-all duration-300 shadow-xl flex items-center justify-center gap-2 cursor-pointer hover:scale-105"
-                >
-                  <Compass className="w-4 h-4" />
-                  <span>Conocer los Chalets</span>
-                </button>
-                <button
-                  onClick={() => handleWorldSelection("explore")}
-                  className="w-full sm:w-auto whitespace-nowrap px-5 py-3.5 rounded-full text-[11px] font-mono tracking-[0.16em] uppercase text-[#F5F2ED]/70 hover:text-[#F5F2ED] border border-[#F5F2ED]/15 hover:border-[#8D996E]/40 transition-all cursor-pointer"
-                >
-                  <span>Explorar Todo</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* ========================================================
-            SECCIÓN CHALETS: SOLO SI CHALETS O EXPLORAR
-            ======================================================== */}
-        {(activeWorld === "chalets" || activeWorld === "explore") && (
+        ) : (
           <section
             id="chalets"
             className="relative w-full min-h-screen flex items-center justify-center py-24 md:py-32 px-6 md:px-12 bg-[#1D251C] overflow-hidden"
@@ -1170,42 +1009,6 @@ export default function Home() {
             <div className="absolute -bottom-1 left-0 right-0 h-36 md:h-52 bg-gradient-to-b from-transparent via-[#182017]/80 to-[#182017] pointer-events-none z-10" />
             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 max-w-5xl h-24 bg-radial from-[#A45D41]/8 to-transparent blur-3xl pointer-events-none z-10" />
           </section>
-        )}
-
-        {/* Portal de enlace al Fogón cuando está en modo solo Chalets */}
-        {activeWorld === "chalets" && (
-          <div className="portal-card w-full max-w-5xl mx-auto px-6 py-12 relative z-20">
-            <div className="glass-panel-dark p-8 md:p-12 rounded-3xl border border-[#A45D41]/35 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden shadow-2xl">
-              <div className="absolute top-0 right-0 w-80 h-80 bg-radial from-[#A45D41]/20 to-transparent blur-3xl pointer-events-none" />
-              <div className="flex flex-col text-left">
-                <div className="inline-flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.25em] text-[#A45D41] mb-2">
-                  <Flame className="w-3.5 h-3.5 text-[#A45D41] animate-pulse" />
-                  <span>El Otro Lado del Santuario</span>
-                </div>
-                <h3 className="text-2xl md:text-3xl font-light text-[#F5F2ED] tracking-wide">
-                  ¿Deseas degustar nuestra cocina de origen?
-                </h3>
-                <p className="text-xs md:text-sm text-[#F5F2ED]/75 font-light mt-2 max-w-xl leading-relaxed">
-                  Descubre El Fogón de Pazionart: horno de barro, ingredientes cosechados en nuestra huerta y 4 tiempos al calor de la leña viva.
-                </p>
-              </div>
-              <div className="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
-                <button
-                  onClick={() => handleWorldSelection("restaurante")}
-                  className="w-full sm:w-auto whitespace-nowrap px-7 py-3.5 rounded-full text-xs font-semibold tracking-[0.18em] uppercase bg-[#A45D41] hover:bg-[#bd7356] text-[#F5F2ED] transition-all duration-300 shadow-xl flex items-center justify-center gap-2 cursor-pointer hover:scale-105"
-                >
-                  <UtensilsCrossed className="w-4 h-4" />
-                  <span>Entrar al Fogón</span>
-                </button>
-                <button
-                  onClick={() => handleWorldSelection("explore")}
-                  className="w-full sm:w-auto whitespace-nowrap px-5 py-3.5 rounded-full text-[11px] font-mono tracking-[0.16em] uppercase text-[#F5F2ED]/70 hover:text-[#F5F2ED] border border-[#F5F2ED]/15 hover:border-[#8D996E]/40 transition-all cursor-pointer"
-                >
-                  <span>Explorar Todo</span>
-                </button>
-              </div>
-            </div>
-          </div>
         )}
 
         {/* ========================================================
@@ -1290,7 +1093,10 @@ export default function Home() {
         {/* ========================================================
             SECCIÓN FOTOGRÁFICA COMPLETA: GALERÍA DE LOS 34 ARCHIVOS
             ======================================================== */}
-        <VisualGallery onSelectBooking={(chalet) => openBookingFor(chalet)} />
+        <VisualGallery
+          onSelectBooking={(chalet) => openBookingFor(chalet)}
+          activeWorld={activeWorld}
+        />
 
         {/* ========================================================
             SECCIÓN 06: CONTACTO & MANIFIESTO FINAL

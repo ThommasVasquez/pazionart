@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 interface ScrollProgressProps {
   sections: { id: string; label: string }[];
-  activeWorld?: "chalets" | "restaurante" | "explore";
+  activeWorld?: "chalets" | "restaurante";
 }
 
 export default function ScrollProgress({ sections, activeWorld = "chalets" }: ScrollProgressProps) {

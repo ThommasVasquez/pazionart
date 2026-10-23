@@ -11,8 +11,8 @@ import { usePreferences } from "@/context/PreferencesContext";
 interface NavbarProps {
   onOpenBooking: () => void;
   onOpenThreshold?: () => void;
-  activeWorld?: "chalets" | "restaurante" | "explore";
-  onSelectWorld?: (world: "chalets" | "restaurante" | "explore") => void;
+  activeWorld?: "chalets" | "restaurante";
+  onSelectWorld?: (world: "chalets" | "restaurante") => void;
 }
 
 export default function Navbar({
@@ -45,20 +45,9 @@ export default function Navbar({
           { name: t.nav.galeria, href: "#galeria" },
           { name: t.nav.contacto, href: "#contacto" },
         ]
-      : activeWorld === "chalets"
-      ? [
-          { name: t.nav.esencia, href: "#esencia" },
-          { name: t.nav.proposito, href: "#proposito" },
-          { name: t.nav.chalets, href: "#chalets" },
-          { name: t.nav.filosofia, href: "#valores" },
-          { name: t.nav.vivencias, href: "#experiencias" },
-          { name: t.nav.galeria, href: "#galeria" },
-          { name: t.nav.contacto, href: "#contacto" },
-        ]
       : [
           { name: t.nav.esencia, href: "#esencia" },
           { name: t.nav.proposito, href: "#proposito" },
-          { name: t.nav.fogon, href: "#restaurante" },
           { name: t.nav.chalets, href: "#chalets" },
           { name: t.nav.filosofia, href: "#valores" },
           { name: t.nav.vivencias, href: "#experiencias" },
@@ -167,32 +156,69 @@ export default function Navbar({
             {/* Switch de Modo Claro / Oscuro */}
             <ThemeSwitch isRestaurante={isRestaurante} />
 
-            {onOpenThreshold && (
-              <button
-                onClick={onOpenThreshold}
-                className={`hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-mono tracking-wider transition-all duration-300 glass-panel-dark cursor-pointer group shadow-sm ${
-                  isRestaurante
-                    ? "border border-[#A45D41]/35 hover:border-[#A45D41]/75"
-                    : "border border-[#8D996E]/30 hover:border-[#8D996E]/70"
-                } ${isLight ? "text-[#1C231A]" : "text-[#F5F2ED]/85 hover:text-[#F5F2ED]"}`}
-                title="Cambiar entre Chalets, Restaurante y Explorar Todo"
+            {onSelectWorld ? (
+              <div
+                className={`hidden md:inline-flex items-center p-0.5 rounded-full border transition-colors shadow-sm ${
+                  isLight
+                    ? isRestaurante
+                      ? "bg-[#FAF5EF] border-[#A45D41]/30"
+                      : "bg-[#F7F5EE] border-[#8D996E]/30"
+                    : isRestaurante
+                    ? "bg-[#140D0B]/80 border-[#A45D41]/35"
+                    : "glass-panel-dark border-[#8D996E]/30"
+                }`}
               >
-                <Sparkles className="w-3 h-3 text-[#A45D41] transition-transform duration-300 group-hover:rotate-45" />
-                <span>
-                  {activeWorld === "chalets"
-                    ? t.nav.chaletsName
-                    : activeWorld === "restaurante"
-                    ? t.nav.restaurantName
-                    : t.nav.sanctuaryName}
-                </span>
-                <span
-                  className={`text-[8px] uppercase opacity-70 group-hover:opacity-100 font-sans ${
-                    isRestaurante ? "text-[#D48B6A]" : "text-[#8D996E]"
+                <button
+                  onClick={() => onSelectWorld("chalets")}
+                  className={`px-3 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider transition-all cursor-pointer ${
+                    activeWorld === "chalets"
+                      ? "bg-[#8D996E] text-[#151D14] font-semibold shadow-sm"
+                      : isLight
+                      ? "text-[#1C231A]/60 hover:text-[#1C231A]"
+                      : "text-[#F5F2ED]/60 hover:text-[#F5F2ED]"
                   }`}
+                  title="Experiencia exclusiva de Chalets"
                 >
-                  · {t.nav.switch}
-                </span>
-              </button>
+                  Chalets
+                </button>
+                <button
+                  onClick={() => onSelectWorld("restaurante")}
+                  className={`px-3 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider transition-all cursor-pointer ${
+                    activeWorld === "restaurante"
+                      ? "bg-[#A45D41] text-[#F5F2ED] font-semibold shadow-sm"
+                      : isLight
+                      ? "text-[#1C231A]/60 hover:text-[#1C231A]"
+                      : "text-[#F5F2ED]/60 hover:text-[#F5F2ED]"
+                  }`}
+                  title="Experiencia exclusiva de El Fogón"
+                >
+                  El Fogón
+                </button>
+              </div>
+            ) : (
+              onOpenThreshold && (
+                <button
+                  onClick={onOpenThreshold}
+                  className={`hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-mono tracking-wider transition-all duration-300 glass-panel-dark cursor-pointer group shadow-sm ${
+                    isRestaurante
+                      ? "border border-[#A45D41]/35 hover:border-[#A45D41]/75"
+                      : "border border-[#8D996E]/30 hover:border-[#8D996E]/70"
+                  } ${isLight ? "text-[#1C231A]" : "text-[#F5F2ED]/85 hover:text-[#F5F2ED]"}`}
+                  title="Cambiar entre Chalets y Restaurante"
+                >
+                  <Sparkles className="w-3 h-3 text-[#A45D41] transition-transform duration-300 group-hover:rotate-45" />
+                  <span>
+                    {activeWorld === "chalets" ? t.nav.chaletsName : t.nav.restaurantName}
+                  </span>
+                  <span
+                    className={`text-[8px] uppercase opacity-70 group-hover:opacity-100 font-sans ${
+                      isRestaurante ? "text-[#D48B6A]" : "text-[#8D996E]"
+                    }`}
+                  >
+                    · {t.nav.switch}
+                  </span>
+                </button>
+              )
             )}
 
             <button
@@ -269,29 +295,39 @@ export default function Navbar({
             </a>
           ))}
 
-          {onOpenThreshold && (
-            <button
-              onClick={() => {
-                setIsMobileMenuOpen(false);
-                onOpenThreshold();
-              }}
-              className={`text-xs uppercase tracking-[0.18em] font-mono transition-colors flex items-center gap-2 mt-2 pt-2 border-t w-full cursor-pointer ${
-                isRestaurante
-                  ? "text-[#D48B6A] hover:text-[#A45D41] border-[#A45D41]/25"
-                  : "text-[#8D996E] hover:text-[#A45D41] border-[#8D996E]/20"
-              }`}
-            >
-              <Sparkles className="w-3.5 h-3.5 text-[#A45D41]" />
-              <span>
-                {t.nav.switch} (
-                {activeWorld === "chalets"
-                  ? t.nav.chaletsName
-                  : activeWorld === "restaurante"
-                  ? t.nav.restaurantName
-                  : t.nav.sanctuaryName}
-                )
-              </span>
-            </button>
+          {onSelectWorld && (
+            <div className="flex items-center gap-2 mt-3 pt-3 border-t border-[#8D996E]/20 w-full">
+              <button
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  onSelectWorld("chalets");
+                }}
+                className={`flex-1 py-2 rounded-xl text-xs font-mono uppercase tracking-wider text-center transition-all cursor-pointer ${
+                  activeWorld === "chalets"
+                    ? "bg-[#8D996E] text-[#151D14] font-semibold"
+                    : isLight
+                    ? "bg-[#F7F5EE] text-[#1C231A]/70"
+                    : "glass-panel-dark text-[#F5F2ED]/70"
+                }`}
+              >
+                Chalets
+              </button>
+              <button
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  onSelectWorld("restaurante");
+                }}
+                className={`flex-1 py-2 rounded-xl text-xs font-mono uppercase tracking-wider text-center transition-all cursor-pointer ${
+                  activeWorld === "restaurante"
+                    ? "bg-[#A45D41] text-[#F5F2ED] font-semibold"
+                    : isLight
+                    ? "bg-[#FAF5EF] text-[#2A1B14]/70"
+                    : "glass-panel-dark text-[#F5F2ED]/70"
+                }`}
+              >
+                El Fogón
+              </button>
+            </div>
           )}
 
           <button
