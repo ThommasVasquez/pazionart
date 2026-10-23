@@ -475,11 +475,22 @@ export default function Home() {
               />
             </div>
 
-            {/* Tagline superior */}
-            <div className="hero-tagline flex items-center gap-3 mb-2">
-              <span className={`w-8 h-[1px] ${activeWorld === "restaurante" ? "bg-[#A45D41]" : "bg-[#8D996E]"}`} />
+            {/* Título de la marca con Logo Texto Oficial SVG */}
+            <h1 className="sr-only">Pazionart</h1>
+            <div
+              className="hero-logo h-14 sm:h-[76px] md:h-28 lg:h-36 flex items-center justify-center mb-2"
+              style={{ viewTransitionName: "hero-brand-logo" }}
+            >
+              <LogoTexto
+                className="h-full w-auto filter drop-shadow-2xl"
+                fill={isLight ? (isRestaurante ? "#2A1B14" : "#1A2219") : "#F5F2ED"}
+              />
+            </div>
+
+            {/* Tagline ubicado debajo del logo sin guiones/líneas laterales */}
+            <div className="hero-tagline flex items-center justify-center mb-3">
               <span
-                className={`text-xs md:text-sm font-semibold tracking-[0.35em] uppercase font-mono ${
+                className={`text-[11px] sm:text-xs md:text-sm font-medium tracking-[0.32em] uppercase font-mono ${
                   activeWorld === "restaurante"
                     ? isLight
                       ? "text-[#A45D41]"
@@ -493,54 +504,25 @@ export default function Home() {
                   ? t.hero.chaletsTagline
                   : t.hero.exploreTagline}
               </span>
-              <span className={`w-8 h-[1px] ${activeWorld === "restaurante" ? "bg-[#A45D41]" : "bg-[#8D996E]"}`} />
             </div>
 
-            {/* Título de la marca con Logo Texto Oficial SVG */}
-            <h1 className="sr-only">Pazionart</h1>
-            <div
-              className="hero-logo h-12 sm:h-[72px] md:h-24 lg:h-32 flex items-center justify-center"
-              style={{ viewTransitionName: "hero-brand-logo" }}
-            >
-              <LogoTexto
-                className="h-full w-auto filter drop-shadow-2xl"
-                fill={isLight ? (isRestaurante ? "#2A1B14" : "#1A2219") : "#F5F2ED"}
-              />
-            </div>
-
-            {/* Cita del Propósito del Brandbook adaptada al mundo y traducida */}
+            {/* Cita del Propósito - Texto limpio sin subrayados ni apariencias de hipervínculo */}
             <p
-              className={`hero-description text-sm sm:text-base md:text-lg max-w-2xl font-light leading-relaxed mt-3 mb-8 drop-shadow-md ${
+              className={`hero-description text-sm sm:text-base md:text-lg max-w-2xl font-light leading-relaxed mt-1 mb-8 drop-shadow-md ${
                 isLight ? "text-[#1A2219]/90" : "text-[#F5F2ED]/90"
               }`}
             >
               {activeWorld === "restaurante" ? (
                 <>
-                  {t.hero.restaurantDescP1}{" "}
-                  <span className="text-[#A45D41] font-medium border-b border-[#A45D41]/40 pb-0.5">
-                    {t.hero.restaurantDescHighlight}
-                  </span>{" "}
-                  {t.hero.restaurantDescP2}
+                  {t.hero.restaurantDescP1} {t.hero.restaurantDescHighlight}{t.hero.restaurantDescP2}
                 </>
               ) : activeWorld === "chalets" ? (
                 <>
-                  {t.hero.chaletsDescP1}{" "}
-                  <span
-                    className={`${
-                      isLight ? "text-[#5B6D49]" : "text-[#8D996E]"
-                    } font-medium border-b border-[#8D996E]/40 pb-0.5`}
-                  >
-                    {t.hero.chaletsDescHighlight}
-                  </span>{" "}
-                  {t.hero.chaletsDescP2}
+                  {t.hero.chaletsDescP1} {t.hero.chaletsDescHighlight}{t.hero.chaletsDescP2}
                 </>
               ) : (
                 <>
-                  {t.hero.exploreDescP1}{" "}
-                  <span className="text-[#A45D41] font-medium border-b border-[#A45D41]/40 pb-0.5">
-                    {t.hero.exploreDescHighlight}
-                  </span>{" "}
-                  {t.hero.exploreDescP2}
+                  {t.hero.exploreDescP1} {t.hero.exploreDescHighlight}{t.hero.exploreDescP2}
                 </>
               )}
             </p>

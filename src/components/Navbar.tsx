@@ -96,9 +96,9 @@ export default function Navbar({
           <a
             href="#esencia"
             onClick={(e) => handleScrollTo(e, "#esencia")}
-            className="flex items-center gap-2 sm:gap-2.5 group cursor-pointer"
+            className="flex items-center gap-2 sm:gap-2.5 group cursor-pointer shrink-0"
           >
-            <div className="relative w-7 h-7 md:w-8 md:h-8 transition-transform duration-300 group-hover:scale-105">
+            <div className="relative w-7 h-7 md:w-8 md:h-8 transition-transform duration-300 group-hover:scale-105 shrink-0">
               <Image
                 src="/brand/simbolo-pazionart.svg"
                 alt="Símbolo Pazionart"
@@ -107,7 +107,7 @@ export default function Navbar({
                 priority
               />
             </div>
-            <div className="flex flex-col">
+            <div className="flex flex-col shrink-0 justify-center">
               <div className="h-[22px] md:h-[26px] flex items-center">
                 <LogoTexto
                   className="h-full w-auto transition-transform duration-300 group-hover:scale-[1.02]"
@@ -116,7 +116,7 @@ export default function Navbar({
                 />
               </div>
               <span
-                className={`text-[7px] md:text-[8px] tracking-[0.3em] uppercase mt-0.5 font-mono ${
+                className={`text-[7px] md:text-[8px] tracking-[0.22em] uppercase font-mono whitespace-nowrap mt-0.5 leading-none ${
                   isRestaurante ? (isLight ? "text-[#A45D41]" : "text-[#D48B6A]") : "text-[#8D996E]"
                 }`}
               >
@@ -126,7 +126,7 @@ export default function Navbar({
           </a>
 
           {/* Enlaces de Navegación Compactos & Elegantes */}
-          <nav className="hidden lg:flex items-center gap-5 xl:gap-7">
+          <nav className="hidden lg:flex items-center gap-4 xl:gap-6 shrink-0">
             {navLinks.map((link) => (
               <a
                 key={link.name}
@@ -194,9 +194,9 @@ export default function Navbar({
                       ? "text-[#1C231A]/60 hover:text-[#1C231A]"
                       : "text-[#F5F2ED]/60 hover:text-[#F5F2ED]"
                   }`}
-                  title="Experiencia exclusiva de El Fogón"
+                  title="Experiencia exclusiva de Restaurante"
                 >
-                  El Fogón
+                  Restaurante
                 </button>
               </div>
             ) : (
@@ -329,7 +329,7 @@ export default function Navbar({
                     : "glass-panel-dark text-[#F5F2ED]/70"
                 }`}
               >
-                El Fogón
+                Restaurante
               </button>
             </div>
           )}
