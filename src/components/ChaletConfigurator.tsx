@@ -16,6 +16,7 @@ import {
   Layers,
   SunMedium,
   Wind,
+  Check,
 } from "lucide-react";
 import { startSafeViewTransition } from "@/lib/viewTransition";
 import { usePreferences } from "@/context/PreferencesContext";
@@ -185,19 +186,19 @@ export default function ChaletConfigurator({ onSelectBooking }: ChaletConfigurat
   return (
     <div ref={chaletRef} className="w-full max-w-7xl mx-auto h-full flex flex-col justify-center py-4">
       {/* Top Bar Editorial */}
-      <div className={`flex flex-col md:flex-row md:items-end justify-between mb-4 pb-3 border-b transition-colors ${
+      <div className={`flex flex-col sm:flex-row sm:items-end justify-between mb-4 pb-3 border-b transition-colors ${
         isLight ? "border-[#8D996E]/20" : "border-[#8D996E]/20"
       }`}>
         <div className="chalet-header">
           <div className="flex items-center gap-2 mb-1">
             <span className="text-[10px] font-mono text-[#A45D41] tracking-widest uppercase">
-              {t.configurator.tag}
+              03 · Refugios de Altura
             </span>
             <span className="text-[#8D996E]/40">•</span>
             <span className={`text-[10px] font-mono tracking-widest uppercase ${
               isLight ? "text-[#5B6D49]" : "text-[#8D996E]"
             }`}>
-              3 Refugios Exclusivos
+              Colección Exclusiva
             </span>
           </div>
           <h2 className={`text-2xl sm:text-3xl md:text-4xl font-light tracking-wide font-sans ${
@@ -207,37 +208,69 @@ export default function ChaletConfigurator({ onSelectBooking }: ChaletConfigurat
             <span className="italic font-normal text-[#A45D41]">{t.configurator.chaletsWord}</span>
           </h2>
         </div>
+      </div>
 
-        {/* Selector de Chalet en pestañas estilizadas */}
-        <div className={`chalet-tab-pills flex items-center gap-1.5 mt-3 md:mt-0 p-1 rounded-full border transition-colors ${
-          isLight
-            ? "bg-white/80 border-[#8D996E]/25 shadow-sm"
-            : "glass-panel-dark border-[#8D996E]/20"
-        }`}>
-          {chalets.map((ch, idx) => (
+      {/* Selector de Chalets con Foto para dar máximo protagonismo a los tres */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
+        {chalets.map((ch, idx) => {
+          const isSelected = selectedId === idx;
+          return (
             <button
               key={ch.id}
               onClick={() => handleSelectChalet(idx)}
-              className={`px-4 py-1.5 rounded-full text-xs font-sans tracking-wide transition-all duration-300 cursor-pointer ${
-                selectedId === idx
-                  ? "bg-[#A45D41] text-[#F5F2ED] shadow-md shadow-[#A45D41]/30 font-medium"
+              className={`group relative flex items-center gap-3.5 p-2 sm:p-2.5 rounded-2xl border transition-all duration-300 text-left cursor-pointer ${
+                isSelected
+                  ? "bg-[#A45D41]/20 border-[#A45D41] shadow-xl shadow-[#A45D41]/20 ring-1 ring-[#A45D41]"
                   : isLight
-                  ? "text-[#1A2219]/60 hover:text-[#1A2219]"
-                  : "text-[#F5F2ED]/60 hover:text-[#F5F2ED]"
+                  ? "bg-white/80 border-[#8D996E]/25 hover:border-[#8D996E]/60 shadow-sm hover:bg-white"
+                  : "glass-panel-dark border-[#8D996E]/15 hover:border-[#8D996E]/40 hover:bg-[#151D14]/90"
               }`}
             >
-              {ch.name}
+              <div className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden shrink-0 border border-white/10 shadow-md">
+                <Image
+                  src={ch.views.exterior}
+                  alt={ch.name}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                {isSelected && (
+                  <div className="absolute inset-0 bg-[#A45D41]/40 backdrop-blur-[1px] flex items-center justify-center">
+                    <Check className="w-4 h-4 text-white drop-shadow" />
+                  </div>
+                )}
+              </div>
+              <div className="min-w-0 flex-1">
+                <span className={`text-[9px] font-mono uppercase tracking-widest block truncate ${
+                  isSelected ? "text-[#D48B6A] font-semibold" : "text-[#8D996E]"
+                }`}>
+                  Refugio 0{idx + 1} · {ch.capacity.split("·")[0].trim()}
+                </span>
+                <h3 className={`text-sm sm:text-base font-medium tracking-tight truncate ${
+                  isSelected
+                    ? "text-[#F5F2ED] font-semibold"
+                    : isLight
+                    ? "text-[#1A2219]"
+                    : "text-[#F5F2ED]/90"
+                }`}>
+                  {ch.name}
+                </h3>
+                <p className={`text-[11px] font-light truncate mt-0.5 ${
+                  isSelected ? "text-[#F5F2ED]/80" : isLight ? "text-[#1A2219]/60" : "text-[#F5F2ED]/60"
+                }`}>
+                  {ch.basePrice} <span className="text-[9px] font-mono">/ noche</span>
+                </p>
+              </div>
             </button>
-          ))}
-        </div>
+          );
+        })}
       </div>
 
       {/* Main Interactive Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
         {/* Columna Izquierda: Visor Fotográfico con Selector de Ángulo */}
-        <div className="lg:col-span-7 flex flex-col justify-between">
+        <div className="lg:col-span-7 flex flex-col justify-start">
           <div
-            className={`chalet-visor relative aspect-[16/10] w-full rounded-3xl overflow-hidden shadow-2xl group ${
+            className={`chalet-visor relative aspect-[16/11] lg:aspect-[16/10] w-full rounded-3xl overflow-hidden shadow-2xl group ${
               isLight ? "border border-[#8D996E]/30" : "border border-[#8D996E]/25"
             }`}
             data-cursor="explore"
@@ -283,57 +316,6 @@ export default function ChaletConfigurator({ onSelectBooking }: ChaletConfigurat
               <h3 className="text-xl sm:text-2xl font-light text-[#F5F2ED]">
                 {currentChalet.name}
               </h3>
-            </div>
-          </div>
-
-          {/* Micro-specs de arquitectura bioclimática */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 mt-3">
-            <div className={`chalet-spec-card p-2.5 rounded-xl border transition-colors ${
-              isLight
-                ? "bg-white/80 border-[#8D996E]/20 text-[#1A2219]"
-                : "glass-panel-dark border-[#8D996E]/15 text-[#F5F2ED]"
-            }`}>
-              <div className="flex items-center gap-1.5 text-[10px] font-mono text-[#8D996E] uppercase mb-0.5">
-                <SunMedium className="w-3 h-3 text-[#A45D41]" />
-                <span>Orientación</span>
-              </div>
-              <p className={`text-[11px] font-light truncate ${
-                isLight ? "text-[#1A2219]/80" : "text-[#F5F2ED]/80"
-              }`}>
-                {currentChalet.orientation}
-              </p>
-            </div>
-
-            <div className={`chalet-spec-card p-2.5 rounded-xl border transition-colors ${
-              isLight
-                ? "bg-white/80 border-[#8D996E]/20 text-[#1A2219]"
-                : "glass-panel-dark border-[#8D996E]/15 text-[#F5F2ED]"
-            }`}>
-              <div className="flex items-center gap-1.5 text-[10px] font-mono text-[#8D996E] uppercase mb-0.5">
-                <Wind className="w-3 h-3 text-[#8D996E]" />
-                <span>Confort Térmico</span>
-              </div>
-              <p className={`text-[11px] font-light truncate ${
-                isLight ? "text-[#1A2219]/80" : "text-[#F5F2ED]/80"
-              }`}>
-                {currentChalet.thermal}
-              </p>
-            </div>
-
-            <div className={`chalet-spec-card p-2.5 rounded-xl border col-span-2 sm:col-span-1 transition-colors ${
-              isLight
-                ? "bg-white/80 border-[#8D996E]/20 text-[#1A2219]"
-                : "glass-panel-dark border-[#8D996E]/15 text-[#F5F2ED]"
-            }`}>
-              <div className="flex items-center gap-1.5 text-[10px] font-mono text-[#8D996E] uppercase mb-0.5">
-                <ShieldCheck className="w-3 h-3 text-[#A45D41]" />
-                <span>Privacidad</span>
-              </div>
-              <p className={`text-[11px] font-light truncate ${
-                isLight ? "text-[#1A2219]/80" : "text-[#F5F2ED]/80"
-              }`}>
-                Aislado a 60m del chalet más próximo
-              </p>
             </div>
           </div>
         </div>
