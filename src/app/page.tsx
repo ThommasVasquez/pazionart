@@ -35,7 +35,6 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import BookingModal from "@/components/BookingModal";
 import ChaletConfigurator from "@/components/ChaletConfigurator";
 import ValuesAccordion from "@/components/ValuesAccordion";
-import KineticQuote from "@/components/KineticQuote";
 import SplashMask from "@/components/SplashMask";
 import LogoTexto from "@/components/LogoTexto";
 import DualThreshold from "@/components/DualThreshold";
@@ -919,61 +918,16 @@ export default function Home() {
             <ValuesAccordion activeWorld={activeWorld} />
           </div>
 
-          {/* Difuminado inferior hacia Sección 05 (Vivencias) */}
+          {/* Difuminado inferior hacia Galería */}
           <div className={`absolute -bottom-1 left-0 right-0 h-36 md:h-52 bg-gradient-to-b pointer-events-none z-10 ${
             isRestaurante
-              ? "from-transparent via-[#221814]/85 to-[#221814]"
-              : "from-transparent via-[#1B231B]/80 to-[#1B231B]"
+              ? "from-transparent via-[#150F0D]/85 to-[#150F0D]"
+              : "from-transparent via-[#0E150D]/85 to-[#0E150D]"
           }`} />
           <div className={`absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 max-w-5xl h-24 bg-radial pointer-events-none z-10 blur-3xl ${
             isRestaurante
               ? "from-[#A45D41]/14 to-transparent"
               : "from-[#8D996E]/10 to-transparent"
-          }`} />
-        </section>
-
-        {/* ========================================================
-            SECCIÓN 05: LA PAUSA CONSCIENTE (VIVENCIAS SENSORIALES)
-            ======================================================== */}
-        <section
-          id="experiencias"
-          className={`relative w-full min-h-screen flex items-center justify-center py-24 md:py-32 px-6 md:px-12 overflow-hidden transition-colors duration-700 ${
-            isRestaurante ? "bg-[#221814]" : "bg-[#1B231B]"
-          }`}
-        >
-          {/* Difuminado superior desde Filosofía */}
-          <div className={`absolute top-0 left-0 right-0 h-32 md:h-48 bg-gradient-to-b pointer-events-none z-10 ${
-            isRestaurante
-              ? "from-[#1D1512]/80 via-[#221814]/50 to-transparent"
-              : "from-[#182017]/75 via-[#1B231B]/50 to-transparent"
-          }`} />
-          <div className={`absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-6xl h-px bg-gradient-to-r pointer-events-none z-20 blur-[1px] ${
-            isRestaurante
-              ? "from-transparent via-[#A45D41]/25 to-transparent"
-              : "from-transparent via-[#8D996E]/15 to-transparent"
-          }`} />
-
-          <div className="relative z-20 w-full">
-            <KineticQuote
-              onBookExperience={(expTitle) =>
-                openBookingFor(
-                  isRestaurante ? `Experiencia: ${expTitle}` : `Servicio: ${expTitle}`
-                )
-              }
-              activeWorld={activeWorld}
-            />
-          </div>
-
-          {/* Difuminado inferior hacia Sección 06 (Contacto) */}
-          <div className={`absolute -bottom-1 left-0 right-0 h-36 md:h-52 bg-gradient-to-b pointer-events-none z-10 ${
-            isRestaurante
-              ? "from-transparent via-[#17110F]/85 to-[#17110F]"
-              : "from-transparent via-[#141B13]/85 to-[#141B13]"
-          }`} />
-          <div className={`absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 max-w-5xl h-24 bg-radial pointer-events-none z-10 blur-3xl ${
-            isRestaurante
-              ? "from-[#A45D41]/12 to-transparent"
-              : "from-[#A45D41]/8 to-transparent"
           }`} />
         </section>
 
@@ -1024,7 +978,7 @@ export default function Home() {
               {/* Lado Izquierdo: Coordenadas & Datos de Hospitalidad */}
               <div className="lg:col-span-6 flex flex-col">
                 <div className="contacto-tagline flex items-center gap-2 mb-2">
-                  <span className={`text-xs font-mono ${isRestaurante ? "text-[#D48B6A]" : isLight ? "text-[#5B6D49]" : "text-[#8D996E]"}`}>07</span>
+                  <span className={`text-xs font-mono ${isRestaurante ? "text-[#D48B6A]" : isLight ? "text-[#5B6D49]" : "text-[#8D996E]"}`}>06</span>
                   <span className={`w-8 h-[1px] ${isRestaurante ? "bg-[#A45D41]/40" : "bg-[#8D996E]/40"}`} />
                   <span className={`text-[10px] font-mono uppercase tracking-[0.25em] ${isRestaurante ? "text-[#D48B6A]" : isLight ? "text-[#5B6D49]" : "text-[#8D996E]"}`}>
                     {isRestaurante ? "Encuentro & Mesa Colombiana" : "Encuentro & Hospitalidad"}
