@@ -65,8 +65,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es" className={`${montserrat.variable} h-full antialiased`}>
-      <body className="min-h-full font-sans selection:bg-[#A45D41] selection:text-[#F5F2ED] transition-colors duration-500">
+    <html lang="es" className={`${montserrat.variable} antialiased`}>
+      <body className="font-sans selection:bg-[#A45D41] selection:text-[#F5F2ED] transition-colors duration-500">
         <PreferencesProvider>{children}</PreferencesProvider>
       </body>
     </html>

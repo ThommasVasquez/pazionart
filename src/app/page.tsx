@@ -292,7 +292,8 @@ export default function Home() {
           { id: "restaurante", label: `03 ${t.nav.menu}` },
           { id: "valores", label: `04 ${t.nav.filosofia}` },
           { id: "experiencias", label: `05 ${t.nav.vivencias}` },
-          { id: "contacto", label: `06 ${t.nav.contacto}` },
+          { id: "galeria", label: `06 ${t.nav.galeria}` },
+          { id: "contacto", label: `07 ${t.nav.contacto}` },
         ]
       : [
           { id: "esencia", label: `01 ${t.nav.esencia}` },
@@ -300,7 +301,8 @@ export default function Home() {
           { id: "chalets", label: `03 ${t.nav.chalets}` },
           { id: "valores", label: `04 ${t.nav.filosofia}` },
           { id: "experiencias", label: `05 ${t.nav.vivencias}` },
-          { id: "contacto", label: `06 ${t.nav.contacto}` },
+          { id: "galeria", label: `06 ${t.nav.galeria}` },
+          { id: "contacto", label: `07 ${t.nav.contacto}` },
         ];
 
   const handleHeroBooking = (e: React.FormEvent) => {
@@ -1134,7 +1136,7 @@ export default function Home() {
               {/* Lado Izquierdo: Coordenadas & Datos de Hospitalidad */}
               <div className="lg:col-span-6 flex flex-col">
                 <div className="contacto-tagline flex items-center gap-2 mb-2">
-                  <span className={`text-xs font-mono ${isRestaurante ? "text-[#D48B6A]" : isLight ? "text-[#5B6D49]" : "text-[#8D996E]"}`}>06</span>
+                  <span className={`text-xs font-mono ${isRestaurante ? "text-[#D48B6A]" : isLight ? "text-[#5B6D49]" : "text-[#8D996E]"}`}>07</span>
                   <span className={`w-8 h-[1px] ${isRestaurante ? "bg-[#A45D41]/40" : "bg-[#8D996E]/40"}`} />
                   <span className={`text-[10px] font-mono uppercase tracking-[0.25em] ${isRestaurante ? "text-[#D48B6A]" : isLight ? "text-[#5B6D49]" : "text-[#8D996E]"}`}>
                     {isRestaurante ? "Encuentro & Mesa Campesina" : "Encuentro & Hospitalidad"}

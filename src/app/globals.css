@@ -28,7 +28,6 @@
 }
 
 html {
-  scroll-behavior: smooth;
   background-color: var(--noche);
   color: var(--luz);
   font-family: var(--font-sans);

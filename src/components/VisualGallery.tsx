@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import Image from "next/image";
 import { usePreferences } from "@/context/PreferencesContext";
 import galleryItems from "@/lib/galleryManifest.json";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   Camera,
   Layers,
@@ -31,6 +32,17 @@ export default function VisualGallery({
 
   const [activeTab, setActiveTab] = useState<string>("all");
   const [selectedPhotoIndex, setSelectedPhotoIndex] = useState<number | null>(null);
+
+  // Recalcular límites de scroll inmediatamente cuando cambian las pestañas o el mundo
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (typeof window !== "undefined") {
+        window.__lenis?.resize();
+        ScrollTrigger.refresh();
+      }
+    }, 150);
+    return () => clearTimeout(timer);
+  }, [activeTab, activeWorld]);
 
   // Chalet items contienen estrictamente los 3 chalets (27 fotos)
   // Restaurante contiene estrictamente mesa, vino, fuego y huerta (7 fotos)

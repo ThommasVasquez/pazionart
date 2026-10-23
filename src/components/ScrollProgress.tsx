@@ -17,7 +17,8 @@ export default function ScrollProgress({ sections, activeWorld = "chalets" }: Sc
       sections.forEach((sec, idx) => {
         const el = document.getElementById(sec.id);
         if (el) {
-          const top = el.offsetTop;
+          const rect = el.getBoundingClientRect();
+          const top = rect.top + window.scrollY;
           const height = el.offsetHeight;
           if (scrollPos >= top && scrollPos < top + height) {
             setActiveSection(idx);
@@ -32,9 +33,13 @@ export default function ScrollProgress({ sections, activeWorld = "chalets" }: Sc
   }, [sections]);
 
   const scrollToSection = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
+    if (typeof window !== "undefined" && window.__lenis) {
+      window.__lenis.scrollTo(`#${id}`, { offset: -40, duration: 1.2 });
+    } else {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
     }
   };
 
