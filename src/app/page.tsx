@@ -305,7 +305,7 @@ export default function Home() {
     if (e) e.preventDefault();
     if (activeWorld === "restaurante") {
       const msg = encodeURIComponent(
-        "Hola Pazionart, deseo contactarme con el Restaurante & Fogón para consultar disponibilidad y realizar una reserva."
+        "Hola Pazionart, deseo contactarme con el Restaurante de Pazionart para consultar disponibilidad y realizar una reserva."
       );
       window.open(`https://wa.me/573505791093?text=${msg}`, "_blank");
     } else {
@@ -419,7 +419,7 @@ export default function Home() {
               }
               alt={
                 activeWorld === "restaurante"
-                  ? "Pazionart Restaurante & Fogón Campesino"
+                  ? "Pazionart Restaurante"
                   : "Pazionart Chalets & Refugios"
               }
               fill
@@ -703,13 +703,13 @@ export default function Home() {
                 <Image
                   src={
                     activeWorld === "restaurante"
-                      ? "/images/gallery/spa-composicion-relajante.jpg"
+                      ? "/images/gallery/bruma-cocina-comedor.jpg"
                       : "/images/gallery/susurros-bosque.jpg"
                   }
                   alt={
                     activeWorld === "restaurante"
-                      ? "Mesa campesina y atmósfera gastronómica en El Fogón"
-                      : "Arquitectura bioclimática en el bosque andino"
+                      ? "Cocina y comedor tradicional del Restaurante de Pazionart"
+                      : "Arquitectura bioclimática en la naturaleza andina"
                   }
                   fill
                   className="object-cover hover:scale-105 transition-transform duration-700"
@@ -731,7 +731,7 @@ export default function Home() {
                 <span className={`w-8 h-[1px] ${isRestaurante ? "bg-[#A45D41]/40" : "bg-[#8D996E]/40"}`} />
                 <span className={`text-[10px] font-mono uppercase tracking-[0.25em] ${isRestaurante ? "text-[#D48B6A]" : isLight ? "text-[#5B6D49]" : "text-[#8D996E]"}`}>
                   {activeWorld === "restaurante"
-                    ? "Filosofía del Restaurante"
+                    ? "Restaurante de Pazionart"
                     : "Propósito"}
                 </span>
               </div>
@@ -762,42 +762,54 @@ export default function Home() {
                   : t.proposito.descChalets}
               </p>
 
-              {/* Los 4 Rasgos del Brandbook */}
+              {/* Pilares Clave de la Experiencia */}
               <div className="grid grid-cols-2 gap-3 mb-6">
-                {[
-                  {
-                    name: "Culta",
-                    desc:
-                      activeWorld === "restaurante"
-                        ? "Botánica andina, fermentos y memoria gastronómica rural."
-                        : "Sabiduría rural, botánica y respeto por las raíces históricas.",
-                    color: isRestaurante ? "#D48B6A" : isLight ? "#5B6D49" : "#8D996E",
-                  },
-                  {
-                    name: "Serena",
-                    desc:
-                      activeWorld === "restaurante"
-                        ? "Cocción al rescoldo, sobremesa sin prisa y conversación fértil."
-                        : "Ritmo desacelerado, silencio fértil y armonía con la naturaleza y los que uno más quiere.",
-                    color: "#A45D41",
-                  },
-                  {
-                    name: "Acogedora",
-                    desc:
-                      activeWorld === "restaurante"
-                        ? "El abrazo del fuego central y la hospitalidad generosa."
-                        : "Servicio desde el corazón, con calidez, respeto y escucha.",
-                    color: isRestaurante ? "#D48B6A" : isLight ? "#5B6D49" : "#8D996E",
-                  },
-                  {
-                    name: "Artística",
-                    desc:
-                      activeWorld === "restaurante"
-                        ? "Vajilla de barro artesanal y platos concebidos con intención estética."
-                        : "Cada objeto y textura concebido con intención estética y alma.",
-                    color: "#A45D41",
-                  },
-                ].map((trait) => (
+                {(activeWorld === "restaurante"
+                  ? [
+                      {
+                        name: "Cocina a la Leña",
+                        desc: "Fuego tradicional y preparaciones auténticas con el verdadero sabor de nuestra tierra.",
+                        color: "#D48B6A",
+                      },
+                      {
+                        name: "Origen Colombiano",
+                        desc: "Gastronomía nacida en Antioquia, honrando nuestras raíces con ingredientes frescos y locales.",
+                        color: "#A45D41",
+                      },
+                      {
+                        name: "Mesa para Compartir",
+                        desc: "Un ambiente cálido y sin afanes, pensado para disfrutar con los que uno más quiere.",
+                        color: "#D48B6A",
+                      },
+                      {
+                        name: "Vajilla Artesanal",
+                        desc: "Servido en auténtico barro moldeado a mano, uniendo arte, tradición y buen comer.",
+                        color: "#A45D41",
+                      },
+                    ]
+                  : [
+                      {
+                        name: "Naturaleza Viva",
+                        desc: "Entorno natural y aire puro que invitan al descanso y la reconexión íntima.",
+                        color: isLight ? "#5B6D49" : "#8D996E",
+                      },
+                      {
+                        name: "Pausa Consciente",
+                        desc: "Desconecta del afán diario en un refugio diseñado para habitar el presente.",
+                        color: "#A45D41",
+                      },
+                      {
+                        name: "Hospitalidad Real",
+                        desc: "Atención cálida, humana y dedicada a cuidar cada detalle de tu estancia.",
+                        color: isLight ? "#5B6D49" : "#8D996E",
+                      },
+                      {
+                        name: "Arquitectura & Alma",
+                        desc: "Cabañas con chimenea, jacuzzi y acabados nobles para compartir con los que uno más quiere.",
+                        color: "#A45D41",
+                      },
+                    ]
+                ).map((trait) => (
                   <div
                     key={trait.name}
                     className={`proposito-trait p-3.5 rounded-2xl transition-colors ${
@@ -829,8 +841,8 @@ export default function Home() {
                 isLight ? (isRestaurante ? "text-[#2A1B14]/85" : "text-[#1A2219]/85") : "text-[#F5F2ED]/85"
               }`}>
                 {activeWorld === "restaurante"
-                  ? "“En El Fogón cocinamos con amor, honramos la tierra y alimentamos con propósito.”"
-                  : "“En Pazionart servimos con amor, conectamos con la naturaleza y creamos experiencias con propósito.”"}
+                  ? "“En nuestro restaurante cocinamos con amor, honramos la tierra y preparamos cada plato para disfrutar con los que uno más quiere.”"
+                  : "“El verdadero lujo contemporáneo no es el exceso, sino el silencio, el tiempo y la compañía de los que uno más quiere.”"}
               </blockquote>
             </div>
           </div>
@@ -854,7 +866,7 @@ export default function Home() {
             SECCIÓN 03: RESTAURANTE O CHALETS (ESTRICTAMENTE SEPARADOS)
             ======================================================== */}
         {activeWorld === "restaurante" ? (
-          <RestaurantSection onOpenBooking={(details) => openBookingFor(details || "Restaurante & Fogón")} />
+          <RestaurantSection onOpenBooking={(details) => openBookingFor(details || "Restaurante de Pazionart")} />
         ) : (
           <section
             id="chalets"
@@ -1015,7 +1027,7 @@ export default function Home() {
                   <span className={`text-xs font-mono ${isRestaurante ? "text-[#D48B6A]" : isLight ? "text-[#5B6D49]" : "text-[#8D996E]"}`}>07</span>
                   <span className={`w-8 h-[1px] ${isRestaurante ? "bg-[#A45D41]/40" : "bg-[#8D996E]/40"}`} />
                   <span className={`text-[10px] font-mono uppercase tracking-[0.25em] ${isRestaurante ? "text-[#D48B6A]" : isLight ? "text-[#5B6D49]" : "text-[#8D996E]"}`}>
-                    {isRestaurante ? "Encuentro & Mesa Campesina" : "Encuentro & Hospitalidad"}
+                    {isRestaurante ? "Encuentro & Mesa Colombiana" : "Encuentro & Hospitalidad"}
                   </span>
                 </div>
 
@@ -1024,7 +1036,7 @@ export default function Home() {
                 }`}>
                   {isRestaurante ? (
                     <>
-                      El fogón te aguarda.{" "}
+                      El restaurante te aguarda.{" "}
                       <span className="italic font-normal text-[#A45D41]">Conversemos.</span>
                     </>
                   ) : (
@@ -1072,7 +1084,7 @@ export default function Home() {
                     </div>
                     <div>
                       <span className="font-medium block">
-                        {isRestaurante ? "Línea Exclusiva del Fogón" : "Línea Exclusiva de Hospitalidad"}
+                        {isRestaurante ? "Línea Exclusiva del Restaurante" : "Línea Exclusiva de Hospitalidad"}
                       </span>
                       {isRestaurante ? (
                         <a
@@ -1083,7 +1095,7 @@ export default function Home() {
                             isLight ? "text-[#1A2219]/65 hover:text-[#1A2219]" : "text-[#F5F2ED]/60 hover:text-[#F5F2ED]"
                           }`}
                         >
-                          +57 350 579 1093 · Reservas Fogón
+                          +57 350 579 1093 · Reservas Restaurante
                         </a>
                       ) : (
                         <span className={`text-[11px] font-light ${
@@ -1137,17 +1149,17 @@ export default function Home() {
                   <h3 className={`text-xl sm:text-2xl font-light ${
                     isLight ? (isRestaurante ? "text-[#2A1B14]" : "text-[#1A2219]") : "text-[#F5F2ED]"
                   }`}>
-                    {isRestaurante ? "Coordina tu Mesa en El Fogón" : "Coordina tu Llegada a los Chalets"}
+                    {isRestaurante ? "Coordina tu Mesa en el Restaurante" : "Coordina tu Llegada a los Chalets"}
                   </h3>
                 </div>
 
                 <div className="space-y-3">
                   <button
-                    onClick={() => openBookingFor(isRestaurante ? "Mesa en El Fogón" : "Chalet Susurros")}
+                    onClick={() => openBookingFor(isRestaurante ? "Mesa en Restaurante" : "Chalet Susurros")}
                     className="w-full py-3.5 rounded-xl text-xs font-semibold tracking-[0.2em] uppercase bg-[#A45D41] hover:bg-[#bd7356] text-[#F5F2ED] transition-all duration-300 shadow-xl flex items-center justify-center gap-2 cursor-pointer hover:scale-[1.02]"
                   >
                     <Calendar className="w-4 h-4" />
-                    <span>{isRestaurante ? "Reservar Mesa en el Fogón" : "Abrir Calendario & Fechas"}</span>
+                    <span>{isRestaurante ? "Reservar Mesa en el Restaurante" : "Abrir Calendario & Fechas"}</span>
                   </button>
 
                   <a
@@ -1201,7 +1213,7 @@ export default function Home() {
                 isRestaurante ? "text-[#D48B6A]" : isLight ? "text-[#5B6D49]" : "text-[#8D996E]"
               }`}>
                 {isRestaurante
-                  ? "AMOR · FOGÓN · TIERRA — COCINA DE ORIGEN & VIVENCIAS"
+                  ? "AMOR · NATURALEZA · ARTE — RESTAURANTE DE PAZIONART"
                   : "AMOR · NATURALEZA · ARTE — CHALETS & EXPERIENCIAS"}
               </div>
             </footer>

@@ -157,8 +157,8 @@ export default function DualThreshold({ isOpen, onSelectWorld }: DualThresholdPr
         {/* Imagen de Fondo Restaurante */}
         <div className="absolute inset-0 z-0 overflow-hidden">
           <Image
-            src="/images/gallery/spa-composicion-relajante.jpg"
-            alt="Pazionart Restaurante & Fogón de Origen"
+            src="/images/gallery/bruma-cocina-comedor.jpg"
+            alt="Pazionart Restaurante de Origen"
             fill
             priority
             className="object-cover object-center scale-105 group-hover:scale-110 transition-transform duration-1000 ease-out brightness-[0.75] group-hover:brightness-[0.9]"

@@ -72,7 +72,7 @@ export default function VisualGallery({
   const categories = useMemo(() => {
     if (isRestaurante) {
       return [
-        { id: "all", label: isEn ? "All Fogón & Mesa (7)" : "Todo El Fogón & Mesa (7)" },
+        { id: "all", label: isEn ? "All Restaurant & Table (7)" : "Todo el Restaurante & Mesa (7)" },
         { id: "mesas", label: isEn ? "Tables & Candles" : "Mesas & Cenas Íntimas" },
         { id: "huerta", label: isEn ? "Garden & Botanicals" : "Huerta & Botánica" },
       ];
@@ -153,8 +153,8 @@ export default function VisualGallery({
               <span className="text-[10px] font-mono text-[#A45D41] tracking-widest uppercase">
                 {isRestaurante
                   ? isEn
-                    ? "[ Culinary Visual Archive · El Fogón ]"
-                    : "[ Registro Visual · El Fogón & la Mesa ]"
+                    ? "[ Culinary Visual Archive · Restaurant ]"
+                    : "[ Registro Visual · Restaurante de Pazionart ]"
                   : isEn
                   ? "[ Sanctuaries Archive · 27 Photos ]"
                   : "[ Archivo Visual · Chalets & Refugios (27) ]"}
@@ -163,9 +163,9 @@ export default function VisualGallery({
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-light font-sans tracking-tight">
               {isRestaurante ? (
                 <>
-                  {isEn ? "The Culinary Ritual of" : "El Ritual del Fogón &"}{" "}
+                  {isEn ? "The Culinary Ritual &" : "El Ritual Culinario &"}{" "}
                   <span className="italic font-normal text-[#A45D41]">
-                    {isEn ? "El Fogón" : "la Mesa"}
+                    {isEn ? "the Table" : "la Buena Mesa"}
                   </span>
                 </>
               ) : (

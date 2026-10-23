@@ -12,7 +12,7 @@ export default function WhatsAppButton({ activeWorld = "chalets" }: WhatsAppButt
   const handleClick = () => {
     const msg = encodeURIComponent(
       isRestaurante
-        ? "Hola Pazionart, me gustaría consultar disponibilidad para una reserva en El Fogón."
+        ? "Hola Pazionart, me gustaría consultar disponibilidad para una reserva en el Restaurante."
         : "Hola Pazionart, me gustaría consultar disponibilidad para una estadía en los chalets."
     );
     const phone = isRestaurante ? "573505791093" : "";

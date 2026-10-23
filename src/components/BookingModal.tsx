@@ -30,8 +30,8 @@ export default function BookingModal({
   const [chalet, setChalet] = useState(
     isRestaurant &&
       !selectedChalet.toLowerCase().includes("mesa") &&
-      !selectedChalet.toLowerCase().includes("fogón")
-      ? "Mesa Íntima en el Fogón"
+      !selectedChalet.toLowerCase().includes("restaurante")
+      ? "Mesa Íntima en el Restaurante"
       : selectedChalet
   );
   const [guests, setGuests] = useState(isRestaurant ? "2 Comensales" : "2 Huéspedes");
@@ -223,8 +223,8 @@ export default function BookingModal({
                   >
                     {isRestaurant ? (
                       <>
-                        <option value="Mesa Íntima en el Fogón" className={isLight ? "bg-white" : "bg-[#1C1512]"}>
-                          Mesa Íntima en el Fogón
+                        <option value="Mesa Íntima en el Restaurante" className={isLight ? "bg-white" : "bg-[#1C1512]"}>
+                          Mesa Íntima en el Restaurante
                         </option>
                         <option value="Mesa Terraza Panorámica" className={isLight ? "bg-white" : "bg-[#1C1512]"}>
                           Mesa Terraza Panorámica

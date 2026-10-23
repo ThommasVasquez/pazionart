@@ -146,7 +146,7 @@ export default function ChaletConfigurator({
       highlights: [
         { label: "Jacuzzi Privado", desc: "En terraza exterior con espuma y pétalos de rosa" },
         { label: "Cama Doble Panorámica", desc: "Rodeada de ventanales y dosel de lino blanco" },
-        { label: "Cocina Semi Integral", desc: "Nevera, fogón y dotación para parejas" },
+        { label: "Cocina Semi Integral", desc: "Nevera, estufa y dotación para parejas" },
         { label: "Baño con Agua Caliente", desc: "Cabina de ducha moderna y acabados rústicos" },
       ],
     },
@@ -170,7 +170,7 @@ export default function ChaletConfigurator({
       highlights: [
         { label: "2 Camas Dobles", desc: "Capacidad para 4 personas (hasta 6 huéspedes)" },
         { label: "Altillo en Madera", desc: "Espacio cálido y acogedor en el segundo nivel" },
-        { label: "Cocina Equipada", desc: "Semi-integral con nevera, fogón y utensilios" },
+        { label: "Cocina Equipada", desc: "Semi-integral con nevera, estufa y utensilios" },
         { label: "Jardín Privado", desc: "Zona verde exterior con palmeras y sendero de piedra" },
       ],
     },

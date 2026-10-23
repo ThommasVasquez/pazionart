@@ -15,7 +15,7 @@ export default function RestaurantePage() {
 
   return (
     <div className="w-full min-h-screen bg-[#1C1512] flex items-center justify-center text-[#F5F2ED] font-mono text-xs">
-      Cargando El Fogón & Restaurante...
+      Cargando Restaurante de Pazionart...
     </div>
   );
 }

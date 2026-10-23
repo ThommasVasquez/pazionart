@@ -108,7 +108,7 @@ export default function RestaurantSection({ onOpenBooking }: RestaurantSectionPr
     },
     {
       step: "Tiempo IV",
-      title: "Dulzura del Fogón Campesino",
+      title: "Dulzura de la Tradición",
       desc: "Bizcocho húmedo de cacao criollo al 70%, helado artesanal de leche bronca ahumada con leña dulce y llovizna de miel virgen de abeja silvestre.",
       pairing: "Maridaje sugerido: Café de especialidad colado en tela.",
       badge: "Postre de Autor",
@@ -135,40 +135,28 @@ export default function RestaurantSection({ onOpenBooking }: RestaurantSectionPr
           </div>
 
           <h2 className="restaurant-title text-4xl sm:text-5xl md:text-6xl font-light tracking-[0.06em] text-[#F5F2ED] uppercase font-sans mb-4">
-            Restaurante & Fogón
+            Restaurante de Pazionart
           </h2>
 
           <p className="restaurant-desc text-sm sm:text-base md:text-lg text-[#F5F2ED]/85 font-light leading-relaxed">
-            Un homenaje al ritual de la mesa compartida. Cocinamos a fuego de leña con alimentos cultivados a pocos metros y servimos en vajilla de barro moldeada a mano en nuestros talleres rurales.
+            Un homenaje a la buena mesa y a la memoria gastronómica Colombiana. Cocinamos con ingredientes frescos y recetas tradicionales sobre leña, servidas en vajilla de barro moldeada a mano para compartir con los que uno más quiere.
           </p>
         </div>
 
-        {/* Bloque Principal: Menú Interactivo & Fotografía de Fogón */}
+        {/* Bloque Principal: Menú Interactivo & Fotografía de Restaurante */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-          {/* Lado Izquierdo: Fotografía del Fogón con Resplandor */}
+          {/* Lado Izquierdo: Fotografía del Restaurante con Resplandor */}
           <div className="lg:col-span-5 relative">
             <div className="restaurant-photo-box relative aspect-[3/4] max-w-md mx-auto rounded-3xl overflow-hidden border border-[#A45D41]/35 shadow-2xl group">
               <Image
                 src="/images/gallery/bruma-cocina-comedor.jpg"
-                alt="Pazionart Restaurante cocina rústica campesina y mesa de comedor"
+                alt="Pazionart Restaurante cocina tradicional colombiana y mesa de comedor"
                 fill
                 className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#16100E] via-transparent to-transparent opacity-85" />
 
-              {/* Placa Flotante sobre la Foto */}
-              <div className="absolute bottom-6 left-6 right-6 bg-[#16100E]/90 backdrop-blur-md p-4 rounded-2xl border border-[#A45D41]/30 shadow-lg">
-                <div className="flex items-center gap-2 mb-1">
-                  <Wine className="w-4 h-4 text-[#A45D41]" />
-                  <span className="text-[10px] font-mono text-[#F5F2ED] uppercase tracking-wider font-semibold">
-                    Experiencia Culinaria Completa
-                  </span>
-                </div>
-                <p className="text-xs text-[#F5F2ED]/80 font-light leading-snug">
-                  Cenas íntimas a la luz de las velas frente al calor de la chimenea de piedra natural.
-                </p>
               </div>
-            </div>
           </div>
 
           {/* Lado Derecho: Menú Degustación Interactivo */}
@@ -231,14 +219,14 @@ export default function RestaurantSection({ onOpenBooking }: RestaurantSectionPr
                   Reserva tu Experiencia Gastronómica
                 </span>
                 <p className="text-xs text-[#F5F2ED]/75 font-light">
-                  Atención personalizada vía WhatsApp para coordinar tu mesa en El Fogón.
+                  Atención personalizada vía WhatsApp para coordinar tu mesa en el Restaurante de Pazionart.
                 </p>
               </div>
               <button
                 type="button"
                 onClick={() => {
                   const message = encodeURIComponent(
-                    "Hola Pazionart, deseo contactarme con el Restaurante & Fogón para realizar una reserva. ¿Tienen disponibilidad?"
+                    "Hola Pazionart, deseo contactarme con el Restaurante para realizar una reserva. ¿Tienen disponibilidad?"
                   );
                   window.open(`https://wa.me/573505791093?text=${message}`, "_blank");
                 }}

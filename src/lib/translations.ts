@@ -6,7 +6,7 @@ export const translations = {
     // Nav
     nav: {
       esencia: "Esencia",
-      fogon: "El Fogón",
+      fogon: "Restaurante",
       origen: "Origen",
       proposito: "Propósito",
       chalets: "Chalets",
@@ -19,13 +19,13 @@ export const translations = {
       switch: "Cambiar",
       book: "Reservar",
       bookChalet: "Reservar Refugio / Chalet",
-      bookTable: "Reservar Mesa en el Fogón",
+      bookTable: "Reservar Mesa en el Restaurante",
       navIndex: "Índice de Navegación",
       chaletsName: "Chalets",
       restaurantName: "Restaurante",
       sanctuaryName: "Santuario",
       taglineChalets: "Amor · Naturaleza · Arte",
-      taglineRestaurante: "Amor · Fogón · Tierra",
+      taglineRestaurante: "Amor · Naturaleza · Arte",
     },
     // Dual Threshold
     threshold: {
@@ -34,10 +34,10 @@ export const translations = {
       chaletsDesc:
         "Cabañas de arquitectura orgánica. Diseñadas para la pausa consciente, la intimidad y la reconexión con la naturaleza y los que uno más quiere.",
       chaletsBtn: "Entrar a Chalets",
-      restaurantBadge: "Cocina de Origen & Brasa",
-      restaurantTitle: "Restaurante & Fogón",
+      restaurantBadge: "Cocina Tradicional a la Leña",
+      restaurantTitle: "Restaurante de Pazionart",
       restaurantDesc:
-        "El ritual sagrado del fuego vivo y la vajilla artesanal de barro. Gastronomía colombiana nacida en Antioquia.",
+        "El ritual de la buena mesa y la vajilla artesanal de barro. Gastronomía colombiana nacida en Antioquia para compartir con los que uno más quiere.",
       restaurantBtn: "Entrar al Restaurante",
       medallionTag: "Dos Almas · Un Santuario",
       exploreBtn: "Explorar Todo el Santuario",
@@ -45,7 +45,7 @@ export const translations = {
     // Hero
     hero: {
       chaletsTagline: "Amor · Naturaleza · Arte — Refugios de Altura",
-      restaurantTagline: "Amor · Fuego · Tierra — Sabores de Origen",
+      restaurantTagline: "Amor · Naturaleza · Arte — Restaurante de Pazionart",
       exploreTagline: "Amor · Naturaleza · Arte — Dos Mundos · Un Santuario",
       chaletsDescP1: "El puente entre la arquitectura orgánica y la",
       chaletsDescHighlight: "pausa sagrada",
@@ -56,7 +56,7 @@ export const translations = {
       restaurantDescP2:
         " y la pausa sagrada. Gastronomía colombiana nacida en Antioquia, cocinada con amor y servida en barro ancestral para compartir con los que uno más quiere.",
       exploreDescP1: "El santuario andino donde el",
-      exploreDescHighlight: "refugio natural y el fuego sagrado",
+      exploreDescHighlight: "refugio natural y la buena mesa",
       exploreDescP2:
         "se encuentran en una sola experiencia sensorial y consciente.",
       chaletLabel: "Refugio / Chalet",
@@ -65,35 +65,35 @@ export const translations = {
       datesPlaceholder: "Elige fechas",
       consultBtn: "Consultar Disponibilidad",
       tableGuestsLabel: "Comensales",
-      serviceLabel: "Horario del Fogón",
-      reserveTableBtn: "Reservar Mesa en el Fogón",
+      serviceLabel: "Horario del Restaurante",
+      reserveTableBtn: "Reservar Mesa en el Restaurante",
       experienceTypeLabel: "Experiencia Deseada",
       stayInChalet: "Estadía en Chalet",
-      lunchDinner: "Almuerzo o Cena en el Fogón",
-      completeExperience: "Experiencia Completa (Chalet + Fogón)",
+      lunchDinner: "Almuerzo o Cena en el Restaurante",
+      completeExperience: "Experiencia Completa (Chalet + Restaurante)",
       exploreBtn: "Explorar Experiencia",
       scrollHint: "Desliza para adentrarte",
     },
     // Propósito
     proposito: {
       tagChalets: "[ Brandbook 2026 · Propósito Chalets ]",
-      tagRestaurant: "[ Fogón & Huerto · Sabiduría de Origen ]",
+      tagRestaurant: "[ Restaurante de Pazionart · Sabiduría de Origen ]",
       headingChalets: "Habitar el Silencio y la Belleza Natural",
-      headingRestaurant: "El Fuego Vivo y los Sabores del Huerto Andino",
+      headingRestaurant: "Gastronomía Tradicional y Sabores de Nuestra Tierra",
       descChalets:
         "Pazionart no es solo un destino; es una experiencia de reconexión íntima con la naturaleza y los que uno más quiere. Refugios diseñados para la pausa consciente, la intimidad y el descanso.",
       descRestaurant:
-        "Cada plato honra la tierra y la memoria campesina. Cocinamos a fuego lento sobre leña de poda controlada, usando ingredientes cultivados en nuestros bancales orgánicos y servidos en vajilla de barro cocido a mano.",
-      trait1Title: "Arquitectura Bioclimática",
-      trait1Desc: "Maderas certificadas y piedra de río que respetan la orografía natural.",
-      trait2Title: "Gastronomía Regenerativa",
-      trait2Desc: "Del huerto a la mesa, sin intermediarios y con respeto por los ciclos agrícolas.",
-      trait3Title: "Hospitalidad del Corazón",
-      trait3Desc: "Atención genuina y discreta para que tu estancia sea un descanso reparador.",
-      trait4Title: "Arte & Barro Ancestral",
-      trait4Desc: "Talleres y piezas únicas modeladas por artesanos de nuestra comunidad.",
+        "Cada plato honra la tierra y la memoria gastronómica Colombiana nacida en Antioquia. Cocinamos con ingredientes frescos y recetas tradicionales sobre leña, servidas en vajilla de barro cocido a mano para compartir con los que uno más quiere.",
+      trait1Title: "Cocina a la Leña",
+      trait1Desc: "Fuego tradicional y preparaciones auténticas que rescatan el verdadero sabor de nuestra tierra.",
+      trait2Title: "Origen Colombiano",
+      trait2Desc: "Gastronomía nacida en Antioquia, elaborada con ingredientes frescos y recetas de siempre.",
+      trait3Title: "Mesa para Compartir",
+      trait3Desc: "Un ambiente cálido y sin afanes, pensado para disfrutar con los que uno más quiere.",
+      trait4Title: "Vajilla Artesanal",
+      trait4Desc: "Servido en auténtico barro moldeado a mano, uniendo tradición, arte y calidez.",
       quote:
-        '"El verdadero lujo contemporáneo no es el exceso, sino el silencio, el tiempo y el calor del fuego compartido."',
+        '"El verdadero lujo contemporáneo no es el exceso, sino el silencio, el tiempo y la buena mesa compartida con los que uno más quiere."',
       manifestoBadge: "Manifiesto Pazionart",
     },
     // Portal Switch Cards
@@ -104,9 +104,9 @@ export const translations = {
         "Tres refugios de diseño orgánico con chimenea, tina privada y vistas panorámicas hacia la inmensidad de la naturaleza.",
       chaletCardBtn: "Ver Refugios & Disponibilidad",
       restaurantCardTag: "Mundo 02 · Gastronomía",
-      restaurantCardTitle: "El Fogón Campesino",
+      restaurantCardTitle: "Restaurante de Pazionart",
       restaurantCardDesc:
-        "Cocina de origen al rescoldo de brasas, ingredientes agroecológicos cosechados al amanecer y maridaje de altura.",
+        "Gastronomía colombiana nacida en Antioquia, cocina tradicional a la leña e ingredientes frescos para compartir en la mesa.",
       restaurantCardBtn: "Conocer el Menú & Reservar",
     },
     // Chalet Configurator
@@ -125,7 +125,7 @@ export const translations = {
     restaurant: {
       menuTag: "[ Menú Degustación de 4 Tiempos ]",
       agroTag: "Ingredientes 100% Agroecológicos",
-      tableBookingTitle: "Reservar Mesa en el Fogón",
+      tableBookingTitle: "Reservar Mesa en el Restaurante",
       tableBookingDesc: "Mesa privada con velo de velas y chimenea.",
       guestsCount: "Comensales",
       serviceHour: "Servicio / Horario",
@@ -135,7 +135,7 @@ export const translations = {
     // Values
     values: {
       tagChalets: "[ Brandbook 2026 · Sección Valores ]",
-      tagRestaurant: "[ Fogón & Huerto · Brandbook Valores ]",
+      tagRestaurant: "[ Restaurante de Pazionart · Brandbook Valores ]",
       titlePre: "La Filosofía que",
       titleHighlight: "Nos Representa",
       hoverHint: "Pasa el cursor para explorar cada principio",
@@ -183,7 +183,7 @@ export const translations = {
     // Nav
     nav: {
       esencia: "Essence",
-      fogon: "The Hearth",
+      fogon: "Restaurant",
       origen: "Origin",
       proposito: "Purpose",
       chalets: "Chalets",
@@ -196,13 +196,13 @@ export const translations = {
       switch: "Switch",
       book: "Book",
       bookChalet: "Book Cabin / Chalet",
-      bookTable: "Reserve Table at Hearth",
+      bookTable: "Reserve Table at Restaurant",
       navIndex: "Navigation Index",
       chaletsName: "Chalets",
       restaurantName: "Restaurant",
       sanctuaryName: "Sanctuary",
       taglineChalets: "Love · Nature · Art",
-      taglineRestaurante: "Love · Fire · Earth",
+      taglineRestaurante: "Love · Nature · Art",
     },
     // Dual Threshold
     threshold: {
@@ -211,10 +211,10 @@ export const translations = {
       chaletsDesc:
         "Organic architecture cabins. Designed for conscious pause, intimacy, and reconnecting with nature and the ones you love most.",
       chaletsBtn: "Enter Chalets",
-      restaurantBadge: "Origin Cuisine & Hearth",
-      restaurantTitle: "Restaurant & Hearth",
+      restaurantBadge: "Traditional Wood-Fired Cuisine",
+      restaurantTitle: "Pazionart Restaurant",
       restaurantDesc:
-        "The sacred ritual of open flame and artisanal clay pottery. Colombian cuisine born in Antioquia.",
+        "The ritual of good dining and handcrafted clay tableware. Authentic Colombian cuisine born in Antioquia to share with those you love most.",
       restaurantBtn: "Enter Restaurant",
       medallionTag: "Two Souls · One Sanctuary",
       exploreBtn: "Explore the Whole Sanctuary",
@@ -222,7 +222,7 @@ export const translations = {
     // Hero
     hero: {
       chaletsTagline: "Love · Nature · Art — Highland Refuges",
-      restaurantTagline: "Love · Fire · Earth — Flavors of Origin",
+      restaurantTagline: "Love · Nature · Art — Pazionart Restaurant",
       exploreTagline: "Love · Nature · Art — Two Worlds · One Sanctuary",
       chaletsDescP1: "The bridge between organic architecture and",
       chaletsDescHighlight: "sacred pause",
@@ -233,7 +233,7 @@ export const translations = {
       restaurantDescP2:
         " and sacred pause. Authentic Colombian gastronomy born in Antioquia, cooked with love and served in ancestral earthenware to share with those you love most.",
       exploreDescP1: "The Andean sanctuary where",
-      exploreDescHighlight: "natural refuge and sacred fire",
+      exploreDescHighlight: "natural refuge and good dining",
       exploreDescP2:
         "meet in one singular conscious sensory immersion.",
       chaletLabel: "Refuge / Chalet",
@@ -242,35 +242,35 @@ export const translations = {
       datesPlaceholder: "Pick dates",
       consultBtn: "Check Availability",
       tableGuestsLabel: "Diners",
-      serviceLabel: "Hearth Service Time",
-      reserveTableBtn: "Reserve Table at the Hearth",
+      serviceLabel: "Restaurant Service Time",
+      reserveTableBtn: "Reserve Table at the Restaurant",
       experienceTypeLabel: "Desired Experience",
       stayInChalet: "Stay in Chalet",
-      lunchDinner: "Lunch or Dinner at the Hearth",
-      completeExperience: "Full Immersion (Chalet + Hearth)",
+      lunchDinner: "Lunch or Dinner at the Restaurant",
+      completeExperience: "Full Immersion (Chalet + Restaurant)",
       exploreBtn: "Explore Experience",
       scrollHint: "Scroll down to immerse",
     },
     // Propósito
     proposito: {
       tagChalets: "[ Brandbook 2026 · Chalet Purpose ]",
-      tagRestaurant: "[ Hearth & Garden · Wisdom of Origin ]",
+      tagRestaurant: "[ Pazionart Restaurant · Wisdom of Origin ]",
       headingChalets: "Inhabiting Silence and Natural Beauty",
-      headingRestaurant: "Live Fire and Pure Flavors from the Andean Garden",
+      headingRestaurant: "Traditional Gastronomy & Flavors of Our Land",
       descChalets:
         "Pazionart is not just a destination; it is an intimate reconnection with nature and the ones you love most. Refuges designed for conscious stillness, intimacy, and restorative rest.",
       descRestaurant:
-        "Each course honors the soil and ancestral peasant wisdom. We cook slowly over controlled pruning oak wood, using ingredients cultivated in our own organic beds and served on handmade clay pottery.",
-      trait1Title: "Bioclimatic Architecture",
-      trait1Desc: "Certified timber and river stone that respect the natural topography.",
-      trait2Title: "Regenerative Gastronomy",
-      trait2Desc: "From orchard to table, direct and in deep respect of seasonal agricultural cycles.",
-      trait3Title: "Heartfelt Hospitality",
-      trait3Desc: "Genuine, gentle, and discreet attention so your stay becomes restorative rest.",
-      trait4Title: "Art & Ancestral Clay",
-      trait4Desc: "Workshops and unique pottery sculpted by local artisans of our community.",
+        "Each course honors the soil and Colombian culinary heritage born in Antioquia. We cook with fresh ingredients and traditional recipes over wood fire, served on handmade clay pottery to share with those you love most.",
+      trait1Title: "Wood-Fired Cuisine",
+      trait1Desc: "Traditional fire and authentic preparations that bring out the true flavor of our land.",
+      trait2Title: "Colombian Origin",
+      trait2Desc: "Gastronomy born in Antioquia, prepared with fresh ingredients and time-honored recipes.",
+      trait3Title: "A Table to Share",
+      trait3Desc: "A warm and unhurried setting, designed to enjoy with the ones you love most.",
+      trait4Title: "Artisanal Tableware",
+      trait4Desc: "Served in authentic handcrafted clay pottery, uniting tradition, art, and warmth.",
       quote:
-        '"True contemporary luxury is not excess, but stillness, time, and the warmth of shared fire."',
+        '"True contemporary luxury is not excess, but stillness, time, and good dining shared with those you love most."',
       manifestoBadge: "Pazionart Manifesto",
     },
     // Portal Switch Cards
@@ -281,9 +281,9 @@ export const translations = {
         "Three organic designer cabins featuring indoor wood fireplaces, private soak tubs, and panoramic views toward nature's vastness.",
       chaletCardBtn: "View Chalets & Availability",
       restaurantCardTag: "World 02 · Gastronomy",
-      restaurantCardTitle: "The Peasant Hearth",
+      restaurantCardTitle: "Pazionart Restaurant",
       restaurantCardDesc:
-        "Origin cuisine cooked on glowing embers, agroecological ingredients harvested at dawn, and high-altitude pairing.",
+        "Authentic Colombian cuisine born in Antioquia, traditional wood-fire cooking and fresh ingredients to share at the table.",
       restaurantCardBtn: "Discover the Menu & Reserve",
     },
     // Chalet Configurator
@@ -302,7 +302,7 @@ export const translations = {
     restaurant: {
       menuTag: "[ 4-Course Tasting Menu ]",
       agroTag: "100% Agroecological Produce",
-      tableBookingTitle: "Reserve a Table at the Hearth",
+      tableBookingTitle: "Reserve a Table at the Restaurant",
       tableBookingDesc: "Private table with candlelight and natural stone fireplace.",
       guestsCount: "Diners",
       serviceHour: "Service / Schedule",
@@ -312,7 +312,7 @@ export const translations = {
     // Values
     values: {
       tagChalets: "[ Brandbook 2026 · Values Section ]",
-      tagRestaurant: "[ Hearth & Garden · Brandbook Values ]",
+      tagRestaurant: "[ Pazionart Restaurant · Brandbook Values ]",
       titlePre: "The Philosophy that",
       titleHighlight: "Guides Us",
       hoverHint: "Hover to explore each guiding principle",

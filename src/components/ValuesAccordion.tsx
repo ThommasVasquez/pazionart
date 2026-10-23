@@ -74,7 +74,7 @@ export default function ValuesAccordion({ activeWorld = "chalets" }: ValuesAccor
           tag: "Fuego Vivo",
           desc: "Cocinamos desde el corazón, con leña de roble y el calor paciente del rescoldo para alimentar el alma.",
           icon: Heart,
-          image: "/images/gallery/spa-composicion-relajante.jpg",
+          image: "/images/gallery/bruma-cocina-comedor.jpg",
           color: "#C85A32",
         },
         {
@@ -99,7 +99,7 @@ export default function ValuesAccordion({ activeWorld = "chalets" }: ValuesAccor
           num: "04",
           title: "Sobremesa Serena",
           tag: "Tiempo Lento",
-          desc: "El fogón no tiene prisa. Promovemos la pausa consciente, la conversación fértil y el disfrute pausado.",
+          desc: "Nuestra cocina no tiene prisa. Promovemos la pausa consciente, la conversación fértil y el disfrute pausado.",
           icon: ShieldCheck,
           image: "/images/gallery/aroma-comedor-rosas.jpg",
           color: "#D48B6A",
@@ -117,7 +117,7 @@ export default function ValuesAccordion({ activeWorld = "chalets" }: ValuesAccor
           num: "06",
           title: "Memoria de la Tierra",
           tag: "Origen",
-          desc: "Rescatamos saberes culinarios campesinos reinterpretados con respeto por la estación y la memoria rural.",
+          desc: "Rescatamos saberes culinarios colombianos nacidos en Antioquia, reinterpretados con respeto por la estación y la memoria de nuestra tierra.",
           icon: Sparkles,
           image: "/images/gallery/spa-vista-cenital.jpg",
           color: "#9E6746",
@@ -187,7 +187,7 @@ export default function ValuesAccordion({ activeWorld = "chalets" }: ValuesAccor
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-[#F5F2ED] tracking-wide font-sans">
           {isCoffee ? (
             <>
-              Los Pilares de Nuestro <span className="italic font-normal text-[#A45D41]">Fogón</span>
+              Los Pilares de Nuestro <span className="italic font-normal text-[#A45D41]">Restaurante</span>
             </>
           ) : (
             <>
