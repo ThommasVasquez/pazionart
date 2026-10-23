@@ -30,7 +30,6 @@ import {
 
 import SmoothScroll from "@/components/SmoothScroll";
 import Navbar from "@/components/Navbar";
-import ScrollProgress from "@/components/ScrollProgress";
 import AmbientAudio from "@/components/AmbientAudio";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import BookingModal from "@/components/BookingModal";
@@ -305,26 +304,6 @@ export default function Home() {
     };
   }, [showThreshold, activeWorld]);
 
-  const sectionsList =
-    activeWorld === "restaurante"
-      ? [
-          { id: "esencia", label: `01 ${t.nav.fogon}` },
-          { id: "proposito", label: `02 ${t.nav.origen}` },
-          { id: "restaurante", label: `03 ${t.nav.menu}` },
-          { id: "valores", label: `04 ${t.nav.filosofia}` },
-          { id: "experiencias", label: `05 ${t.nav.vivencias}` },
-          { id: "galeria", label: `06 ${t.nav.galeria}` },
-          { id: "contacto", label: `07 ${t.nav.contacto}` },
-        ]
-      : [
-          { id: "esencia", label: `01 ${t.nav.esencia}` },
-          { id: "proposito", label: `02 ${t.nav.proposito}` },
-          { id: "chalets", label: `03 ${t.nav.chalets}` },
-          { id: "valores", label: `04 ${t.nav.filosofia}` },
-          { id: "experiencias", label: `05 ${t.nav.servicios}` },
-          { id: "galeria", label: `06 ${t.nav.galeria}` },
-          { id: "contacto", label: `07 ${t.nav.contacto}` },
-        ];
 
   const handleHeroBooking = (e: React.FormEvent) => {
     e.preventDefault();
@@ -407,7 +386,6 @@ export default function Home() {
           onSelectWorld={handleWorldSelection}
         />
       )}
-      {!showThreshold && <ScrollProgress sections={sectionsList} activeWorld={activeWorld} />}
       {!showThreshold && <AmbientAudio />}
       {!showThreshold && <WhatsAppButton />}
       <BookingModal
