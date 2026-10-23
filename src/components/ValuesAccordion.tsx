@@ -193,11 +193,11 @@ export default function ValuesAccordion({ activeWorld = "chalets" }: ValuesAccor
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-[#F5F2ED] tracking-wide font-sans">
             {isCoffee ? (
               <>
-                Los Pilares de Nuestro <span className="font-serif italic text-[#A45D41]">Fogón</span>
+                Los Pilares de Nuestro <span className="italic font-normal text-[#A45D41]">Fogón</span>
               </>
             ) : (
               <>
-                La Filosofía que <span className="font-serif italic text-[#8D996E]">Nos Inspira</span>
+                La Filosofía que <span className="italic font-normal text-[#8D996E]">Nos Inspira</span>
               </>
             )}
           </h2>

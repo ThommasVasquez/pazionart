@@ -204,7 +204,7 @@ export default function ChaletConfigurator({ onSelectBooking }: ChaletConfigurat
             isLight ? "text-[#1A2219]" : "text-[#F5F2ED]"
           }`}>
             {t.configurator.title}{" "}
-            <span className="font-serif italic text-[#A45D41]">{t.configurator.chaletsWord}</span>
+            <span className="italic font-normal text-[#A45D41]">{t.configurator.chaletsWord}</span>
           </h2>
         </div>
 

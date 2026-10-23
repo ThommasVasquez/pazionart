@@ -170,7 +170,7 @@ export default function KineticQuote({
           </span>
         </div>
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-[#F5F2ED] tracking-wide font-sans">
-          La Pausa <span className={`font-serif italic ${isCoffee ? "text-[#A45D41]" : "text-[#8D996E]"}`}>Consciente</span>
+          La Pausa <span className={`italic font-normal ${isCoffee ? "text-[#A45D41]" : "text-[#8D996E]"}`}>Consciente</span>
         </h2>
       </div>
 

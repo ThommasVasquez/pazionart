@@ -880,12 +880,12 @@ export default function Home() {
                   <>
                     Cocina de origen donde la{" "}
                     <span className="text-[#D48B6A]">huerta viva</span>, la leña y el{" "}
-                    <span className="font-serif italic text-[#A45D41]">tiempo lento</span> se encuentran.
+                    <span className="italic font-normal text-[#A45D41]">tiempo lento</span> se encuentran.
                   </>
                 ) : (
                   <>
                     Ofrecer una experiencia multisensorial donde el{" "}
-                    <span className="font-serif italic text-[#A45D41]">arte</span>, la{" "}
+                    <span className="italic font-normal text-[#A45D41]">arte</span>, la{" "}
                     <span className={isLight ? "text-[#5B6D49]" : "text-[#8D996E]"}>naturaleza</span> y la hospitalidad se encuentran.
                   </>
                 )}
@@ -1149,12 +1149,12 @@ export default function Home() {
                   {isRestaurante ? (
                     <>
                       El fogón te aguarda.{" "}
-                      <span className="font-serif italic text-[#A45D41]">Conversemos.</span>
+                      <span className="italic font-normal text-[#A45D41]">Conversemos.</span>
                     </>
                   ) : (
                     <>
                       El refugio te aguarda.{" "}
-                      <span className="font-serif italic text-[#A45D41]">Hablemos.</span>
+                      <span className="italic font-normal text-[#A45D41]">Hablemos.</span>
                     </>
                   )}
                 </h2>

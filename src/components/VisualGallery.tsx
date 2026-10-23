@@ -148,7 +148,7 @@ export default function VisualGallery({
                   : "[ Archivo Visual · Chalets de Montaña (27) ]"}
               </span>
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-light font-serif tracking-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-light font-sans tracking-tight">
               {isRestaurante ? (
                 <>
                   {isEn ? "The Culinary Ritual of" : "El Ritual del Fogón &"}{" "}
@@ -240,7 +240,7 @@ export default function VisualGallery({
 
                 {/* Bottom Captions */}
                 <div className="absolute bottom-0 inset-x-0 p-3.5 transform translate-y-1 group-hover:translate-y-0 transition-transform duration-300">
-                  <h3 className="text-white text-xs font-serif font-medium leading-snug line-clamp-1 mb-0.5">
+                  <h3 className="text-white text-xs font-sans font-medium leading-snug line-clamp-1 mb-0.5">
                     {item.title}
                   </h3>
                   <p className="text-white/70 text-[10px] leading-tight line-clamp-2">
@@ -311,7 +311,7 @@ export default function VisualGallery({
                   </span>
                 </div>
 
-                <h3 className="text-xl font-serif font-light mb-3 text-white">
+                <h3 className="text-xl font-sans font-light mb-3 text-white">
                   {currentPhoto.title}
                 </h3>
 
