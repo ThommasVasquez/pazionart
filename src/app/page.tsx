@@ -915,7 +915,7 @@ export default function Home() {
                     desc:
                       activeWorld === "restaurante"
                         ? "Cocción al rescoldo, sobremesa sin prisa y conversación fértil."
-                        : "Ritmo desacelerado, silencio fértil y armonía con el bosque.",
+                        : "Ritmo desacelerado, silencio fértil y armonía con la naturaleza y los que uno más quiere.",
                     color: "#A45D41",
                   },
                   {
@@ -1164,7 +1164,7 @@ export default function Home() {
                 }`}>
                   {isRestaurante
                     ? "Ya sea para reservar una mesa especial en el salón principal, un almuerzo de huerto o una velada íntima al calor de las brasas vivas, nuestro equipo coordinará cada detalle de tu visita."
-                    : "Ya sea para una escapada de fin de semana, un retiro creativo o una estancia prolongada en medio del bosque de niebla, nuestro equipo de anfitriones coordinará cada detalle de tu estancia."}
+                    : "Ya sea para una escapada de fin de semana, un retiro creativo o una estancia prolongada en medio de la naturaleza y los que uno más quiere, nuestro equipo de anfitriones coordinará cada detalle de tu estancia."}
                 </p>
 
                 <div className="space-y-3 mb-6">
@@ -1181,7 +1181,7 @@ export default function Home() {
                       <span className={`text-[11px] font-light ${
                         isLight ? "text-[#1A2219]/65" : "text-[#F5F2ED]/60"
                       }`}>
-                        Montañas Andinas · Bosque Nuboso y Miradores Naturales
+                        Montañas Andinas · Naturaleza Viva y Miradores
                       </span>
                     </div>
                   </div>

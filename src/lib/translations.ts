@@ -31,7 +31,7 @@ export const translations = {
       chaletsBadge: "Refugio & Hospitalidad",
       chaletsTitle: "Chalets de Altura",
       chaletsDesc:
-        "Cabañas de arquitectura orgánica suspendidas en la niebla. Diseñadas para la pausa consciente, la intimidad y la reconexión con el bosque.",
+        "Cabañas de arquitectura orgánica. Diseñadas para la pausa consciente, la intimidad y la reconexión con la naturaleza y los que uno más quiere.",
       chaletsBtn: "Entrar a Chalets",
       restaurantBadge: "Cocina de Origen & Brasa",
       restaurantTitle: "Restaurante & Fogón",
@@ -80,7 +80,7 @@ export const translations = {
       headingChalets: "Habitar el Silencio y la Belleza de la Montaña",
       headingRestaurant: "El Fuego Vivo y los Sabores del Huerto Andino",
       descChalets:
-        "Pazionart no es solo un destino; es una experiencia de reconexión íntima con el bosque andino. Creamos refugios de alta montaña donde el diseño bioclimático se funde con la serenidad de la niebla.",
+        "Pazionart no es solo un destino; es una experiencia de reconexión íntima con la naturaleza y los que uno más quiere. Creamos refugios de alta montaña donde el diseño bioclimático se funde con la serenidad del entorno.",
       descRestaurant:
         "Cada plato honra la tierra y la memoria campesina. Cocinamos a fuego lento sobre leña de poda controlada, usando ingredientes cultivados en nuestros bancales orgánicos y servidos en vajilla de barro cocido a mano.",
       trait1Title: "Arquitectura Bioclimática",
@@ -100,7 +100,7 @@ export const translations = {
       chaletCardTag: "Mundo 01 · Hospitalidad",
       chaletCardTitle: "Los Chalets de Altura",
       chaletCardDesc:
-        "Tres refugios de diseño orgánico con chimenea, tina de montaña y vistas panorámicas sobre el mar de niebla.",
+        "Tres refugios de diseño orgánico con chimenea, tina de montaña y vistas panorámicas hacia la inmensidad de la naturaleza.",
       chaletCardBtn: "Ver Refugios & Disponibilidad",
       restaurantCardTag: "Mundo 02 · Gastronomía",
       restaurantCardTitle: "El Fogón Campesino",
@@ -207,7 +207,7 @@ export const translations = {
       chaletsBadge: "Refuge & Hospitality",
       chaletsTitle: "Highland Chalets",
       chaletsDesc:
-        "Organic architecture cabins suspended in the mountain mist. Crafted for conscious stillness, intimate connection, and harmony with the forest.",
+        "Organic architecture cabins. Designed for conscious pause, intimacy, and reconnecting with nature and the ones you love most.",
       chaletsBtn: "Enter Chalets",
       restaurantBadge: "Origin Cuisine & Hearth",
       restaurantTitle: "Restaurant & Hearth",
@@ -256,7 +256,7 @@ export const translations = {
       headingChalets: "Inhabiting Silence and the Beauty of the Mountain",
       headingRestaurant: "Live Fire and Pure Flavors from the Andean Garden",
       descChalets:
-        "Pazionart is not just a destination; it is an intimate reconnection with the Andean forest. We craft high-mountain refuges where bioclimatic design blends naturally with the serenity of morning mist.",
+        "Pazionart is not just a destination; it is an intimate reconnection with nature and the ones you love most. We craft high-mountain refuges where bioclimatic design blends naturally with the serenity of the mountain surroundings.",
       descRestaurant:
         "Each course honors the soil and ancestral peasant wisdom. We cook slowly over controlled pruning oak wood, using ingredients cultivated in our own organic beds and served on handmade clay pottery.",
       trait1Title: "Bioclimatic Architecture",
@@ -276,7 +276,7 @@ export const translations = {
       chaletCardTag: "World 01 · Hospitality",
       chaletCardTitle: "Highland Chalets",
       chaletCardDesc:
-        "Three organic designer cabins featuring indoor wood fireplaces, mountain soak tubs, and panoramic views over the sea of clouds.",
+        "Three organic designer cabins featuring indoor wood fireplaces, mountain soak tubs, and panoramic views toward nature's vastness.",
       chaletCardBtn: "View Chalets & Availability",
       restaurantCardTag: "World 02 · Gastronomy",
       restaurantCardTitle: "The Peasant Hearth",

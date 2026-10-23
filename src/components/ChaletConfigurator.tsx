@@ -112,11 +112,11 @@ export default function ChaletConfigurator({ onSelectBooking }: ChaletConfigurat
     {
       id: "chalet-susurros",
       name: "Chalet Susurros",
-      tagline: "Pabellón de cristal con jacuzzi privado y vista al bosque",
+      tagline: "Pabellón de cristal con jacuzzi privado y vista a la naturaleza",
       basePrice: "$280.000 COP",
       area: "Pabellón Panorámico + Deck con Jacuzzi",
       capacity: "2 Huéspedes · 1 Cama Doble",
-      orientation: "Noreste · Amanecer sobre el bosque de eucaliptos",
+      orientation: "Noreste · Amanecer sobre la naturaleza de montaña",
       thermal: "Acristalamiento panorámico con cortinajes térmicos",
       views: {
         exterior: "/images/gallery/susurros-fachada.jpg",
@@ -124,7 +124,7 @@ export default function ChaletConfigurator({ onSelectBooking }: ChaletConfigurat
         deck: "/images/gallery/susurros-jacuzzi.jpg",
       },
       story:
-        "Diseñado como un santuario de intimidad y romance. Su estructura acristalada sumerge la habitación en la serenidad del bosque, mientras su terraza exterior acoge un jacuzzi privado con agua caliente y espuma aromatizada entre los árboles.",
+        "Diseñado como un santuario de intimidad y descanso para disfrutar con los que uno más quiere. Su estructura acristalada sumerge la habitación en la serenidad de la naturaleza, mientras su terraza exterior acoge un jacuzzi privado con agua caliente y espuma aromatizada entre los árboles.",
       highlights: [
         { label: "Jacuzzi Privado", desc: "En terraza exterior con espuma y pétalos de rosa" },
         { label: "Cama Doble Panorámica", desc: "Rodeada de ventanales y dosel de lino blanco" },
@@ -147,7 +147,7 @@ export default function ChaletConfigurator({ onSelectBooking }: ChaletConfigurat
         deck: "/images/gallery/aroma-ventanal-jardin.jpg",
       },
       story:
-        "Una cabaña alpina clásica con estructura A-Frame que celebra la calidez de la madera. Su altillo ofrece iluminación vintage de filamento Edison y amplios ventanales que abren hacia un jardín privado con palmeras andinas y sendero de piedra blanca.",
+        "Una cabaña alpina clásica con estructura A-Frame que celebra la calidez de la madera y el encuentro con los que uno más quiere. Su altillo ofrece iluminación vintage de filamento Edison y amplios ventanales que abren hacia un jardín privado con palmeras andinas y sendero de piedra blanca.",
       highlights: [
         { label: "2 Camas Dobles", desc: "Capacidad para 4 personas (hasta 6 huéspedes)" },
         { label: "Lámparas Edison", desc: "Iluminación cálida colgante sobre sala en madera" },
@@ -158,11 +158,11 @@ export default function ChaletConfigurator({ onSelectBooking }: ChaletConfigurat
     {
       id: "chalet-bruma",
       name: "Chalet Bruma",
-      tagline: "Refugio alpino en el corazón del bosque nuboso",
+      tagline: "Refugio alpino en el corazón de la naturaleza de montaña",
       basePrice: "$220.000 COP",
       area: "Doble nivel con altillo + Zona verde con columpio",
       capacity: "4 a 6 Huéspedes · 2 Camas Dobles",
-      orientation: "Norte · Vista a la montaña y el paso de la niebla",
+      orientation: "Norte · Vista a la montaña y el aire puro andino",
       thermal: "Estructura de madera aislante y techos altos inclinados",
       views: {
         exterior: "/images/gallery/bruma-fachada-columpio.jpg",
