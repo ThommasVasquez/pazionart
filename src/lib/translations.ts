@@ -36,7 +36,7 @@ export const translations = {
       restaurantBadge: "Cocina de Origen & Brasa",
       restaurantTitle: "Restaurante & Fogón",
       restaurantDesc:
-        "El ritual sagrado del fuego vivo y la vajilla artesanal de barro. Gastronomía campesina de autor nacida de los huertos de montaña.",
+        "El ritual sagrado del fuego vivo y la vajilla artesanal de barro. Gastronomía colombiana nacida en Antioquia.",
       restaurantBtn: "Entrar al Restaurante",
       medallionTag: "Dos Almas · Un Santuario",
       exploreBtn: "Explorar Todo el Santuario",
@@ -212,7 +212,7 @@ export const translations = {
       restaurantBadge: "Origin Cuisine & Hearth",
       restaurantTitle: "Restaurant & Hearth",
       restaurantDesc:
-        "The sacred ritual of open flame and artisanal clay pottery. Signature Andean farm-to-table cuisine born from high-altitude orchards.",
+        "The sacred ritual of open flame and artisanal clay pottery. Colombian cuisine born in Antioquia.",
       restaurantBtn: "Enter Restaurant",
       medallionTag: "Two Souls · One Sanctuary",
       exploreBtn: "Explore the Whole Sanctuary",
