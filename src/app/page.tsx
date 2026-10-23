@@ -918,10 +918,10 @@ export default function Home() {
             <ValuesAccordion activeWorld={activeWorld} />
           </div>
 
-          {/* Difuminado inferior hacia Galería */}
+          {/* Difuminado inferior hacia Galería o Contacto */}
           <div className={`absolute -bottom-1 left-0 right-0 h-36 md:h-52 bg-gradient-to-b pointer-events-none z-10 ${
             isRestaurante
-              ? "from-transparent via-[#150F0D]/85 to-[#150F0D]"
+              ? "from-transparent via-[#17110F]/85 to-[#17110F]"
               : "from-transparent via-[#0E150D]/85 to-[#0E150D]"
           }`} />
           <div className={`absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 max-w-5xl h-24 bg-radial pointer-events-none z-10 blur-3xl ${
@@ -932,18 +932,20 @@ export default function Home() {
         </section>
 
         {/* ========================================================
-            SECCIÓN FOTOGRÁFICA COMPLETA: GALERÍA DE LOS 34 ARCHIVOS
+            SECCIÓN FOTOGRÁFICA: GALERÍA EXCLUSIVA DE CHALETS
             ======================================================== */}
-        <VisualGallery
-          onSelectBooking={(chalet) => openBookingFor(chalet)}
-          onGoToChalet={handleGoToChalet}
-          activeWorld={activeWorld}
-          activeTab={galleryTab}
-          onTabChange={setGalleryTab}
-        />
+        {activeWorld === "chalets" && (
+          <VisualGallery
+            onSelectBooking={(chalet) => openBookingFor(chalet)}
+            onGoToChalet={handleGoToChalet}
+            activeWorld={activeWorld}
+            activeTab={galleryTab}
+            onTabChange={setGalleryTab}
+          />
+        )}
 
         {/* ========================================================
-            SECCIÓN 06: CONTACTO & MANIFIESTO FINAL
+            SECCIÓN 05: CONTACTO & MANIFIESTO FINAL
             ======================================================== */}
         <section
           id="contacto"
@@ -957,15 +959,15 @@ export default function Home() {
               : "bg-[#141B13]"
           }`}
         >
-          {/* Difuminado superior desde Experiencias */}
+          {/* Difuminado superior */}
           <div className={`absolute top-0 left-0 right-0 h-32 md:h-48 bg-gradient-to-b pointer-events-none z-10 ${
             isLight
               ? isRestaurante
                 ? "from-[#F8F3ED]/80 via-[#F3ECE4]/50 to-transparent"
                 : "from-[#F7F5EE]/80 via-[#EDEAE1]/50 to-transparent"
               : isRestaurante
-              ? "from-[#221814]/80 via-[#17110F]/50 to-transparent"
-              : "from-[#1B231B]/75 via-[#141B13]/50 to-transparent"
+              ? "from-[#1D1512]/85 via-[#17110F]/50 to-transparent"
+              : "from-[#0E150D]/85 via-[#141B13]/50 to-transparent"
           }`} />
           <div className={`absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-6xl h-px bg-gradient-to-r pointer-events-none z-20 blur-[1px] ${
             isRestaurante
@@ -978,7 +980,7 @@ export default function Home() {
               {/* Lado Izquierdo: Coordenadas & Datos de Hospitalidad */}
               <div className="lg:col-span-6 flex flex-col">
                 <div className="contacto-tagline flex items-center gap-2 mb-2">
-                  <span className={`text-xs font-mono ${isRestaurante ? "text-[#D48B6A]" : isLight ? "text-[#5B6D49]" : "text-[#8D996E]"}`}>06</span>
+                  <span className={`text-xs font-mono ${isRestaurante ? "text-[#D48B6A]" : isLight ? "text-[#5B6D49]" : "text-[#8D996E]"}`}>05</span>
                   <span className={`w-8 h-[1px] ${isRestaurante ? "bg-[#A45D41]/40" : "bg-[#8D996E]/40"}`} />
                   <span className={`text-[10px] font-mono uppercase tracking-[0.25em] ${isRestaurante ? "text-[#D48B6A]" : isLight ? "text-[#5B6D49]" : "text-[#8D996E]"}`}>
                     {isRestaurante ? "Encuentro & Mesa Colombiana" : "Encuentro & Hospitalidad"}
