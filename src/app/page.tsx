@@ -815,43 +815,18 @@ export default function Home() {
                     ? "from-[#16100E] via-transparent to-transparent"
                     : "from-[#151D14] via-transparent to-transparent"
                 }`} />
-
-                <div className={`proposito-photo-badge absolute bottom-6 left-6 right-6 p-4 rounded-2xl border ${
-                  isLight
-                    ? isRestaurante
-                      ? "bg-white/90 backdrop-blur-md border-[#A45D41]/30 shadow-lg text-[#2A1B14]"
-                      : "bg-white/90 backdrop-blur-md border-[#8D996E]/25 shadow-lg text-[#1A2219]"
-                    : isRestaurante
-                    ? "bg-[#16100E]/90 backdrop-blur-md border-[#A45D41]/30 shadow-lg text-[#F5F2ED]"
-                    : "glass-panel-dark border-[#8D996E]/20 text-[#F5F2ED]"
-                }`}>
-                  <span className={`text-[9px] font-mono uppercase tracking-widest block mb-0.5 ${
-                    isRestaurante ? "text-[#D48B6A]" : isLight ? "text-[#5B6D49]" : "text-[#8D996E]"
-                  }`}>
-                    {activeWorld === "restaurante"
-                      ? t.proposito.tagRestaurant
-                      : t.proposito.tagChalets}
-                  </span>
-                  <p className={`text-xs font-light leading-snug ${
-                    isLight ? "text-inherit opacity-90" : "text-[#F5F2ED]/90"
-                  }`}>
-                    {activeWorld === "restaurante"
-                      ? "El barro modelado para alimentar el alma, honrando el ciclo de la semilla y la brasa."
-                      : "El barro modelado con paciencia, sin prisa, como homenaje al tiempo vivo."}
-                  </p>
-                </div>
               </div>
             </div>
 
-            {/* Narrativa Editorial & 4 Rasgos de Personalidad */}
+            {/* Narrativa Editorial & 4 Rasgos */}
             <div className="lg:col-span-7 flex flex-col justify-center">
               <div className="proposito-tagline flex items-center gap-2 mb-2">
                 <span className={`text-xs font-mono ${isRestaurante ? "text-[#D48B6A]" : isLight ? "text-[#5B6D49]" : "text-[#8D996E]"}`}>02</span>
                 <span className={`w-8 h-[1px] ${isRestaurante ? "bg-[#A45D41]/40" : "bg-[#8D996E]/40"}`} />
                 <span className={`text-[10px] font-mono uppercase tracking-[0.25em] ${isRestaurante ? "text-[#D48B6A]" : isLight ? "text-[#5B6D49]" : "text-[#8D996E]"}`}>
                   {activeWorld === "restaurante"
-                    ? "Filosofía del Fogón & Huerta"
-                    : "Propósito & Personalidad de Marca"}
+                    ? "Filosofía del Restaurante"
+                    : "Propósito"}
                 </span>
               </div>
 

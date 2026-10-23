@@ -80,7 +80,7 @@ export const translations = {
       headingChalets: "Habitar el Silencio y la Belleza de la Montaña",
       headingRestaurant: "El Fuego Vivo y los Sabores del Huerto Andino",
       descChalets:
-        "Pazionart no es solo un destino; es una experiencia de reconexión íntima con la naturaleza y los que uno más quiere. Creamos refugios de alta montaña donde el diseño bioclimático se funde con la serenidad del entorno.",
+        "Pazionart no es solo un destino; es una experiencia de reconexión íntima con la naturaleza y los que uno más quiere. Refugios de alta montaña diseñados para la pausa consciente, la intimidad y el descanso.",
       descRestaurant:
         "Cada plato honra la tierra y la memoria campesina. Cocinamos a fuego lento sobre leña de poda controlada, usando ingredientes cultivados en nuestros bancales orgánicos y servidos en vajilla de barro cocido a mano.",
       trait1Title: "Arquitectura Bioclimática",
@@ -256,7 +256,7 @@ export const translations = {
       headingChalets: "Inhabiting Silence and the Beauty of the Mountain",
       headingRestaurant: "Live Fire and Pure Flavors from the Andean Garden",
       descChalets:
-        "Pazionart is not just a destination; it is an intimate reconnection with nature and the ones you love most. We craft high-mountain refuges where bioclimatic design blends naturally with the serenity of the mountain surroundings.",
+        "Pazionart is not just a destination; it is an intimate reconnection with nature and the ones you love most. High-mountain refuges designed for conscious stillness, intimacy, and restorative rest.",
       descRestaurant:
         "Each course honors the soil and ancestral peasant wisdom. We cook slowly over controlled pruning oak wood, using ingredients cultivated in our own organic beds and served on handmade clay pottery.",
       trait1Title: "Bioclimatic Architecture",
