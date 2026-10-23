@@ -75,7 +75,7 @@ export default function ValuesAccordion({ activeWorld = "chalets" }: ValuesAccor
           desc: "Cocinamos desde el corazón, con leña de roble y el calor paciente del rescoldo para alimentar el alma.",
           icon: Heart,
           image: "/images/gallery/spa-composicion-relajante.jpg",
-          color: "#A45D41",
+          color: "#C85A32",
         },
         {
           num: "02",
@@ -84,7 +84,7 @@ export default function ValuesAccordion({ activeWorld = "chalets" }: ValuesAccor
           desc: "Honramos la tierra cultivando nuestros propios ingredientes andinos, cosechados frescos para cada servicio.",
           icon: Leaf,
           image: "/images/gallery/spa-ramilletes-frescos.jpg",
-          color: "#D48B6A",
+          color: "#7A9652",
         },
         {
           num: "03",
@@ -93,7 +93,7 @@ export default function ValuesAccordion({ activeWorld = "chalets" }: ValuesAccor
           desc: "Servimos en platos y cuencos modelados a mano por maestros alfareros de nuestra cordillera.",
           icon: Award,
           image: "/images/gallery/spa-sales-corazon.jpg",
-          color: "#A45D41",
+          color: "#B8684A",
         },
         {
           num: "04",
@@ -111,7 +111,7 @@ export default function ValuesAccordion({ activeWorld = "chalets" }: ValuesAccor
           desc: "Vinos selectos y botánica andina infusionada para elevar cada bocado en perfecta armonía con el entorno.",
           icon: Sun,
           image: "/images/gallery/spa-preparacion-completa.jpg",
-          color: "#A45D41",
+          color: "#C4924A",
         },
         {
           num: "06",
@@ -120,7 +120,7 @@ export default function ValuesAccordion({ activeWorld = "chalets" }: ValuesAccor
           desc: "Rescatamos saberes culinarios campesinos reinterpretados con respeto por la estación y la memoria rural.",
           icon: Sparkles,
           image: "/images/gallery/spa-vista-cenital.jpg",
-          color: "#D48B6A",
+          color: "#9E6746",
         },
       ]
     : [
@@ -131,7 +131,7 @@ export default function ValuesAccordion({ activeWorld = "chalets" }: ValuesAccor
           desc: "Servimos desde el corazón, con calidez, respeto y atención genuina a cada persona que llega a los refugios.",
           icon: Heart,
           image: "/images/gallery/aroma-sala-bienvenida.jpg",
-          color: "#A45D41",
+          color: "#C86446",
         },
         {
           num: "02",
@@ -140,7 +140,7 @@ export default function ValuesAccordion({ activeWorld = "chalets" }: ValuesAccor
           desc: "Valoramos y protegemos el entorno natural, integrando la naturaleza a cada despertar.",
           icon: Leaf,
           image: "/images/gallery/susurros-bosque.jpg",
-          color: "#8D996E",
+          color: "#7D9B65",
         },
         {
           num: "03",
@@ -149,7 +149,7 @@ export default function ValuesAccordion({ activeWorld = "chalets" }: ValuesAccor
           desc: "Cabañas de alta montaña construidas con maderas nobles, techos inclinados y respeto por la orografía.",
           icon: Award,
           image: "/images/gallery/bruma-rincon-lectura.jpg",
-          color: "#A45D41",
+          color: "#D19A4B",
         },
         {
           num: "04",
@@ -158,7 +158,7 @@ export default function ValuesAccordion({ activeWorld = "chalets" }: ValuesAccor
           desc: "Piedra viva, madera lustrada y detalles artesanales que reflejan nuestra identidad de montaña.",
           icon: ShieldCheck,
           image: "/images/gallery/aroma-bano-madera.jpg",
-          color: "#8D996E",
+          color: "#A06248",
         },
         {
           num: "05",
@@ -167,7 +167,7 @@ export default function ValuesAccordion({ activeWorld = "chalets" }: ValuesAccor
           desc: "Promovemos el silencio fértil y el descanso reparador rodeado de aire puro y naturaleza.",
           icon: Sun,
           image: "/images/gallery/bruma-cama-altillo.jpg",
-          color: "#A45D41",
+          color: "#568779",
         },
         {
           num: "06",
@@ -176,35 +176,25 @@ export default function ValuesAccordion({ activeWorld = "chalets" }: ValuesAccor
           desc: "Espacios diáfanos con cocina equipada, altillos cálidos y terrazas privadas para reconectar con los que uno más quiere.",
           icon: Sparkles,
           image: "/images/gallery/bruma-cocina-comedor.jpg",
-          color: "#8D996E",
+          color: "#B57351",
         },
       ];
 
   return (
     <div ref={containerRef} className="w-full max-w-7xl mx-auto h-full flex flex-col justify-center py-6">
-      {/* Editorial Header */}
-      <div className="values-header flex flex-col sm:flex-row sm:items-end justify-between mb-5">
-        <div>
-          <span className={`text-[10px] font-mono tracking-widest uppercase block mb-1 ${
-            isCoffee ? "text-[#D48B6A]" : "text-[#8D996E]"
-          }`}>
-            {isCoffee ? "[ Filosofía del Fogón & la Brasa ]" : "[ Filosofía de los Refugios Pazionart ]"}
-          </span>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-[#F5F2ED] tracking-wide font-sans">
-            {isCoffee ? (
-              <>
-                Los Pilares de Nuestro <span className="italic font-normal text-[#A45D41]">Fogón</span>
-              </>
-            ) : (
-              <>
-                La Filosofía que <span className="italic font-normal text-[#8D996E]">Nos Inspira</span>
-              </>
-            )}
-          </h2>
-        </div>
-        <p className="text-xs text-[#F5F2ED]/60 font-mono tracking-wider mt-2 sm:mt-0 uppercase">
-          Pasa el cursor para explorar cada principio
-        </p>
+      {/* Editorial Header - Limpio sin etiquetas redundantes */}
+      <div className="values-header mb-5">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-[#F5F2ED] tracking-wide font-sans">
+          {isCoffee ? (
+            <>
+              Los Pilares de Nuestro <span className="italic font-normal text-[#A45D41]">Fogón</span>
+            </>
+          ) : (
+            <>
+              La Filosofía que <span className="italic font-normal text-[#8D996E]">Nos Inspira</span>
+            </>
+          )}
+        </h2>
       </div>
 
       {/* Horizontal Interactive Accordion */}
@@ -219,16 +209,17 @@ export default function ValuesAccordion({ activeWorld = "chalets" }: ValuesAccor
               onMouseEnter={() => handleSelectValue(idx)}
               onClick={() => handleSelectValue(idx)}
               className={`values-card relative overflow-hidden rounded-2xl cursor-pointer transition-all duration-700 ease-out flex flex-col justify-between p-5 md:p-6 border ${
-                isCoffee ? "border-[#A45D41]/25" : "border-[#8D996E]/20"
-              } ${
                 isActive
                   ? isCoffee
-                    ? "md:flex-[3.5] bg-[#241A17] border-[#A45D41]/60 shadow-2xl"
-                    : "md:flex-[3.5] bg-[#212B20] border-[#A45D41]/50 shadow-2xl"
+                    ? "md:flex-[3.5] bg-[#241A17] shadow-2xl"
+                    : "md:flex-[3.5] bg-[#212B20] shadow-2xl"
                   : isCoffee
                   ? "md:flex-1 bg-[#17100D]/85 hover:bg-[#241A17]/90"
                   : "md:flex-1 bg-[#182017]/80 hover:bg-[#212B20]/90"
               }`}
+              style={{
+                borderColor: isActive ? val.color : `${val.color}35`,
+              }}
               data-cursor="explore"
             >
               {/* Background Image on Active */}
@@ -253,67 +244,59 @@ export default function ValuesAccordion({ activeWorld = "chalets" }: ValuesAccor
                 }`} />
               </div>
 
-              {/* Number and Tag */}
+              {/* Number and Icon Button with unique color per card */}
               <div className="relative z-10 flex items-center justify-between">
                 <span
-                  className={`text-2xl md:text-3xl font-mono tracking-tight transition-colors duration-500 ${
-                    isActive
-                      ? "text-[#A45D41] font-bold"
-                      : isCoffee
-                      ? "text-[#D48B6A]/50"
-                      : "text-[#8D996E]/50"
-                  }`}
+                  className="text-2xl md:text-3xl font-mono tracking-tight transition-colors duration-500 font-medium"
+                  style={{ color: isActive ? val.color : `${val.color}80` }}
                 >
                   {val.num}
                 </span>
 
                 <div
-                  className={`w-9 h-9 rounded-full flex items-center justify-center transition-all ${
-                    isActive
-                      ? "bg-[#A45D41] text-[#F5F2ED] scale-110 shadow-lg"
-                      : isCoffee
-                      ? "bg-[#A45D41]/15 text-[#D48B6A]"
-                      : "bg-[#8D996E]/15 text-[#8D996E]"
-                  }`}
+                  className="w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300"
+                  style={{
+                    backgroundColor: isActive ? val.color : `${val.color}25`,
+                    color: isActive ? "#F5F2ED" : val.color,
+                    boxShadow: isActive ? `0 4px 18px ${val.color}50` : "none",
+                    transform: isActive ? "scale(1.12)" : "scale(1)",
+                  }}
                 >
                   <IconComp className="w-4 h-4" />
                 </div>
               </div>
 
-              {/* Content bottom */}
-              <div className="relative z-10 mt-auto">
-                <span className={`text-[10px] font-mono tracking-widest uppercase block mb-1 ${
-                  isCoffee ? "text-[#D48B6A]" : "text-[#8D996E]"
-                }`}>
+              {/* Content bottom - SOLO visible en la tarjeta abierta/activa (elimina el texto partido/duplicado con ❌) */}
+              <div
+                className={`relative z-10 mt-auto transition-all duration-500 ${
+                  isActive
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 md:hidden pointer-events-none translate-y-4"
+                }`}
+              >
+                <span
+                  className="text-[10px] font-mono tracking-widest uppercase block mb-1 font-semibold"
+                  style={{ color: val.color }}
+                >
                   {val.tag}
                 </span>
 
-                <h3
-                  className={`text-lg md:text-xl font-light text-[#F5F2ED] transition-all duration-300 ${
-                    isActive ? "mb-2 font-normal" : "line-clamp-1 md:line-clamp-2"
-                  }`}
-                >
+                <h3 className="text-xl md:text-2xl font-light text-[#F5F2ED] mb-2 font-normal tracking-wide">
                   {val.title}
                 </h3>
 
-                {/* Expanded text */}
-                <div
-                  className={`transition-all duration-500 overflow-hidden ${
-                    isActive
-                      ? "max-h-36 opacity-100 mt-2"
-                      : "max-h-0 opacity-0 pointer-events-none"
-                  }`}
-                >
-                  <p className="text-xs sm:text-sm text-[#F5F2ED]/85 font-light leading-relaxed max-w-md">
-                    {val.desc}
-                  </p>
-                </div>
+                <p className="text-xs sm:text-sm text-[#F5F2ED]/85 font-light leading-relaxed max-w-md">
+                  {val.desc}
+                </p>
               </div>
 
               {/* Vertical title hint for non-active columns on desktop */}
               {!isActive && (
-                <div className="hidden md:flex absolute inset-0 items-center justify-center pointer-events-none z-10 opacity-30">
-                  <span className="text-xs font-mono uppercase tracking-[0.3em] rotate-90 text-[#F5F2ED] whitespace-nowrap">
+                <div className="hidden md:flex absolute inset-0 items-center justify-center pointer-events-none z-10 opacity-70 group-hover:opacity-100 transition-opacity">
+                  <span
+                    className="text-xs font-mono uppercase tracking-[0.28em] rotate-90 whitespace-nowrap"
+                    style={{ color: val.color }}
+                  >
                     {val.title}
                   </span>
                 </div>
