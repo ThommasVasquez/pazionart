@@ -113,7 +113,7 @@ export default function Navbar({
                 />
               </div>
               <span
-                className={`text-[7px] md:text-[8px] tracking-[0.22em] uppercase font-mono whitespace-nowrap mt-0.5 leading-none ${
+                className={`text-[9px] md:text-[10px] tracking-[0.22em] uppercase font-mono whitespace-nowrap mt-0.5 leading-none ${
                   isRestaurante ? (isLight ? "text-[#A45D41]" : "text-[#D48B6A]") : "text-[#8D996E]"
                 }`}
               >
@@ -129,7 +129,7 @@ export default function Navbar({
                 key={link.name}
                 href={link.href}
                 onClick={(e) => handleScrollTo(e, link.href)}
-                className={`text-[11px] tracking-[0.16em] uppercase transition-colors relative py-1 group ${
+                className={`text-xs md:text-sm tracking-[0.16em] uppercase transition-colors relative py-1 group ${
                   isLight
                     ? isRestaurante
                       ? "text-[#2A1B14]/80 hover:text-[#A45D41]"
@@ -171,7 +171,7 @@ export default function Navbar({
               >
                 <button
                   onClick={() => onSelectWorld("chalets")}
-                  className={`px-3 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider transition-all cursor-pointer ${
+                  className={`px-3.5 py-1 rounded-full text-xs font-mono uppercase tracking-wider transition-all cursor-pointer ${
                     activeWorld === "chalets"
                       ? "bg-[#8D996E] text-[#151D14] font-semibold shadow-sm"
                       : isLight
@@ -184,7 +184,7 @@ export default function Navbar({
                 </button>
                 <button
                   onClick={() => onSelectWorld("restaurante")}
-                  className={`px-3 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider transition-all cursor-pointer ${
+                  className={`px-3.5 py-1 rounded-full text-xs font-mono uppercase tracking-wider transition-all cursor-pointer ${
                     activeWorld === "restaurante"
                       ? "bg-[#A45D41] text-[#F5F2ED] font-semibold shadow-sm"
                       : isLight
@@ -200,19 +200,19 @@ export default function Navbar({
               onOpenThreshold && (
                 <button
                   onClick={onOpenThreshold}
-                  className={`hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-mono tracking-wider transition-all duration-300 glass-panel-dark cursor-pointer group shadow-sm ${
+                  className={`hidden md:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-mono tracking-wider transition-all duration-300 glass-panel-dark cursor-pointer group shadow-sm ${
                     isRestaurante
                       ? "border border-[#A45D41]/35 hover:border-[#A45D41]/75"
                       : "border border-[#8D996E]/30 hover:border-[#8D996E]/70"
                   } ${isLight ? "text-[#1C231A]" : "text-[#F5F2ED]/85 hover:text-[#F5F2ED]"}`}
                   title="Cambiar entre Chalets y Restaurante"
                 >
-                  <Sparkles className="w-3 h-3 text-[#A45D41] transition-transform duration-300 group-hover:rotate-45" />
+                  <Sparkles className="w-3.5 h-3.5 text-[#A45D41] transition-transform duration-300 group-hover:rotate-45" />
                   <span>
                     {activeWorld === "chalets" ? t.nav.chaletsName : t.nav.restaurantName}
                   </span>
                   <span
-                    className={`text-[8px] uppercase opacity-70 group-hover:opacity-100 font-sans ${
+                    className={`text-[9px] uppercase opacity-70 group-hover:opacity-100 font-sans ${
                       isRestaurante ? "text-[#D48B6A]" : "text-[#8D996E]"
                     }`}
                   >
@@ -224,9 +224,9 @@ export default function Navbar({
 
             <button
               onClick={onOpenBooking}
-              className="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 rounded-full text-[10px] md:text-[11px] font-semibold tracking-[0.16em] uppercase bg-[#A45D41] hover:bg-[#bd7356] text-[#F5F2ED] transition-all duration-300 shadow-md hover:scale-[1.02] cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs md:text-sm font-semibold tracking-[0.16em] uppercase bg-[#A45D41] hover:bg-[#bd7356] text-[#F5F2ED] transition-all duration-300 shadow-md hover:scale-[1.02] cursor-pointer"
             >
-              <Compass className="w-3 h-3" />
+              <Compass className="w-3.5 h-3.5" />
               <span>{t.nav.book}</span>
             </button>
 

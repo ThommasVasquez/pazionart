@@ -406,7 +406,7 @@ export default function Home() {
             ======================================================== */}
         <section
           id="esencia"
-          className="relative w-full min-h-screen flex items-center justify-center pt-20 pb-12 px-6 md:px-12 overflow-hidden"
+          className="relative w-full min-h-[100dvh] flex flex-col justify-center items-center pt-24 pb-16 px-6 md:px-12 overflow-hidden"
         >
           {/* Fondo fotográfico con velo cinemático adaptado al mundo y al tema */}
           <div className="absolute inset-0 z-0">
@@ -453,10 +453,10 @@ export default function Home() {
             <div className="absolute inset-0 bg-modulacion opacity-5 pointer-events-none mix-blend-screen" />
           </div>
 
-          <div className="hero-content relative z-20 max-w-6xl mx-auto w-full flex flex-col items-center text-center">
+          <div className="hero-content relative z-20 max-w-6xl mx-auto w-full flex flex-col items-center text-center my-auto">
             {/* Símbolo Pazionart SVG con resplandor suave */}
             <div
-              className="hero-symbol w-16 h-16 md:w-20 md:h-20 relative mb-4 drop-shadow-[0_10px_25px_rgba(0,0,0,0.6)]"
+              className="hero-symbol w-20 h-20 md:w-24 md:h-24 relative mb-5 drop-shadow-[0_10px_25px_rgba(0,0,0,0.6)]"
               style={{ viewTransitionName: "hero-brand-symbol" }}
             >
               <Image
@@ -471,7 +471,7 @@ export default function Home() {
             {/* Título de la marca con Logo Texto Oficial SVG */}
             <h1 className="sr-only">Pazionart</h1>
             <div
-              className="hero-logo h-14 sm:h-[76px] md:h-28 lg:h-36 flex items-center justify-center mb-2"
+              className="hero-logo h-16 sm:h-20 md:h-32 lg:h-40 flex items-center justify-center mb-3"
               style={{ viewTransitionName: "hero-brand-logo" }}
             >
               <LogoTexto
@@ -480,10 +480,10 @@ export default function Home() {
               />
             </div>
 
-            {/* Tagline ubicado debajo del logo sin guiones/líneas laterales */}
-            <div className="hero-tagline flex items-center justify-center mb-3">
+            {/* Tagline ubicado debajo del logo */}
+            <div className="hero-tagline flex items-center justify-center mb-4">
               <span
-                className={`text-[11px] sm:text-xs md:text-sm font-medium tracking-[0.32em] uppercase font-mono ${
+                className={`text-xs sm:text-sm md:text-base font-medium tracking-[0.34em] uppercase font-mono ${
                   activeWorld === "restaurante"
                     ? isLight
                       ? "text-[#A45D41]"
@@ -499,9 +499,9 @@ export default function Home() {
               </span>
             </div>
 
-            {/* Cita del Propósito - Texto limpio sin subrayados ni apariencias de hipervínculo */}
+            {/* Cita del Propósito - Aumentado a text-base sm:text-lg md:text-xl */}
             <p
-              className={`hero-description text-sm sm:text-base md:text-lg max-w-2xl font-light leading-relaxed mt-1 mb-8 drop-shadow-md ${
+              className={`hero-description text-base sm:text-lg md:text-xl max-w-3xl font-light leading-relaxed mt-1 mb-10 drop-shadow-md ${
                 isLight ? "text-[#1A2219]/90" : "text-[#F5F2ED]/90"
               }`}
             >
@@ -528,35 +528,35 @@ export default function Home() {
                 <button
                   type="button"
                   onClick={() => handleHeroBooking()}
-                  className="w-full sm:w-auto py-4 px-8 rounded-2xl text-xs sm:text-sm font-semibold tracking-[0.18em] uppercase bg-[#A45D41] hover:bg-[#bd7356] text-[#F5F2ED] transition-all duration-300 shadow-2xl flex items-center justify-center gap-3 cursor-pointer hover:scale-105 active:scale-95"
+                  className="w-full sm:w-auto py-4 px-8 rounded-2xl text-sm sm:text-base font-semibold tracking-[0.18em] uppercase bg-[#A45D41] hover:bg-[#bd7356] text-[#F5F2ED] transition-all duration-300 shadow-2xl flex items-center justify-center gap-3 cursor-pointer hover:scale-105 active:scale-95"
                 >
-                  <MessageCircle className="w-4 h-4 text-[#F5F2ED]" />
+                  <MessageCircle className="w-5 h-5 text-[#F5F2ED]" />
                   <span>Contactar al Restaurante para Reservas</span>
                 </button>
               </div>
             ) : (
               <form
                 onSubmit={handleHeroBooking}
-                className={`hero-booking-form w-full max-w-4xl backdrop-blur-xl p-3 sm:p-4 rounded-3xl shadow-2xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 items-center text-left transition-colors duration-500 ${
+                className={`hero-booking-form w-full max-w-4xl backdrop-blur-xl p-4 sm:p-5 rounded-3xl shadow-2xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 items-center text-left transition-colors duration-500 ${
                   isLight
                     ? "bg-white/90 border border-[#8D996E]/30 text-[#1A2219]"
                     : "glass-panel-dark border border-[#8D996E]/30 text-[#F5F2ED]"
                 }`}
               >
                 {/* Selector de Chalet */}
-                <div className={`p-2.5 rounded-2xl border transition-colors ${
+                <div className={`p-3 rounded-2xl border transition-colors ${
                   isLight
                     ? "bg-[#F7F5EE] border-[#8D996E]/25"
                     : "bg-[#151D14]/70 border-[#8D996E]/20"
                 }`}>
-                  <div className="flex items-center gap-1.5 text-[9px] font-mono text-[#8D996E] uppercase mb-1">
-                    <HomeIcon className="w-3 h-3 text-[#A45D41]" />
+                  <div className="flex items-center gap-1.5 text-xs font-mono text-[#8D996E] uppercase mb-1.5">
+                    <HomeIcon className="w-3.5 h-3.5 text-[#A45D41]" />
                     <span>{t.hero.chaletLabel}</span>
                   </div>
                   <select
                     value={heroChalet}
                     onChange={(e) => setHeroChalet(e.target.value)}
-                    className={`w-full bg-transparent text-xs font-medium focus:outline-none cursor-pointer ${
+                    className={`w-full bg-transparent text-sm font-medium focus:outline-none cursor-pointer ${
                       isLight ? "text-[#1A2219]" : "text-[#F5F2ED]"
                     }`}
                   >
@@ -573,19 +573,19 @@ export default function Home() {
                 </div>
 
                 {/* Selector de Huéspedes */}
-                <div className={`p-2.5 rounded-2xl border transition-colors ${
+                <div className={`p-3 rounded-2xl border transition-colors ${
                   isLight
                     ? "bg-[#F7F5EE] border-[#8D996E]/25"
                     : "bg-[#151D14]/70 border-[#8D996E]/20"
                 }`}>
-                  <div className="flex items-center gap-1.5 text-[9px] font-mono text-[#8D996E] uppercase mb-1">
-                    <Users className="w-3 h-3 text-[#8D996E]" />
+                  <div className="flex items-center gap-1.5 text-xs font-mono text-[#8D996E] uppercase mb-1.5">
+                    <Users className="w-3.5 h-3.5 text-[#8D996E]" />
                     <span>{t.hero.guestsLabel}</span>
                   </div>
                   <select
                     value={heroGuests}
                     onChange={(e) => setHeroGuests(e.target.value)}
-                    className={`w-full bg-transparent text-xs font-medium focus:outline-none cursor-pointer ${
+                    className={`w-full bg-transparent text-sm font-medium focus:outline-none cursor-pointer ${
                       isLight ? "text-[#1A2219]" : "text-[#F5F2ED]"
                     }`}
                   >
@@ -602,13 +602,13 @@ export default function Home() {
                 </div>
 
                 {/* Fecha Estimada */}
-                <div className={`p-2.5 rounded-2xl border transition-colors ${
+                <div className={`p-3 rounded-2xl border transition-colors ${
                   isLight
                     ? "bg-[#F7F5EE] border-[#8D996E]/25"
                     : "bg-[#151D14]/70 border-[#8D996E]/20"
                 }`}>
-                  <div className="flex items-center gap-1.5 text-[9px] font-mono text-[#8D996E] uppercase mb-1">
-                    <Calendar className="w-3 h-3 text-[#A45D41]" />
+                  <div className="flex items-center gap-1.5 text-xs font-mono text-[#8D996E] uppercase mb-1.5">
+                    <Calendar className="w-3.5 h-3.5 text-[#A45D41]" />
                     <span>{t.hero.datesLabel}</span>
                   </div>
                   <input
@@ -616,7 +616,7 @@ export default function Home() {
                     placeholder={t.hero.datesPlaceholder}
                     value={heroDate}
                     onChange={(e) => setHeroDate(e.target.value)}
-                    className={`w-full bg-transparent text-xs focus:outline-none ${
+                    className={`w-full bg-transparent text-sm focus:outline-none ${
                       isLight
                         ? "text-[#1A2219] placeholder-[#1A2219]/40"
                         : "text-[#F5F2ED] placeholder-[#F5F2ED]/40"
@@ -627,7 +627,7 @@ export default function Home() {
                 {/* Botón CTA de Acción */}
                 <button
                   type="submit"
-                  className="w-full h-full py-3.5 px-6 rounded-2xl text-xs font-semibold tracking-[0.18em] uppercase bg-[#A45D41] hover:bg-[#bd7356] text-[#F5F2ED] transition-all duration-300 shadow-xl flex items-center justify-center gap-2 cursor-pointer hover:scale-[1.02]"
+                  className="w-full h-full py-4 px-6 rounded-2xl text-xs sm:text-sm font-semibold tracking-[0.18em] uppercase bg-[#A45D41] hover:bg-[#bd7356] text-[#F5F2ED] transition-all duration-300 shadow-xl flex items-center justify-center gap-2 cursor-pointer hover:scale-[1.02]"
                 >
                   <Compass className="w-4 h-4" />
                   <span>{t.hero.consultBtn}</span>
@@ -648,7 +648,7 @@ export default function Home() {
                   : "text-[#F5F2ED]/60 hover:text-[#8D996E]"
               }`}
             >
-              <span className="text-[10px] tracking-[0.25em] uppercase font-mono">
+              <span className="text-xs tracking-[0.25em] uppercase font-mono">
                 {t.hero.scrollHint}
               </span>
               <ChevronDown className={`w-4 h-4 animate-bounce ${isRestaurante ? "text-[#A45D41]" : isLight ? "text-[#5B6D49]" : "text-[#8D996E]"}`} />
@@ -669,7 +669,7 @@ export default function Home() {
             ======================================================== */}
         <section
           id="proposito"
-          className={`relative w-full min-h-screen flex items-center justify-center py-24 md:py-32 px-6 md:px-12 overflow-hidden transition-colors duration-700 ${
+          className={`relative w-full min-h-[100dvh] flex flex-col justify-center py-28 md:py-36 px-6 md:px-12 overflow-hidden transition-colors duration-700 ${
             isLight
               ? isRestaurante
                 ? "bg-[#FAF5EF]"
@@ -693,7 +693,7 @@ export default function Home() {
             isRestaurante ? "from-transparent via-[#A45D41]/30 to-transparent" : "from-transparent via-[#8D996E]/20 to-transparent"
           }`} />
 
-          <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center relative z-20">
+          <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center relative z-20 my-auto">
             {/* Foto de Artesano & Textura de Arcilla */}
             <div className="lg:col-span-5 relative">
               <div className={`proposito-photo relative aspect-[3/4] max-w-md mx-auto rounded-3xl overflow-hidden shadow-2xl ${
@@ -725,17 +725,17 @@ export default function Home() {
 
             {/* Narrativa Editorial & 4 Rasgos */}
             <div className="lg:col-span-7 flex flex-col justify-center">
-              <div className="proposito-tagline flex items-center gap-2 mb-2">
-                <span className={`text-xs font-mono ${isRestaurante ? "text-[#D48B6A]" : isLight ? "text-[#5B6D49]" : "text-[#8D996E]"}`}>02</span>
-                <span className={`w-8 h-[1px] ${isRestaurante ? "bg-[#A45D41]/40" : "bg-[#8D996E]/40"}`} />
-                <span className={`text-[10px] font-mono uppercase tracking-[0.25em] ${isRestaurante ? "text-[#D48B6A]" : isLight ? "text-[#5B6D49]" : "text-[#8D996E]"}`}>
+              <div className="proposito-tagline flex items-center gap-2 mb-3">
+                <span className={`text-sm font-mono font-semibold ${isRestaurante ? "text-[#D48B6A]" : isLight ? "text-[#5B6D49]" : "text-[#8D996E]"}`}>02</span>
+                <span className={`w-10 h-[1px] ${isRestaurante ? "bg-[#A45D41]/40" : "bg-[#8D996E]/40"}`} />
+                <span className={`text-xs sm:text-sm font-mono uppercase tracking-[0.25em] ${isRestaurante ? "text-[#D48B6A]" : isLight ? "text-[#5B6D49]" : "text-[#8D996E]"}`}>
                   {activeWorld === "restaurante"
                     ? "Restaurante de Pazionart"
                     : "Propósito"}
                 </span>
               </div>
 
-              <h2 className={`proposito-heading text-3xl sm:text-4xl md:text-5xl font-light tracking-wide leading-tight mb-4 font-sans ${
+              <h2 className={`proposito-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-wide leading-tight mb-5 font-sans ${
                 isLight ? (isRestaurante ? "text-[#2A1B14]" : "text-[#1A2219]") : "text-[#F5F2ED]"
               }`}>
                 {activeWorld === "restaurante" ? (
@@ -753,8 +753,8 @@ export default function Home() {
                 )}
               </h2>
 
-              <p className={`proposito-desc text-sm font-light leading-relaxed mb-6 ${
-                isLight ? (isRestaurante ? "text-[#2A1B14]/80" : "text-[#1A2219]/80") : "text-[#F5F2ED]/80"
+              <p className={`proposito-desc text-base sm:text-lg font-light leading-relaxed mb-8 ${
+                isLight ? (isRestaurante ? "text-[#2A1B14]/85" : "text-[#1A2219]/85") : "text-[#F5F2ED]/85"
               }`}>
                 {activeWorld === "restaurante"
                   ? t.proposito.descRestaurant
@@ -762,7 +762,7 @@ export default function Home() {
               </p>
 
               {/* Pilares Clave de la Experiencia */}
-              <div className="grid grid-cols-2 gap-3 mb-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mb-8">
                 {(activeWorld === "restaurante"
                   ? [
                       {
@@ -811,7 +811,7 @@ export default function Home() {
                 ).map((trait) => (
                   <div
                     key={trait.name}
-                    className={`proposito-trait p-3.5 rounded-2xl transition-colors ${
+                    className={`proposito-trait p-4 rounded-2xl transition-colors ${
                       isLight
                         ? isRestaurante
                           ? "bg-white/80 border border-[#A45D41]/25 hover:border-[#A45D41]/60 shadow-sm"
@@ -822,13 +822,13 @@ export default function Home() {
                     }`}
                   >
                     <span
-                      className="text-xs font-mono font-semibold uppercase tracking-wider block mb-1"
+                      className="text-sm font-mono font-semibold uppercase tracking-wider block mb-1.5"
                       style={{ color: trait.color }}
                     >
                       {trait.name}
                     </span>
-                    <span className={`text-[11px] font-light leading-snug block ${
-                      isLight ? "text-[#1A2219]/70" : "text-[#F5F2ED]/70"
+                    <span className={`text-xs sm:text-sm font-light leading-relaxed block ${
+                      isLight ? "text-[#1A2219]/75" : "text-[#F5F2ED]/75"
                     }`}>
                       {trait.desc}
                     </span>
@@ -836,8 +836,8 @@ export default function Home() {
                 ))}
               </div>
 
-              <blockquote className={`proposito-quote border-l-2 border-[#A45D41] pl-4 text-xs italic ${
-                isLight ? (isRestaurante ? "text-[#2A1B14]/85" : "text-[#1A2219]/85") : "text-[#F5F2ED]/85"
+              <blockquote className={`proposito-quote border-l-2 border-[#A45D41] pl-5 text-sm sm:text-base italic leading-relaxed ${
+                isLight ? (isRestaurante ? "text-[#2A1B14]/90" : "text-[#1A2219]/90") : "text-[#F5F2ED]/90"
               }`}>
                 {activeWorld === "restaurante"
                   ? "“En nuestro restaurante cocinamos con amor, honramos la tierra y preparamos cada plato para disfrutar con los que uno más quiere.”"
@@ -869,13 +869,13 @@ export default function Home() {
         ) : (
           <section
             id="chalets"
-            className="relative w-full min-h-screen flex items-center justify-center py-24 md:py-32 px-6 md:px-12 bg-[#1D251C] overflow-hidden"
+            className="relative w-full min-h-[100dvh] flex flex-col justify-center py-24 md:py-32 px-6 md:px-12 bg-[#1D251C] overflow-hidden"
           >
             {/* Difuminado superior */}
             <div className="absolute top-0 left-0 right-0 h-32 md:h-48 bg-gradient-to-b from-[#171E16]/75 via-[#1D251C]/50 to-transparent pointer-events-none z-10" />
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-6xl h-px bg-gradient-to-r from-transparent via-[#8D996E]/15 to-transparent blur-[1px] pointer-events-none z-20" />
 
-            <div className="relative z-20 w-full">
+            <div className="relative z-20 w-full my-auto">
               <ChaletConfigurator
                 selectedChaletName={selectedChalet}
                 onChaletChange={(name) => setSelectedChalet(name)}
@@ -898,7 +898,7 @@ export default function Home() {
             ======================================================== */}
         <section
           id="valores"
-          className={`relative w-full min-h-screen flex items-center justify-center py-24 md:py-32 px-6 md:px-12 overflow-hidden transition-colors duration-700 ${
+          className={`relative w-full min-h-[100dvh] flex flex-col justify-center py-24 md:py-32 px-6 md:px-12 overflow-hidden transition-colors duration-700 ${
             isRestaurante ? "bg-[#1D1512]" : "bg-[#182017]"
           }`}
         >
@@ -914,7 +914,7 @@ export default function Home() {
               : "from-transparent via-[#8D996E]/15 to-transparent"
           }`} />
 
-          <div className="relative z-20 w-full">
+          <div className="relative z-20 w-full my-auto">
             <ValuesAccordion activeWorld={activeWorld} />
           </div>
 
@@ -949,7 +949,7 @@ export default function Home() {
             ======================================================== */}
         <section
           id="contacto"
-          className={`relative w-full min-h-screen flex items-center justify-center py-24 md:py-32 px-6 md:px-12 overflow-hidden transition-colors duration-700 ${
+          className={`relative w-full min-h-[100dvh] flex flex-col justify-between py-24 md:py-32 px-6 md:px-12 overflow-hidden transition-colors duration-700 ${
             isLight
               ? isRestaurante
                 ? "bg-[#F3ECE4]"
@@ -975,19 +975,19 @@ export default function Home() {
               : "from-transparent via-[#8D996E]/15 to-transparent"
           }`} />
 
-          <div className="max-w-7xl mx-auto w-full flex flex-col justify-between relative z-20">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center mb-16">
+          <div className="max-w-7xl mx-auto w-full flex flex-col justify-between relative z-20 my-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center mb-16">
               {/* Lado Izquierdo: Coordenadas & Datos de Hospitalidad */}
               <div className="lg:col-span-6 flex flex-col">
-                <div className="contacto-tagline flex items-center gap-2 mb-2">
-                  <span className={`text-xs font-mono ${isRestaurante ? "text-[#D48B6A]" : isLight ? "text-[#5B6D49]" : "text-[#8D996E]"}`}>05</span>
-                  <span className={`w-8 h-[1px] ${isRestaurante ? "bg-[#A45D41]/40" : "bg-[#8D996E]/40"}`} />
-                  <span className={`text-[10px] font-mono uppercase tracking-[0.25em] ${isRestaurante ? "text-[#D48B6A]" : isLight ? "text-[#5B6D49]" : "text-[#8D996E]"}`}>
+                <div className="contacto-tagline flex items-center gap-2 mb-3">
+                  <span className={`text-sm font-mono font-semibold ${isRestaurante ? "text-[#D48B6A]" : isLight ? "text-[#5B6D49]" : "text-[#8D996E]"}`}>05</span>
+                  <span className={`w-10 h-[1px] ${isRestaurante ? "bg-[#A45D41]/40" : "bg-[#8D996E]/40"}`} />
+                  <span className={`text-xs sm:text-sm font-mono uppercase tracking-[0.25em] ${isRestaurante ? "text-[#D48B6A]" : isLight ? "text-[#5B6D49]" : "text-[#8D996E]"}`}>
                     {isRestaurante ? "Encuentro & Mesa Colombiana" : "Encuentro & Hospitalidad"}
                   </span>
                 </div>
 
-                <h2 className={`contacto-heading text-3xl sm:text-4xl md:text-5xl font-light tracking-wide mb-4 font-sans ${
+                <h2 className={`contacto-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-wide mb-5 font-sans leading-tight ${
                   isLight ? (isRestaurante ? "text-[#2A1B14]" : "text-[#1A2219]") : "text-[#F5F2ED]"
                 }`}>
                   {isRestaurante ? (
@@ -1003,43 +1003,43 @@ export default function Home() {
                   )}
                 </h2>
 
-                <p className={`contacto-desc text-xs sm:text-sm font-light leading-relaxed mb-6 max-w-lg ${
-                  isLight ? (isRestaurante ? "text-[#2A1B14]/80" : "text-[#1A2219]/80") : "text-[#F5F2ED]/80"
+                <p className={`contacto-desc text-sm sm:text-base md:text-lg font-light leading-relaxed mb-8 max-w-lg ${
+                  isLight ? (isRestaurante ? "text-[#2A1B14]/85" : "text-[#1A2219]/85") : "text-[#F5F2ED]/85"
                 }`}>
                   {isRestaurante
                     ? "Ya sea para reservar una mesa especial en el salón principal, un almuerzo de huerto o una velada íntima al calor de las brasas vivas, nuestro equipo coordinará cada detalle de tu visita."
                     : "Ya sea para una escapada de fin de semana, un retiro creativo o una estancia prolongada en medio de la naturaleza y los que uno más quiere, nuestro equipo de anfitriones coordinará cada detalle de tu estancia."}
                 </p>
 
-                <div className="space-y-3 mb-6">
-                  <div className={`contacto-item flex items-center gap-3 text-xs ${
+                <div className="space-y-4 mb-6">
+                  <div className={`contacto-item flex items-center gap-3.5 text-sm ${
                     isLight ? "text-[#1A2219]/90" : "text-[#F5F2ED]/90"
                   }`}>
-                    <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${
+                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${
                       isRestaurante ? "bg-[#A45D41]/20 text-[#D48B6A]" : isLight ? "bg-[#5B6D49]/20 text-[#5B6D49]" : "bg-[#8D996E]/20 text-[#8D996E]"
                     }`}>
-                      <MapPin className="w-4 h-4" />
+                      <MapPin className="w-5 h-5" />
                     </div>
                     <div>
-                      <span className="font-medium block">Pazionart</span>
-                      <span className={`text-[11px] font-light ${
-                        isLight ? "text-[#1A2219]/65" : "text-[#F5F2ED]/60"
+                      <span className="font-medium text-sm sm:text-base block">Pazionart</span>
+                      <span className={`text-xs sm:text-sm font-light ${
+                        isLight ? "text-[#1A2219]/70" : "text-[#F5F2ED]/65"
                       }`}>
                         Antioquia, Colombia
                       </span>
                     </div>
                   </div>
 
-                  <div className={`contacto-item flex items-center gap-3 text-xs ${
+                  <div className={`contacto-item flex items-center gap-3.5 text-sm ${
                     isLight ? "text-[#1A2219]/90" : "text-[#F5F2ED]/90"
                   }`}>
-                    <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${
+                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${
                       isRestaurante ? "bg-[#A45D41]/20 text-[#D48B6A]" : isLight ? "bg-[#5B6D49]/20 text-[#5B6D49]" : "bg-[#8D996E]/20 text-[#8D996E]"
                     }`}>
-                      <Phone className="w-4 h-4" />
+                      <Phone className="w-5 h-5" />
                     </div>
                     <div>
-                      <span className="font-medium block">
+                      <span className="font-medium text-sm sm:text-base block">
                         {isRestaurante ? "Línea Exclusiva del Restaurante" : "Línea Exclusiva de Hospitalidad"}
                       </span>
                       {isRestaurante ? (
@@ -1047,15 +1047,15 @@ export default function Home() {
                           href="https://wa.me/573505791093"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className={`text-[11px] font-light hover:underline transition-colors block ${
-                            isLight ? "text-[#1A2219]/65 hover:text-[#1A2219]" : "text-[#F5F2ED]/60 hover:text-[#F5F2ED]"
+                          className={`text-xs sm:text-sm font-light hover:underline transition-colors block ${
+                            isLight ? "text-[#1A2219]/70 hover:text-[#1A2219]" : "text-[#F5F2ED]/65 hover:text-[#F5F2ED]"
                           }`}
                         >
                           +57 350 579 1093 · Reservas Restaurante
                         </a>
                       ) : (
-                        <span className={`text-[11px] font-light ${
-                          isLight ? "text-[#1A2219]/65" : "text-[#F5F2ED]/60"
+                        <span className={`text-xs sm:text-sm font-light ${
+                          isLight ? "text-[#1A2219]/70" : "text-[#F5F2ED]/65"
                         }`}>
                           Atención personalizada vía WhatsApp todos los días
                         </span>
@@ -1063,20 +1063,20 @@ export default function Home() {
                     </div>
                   </div>
 
-                  <div className={`contacto-item flex items-center gap-3 text-xs ${
+                  <div className={`contacto-item flex items-center gap-3.5 text-sm ${
                     isLight ? "text-[#1A2219]/90" : "text-[#F5F2ED]/90"
                   }`}>
-                    <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${
+                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${
                       isRestaurante ? "bg-[#A45D41]/20 text-[#D48B6A]" : isLight ? "bg-[#5B6D49]/20 text-[#5B6D49]" : "bg-[#8D996E]/20 text-[#8D996E]"
                     }`}>
-                      <Mail className="w-4 h-4" />
+                      <Mail className="w-5 h-5" />
                     </div>
                     <div>
-                      <span className="font-medium block">Correspondencia Digital</span>
+                      <span className="font-medium text-sm sm:text-base block">Correspondencia Digital</span>
                       <a
                         href="mailto:pazionartchalets@gmail.com"
-                        className={`text-[11px] font-light hover:underline transition-colors block ${
-                          isLight ? "text-[#1A2219]/65 hover:text-[#1A2219]" : "text-[#F5F2ED]/60 hover:text-[#F5F2ED]"
+                        className={`text-xs sm:text-sm font-light hover:underline transition-colors block ${
+                          isLight ? "text-[#1A2219]/70 hover:text-[#1A2219]" : "text-[#F5F2ED]/65 hover:text-[#F5F2ED]"
                         }`}
                       >
                         pazionartchalets@gmail.com
@@ -1087,7 +1087,7 @@ export default function Home() {
               </div>
 
               {/* Lado Derecho: Tarjeta de Pasaporte de Reserva & Paleta */}
-              <div className={`contacto-card lg:col-span-6 p-6 sm:p-8 rounded-3xl shadow-2xl transition-colors ${
+              <div className={`contacto-card lg:col-span-6 p-6 sm:p-10 rounded-3xl shadow-2xl transition-colors ${
                 isLight
                   ? isRestaurante
                     ? "bg-white/90 backdrop-blur-xl border border-[#A45D41]/30 text-[#2A1B14]"
@@ -1096,27 +1096,27 @@ export default function Home() {
                   ? "bg-[#140D0B]/90 backdrop-blur-xl border border-[#A45D41]/35 text-[#F5F2ED]"
                   : "glass-panel-dark border border-[#8D996E]/25 text-[#F5F2ED]"
               }`}>
-                <div className="mb-5">
-                  <span className={`text-[10px] font-mono uppercase tracking-widest block mb-1 ${
+                <div className="mb-6">
+                  <span className={`text-xs sm:text-sm font-mono uppercase tracking-widest block mb-2 ${
                     isRestaurante ? "text-[#D48B6A]" : isLight ? "text-[#5B6D49]" : "text-[#8D996E]"
                   }`}>
                     {isRestaurante ? "[ Solicitud de Reserva de Mesa ]" : "[ Solicitud Directa de Estancia ]"}
                   </span>
-                  <h3 className={`text-xl sm:text-2xl font-light ${
+                  <h3 className={`text-2xl sm:text-3xl font-light ${
                     isLight ? (isRestaurante ? "text-[#2A1B14]" : "text-[#1A2219]") : "text-[#F5F2ED]"
                   }`}>
                     {isRestaurante ? "Coordina tu Mesa en el Restaurante" : "Coordina tu Llegada a los Chalets"}
                   </h3>
                 </div>
 
-                <div className="space-y-3">
+                <div className="space-y-3.5">
                   <a
                     href={
                       isRestaurante
                         ? "mailto:pazionartchalets@gmail.com?subject=Reserva%20Mesa%20Restaurante%20Pazionart&body=Hola%20Pazionart,%20deseo%20reservar%20una%20mesa%20en%20el%20Restaurante%20o%20solicitar%20información."
                         : "mailto:pazionartchalets@gmail.com?subject=Reserva%20Chalet%20Pazionart&body=Hola%20Pazionart,%20deseo%20solicitar%20información%20y%20reservar%20una%20estancia%20en%20los%20chalets."
                     }
-                    className={`w-full py-3.5 rounded-xl text-xs font-semibold tracking-[0.18em] uppercase transition-all duration-300 shadow-xl flex items-center justify-center gap-2 cursor-pointer hover:scale-[1.02] ${
+                    className={`w-full py-4 rounded-2xl text-xs sm:text-sm font-semibold tracking-[0.18em] uppercase transition-all duration-300 shadow-xl flex items-center justify-center gap-2.5 cursor-pointer hover:scale-[1.02] ${
                       isRestaurante
                         ? "bg-[#A45D41] hover:bg-[#bd7356] text-[#F5F2ED]"
                         : isLight
@@ -1136,7 +1136,7 @@ export default function Home() {
                     }
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full py-3.5 rounded-xl text-xs font-semibold tracking-[0.18em] uppercase transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer hover:scale-[1.02] bg-[#25D366] hover:bg-[#20ba5a] text-[#121B12] shadow-lg"
+                    className="w-full py-4 rounded-2xl text-xs sm:text-sm font-semibold tracking-[0.18em] uppercase transition-all duration-300 flex items-center justify-center gap-2.5 cursor-pointer hover:scale-[1.02] bg-[#25D366] hover:bg-[#20ba5a] text-[#121B12] shadow-lg"
                   >
                     <MessageCircle className="w-4 h-4 fill-current" />
                     <span>Conectar por WhatsApp</span>
@@ -1146,8 +1146,8 @@ export default function Home() {
                   <button
                     type="button"
                     onClick={() => openBookingFor(isRestaurante ? "Mesa en Restaurante" : "Chalet Susurros")}
-                    className={`w-full text-center text-[11px] font-mono tracking-wider underline transition-opacity cursor-pointer pt-1 block ${
-                      isLight ? "text-[#1A2219]/60 hover:text-[#1A2219]" : "text-[#F5F2ED]/60 hover:text-[#F5F2ED]"
+                    className={`w-full text-center text-xs sm:text-sm font-mono tracking-wider underline transition-opacity cursor-pointer pt-2 block ${
+                      isLight ? "text-[#1A2219]/65 hover:text-[#1A2219]" : "text-[#F5F2ED]/65 hover:text-[#F5F2ED]"
                     }`}
                   >
                     O abrir formulario de reserva en línea
@@ -1157,17 +1157,17 @@ export default function Home() {
             </div>
 
             {/* Footer con imagotipo y créditos */}
-            <footer className={`site-footer pt-6 border-t flex flex-col sm:flex-row items-center justify-between text-[11px] font-light gap-2 transition-colors ${
+            <footer className={`site-footer pt-8 pb-4 border-t flex flex-col sm:flex-row items-center justify-between text-xs sm:text-sm font-light gap-3 transition-colors ${
               isLight
                 ? isRestaurante
-                  ? "border-[#A45D41]/20 text-[#2A1B14]/70"
-                  : "border-[#8D996E]/20 text-[#1A2219]/70"
+                  ? "border-[#A45D41]/20 text-[#2A1B14]/75"
+                  : "border-[#8D996E]/20 text-[#1A2219]/75"
                 : isRestaurante
-                ? "border-[#A45D41]/20 text-[#F5F2ED]/60"
-                : "border-[#8D996E]/15 text-[#F5F2ED]/60"
+                ? "border-[#A45D41]/20 text-[#F5F2ED]/65"
+                : "border-[#8D996E]/15 text-[#F5F2ED]/65"
             }`}>
-              <div className="flex items-center gap-2">
-                <div className="w-5 h-5 relative">
+              <div className="flex items-center gap-2.5">
+                <div className="w-6 h-6 relative">
                   <Image
                     src="/brand/simbolo-pazionart.svg"
                     alt="Pazionart"
@@ -1177,7 +1177,7 @@ export default function Home() {
                 </div>
                 <span>© {new Date().getFullYear()} Pazionart. Todos los derechos reservados.</span>
               </div>
-              <div className={`text-[10px] tracking-widest font-mono ${
+              <div className={`text-xs tracking-widest font-mono font-medium ${
                 isRestaurante ? "text-[#D48B6A]" : isLight ? "text-[#5B6D49]" : "text-[#8D996E]"
               }`}>
                 {isRestaurante

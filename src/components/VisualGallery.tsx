@@ -138,19 +138,19 @@ export default function VisualGallery({
   return (
     <section
       id="galeria"
-      className={`py-20 px-4 sm:px-6 md:px-8 border-t transition-colors duration-500 ${
+      className={`min-h-[100dvh] flex flex-col justify-center py-28 md:py-36 px-4 sm:px-6 md:px-8 border-t transition-colors duration-500 ${
         isLight
           ? "bg-[#F5F2ED] border-[#8D996E]/20 text-[#1A2219]"
           : "bg-[#0E150D] border-[#8D996E]/20 text-[#F5F2ED]"
       }`}
     >
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto w-full my-auto">
         {/* Editorial Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 pb-6 border-b border-[#8D996E]/20 gap-6">
           <div>
-            <div className="flex items-center gap-2 mb-2">
+            <div className="flex items-center gap-2 mb-2.5">
               <Camera className="w-4 h-4 text-[#A45D41]" />
-              <span className="text-[10px] font-mono text-[#A45D41] tracking-widest uppercase">
+              <span className="text-xs font-mono text-[#A45D41] tracking-widest uppercase font-semibold">
                 {isRestaurante
                   ? isEn
                     ? "[ Culinary Visual Archive · Restaurant ]"
@@ -160,7 +160,7 @@ export default function VisualGallery({
                   : "[ Archivo Visual · Chalets & Refugios (27) ]"}
               </span>
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-light font-sans tracking-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light font-sans tracking-tight">
               {isRestaurante ? (
                 <>
                   {isEn ? "The Culinary Ritual &" : "El Ritual Culinario &"}{" "}
@@ -177,8 +177,8 @@ export default function VisualGallery({
             </h2>
           </div>
 
-          <p className={`text-xs max-w-md leading-relaxed ${
-            isLight ? "text-[#1A2219]/70" : "text-[#F5F2ED]/70"
+          <p className={`text-sm sm:text-base max-w-md leading-relaxed ${
+            isLight ? "text-[#1A2219]/80" : "text-[#F5F2ED]/80"
           }`}>
             {isRestaurante
               ? isEn
@@ -191,19 +191,19 @@ export default function VisualGallery({
         </div>
 
         {/* Filter Navigation Tabs */}
-        <div className="flex flex-wrap items-center gap-2 mb-8">
+        <div className="flex flex-wrap items-center gap-3 mb-10">
           {categories.map((cat) => {
             const isActive = activeTab === cat.id;
             return (
               <button
                 key={cat.id}
                 onClick={() => setActiveTab(cat.id)}
-                className={`px-4 py-2 rounded-full text-xs font-mono uppercase tracking-wider transition-all duration-300 cursor-pointer ${
+                className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-mono uppercase tracking-wider transition-all duration-300 cursor-pointer ${
                   isActive
                     ? "bg-[#8D996E] text-[#151D14] font-semibold shadow-md scale-105"
                     : isLight
-                    ? "bg-white/80 text-[#1A2219]/70 border border-[#8D996E]/25 hover:border-[#8D996E] hover:text-[#1A2219]"
-                    : "bg-[#151D14]/80 text-[#F5F2ED]/70 border border-[#8D996E]/25 hover:border-[#8D996E] hover:text-[#F5F2ED]"
+                    ? "bg-white/80 text-[#1A2219]/75 border border-[#8D996E]/25 hover:border-[#8D996E] hover:text-[#1A2219]"
+                    : "bg-[#151D14]/80 text-[#F5F2ED]/75 border border-[#8D996E]/25 hover:border-[#8D996E] hover:text-[#F5F2ED]"
                 }`}
               >
                 {cat.label}
@@ -245,10 +245,10 @@ export default function VisualGallery({
 
                 {/* Badge top */}
                 <div className="absolute top-3 left-3">
-                  <span className="px-2.5 py-1 rounded-md text-[9px] font-mono uppercase tracking-widest bg-black/70 backdrop-blur-md text-[#E8EDDF] border border-white/10 flex items-center gap-1 group-hover:border-[#8D996E] transition-colors">
+                  <span className="px-3 py-1 rounded-md text-xs font-mono uppercase tracking-wider bg-black/70 backdrop-blur-md text-[#E8EDDF] border border-white/10 flex items-center gap-1.5 group-hover:border-[#8D996E] transition-colors">
                     <span>{item.chalet}</span>
                     {!isRestaurante && item.chalet.includes("Chalet") && (
-                      <ArrowUpRight className="w-3 h-3 text-[#D48B6A]" />
+                      <ArrowUpRight className="w-3.5 h-3.5 text-[#D48B6A]" />
                     )}
                   </span>
                 </div>
@@ -260,25 +260,25 @@ export default function VisualGallery({
                       e.stopPropagation();
                       setSelectedPhotoIndex(idx);
                     }}
-                    className="w-8 h-8 rounded-full bg-black/60 hover:bg-black/90 backdrop-blur-md flex items-center justify-center text-white border border-white/15 cursor-pointer shadow-lg hover:scale-110 transition-all"
+                    className="w-9 h-9 rounded-full bg-black/60 hover:bg-black/90 backdrop-blur-md flex items-center justify-center text-white border border-white/15 cursor-pointer shadow-lg hover:scale-110 transition-all"
                     title="Ampliar foto"
                   >
-                    <Maximize2 className="w-3.5 h-3.5" />
+                    <Maximize2 className="w-4 h-4" />
                   </button>
                 </div>
 
                 {/* Bottom Captions */}
-                <div className="absolute bottom-0 inset-x-0 p-3.5 transform translate-y-1 group-hover:translate-y-0 transition-transform duration-300">
-                  <h3 className="text-white text-xs font-sans font-medium leading-snug line-clamp-1 mb-0.5">
+                <div className="absolute bottom-0 inset-x-0 p-4 transform translate-y-1 group-hover:translate-y-0 transition-transform duration-300">
+                  <h3 className="text-white text-sm sm:text-base font-sans font-medium leading-snug line-clamp-1 mb-1">
                     {item.title}
                   </h3>
-                  <p className="text-white/70 text-[10px] leading-tight line-clamp-2">
+                  <p className="text-white/80 text-xs sm:text-sm font-light leading-snug line-clamp-2">
                     {item.description}
                   </p>
                   {!isRestaurante && item.chalet.includes("Chalet") && (
-                    <div className="mt-1.5 flex items-center gap-1 text-[10px] font-mono text-[#D48B6A] uppercase tracking-wider font-semibold opacity-0 group-hover:opacity-100 transition-opacity">
+                    <div className="mt-2 flex items-center gap-1.5 text-xs font-mono text-[#D48B6A] uppercase tracking-wider font-semibold opacity-0 group-hover:opacity-100 transition-opacity">
                       <span>Ir a la ficha de este Chalet</span>
-                      <ArrowUpRight className="w-3 h-3" />
+                      <ArrowUpRight className="w-3.5 h-3.5" />
                     </div>
                   )}
                 </div>

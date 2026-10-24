@@ -114,8 +114,8 @@ export default function DualThreshold({ isOpen, onSelectWorld }: DualThresholdPr
 
         {/* Contenido Editorial Chalets - Alineado a la Izquierda */}
         <div className="relative z-10 max-w-lg transition-transform duration-500 group-hover:translate-y-[-6px] flex flex-col items-start text-left">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-panel-dark text-[9px] md:text-[10px] font-mono tracking-[0.25em] text-[#8D996E] uppercase mb-2 md:mb-3 border border-[#8D996E]/25">
-            <Compass className="w-3 h-3 text-[#8D996E]" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-panel-dark text-xs md:text-sm font-mono tracking-[0.25em] text-[#8D996E] uppercase mb-2 md:mb-3 border border-[#8D996E]/25">
+            <Compass className="w-3.5 h-3.5 text-[#8D996E]" />
             <span>{t.threshold.chaletsBadge}</span>
           </div>
 
@@ -123,11 +123,11 @@ export default function DualThreshold({ isOpen, onSelectWorld }: DualThresholdPr
             {t.threshold.chaletsTitle}
           </h2>
 
-          <p className="text-xs sm:text-sm md:text-base text-[#F5F2ED]/85 font-light leading-relaxed mb-3 md:mb-6 max-w-md drop-shadow text-left line-clamp-2 md:line-clamp-none">
+          <p className="text-sm sm:text-base md:text-lg text-[#F5F2ED]/85 font-light leading-relaxed mb-4 md:mb-6 max-w-md drop-shadow text-left line-clamp-2 md:line-clamp-none">
             {t.threshold.chaletsDesc}
           </p>
 
-          <div className="inline-flex items-center gap-2.5 md:gap-3 px-5 py-2 md:px-6 md:py-2.5 rounded-full text-[11px] md:text-xs font-semibold tracking-[0.18em] uppercase bg-[#8D996E] hover:bg-[#a2af7e] text-[#151D14] transition-all duration-300 shadow-xl group-hover:shadow-[0_0_25px_rgba(141,153,110,0.4)]">
+          <div className="inline-flex items-center gap-2.5 md:gap-3 px-6 py-2.5 md:px-7 md:py-3 rounded-full text-xs md:text-sm font-semibold tracking-[0.18em] uppercase bg-[#8D996E] hover:bg-[#a2af7e] text-[#151D14] transition-all duration-300 shadow-xl group-hover:shadow-[0_0_25px_rgba(141,153,110,0.4)]">
             <span>{t.threshold.chaletsBtn}</span>
             <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
           </div>
@@ -171,9 +171,9 @@ export default function DualThreshold({ isOpen, onSelectWorld }: DualThresholdPr
         {/* Contenido Editorial Restaurante - Alineado 100% a la Derecha */}
         <div className="relative z-10 max-w-lg transition-transform duration-500 group-hover:translate-y-[-6px] flex flex-col items-end text-right">
           {/* Badge con icono y texto alineados a la derecha */}
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-panel-dark text-[9px] md:text-[10px] font-mono tracking-[0.25em] text-[#A45D41] uppercase mb-2 md:mb-3 border border-[#A45D41]/30 ml-auto">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-panel-dark text-xs md:text-sm font-mono tracking-[0.25em] text-[#A45D41] uppercase mb-2 md:mb-3 border border-[#A45D41]/30 ml-auto">
             <span>{t.threshold.restaurantBadge}</span>
-            <UtensilsCrossed className="w-3 h-3 text-[#A45D41]" />
+            <UtensilsCrossed className="w-3.5 h-3.5 text-[#A45D41]" />
           </div>
 
           {/* Título alineado a la derecha */}
@@ -182,12 +182,12 @@ export default function DualThreshold({ isOpen, onSelectWorld }: DualThresholdPr
           </h2>
 
           {/* Párrafo descriptivo alineado a la derecha */}
-          <p className="text-xs sm:text-sm md:text-base text-[#F5F2ED]/85 font-light leading-relaxed mb-3 md:mb-6 max-w-md drop-shadow text-right ml-auto line-clamp-2 md:line-clamp-none">
+          <p className="text-sm sm:text-base md:text-lg text-[#F5F2ED]/85 font-light leading-relaxed mb-4 md:mb-6 max-w-md drop-shadow text-right ml-auto line-clamp-2 md:line-clamp-none">
             {t.threshold.restaurantDesc}
           </p>
 
           {/* Botón CTA alineado a la derecha */}
-          <div className="inline-flex items-center gap-2.5 md:gap-3 px-5 py-2 md:px-6 md:py-2.5 rounded-full text-[11px] md:text-xs font-semibold tracking-[0.18em] uppercase bg-[#A45D41] hover:bg-[#bd7356] text-[#F5F2ED] transition-all duration-300 shadow-xl group-hover:shadow-[0_0_25px_rgba(164,93,65,0.4)] ml-auto cursor-pointer">
+          <div className="inline-flex items-center gap-2.5 md:gap-3 px-6 py-2.5 md:px-7 md:py-3 rounded-full text-xs md:text-sm font-semibold tracking-[0.18em] uppercase bg-[#A45D41] hover:bg-[#bd7356] text-[#F5F2ED] transition-all duration-300 shadow-xl group-hover:shadow-[0_0_25px_rgba(164,93,65,0.4)] ml-auto cursor-pointer">
             <span>{t.threshold.restaurantBtn}</span>
             <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
           </div>
@@ -223,11 +223,11 @@ export default function DualThreshold({ isOpen, onSelectWorld }: DualThresholdPr
           </div>
         </div>
 
-        {/* Logo Texto pequeño bajo el medallón */}
-        <div className="medallion-logo-wrapper h-3 sm:h-3.5 md:h-5 mt-1 sm:mt-1.5 md:mt-2 drop-shadow-md">
+        {/* Logo Texto bajo el medallón */}
+        <div className="medallion-logo-wrapper h-3.5 sm:h-4 md:h-6 mt-1.5 sm:mt-2 md:mt-2.5 drop-shadow-md">
           <LogoTexto className="h-full w-auto" fill={isLight ? "#1A2219" : "#F5F2ED"} />
         </div>
-        <span className="text-[7px] sm:text-[8px] md:text-[9px] font-mono tracking-[0.3em] uppercase text-[#8D996E] mt-0.5 sm:mt-1 font-semibold">
+        <span className="text-[9px] sm:text-[10px] md:text-xs font-mono tracking-[0.3em] uppercase text-[#8D996E] mt-1 font-semibold">
           {t.threshold.medallionTag}
         </span>
       </div>

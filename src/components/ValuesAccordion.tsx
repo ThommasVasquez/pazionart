@@ -116,18 +116,18 @@ export default function ValuesAccordion({ activeWorld = "chalets" }: ValuesAccor
       ];
 
   return (
-    <div ref={containerRef} className="w-full max-w-7xl mx-auto h-full flex flex-col justify-center py-6">
+    <div ref={containerRef} className="w-full max-w-7xl mx-auto h-full flex flex-col justify-center py-8 md:py-12 my-auto">
       {/* Editorial Header */}
-      <div className="values-header mb-6">
-        <div className="flex items-center gap-2 mb-2">
-          <Sparkles className={`w-3.5 h-3.5 ${isCoffee ? "text-[#A45D41]" : "text-[#8D996E]"}`} />
-          <span className={`text-[10px] font-mono tracking-widest uppercase ${
+      <div className="values-header mb-8">
+        <div className="flex items-center gap-2 mb-2.5">
+          <Sparkles className={`w-4 h-4 ${isCoffee ? "text-[#A45D41]" : "text-[#8D996E]"}`} />
+          <span className={`text-xs sm:text-sm font-mono tracking-widest uppercase font-semibold ${
             isCoffee ? "text-[#D48B6A]" : "text-[#8D996E]"
           }`}>
             {isCoffee ? "[ 04 · Amor · Naturaleza · Arte ]" : "[ 04 · Amor · Naturaleza · Arte ]"}
           </span>
         </div>
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-[#F5F2ED] tracking-wide font-sans">
+        <h2 className="text-2xl sm:text-3xl md:text-5xl font-light text-[#F5F2ED] tracking-wide font-sans mb-3">
           {isCoffee ? (
             <>
               Los Pilares de Nuestro <span className="italic font-normal text-[#A45D41]">Restaurante</span>
@@ -138,13 +138,13 @@ export default function ValuesAccordion({ activeWorld = "chalets" }: ValuesAccor
             </>
           )}
         </h2>
-        <p className="text-xs sm:text-sm text-[#F5F2ED]/75 font-light mt-1.5 max-w-xl">
+        <p className="text-sm sm:text-base md:text-lg text-[#F5F2ED]/85 font-light max-w-2xl leading-relaxed">
           Amor, Naturaleza y Arte: los tres pilares fundamentales que guían cada vivencia en Pazionart.
         </p>
       </div>
 
       {/* Horizontal Interactive Accordion con los 3 Pilares Reales */}
-      <div className="w-full h-[54vh] min-h-[400px] max-h-[520px] flex flex-col md:flex-row gap-3.5 rounded-3xl overflow-hidden">
+      <div className="w-full h-[64vh] min-h-[480px] max-h-[640px] flex flex-col md:flex-row gap-4 rounded-3xl overflow-hidden">
         {values.map((val, idx) => {
           const isActive = activeIdx === idx;
           const IconComp = val.icon;
@@ -154,7 +154,7 @@ export default function ValuesAccordion({ activeWorld = "chalets" }: ValuesAccor
               key={val.num}
               onMouseEnter={() => handleSelectValue(idx)}
               onClick={() => handleSelectValue(idx)}
-              className={`values-card relative overflow-hidden rounded-2xl cursor-pointer transition-all duration-700 ease-out flex flex-col justify-between p-6 md:p-8 border ${
+              className={`values-card relative overflow-hidden rounded-2xl cursor-pointer transition-all duration-700 ease-out flex flex-col justify-between p-6 sm:p-8 md:p-10 border ${
                 isActive
                   ? isCoffee
                     ? "md:flex-[2.6] bg-[#241A17] shadow-2xl"
@@ -193,14 +193,14 @@ export default function ValuesAccordion({ activeWorld = "chalets" }: ValuesAccor
               {/* Number and Icon Button with unique color per card */}
               <div className="relative z-10 flex items-center justify-between">
                 <span
-                  className="text-2xl md:text-3xl font-mono tracking-tight transition-colors duration-500 font-medium"
+                  className="text-3xl md:text-4xl font-mono tracking-tight transition-colors duration-500 font-medium"
                   style={{ color: isActive ? val.color : `${val.color}80` }}
                 >
                   {val.num}
                 </span>
 
                 <div
-                  className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300"
+                  className="w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300"
                   style={{
                     backgroundColor: isActive ? val.color : `${val.color}25`,
                     color: isActive ? "#F5F2ED" : val.color,
@@ -208,7 +208,7 @@ export default function ValuesAccordion({ activeWorld = "chalets" }: ValuesAccor
                     transform: isActive ? "scale(1.1)" : "scale(1)",
                   }}
                 >
-                  <IconComp className="w-5 h-5" />
+                  <IconComp className="w-6 h-6" />
                 </div>
               </div>
 
@@ -221,17 +221,17 @@ export default function ValuesAccordion({ activeWorld = "chalets" }: ValuesAccor
                 }`}
               >
                 <span
-                  className="text-[10px] font-mono tracking-widest uppercase block mb-1 font-semibold"
+                  className="text-xs sm:text-sm font-mono tracking-widest uppercase block mb-1.5 font-semibold"
                   style={{ color: val.color }}
                 >
                   {val.tag}
                 </span>
 
-                <h3 className="text-2xl md:text-3xl font-light text-[#F5F2ED] mb-2 font-normal tracking-wide">
+                <h3 className="text-3xl md:text-4xl font-light text-[#F5F2ED] mb-3 font-normal tracking-wide">
                   {val.title}
                 </h3>
 
-                <p className="text-xs sm:text-sm text-[#F5F2ED]/85 font-light leading-relaxed max-w-lg">
+                <p className="text-sm sm:text-base text-[#F5F2ED]/90 font-light leading-relaxed max-w-lg">
                   {val.desc}
                 </p>
               </div>
@@ -240,7 +240,7 @@ export default function ValuesAccordion({ activeWorld = "chalets" }: ValuesAccor
               {!isActive && (
                 <div className="hidden md:flex absolute inset-0 items-center justify-center pointer-events-none z-10 opacity-70 group-hover:opacity-100 transition-opacity">
                   <span
-                    className="text-sm font-mono uppercase tracking-[0.28em] rotate-90 whitespace-nowrap font-medium"
+                    className="text-base font-mono uppercase tracking-[0.28em] rotate-90 whitespace-nowrap font-medium"
                     style={{ color: val.color }}
                   >
                     {val.title}

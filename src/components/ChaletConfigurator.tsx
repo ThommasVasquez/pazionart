@@ -252,24 +252,24 @@ export default function ChaletConfigurator({
   const activePhoto = currentPhotos[photoIndex] || currentPhotos[0];
 
   return (
-    <div ref={chaletRef} className="w-full max-w-7xl mx-auto h-full flex flex-col justify-center py-4">
+    <div ref={chaletRef} className="w-full max-w-7xl mx-auto h-full flex flex-col justify-center py-8 md:py-14 my-auto">
       {/* Top Bar Editorial */}
-      <div className={`flex flex-col sm:flex-row sm:items-end justify-between mb-4 pb-3 border-b transition-colors ${
+      <div className={`flex flex-col sm:flex-row sm:items-end justify-between mb-6 pb-4 border-b transition-colors ${
         isLight ? "border-[#8D996E]/20" : "border-[#8D996E]/20"
       }`}>
         <div className="chalet-header">
-          <div className="flex items-center gap-2 mb-1">
-            <span className="text-[10px] font-mono text-[#A45D41] tracking-widest uppercase">
+          <div className="flex items-center gap-2 mb-2">
+            <span className="text-xs font-mono text-[#A45D41] tracking-widest uppercase font-semibold">
               03 · Refugios de Altura
             </span>
             <span className="text-[#8D996E]/40">•</span>
-            <span className={`text-[10px] font-mono tracking-widest uppercase ${
+            <span className={`text-xs font-mono tracking-widest uppercase ${
               isLight ? "text-[#5B6D49]" : "text-[#8D996E]"
             }`}>
               Colección Exclusiva
             </span>
           </div>
-          <h2 className={`text-2xl sm:text-3xl md:text-4xl font-light tracking-wide font-sans ${
+          <h2 className={`text-2xl sm:text-3xl md:text-5xl font-light tracking-wide font-sans ${
             isLight ? "text-[#1A2219]" : "text-[#F5F2ED]"
           }`}>
             {t.configurator.title}{" "}
@@ -279,7 +279,7 @@ export default function ChaletConfigurator({
       </div>
 
       {/* Selector de Chalets con Foto para dar máximo protagonismo a los tres */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 mb-8">
         {chalets.map((ch, idx) => {
           const isSelected = selectedId === idx;
           const photosCount = allGalleryItems.filter((it: GalleryPhoto) => it.chalet === ch.name).length;
@@ -287,7 +287,7 @@ export default function ChaletConfigurator({
             <button
               key={ch.id}
               onClick={() => handleSelectChalet(idx)}
-              className={`group relative flex items-center gap-3.5 p-2 sm:p-2.5 rounded-2xl border transition-all duration-300 text-left cursor-pointer ${
+              className={`group relative flex items-center gap-4 p-3 rounded-2xl border transition-all duration-300 text-left cursor-pointer ${
                 isSelected
                   ? "bg-[#A45D41]/20 border-[#A45D41] shadow-xl shadow-[#A45D41]/20 ring-1 ring-[#A45D41]"
                   : isLight
@@ -295,7 +295,7 @@ export default function ChaletConfigurator({
                   : "glass-panel-dark border-[#8D996E]/15 hover:border-[#8D996E]/40 hover:bg-[#151D14]/90"
               }`}
             >
-              <div className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden shrink-0 border border-white/10 shadow-md">
+              <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden shrink-0 border border-white/10 shadow-md">
                 <Image
                   src={ch.views.exterior}
                   alt={ch.name}
@@ -304,22 +304,22 @@ export default function ChaletConfigurator({
                 />
                 {isSelected && (
                   <div className="absolute inset-0 bg-[#A45D41]/40 backdrop-blur-[1px] flex items-center justify-center">
-                    <Check className="w-4 h-4 text-white drop-shadow" />
+                    <Check className="w-5 h-5 text-white drop-shadow" />
                   </div>
                 )}
               </div>
               <div className="min-w-0 flex-1">
-                <div className="flex items-center justify-between gap-1">
-                  <span className={`text-[9px] font-mono uppercase tracking-widest block truncate ${
+                <div className="flex items-center justify-between gap-1 mb-0.5">
+                  <span className={`text-xs font-mono uppercase tracking-wider block truncate ${
                     isSelected ? "text-[#D48B6A] font-semibold" : "text-[#8D996E]"
                   }`}>
                     Refugio 0{idx + 1} · {ch.capacity.split("·")[0].trim()}
                   </span>
-                  <span className="text-[9px] font-mono text-[#F5F2ED]/60 bg-black/30 px-1.5 py-0.5 rounded">
+                  <span className="text-xs font-mono text-[#F5F2ED]/70 bg-black/40 px-2 py-0.5 rounded">
                     {photosCount} fotos
                   </span>
                 </div>
-                <h3 className={`text-sm sm:text-base font-medium tracking-tight truncate ${
+                <h3 className={`text-base sm:text-lg font-medium tracking-tight truncate ${
                   isSelected
                     ? "text-[#F5F2ED] font-semibold"
                     : isLight
@@ -328,10 +328,10 @@ export default function ChaletConfigurator({
                 }`}>
                   {ch.name}
                 </h3>
-                <p className={`text-[11px] font-light truncate mt-0.5 ${
-                  isSelected ? "text-[#F5F2ED]/80" : isLight ? "text-[#1A2219]/60" : "text-[#F5F2ED]/60"
+                <p className={`text-xs sm:text-sm font-light truncate mt-0.5 ${
+                  isSelected ? "text-[#F5F2ED]/90" : isLight ? "text-[#1A2219]/70" : "text-[#F5F2ED]/70"
                 }`}>
-                  {ch.basePrice} <span className="text-[9px] font-mono">/ noche</span>
+                  {ch.basePrice} <span className="text-xs font-mono">/ noche</span>
                 </p>
               </div>
             </button>
@@ -340,7 +340,7 @@ export default function ChaletConfigurator({
       </div>
 
       {/* Main Interactive Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
         {/* Columna Izquierda: Visor Fotográfico con Galería Completa de Fotos del Chalet */}
         <div className="lg:col-span-7 flex flex-col justify-start">
           <div
@@ -361,26 +361,26 @@ export default function ChaletConfigurator({
 
             {/* Badges superiores sobre la imagen */}
             <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-10">
-              <span className="glass-pill px-3 py-1.5 rounded-full text-[10px] font-mono tracking-wider text-[#F5F2ED] uppercase flex items-center gap-1.5 shadow-md">
-                <Camera className="w-3.5 h-3.5 text-[#D48B6A]" />
+              <span className="glass-pill px-3.5 py-1.5 rounded-full text-xs font-mono tracking-wider text-[#F5F2ED] uppercase flex items-center gap-2 shadow-md">
+                <Camera className="w-4 h-4 text-[#D48B6A]" />
                 <span>Foto {photoIndex + 1} de {currentPhotos.length} · {currentChalet.name}</span>
               </span>
 
               {/* Botones de acción */}
-              <div className="flex items-center gap-1.5">
+              <div className="flex items-center gap-2">
                 <button
                   onClick={() => setIsLightboxOpen(true)}
-                  className="px-3 py-1.5 rounded-full glass-panel-dark text-[10px] font-mono text-[#F5F2ED] hover:bg-[#A45D41] hover:text-white transition-all flex items-center gap-1.5 cursor-pointer shadow-md"
+                  className="px-3.5 py-1.5 rounded-full glass-panel-dark text-xs font-mono text-[#F5F2ED] hover:bg-[#A45D41] hover:text-white transition-all flex items-center gap-1.5 cursor-pointer shadow-md"
                   title="Ver todas las fotos en tamaño completo"
                 >
-                  <Maximize2 className="w-3 h-3" />
+                  <Maximize2 className="w-3.5 h-3.5" />
                   <span className="hidden sm:inline">Ver las {currentPhotos.length} fotos</span>
                 </button>
 
                 {onViewInGallery && (
                   <button
                     onClick={() => onViewInGallery(currentChalet.slug)}
-                    className="px-3 py-1.5 rounded-full glass-panel-dark text-[10px] font-mono text-[#8D996E] hover:text-white hover:bg-[#8D996E]/40 transition-all flex items-center gap-1 cursor-pointer shadow-md"
+                    className="px-3.5 py-1.5 rounded-full glass-panel-dark text-xs font-mono text-[#8D996E] hover:text-white hover:bg-[#8D996E]/40 transition-all flex items-center gap-1.5 cursor-pointer shadow-md"
                     title="Ver álbum completo en la Galería"
                   >
                     <span>Galería ↓</span>
@@ -397,58 +397,58 @@ export default function ChaletConfigurator({
                     e.stopPropagation();
                     setPhotoIndex((photoIndex - 1 + currentPhotos.length) % currentPhotos.length);
                   }}
-                  className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-black/60 hover:bg-black/85 backdrop-blur-md text-white flex items-center justify-center transition-all cursor-pointer z-10 opacity-80 group-hover:opacity-100 hover:scale-110 shadow-xl"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/60 hover:bg-black/85 backdrop-blur-md text-white flex items-center justify-center transition-all cursor-pointer z-10 opacity-80 group-hover:opacity-100 hover:scale-110 shadow-xl"
                   aria-label="Foto anterior"
                 >
-                  <ChevronLeft className="w-5 h-5" />
+                  <ChevronLeft className="w-6 h-6" />
                 </button>
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
                     setPhotoIndex((photoIndex + 1) % currentPhotos.length);
                   }}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-black/60 hover:bg-black/85 backdrop-blur-md text-white flex items-center justify-center transition-all cursor-pointer z-10 opacity-80 group-hover:opacity-100 hover:scale-110 shadow-xl"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/60 hover:bg-black/85 backdrop-blur-md text-white flex items-center justify-center transition-all cursor-pointer z-10 opacity-80 group-hover:opacity-100 hover:scale-110 shadow-xl"
                   aria-label="Siguiente foto"
                 >
-                  <ChevronRight className="w-5 h-5" />
+                  <ChevronRight className="w-6 h-6" />
                 </button>
               </>
             )}
 
             {/* Info inferior sobre la foto activa */}
             <div className="absolute bottom-4 left-5 right-5 z-10 pointer-events-none">
-              <span className="text-[10px] font-mono text-[#D48B6A] tracking-widest uppercase font-semibold block mb-0.5">
+              <span className="text-xs sm:text-sm font-mono text-[#D48B6A] tracking-widest uppercase font-semibold block mb-1">
                 {activePhoto.title}
               </span>
-              <p className="text-xs text-[#F5F2ED]/90 font-light line-clamp-2 max-w-xl">
+              <p className="text-xs sm:text-sm text-[#F5F2ED]/95 font-light line-clamp-2 max-w-xl leading-relaxed">
                 {activePhoto.description}
               </p>
             </div>
           </div>
 
           {/* Tira horizontal de miniaturas de TODAS las fotos de este chalet */}
-          <div className="mt-3">
-            <div className="flex items-center justify-between mb-1.5 px-1">
-              <span className="text-[10px] font-mono text-[#8D996E] uppercase tracking-wider flex items-center gap-1.5">
+          <div className="mt-3.5">
+            <div className="flex items-center justify-between mb-2 px-1">
+              <span className="text-xs font-mono text-[#8D996E] uppercase tracking-wider flex items-center gap-2">
                 <span>Fotos de {currentChalet.name}</span>
-                <span className="text-[#F5F2ED]/40">({currentPhotos.length} fotos disponibles)</span>
+                <span className="text-[#F5F2ED]/50">({currentPhotos.length} disponibles)</span>
               </span>
               <button
                 onClick={() => setIsLightboxOpen(true)}
-                className="text-[10px] font-mono text-[#D48B6A] hover:underline cursor-pointer"
+                className="text-xs font-mono text-[#D48B6A] hover:underline cursor-pointer"
               >
                 Ampliar todas ↗
               </button>
             </div>
 
-            <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-thin scrollbar-thumb-[#8D996E]/20">
+            <div className="flex items-center gap-2.5 overflow-x-auto pb-2 scrollbar-thin scrollbar-thumb-[#8D996E]/20">
               {currentPhotos.map((photo, idx) => {
                 const isActive = photoIndex === idx;
                 return (
                   <button
                     key={photo.id || idx}
                     onClick={() => setPhotoIndex(idx)}
-                    className={`relative w-16 h-12 sm:w-20 sm:h-14 rounded-xl overflow-hidden shrink-0 border transition-all duration-300 cursor-pointer ${
+                    className={`relative w-18 h-14 sm:w-22 sm:h-16 rounded-xl overflow-hidden shrink-0 border transition-all duration-300 cursor-pointer ${
                       isActive
                         ? "border-[#A45D41] ring-2 ring-[#A45D41] scale-105 shadow-lg"
                         : "border-white/15 opacity-60 hover:opacity-100 hover:border-white/40"
@@ -472,37 +472,37 @@ export default function ChaletConfigurator({
         </div>
 
         {/* Columna Derecha: Tarjeta de Cotización y Experiencias del Chalet */}
-        <div className={`chalet-right-panel lg:col-span-5 flex flex-col justify-between p-6 rounded-3xl border transition-colors ${
+        <div className={`chalet-right-panel lg:col-span-5 flex flex-col justify-between p-6 sm:p-8 rounded-3xl border transition-colors ${
           isLight
             ? "bg-white/85 border-[#8D996E]/25 text-[#1A2219] shadow-xl"
             : "glass-panel-dark border-[#8D996E]/20 text-[#F5F2ED]"
         }`}>
           <div>
             {/* Story */}
-            <p className={`text-xs font-light leading-relaxed mb-4 ${
-              isLight ? "text-[#1A2219]/80" : "text-[#F5F2ED]/80"
+            <p className={`text-sm sm:text-base font-light leading-relaxed mb-6 ${
+              isLight ? "text-[#1A2219]/85" : "text-[#F5F2ED]/85"
             }`}>
               {currentChalet.story}
             </p>
 
             {/* Cuatro Highlights */}
-            <div className="space-y-2 mb-5">
+            <div className="space-y-3 mb-6">
               {currentChalet.highlights.map((h) => (
                 <div
                   key={h.label}
-                  className={`chalet-highlight flex items-start gap-2.5 p-2 rounded-xl transition-colors ${
+                  className={`chalet-highlight flex items-start gap-3 p-2.5 rounded-xl transition-colors ${
                     isLight ? "hover:bg-[#8D996E]/15" : "hover:bg-[#8D996E]/10"
                   }`}
                 >
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#A45D41] mt-1.5 shrink-0" />
+                  <span className="w-2 h-2 rounded-full bg-[#A45D41] mt-2 shrink-0" />
                   <div>
-                    <span className={`text-xs font-medium block ${
+                    <span className={`text-sm sm:text-base font-medium block ${
                       isLight ? "text-[#1A2219]" : "text-[#F5F2ED]"
                     }`}>
                       {h.label}
                     </span>
-                    <span className={`text-[11px] font-light ${
-                      isLight ? "text-[#1A2219]/65" : "text-[#F5F2ED]/60"
+                    <span className={`text-xs sm:text-sm font-light leading-snug ${
+                      isLight ? "text-[#1A2219]/70" : "text-[#F5F2ED]/65"
                     }`}>
                       {h.desc}
                     </span>
@@ -513,30 +513,30 @@ export default function ChaletConfigurator({
           </div>
 
           {/* Interactive Stay Estimator Box */}
-          <div className={`chalet-estimator p-4 rounded-2xl border transition-colors ${
+          <div className={`chalet-estimator p-5 rounded-2xl border transition-colors ${
             isLight
               ? "bg-[#F7F5EE] border-[#8D996E]/25 shadow-sm"
               : "bg-[#151D14]/80 border-[#8D996E]/20"
           }`}>
-            <div className="flex items-center justify-between mb-3">
+            <div className="flex items-center justify-between mb-4">
               <div>
-                <span className={`text-[10px] font-mono tracking-wider uppercase block ${
+                <span className={`text-xs font-mono tracking-wider uppercase block ${
                   isLight ? "text-[#5B6D49]" : "text-[#8D996E]"
                 }`}>
                   {t.configurator.totalEstimate}
                 </span>
-                <span className={`text-lg font-light ${
+                <span className={`text-xl sm:text-2xl font-light ${
                   isLight ? "text-[#1A2219]" : "text-[#F5F2ED]"
                 }`}>
                   {currentChalet.basePrice}{" "}
-                  <span className={`text-xs font-mono ${isLight ? "text-[#1A2219]/50" : "text-[#F5F2ED]/50"}`}>
+                  <span className={`text-xs font-mono ${isLight ? "text-[#1A2219]/60" : "text-[#F5F2ED]/60"}`}>
                     / noche
                   </span>
                 </span>
               </div>
 
               {/* Selector de Noches */}
-              <div className={`flex items-center gap-1 p-1 rounded-xl border ${
+              <div className={`flex items-center gap-1.5 p-1.5 rounded-xl border ${
                 isLight
                   ? "bg-white border-[#8D996E]/25"
                   : "bg-[#212B20] border-[#8D996E]/30"
@@ -545,7 +545,7 @@ export default function ChaletConfigurator({
                   <button
                     key={n}
                     onClick={() => setNights(n)}
-                    className={`px-2.5 py-1 rounded-lg text-[10px] font-mono cursor-pointer transition-all ${
+                    className={`px-3 py-1.5 rounded-lg text-xs font-mono cursor-pointer transition-all ${
                       nights === n
                         ? "bg-[#8D996E] text-[#212B20] font-bold"
                         : isLight
@@ -562,7 +562,7 @@ export default function ChaletConfigurator({
             <button
               onClick={() => onSelectBooking(currentChalet.name, nights)}
               data-cursor="reserve"
-              className="w-full py-3.5 rounded-xl text-xs font-semibold tracking-[0.2em] uppercase bg-[#A45D41] hover:bg-[#bd7356] text-[#F5F2ED] transition-all duration-300 shadow-xl flex items-center justify-center gap-2 cursor-pointer group"
+              className="w-full py-4 rounded-xl text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase bg-[#A45D41] hover:bg-[#bd7356] text-[#F5F2ED] transition-all duration-300 shadow-xl flex items-center justify-center gap-2.5 cursor-pointer group"
             >
               <Calendar className="w-4 h-4 group-hover:scale-110 transition-transform" />
               <span>{t.configurator.bookBtn} · {nights} {nights === 1 ? (t.common ? "Noche" : "Night") : (t.common ? "Noches" : "Nights")}</span>

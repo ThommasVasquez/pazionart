@@ -182,25 +182,25 @@ export default function RestaurantSection({ onOpenBooking }: RestaurantSectionPr
     <section
       ref={sectionRef}
       id="restaurante"
-      className="relative w-full min-h-screen flex items-center justify-center py-24 md:py-32 px-6 md:px-12 bg-[#1F1714] overflow-hidden"
+      className="relative w-full min-h-[100dvh] flex flex-col justify-center py-28 md:py-36 px-6 md:px-12 bg-[#1F1714] overflow-hidden"
     >
       {/* Difuminado superior en tono Café Leña */}
       <div className="absolute top-0 left-0 right-0 h-32 md:h-48 bg-gradient-to-b from-[#1E1613]/85 via-[#1F1714]/50 to-transparent pointer-events-none z-10" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-6xl h-px bg-gradient-to-r from-transparent via-[#A45D41]/30 to-transparent blur-[1px] pointer-events-none z-20" />
 
-      <div className="max-w-7xl mx-auto w-full relative z-20 flex flex-col gap-14">
+      <div className="max-w-7xl mx-auto w-full relative z-20 flex flex-col gap-12 lg:gap-16 my-auto">
         {/* Cabecera Editorial de la Sección */}
         <div className="text-center max-w-3xl mx-auto">
-          <div className="restaurant-badge inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#16100E]/85 text-[10px] font-mono tracking-[0.25em] text-[#D48B6A] uppercase mb-4 border border-[#A45D41]/30 shadow-md">
-            <Sparkles className="w-3.5 h-3.5 text-[#A45D41]" />
+          <div className="restaurant-badge inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#16100E]/85 text-xs sm:text-sm font-mono tracking-[0.25em] text-[#D48B6A] uppercase mb-4 border border-[#A45D41]/30 shadow-md">
+            <Sparkles className="w-4 h-4 text-[#A45D41]" />
             <span>03 · Servicios Gastronómicos & Eventos</span>
           </div>
 
-          <h2 className="restaurant-title text-3xl sm:text-4xl md:text-5xl font-light tracking-[0.06em] text-[#F5F2ED] uppercase font-sans mb-4">
+          <h2 className="restaurant-title text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-[0.06em] text-[#F5F2ED] uppercase font-sans mb-4">
             Restaurante de Pazionart
           </h2>
 
-          <p className="restaurant-desc text-sm sm:text-base md:text-lg text-[#F5F2ED]/85 font-light leading-relaxed">
+          <p className="restaurant-desc text-base sm:text-lg md:text-xl text-[#F5F2ED]/85 font-light leading-relaxed">
             Ofrecemos servicio presencial en nuestras mesas, preparamos la comida y la llevamos a tu chalet, y organizamos eventos especiales con música en vivo y eventos empresariales en medio de la naturaleza.
           </p>
         </div>
@@ -222,15 +222,15 @@ export default function RestaurantSection({ onOpenBooking }: RestaurantSectionPr
 
               {/* Badge flotante en la foto con el servicio activo */}
               <div className="absolute bottom-5 left-5 right-5 p-4 rounded-2xl bg-[#18110F]/85 backdrop-blur-md border border-[#A45D41]/30 shadow-lg">
-                <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-xl bg-[#A45D41]/25 border border-[#A45D41]/40 flex items-center justify-center shrink-0">
-                    <current.icon className="w-4 h-4 text-[#D48B6A]" />
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-[#A45D41]/25 border border-[#A45D41]/40 flex items-center justify-center shrink-0">
+                    <current.icon className="w-5 h-5 text-[#D48B6A]" />
                   </div>
                   <div>
-                    <span className="text-[10px] font-mono uppercase tracking-widest text-[#D48B6A] block">
+                    <span className="text-xs font-mono uppercase tracking-widest text-[#D48B6A] block">
                       {current.badge}
                     </span>
-                    <span className="text-xs text-[#F5F2ED] font-medium block">
+                    <span className="text-sm text-[#F5F2ED] font-medium block">
                       {current.shortLabel}
                     </span>
                   </div>
@@ -242,7 +242,7 @@ export default function RestaurantSection({ onOpenBooking }: RestaurantSectionPr
           {/* Lado Derecho: Navegación de los 4 Servicios & Tarjeta de Detalle */}
           <div className="lg:col-span-7 flex flex-col justify-center">
             {/* Selector de los 4 Servicios */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mb-6">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
               {services.map((s, idx) => {
                 const IconComponent = s.icon;
                 const isSelected = activeService === idx;
@@ -250,7 +250,7 @@ export default function RestaurantSection({ onOpenBooking }: RestaurantSectionPr
                   <button
                     key={s.id}
                     onClick={() => handleSelectService(idx)}
-                    className={`restaurant-service-tab p-3 rounded-2xl transition-all duration-300 cursor-pointer text-left flex flex-col gap-1.5 border ${
+                    className={`restaurant-service-tab p-3.5 sm:p-4 rounded-2xl transition-all duration-300 cursor-pointer text-left flex flex-col gap-2 border ${
                       isSelected
                         ? "bg-[#A45D41] text-[#F5F2ED] border-[#A45D41] shadow-lg scale-[1.02]"
                         : "bg-[#18110F]/80 text-[#F5F2ED]/70 border-[#A45D41]/20 hover:border-[#A45D41]/50 hover:bg-[#A45D41]/15 hover:text-[#F5F2ED]"
@@ -258,14 +258,14 @@ export default function RestaurantSection({ onOpenBooking }: RestaurantSectionPr
                   >
                     <div className="flex items-center justify-between w-full">
                       <IconComponent className={`w-4 h-4 ${isSelected ? "text-[#F5F2ED]" : "text-[#D48B6A]"}`} />
-                      <span className={`text-[9px] font-mono ${isSelected ? "text-[#F5F2ED]/80" : "text-[#D48B6A]/70"}`}>
+                      <span className={`text-xs font-mono font-medium ${isSelected ? "text-[#F5F2ED]/90" : "text-[#D48B6A]/80"}`}>
                         0{idx + 1}
                       </span>
                     </div>
-                    <span className="text-[11px] font-semibold leading-tight block">
+                    <span className="text-xs sm:text-sm font-semibold leading-snug block">
                       {s.shortLabel}
                     </span>
-                    <span className={`text-[9px] font-mono tracking-wider uppercase block ${isSelected ? "text-[#F5F2ED]/80" : "text-[#D48B6A]/80"}`}>
+                    <span className={`text-[10px] sm:text-xs font-mono tracking-wider uppercase block ${isSelected ? "text-[#F5F2ED]/85" : "text-[#D48B6A]/85"}`}>
                       {s.tagline}
                     </span>
                   </button>
@@ -278,32 +278,32 @@ export default function RestaurantSection({ onOpenBooking }: RestaurantSectionPr
               className="restaurant-service-card bg-[#18110F]/90 backdrop-blur-md p-6 sm:p-8 rounded-3xl border border-[#A45D41]/35 shadow-xl mb-6 relative overflow-hidden"
               style={{ viewTransitionName: "restaurant-active-service" }}
             >
-              <div className="absolute top-0 right-0 w-36 h-36 bg-radial from-[#A45D41]/25 to-transparent blur-3xl pointer-events-none" />
+              <div className="absolute top-0 right-0 w-44 h-44 bg-radial from-[#A45D41]/25 to-transparent blur-3xl pointer-events-none" />
 
-              <div className="flex items-center gap-2 mb-2">
-                <span className="text-[10px] font-mono text-[#D48B6A] uppercase tracking-widest">
+              <div className="flex items-center gap-2 mb-2.5">
+                <span className="text-xs font-mono text-[#D48B6A] uppercase tracking-widest font-semibold">
                   {current.badge}
                 </span>
                 <span className="text-[#A45D41]">·</span>
-                <span className="text-[10px] font-mono text-[#F5F2ED]/60 uppercase tracking-wider">
+                <span className="text-xs font-mono text-[#F5F2ED]/70 uppercase tracking-wider">
                   Restaurante de Pazionart
                 </span>
               </div>
 
-              <h3 className="text-2xl sm:text-3xl font-light text-[#F5F2ED] mb-3">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-light text-[#F5F2ED] mb-3">
                 {current.title}
               </h3>
 
-              <p className="text-sm text-[#F5F2ED]/90 font-light leading-relaxed mb-5">
+              <p className="text-base md:text-lg text-[#F5F2ED]/90 font-light leading-relaxed mb-6">
                 {current.desc}
               </p>
 
               {/* Lista de características y beneficios */}
-              <div className="space-y-2.5 pt-4 border-t border-[#A45D41]/25 mb-6">
+              <div className="space-y-3 pt-4 border-t border-[#A45D41]/25 mb-6">
                 {current.highlights.map((item, i) => (
-                  <div key={i} className="flex items-start gap-2.5">
-                    <CheckCircle2 className="w-4 h-4 text-[#D48B6A] shrink-0 mt-0.5" />
-                    <span className="text-xs text-[#F5F2ED]/85 font-light leading-snug">
+                  <div key={i} className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-[#D48B6A] shrink-0 mt-0.5" />
+                    <span className="text-sm sm:text-base text-[#F5F2ED]/90 font-light leading-relaxed">
                       {item}
                     </span>
                   </div>
@@ -315,7 +315,7 @@ export default function RestaurantSection({ onOpenBooking }: RestaurantSectionPr
                 <button
                   type="button"
                   onClick={() => handleWhatsAppClick(current.waMessage)}
-                  className="py-3 px-6 rounded-xl bg-[#25D366] hover:bg-[#20ba5a] text-[#121B12] text-xs font-semibold uppercase tracking-[0.16em] transition-all duration-300 shadow-lg flex items-center justify-center gap-2 cursor-pointer hover:scale-[1.02]"
+                  className="py-3.5 px-6 rounded-2xl bg-[#25D366] hover:bg-[#20ba5a] text-[#121B12] text-xs sm:text-sm font-semibold uppercase tracking-[0.16em] transition-all duration-300 shadow-lg flex items-center justify-center gap-2.5 cursor-pointer hover:scale-[1.02]"
                 >
                   <MessageCircle className="w-4 h-4 fill-current" />
                   <span>Contactar por WhatsApp</span>
@@ -323,7 +323,7 @@ export default function RestaurantSection({ onOpenBooking }: RestaurantSectionPr
 
                 <a
                   href={`mailto:pazionartchalets@gmail.com?subject=${encodeURIComponent(`Consulta Restaurante Pazionart - ${current.title}`)}&body=${encodeURIComponent(current.waMessage)}`}
-                  className="py-3 px-6 rounded-xl bg-[#2A1B14] hover:bg-[#38241B] text-[#F5F2ED] border border-[#A45D41]/50 text-xs font-semibold uppercase tracking-[0.16em] transition-all duration-300 shadow-md flex items-center justify-center gap-2 cursor-pointer hover:scale-[1.02]"
+                  className="py-3.5 px-6 rounded-2xl bg-[#2A1B14] hover:bg-[#38241B] text-[#F5F2ED] border border-[#A45D41]/50 text-xs sm:text-sm font-semibold uppercase tracking-[0.16em] transition-all duration-300 shadow-md flex items-center justify-center gap-2.5 cursor-pointer hover:scale-[1.02]"
                 >
                   <Mail className="w-4 h-4 text-[#D48B6A]" />
                   <span>Escribir por Correo</span>
@@ -332,38 +332,38 @@ export default function RestaurantSection({ onOpenBooking }: RestaurantSectionPr
             </div>
 
             {/* Caja de Contacto Rápido: Teléfono, WhatsApp y Correo */}
-            <div className="restaurant-booking-form bg-[#18110F]/75 backdrop-blur-md p-5 rounded-2xl border border-[#A45D41]/25 flex flex-col sm:flex-row items-center justify-between gap-4">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-[#A45D41]/20 border border-[#A45D41]/35 flex items-center justify-center shrink-0">
-                  <Phone className="w-4 h-4 text-[#D48B6A]" />
+            <div className="restaurant-booking-form bg-[#18110F]/75 backdrop-blur-md p-5 sm:p-6 rounded-2xl border border-[#A45D41]/25 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div className="flex items-center gap-3.5">
+                <div className="w-12 h-12 rounded-full bg-[#A45D41]/20 border border-[#A45D41]/35 flex items-center justify-center shrink-0">
+                  <Phone className="w-5 h-5 text-[#D48B6A]" />
                 </div>
                 <div>
-                  <span className="text-xs font-mono text-[#D48B6A] uppercase tracking-wider block">
+                  <span className="text-xs sm:text-sm font-mono text-[#D48B6A] uppercase tracking-wider block">
                     Línea de Reservas & Eventos
                   </span>
                   <a
                     href="tel:+573505791093"
-                    className="text-sm font-semibold text-[#F5F2ED] hover:text-[#D48B6A] transition-colors"
+                    className="text-base sm:text-lg font-semibold text-[#F5F2ED] hover:text-[#D48B6A] transition-colors"
                   >
                     +57 350 579 1093
                   </a>
                 </div>
               </div>
 
-              <div className="flex items-center gap-2.5 w-full sm:w-auto">
+              <div className="flex items-center gap-3 w-full sm:w-auto">
                 <button
                   type="button"
                   onClick={() => handleWhatsAppClick("Hola Pazionart, me gustaría comunicarme con el Restaurante para reservas y eventos.")}
-                  className="flex-1 sm:flex-initial py-2.5 px-4 rounded-xl bg-[#25D366] hover:bg-[#20ba5a] text-[#121B12] text-xs font-semibold uppercase tracking-wider transition-all cursor-pointer flex items-center justify-center gap-1.5 shadow-md hover:scale-[1.02]"
+                  className="flex-1 sm:flex-initial py-3 px-5 rounded-xl bg-[#25D366] hover:bg-[#20ba5a] text-[#121B12] text-xs sm:text-sm font-semibold uppercase tracking-wider transition-all cursor-pointer flex items-center justify-center gap-2 shadow-md hover:scale-[1.02]"
                 >
-                  <MessageCircle className="w-3.5 h-3.5 fill-current" />
+                  <MessageCircle className="w-4 h-4 fill-current" />
                   <span>WhatsApp</span>
                 </button>
                 <a
                   href="mailto:pazionartchalets@gmail.com?subject=Consulta%20Restaurante%20Pazionart&body=Hola%20Pazionart,%20deseo%20m%C3%A1s%20informaci%C3%B3n%20sobre%20el%20restaurante,%20reservas%20o%20eventos."
-                  className="flex-1 sm:flex-initial py-2.5 px-4 rounded-xl bg-[#2A1B14] hover:bg-[#38241B] border border-[#A45D41]/40 text-[#F5F2ED] text-xs font-mono uppercase tracking-wider transition-colors cursor-pointer flex items-center justify-center gap-1.5 text-center hover:scale-[1.02]"
+                  className="flex-1 sm:flex-initial py-3 px-5 rounded-xl bg-[#2A1B14] hover:bg-[#38241B] border border-[#A45D41]/40 text-[#F5F2ED] text-xs sm:text-sm font-mono uppercase tracking-wider transition-colors cursor-pointer flex items-center justify-center gap-2 text-center hover:scale-[1.02]"
                 >
-                  <Mail className="w-3.5 h-3.5 text-[#D48B6A]" />
+                  <Mail className="w-4 h-4 text-[#D48B6A]" />
                   <span>Correo</span>
                 </a>
               </div>
