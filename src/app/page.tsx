@@ -40,6 +40,7 @@ import LogoTexto from "@/components/LogoTexto";
 import DualThreshold from "@/components/DualThreshold";
 import RestaurantSection from "@/components/RestaurantSection";
 import VisualGallery from "@/components/VisualGallery";
+import EnergySoftSignature from "@/components/EnergySoftSignature";
 import { startSafeViewTransition } from "@/lib/viewTransition";
 import { usePreferences } from "@/context/PreferencesContext";
 
@@ -1157,7 +1158,7 @@ export default function Home() {
             </div>
 
             {/* Footer con imagotipo y créditos */}
-            <footer className={`site-footer pt-8 pb-4 border-t flex flex-col sm:flex-row items-center justify-between text-xs sm:text-sm font-light gap-3 transition-colors ${
+            <footer className={`site-footer pt-8 pb-4 border-t flex flex-col items-center gap-4 transition-colors ${
               isLight
                 ? isRestaurante
                   ? "border-[#A45D41]/20 text-[#2A1B14]/75"
@@ -1166,23 +1167,38 @@ export default function Home() {
                 ? "border-[#A45D41]/20 text-[#F5F2ED]/65"
                 : "border-[#8D996E]/15 text-[#F5F2ED]/65"
             }`}>
-              <div className="flex items-center gap-2.5">
-                <div className="w-6 h-6 relative">
-                  <Image
-                    src="/brand/simbolo-pazionart.svg"
-                    alt="Pazionart"
-                    fill
-                    className="object-contain"
-                  />
+              <div className="w-full flex flex-col sm:flex-row items-center justify-between text-xs sm:text-sm font-light gap-3">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-6 h-6 relative">
+                    <Image
+                      src="/brand/simbolo-pazionart.svg"
+                      alt="Pazionart"
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                  <span>© {new Date().getFullYear()} Pazionart. Todos los derechos reservados.</span>
                 </div>
-                <span>© {new Date().getFullYear()} Pazionart. Todos los derechos reservados.</span>
+                <div className={`text-xs tracking-widest font-mono font-medium ${
+                  isRestaurante ? "text-[#D48B6A]" : isLight ? "text-[#5B6D49]" : "text-[#8D996E]"
+                }`}>
+                  {isRestaurante
+                    ? "AMOR · NATURALEZA · ARTE — RESTAURANTE DE PAZIONART"
+                    : "AMOR · NATURALEZA · ARTE — CHALETS & EXPERIENCIAS"}
+                </div>
               </div>
-              <div className={`text-xs tracking-widest font-mono font-medium ${
-                isRestaurante ? "text-[#D48B6A]" : isLight ? "text-[#5B6D49]" : "text-[#8D996E]"
+
+              {/* Firma de Desarrollador Oficial ENERGYSOFTmedia® */}
+              <div className={`w-full pt-3.5 border-t flex items-center justify-center ${
+                isLight
+                  ? isRestaurante
+                    ? "border-[#A45D41]/15"
+                    : "border-[#8D996E]/15"
+                  : isRestaurante
+                  ? "border-[#A45D41]/15"
+                  : "border-[#8D996E]/15"
               }`}>
-                {isRestaurante
-                  ? "AMOR · NATURALEZA · ARTE — RESTAURANTE DE PAZIONART"
-                  : "AMOR · NATURALEZA · ARTE — CHALETS & EXPERIENCIAS"}
+                <EnergySoftSignature />
               </div>
             </footer>
           </div>
