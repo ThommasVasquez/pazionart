@@ -414,12 +414,12 @@ export default function Home() {
             <Image
               src={
                 activeWorld === "restaurante"
-                  ? "/images/gallery/aroma-comedor-rosas.jpg"
+                  ? "/images/restaurant/restaurante-fachada-completa.jpg"
                   : "/images/gallery/aroma-atardecer.jpg"
               }
               alt={
                 activeWorld === "restaurante"
-                  ? "Pazionart Restaurante"
+                  ? "Pazionart Gastro-Bar & Restaurante"
                   : "Pazionart Chalets & Refugios"
               }
               fill
@@ -703,12 +703,12 @@ export default function Home() {
                 <Image
                   src={
                     activeWorld === "restaurante"
-                      ? "/images/gallery/bruma-cocina-comedor.jpg"
+                      ? "/images/restaurant/restaurante-terraza-mesas.jpg"
                       : "/images/gallery/susurros-bosque.jpg"
                   }
                   alt={
                     activeWorld === "restaurante"
-                      ? "Cocina y comedor tradicional del Restaurante de Pazionart"
+                      ? "Terraza campestre y mesas de madera del Restaurante Gastro-Bar Pazionart"
                       : "Arquitectura bioclimática en la naturaleza andina"
                   }
                   fill

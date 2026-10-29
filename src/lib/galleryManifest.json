@@ -338,5 +338,60 @@
     "src": "/images/gallery/spa-vista-cenital.jpg",
     "width": 1365,
     "height": 2048
+  },
+  {
+    "id": "restaurante-fachada-completa",
+    "title": "Fachada Iluminada · Pazionart Gastro-Bar",
+    "chalet": "Restaurante Pazionart",
+    "category": "restaurante",
+    "subCategory": "terraza",
+    "description": "Pérgola rústica de madera iluminada con guirnaldas cálidas sobre la vía tradicional de Santa Elena.",
+    "src": "/images/restaurant/restaurante-fachada-completa.jpg",
+    "width": 1024,
+    "height": 472
+  },
+  {
+    "id": "restaurante-terraza-mesas",
+    "title": "Terraza Campestre & Mesas de Madera",
+    "chalet": "Restaurante Pazionart",
+    "category": "restaurante",
+    "subCategory": "terraza",
+    "description": "Ambiente íntimo bajo techo de bambú con mesas de madera maciza, pizarra de platos típicos y exquisita parrilla.",
+    "src": "/images/restaurant/restaurante-terraza-mesas.jpg",
+    "width": 1024,
+    "height": 472
+  },
+  {
+    "id": "restaurante-gastrobar-pergola",
+    "title": "Espacio Gastro-Bar & Menú del Día",
+    "chalet": "Restaurante Pazionart",
+    "category": "restaurante",
+    "subCategory": "terraza",
+    "description": "Columna insignia Gastro Bar y terraza exterior rodeada de naturaleza para disfrutar de comida tradicional.",
+    "src": "/images/restaurant/restaurante-gastrobar-pergola.jpg",
+    "width": 1024,
+    "height": 472
+  },
+  {
+    "id": "restaurante-velada-nocturna",
+    "title": "Velada Crepuscular en la Terraza",
+    "chalet": "Restaurante Pazionart",
+    "category": "restaurante",
+    "subCategory": "terraza",
+    "description": "Cálida iluminación nocturna entre setos verdes, ideal para tardes de café, vino y música en vivo.",
+    "src": "/images/restaurant/restaurante-velada-nocturna.jpg",
+    "width": 1024,
+    "height": 472
+  },
+  {
+    "id": "restaurante-entorno-santa-elena",
+    "title": "Esencia Andina · Santa Elena",
+    "chalet": "Restaurante Pazionart",
+    "category": "restaurante",
+    "subCategory": "terraza",
+    "description": "El punto de encuentro gastronómico en el corazón de Santa Elena, donde convergen la tradición andina y la buena mesa.",
+    "src": "/images/restaurant/restaurante-entorno-santa-elena.jpg",
+    "width": 1024,
+    "height": 472
   }
 ]

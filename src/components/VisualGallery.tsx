@@ -57,23 +57,24 @@ export default function VisualGallery({
   }, [activeTab, activeWorld]);
 
   // Chalet items contienen estrictamente los 3 chalets (27 fotos)
-  // Restaurante contiene estrictamente mesa, vino, fuego y huerta (7 fotos)
+  // Restaurante contiene Gastro-Bar (5 fotos reales), mesa, vino, fuego y huerta (12 fotos)
   const baseItems = useMemo(() => {
     if (isRestaurante) {
       return galleryItems.filter(
-        (it) => it.category === "spa" || it.id === "aroma-06"
+        (it) => it.category === "restaurante" || it.category === "spa" || it.id === "aroma-06"
       );
     }
     return galleryItems.filter(
-      (it) => it.category !== "spa" && it.id !== "aroma-06"
+      (it) => it.category !== "spa" && it.id !== "aroma-06" && it.category !== "restaurante"
     );
   }, [isRestaurante]);
 
   const categories = useMemo(() => {
     if (isRestaurante) {
       return [
-        { id: "all", label: isEn ? "All Restaurant & Table (7)" : "Todo el Restaurante & Mesa (7)" },
-        { id: "mesas", label: isEn ? "Tables & Candles" : "Mesas & Cenas Íntimas" },
+        { id: "all", label: isEn ? "All Restaurant & Gastro-Bar (12)" : "Todo el Restaurante & Gastro-Bar (12)" },
+        { id: "terraza", label: isEn ? "Gastro-Bar & Terrace (5)" : "Fachada & Terraza (5)" },
+        { id: "mesas", label: isEn ? "Tables & Intimate Dining" : "Mesas & Cenas Íntimas" },
         { id: "huerta", label: isEn ? "Garden & Botanicals" : "Huerta & Botánica" },
       ];
     }
@@ -88,14 +89,17 @@ export default function VisualGallery({
   const filteredItems = useMemo(() => {
     if (activeTab === "all") return baseItems;
     if (isRestaurante) {
+      if (activeTab === "terraza") {
+        return baseItems.filter((it) => it.category === "restaurante");
+      }
       if (activeTab === "mesas") {
         return baseItems.filter((it) =>
-          ["aroma-06", "spa-01", "spa-05", "spa-06"].includes(it.id)
+          ["aroma-06", "spa-preparacion-completa", "spa-composicion-relajante", "spa-vista-cenital"].includes(it.id)
         );
       }
       if (activeTab === "huerta") {
         return baseItems.filter((it) =>
-          ["spa-02", "spa-03", "spa-04"].includes(it.id)
+          ["spa-sales-corazon", "spa-ramilletes-frescos", "spa-detalle-aromas"].includes(it.id)
         );
       }
       return baseItems;

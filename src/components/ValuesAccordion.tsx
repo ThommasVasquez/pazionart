@@ -63,7 +63,7 @@ export default function ValuesAccordion({ activeWorld = "chalets" }: ValuesAccor
           tag: "Hospitalidad & Buena Mesa",
           desc: "Cocinamos desde el corazón, con calidez y dedicación. Cada plato de nuestra cocina tradicional colombiana se prepara con esmero para compartir momentos entrañables con los que uno más quiere.",
           icon: Heart,
-          image: "/images/gallery/bruma-cocina-comedor.jpg",
+          image: "/images/restaurant/restaurante-fachada-completa.jpg",
           color: "#C85A32",
         },
         {

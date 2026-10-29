@@ -89,7 +89,7 @@ export default function KineticQuote({
           desc: "El ritual de los 4 tiempos cocinados al calor paciente de brasas andinas, honrando la gastronomía colombiana en cazuelas de barro hechas a mano.",
           duration: "3 horas",
           materials: "Brasas de roble, cazuelas de barro y productos agroecológicos",
-          image: "/images/gallery/bruma-cocina-comedor.jpg",
+          image: "/images/restaurant/restaurante-terraza-mesas.jpg",
           badge: "Ritual Gastronómico",
         },
         {
